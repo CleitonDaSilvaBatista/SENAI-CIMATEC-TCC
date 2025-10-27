@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #222;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 2px solid #0a583c;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  color: #151315;
+}
+
+.menu a {
+  margin: 0 15px;
+  color: #716a78;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.menu a:hover {
+  color: #007d4f;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn.login {
+  background: #fff;
+  border: 1px solid #5d5b5a;
+  color: #8f8c92;
+}
+
+.btn.signup {
+  background: #00bc66;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.btn.signup:hover {
+  background: #019a55;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h2 {
+  font-size: 36px;
+  color: #135e43;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.btn.explorar {
+  background: #fff;
+  border: 2px solid #389d79;
+  color: #389d79;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.btn.explorar:hover {
+  background: #389d79;
+  color: #fff;
+}
+
+/* Cards */
+.servicos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  padding: 40px;
+  justify-items: center;
+}
+
+.card-servico {
+  width: 200px;
+  background: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.card-servico:hover {
+  transform: translateY(-5px);
+}
+
+.card-servico img {
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-servico h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.card-servico .preco {
+  color: #828282;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.card-servico .categoria {
+  font-size: 10px;
+  color: #777;
+}
