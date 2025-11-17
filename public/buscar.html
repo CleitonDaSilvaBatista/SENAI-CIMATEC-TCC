@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Busca de Emails</title>
+  <style>
+    #dialogoverlay {
+      display: none;
+      opacity: .8;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      background: #FFF;
+      width: 100%;
+      z-index: 10;
+    }
+
+    #dialogbox {
+      display: none;
+      position: fixed;
+      background: #000;
+      border-radius: 7px;
+      width: 550px;
+      z-index: 10;
+    }
+
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 40px;
+    }
+
+    form {
+      background: #fff;
+      display: inline-block;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button.buscar {
+      background: #007bff;
+      color: #fff;
+    }
+
+    button.excluir {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: #fff;
+      width: 80%;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    th {
+      background: #f7f7f7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Buscar e Gerenciar Emails</h1>
+
+<form id="formBusca" autocomplete="off">
+  <input type="number" id="id_usuario" placeholder="ID do Usuário">
+  <input type="text" id="nome" placeholder="Nome">
+  <input type="email" id="email" placeholder="E-mail">
+  <button type="submit">Buscar</button>
+</form>
+
+<table id="tabela">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Data de Cadastro</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const tbody = $('tbody');
+
+  function render(rows) {
+    tbody.innerHTML = rows.length
+      ? rows.map(r => `
+        <tr>
+          <td>${r.id_usuario}</td>
+          <td>${r.nome}</td>
+          <td>${r.email}</td>
+          <td>${new Date(r.data_cadastro).toLocaleString('pt-BR')}</td>
+        </tr>`).join('')
+      : '<tr><td colspan="5">Nenhum resultado encontrado.</td></tr>';
+  }
+
+  function params(obj) {
+    const p = new URLSearchParams();
+    Object.entries(obj).forEach(([k, v]) => { if (v) p.append(k, v); });
+    return p.toString();
+  }
+
+  $('formBusca').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const qs = params({
+      id_usuario: $('id_usuario').value.trim(),
+      nome: $('nome').value.trim(),
+      email: $('email').value.trim()
+    });
+
+    const res = await fetch('/api/buscar?' + qs);
+    const data = await res.json();
+    render(data);
+  });
+</script>
+
+  <p><a href="/">Voltar ao cadastro</a></p>
+</body>
+
+</html>

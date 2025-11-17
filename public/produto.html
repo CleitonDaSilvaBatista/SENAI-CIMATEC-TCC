@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kit 3 Bermudas — Loja Demo</title>
+    <link rel="stylesheet" href="css/produto.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar principal estilo Mercado Livre -->
+    <header class="navbar">
+      <div class="navbar-left">
+        <div class="logo"><a href="/"></a>Jobee</div>
+        <div class="location">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/684/684908.png"
+            alt="Localização"
+          />
+          <span>Informe seu CEP</span>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <input
+          type="text"
+          placeholder="Buscar serviços, empresas e muito mais..."
+        />
+        <button>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/622/622669.png"
+            alt="Buscar"
+          />
+        </button>
+      </div>
+
+      <nav class="navbar-right">
+        <a href="#">Ajuda</a>
+        <a href="login.html" id="entre">Fazer Login</a>
+        <a href="criarcont.html" class="btn conta">Crie sua conta</a>
+        <a href="/cart" class="cart">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-bag-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"
+            />
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <!-- Barra secundária -->
+    <section class="sub-navbar">
+      <div class="dropdown-categorias">
+        <a href="#" class="categorias-btn">Categorias ▼</a>
+        <ul class="menu-categorias">
+          <li><a href="#">Supermercado</a></li>
+          <li><a href="#">Tecnologia</a></li>
+          <li><a href="#">Casa e Móveis</a></li>
+          <li><a href="#">Eletrodomésticos</a></li>
+          <li><a href="#">Esportes e Fitness</a></li>
+          <li><a href="#">Ferramentas</a></li>
+          <li><a href="#">Moda</a></li>
+          <li><a href="#">Beleza e Cuidados</a></li>
+        </ul>
+      </div>
+
+      <a href="#">Ofertas</a>
+      <a href="#">Cupons</a>
+      <a href="#">Serviços</a>
+      <a href="#">Contato</a>
+    </section>
+
+    <!-- Conteúdo Principal do Produto -->
+    <main class="product-container">
+      <div class="breadcrumb">
+        <a href="/">Home</a> > <a href="#">Moda</a> >
+        <a href="#">Masculino</a> > <a href="#">Bermudas</a> >
+        <span>Kit 3 Bermudas</span>
+      </div>
+
+      <section class="product-main">
+        <div class="left-col">
+          <div class="gallery">
+            <img id="img-principal" src="img/shorts.webp" alt="Bermudas" />
+            <div class="thumbs">
+              <img
+                src="img/bermuda1.webp"
+                alt="Bermuda Preto"
+                class="active"
+                onclick="trocarImagem(this.src, this)"
+              />
+              <img
+                src="img/bermuda2.webp"
+                alt="Bermuda Branco"
+                onclick="trocarImagem(this.src, this)"
+              />
+              <img
+                src="img/bermuda3.webp"
+                alt="Bermuda Cinza"
+                onclick="trocarImagem(this.src, this)"
+              />
+              <img
+                src="img/bermuda4.webp"
+                alt="Bermuda Detalhe"
+                onclick="trocarImagem(this.src, this)"
+              />
+            </div>
+          </div>
+
+          <div class="product-info-tabs">
+            <div class="tabs">
+              <button class="tab active" data-tab="descricao">Descrição</button>
+              <button class="tab" data-tab="detalhes">Detalhes</button>
+              <button class="tab" data-tab="avaliacoes">Avaliações (25)</button>
+            </div>
+
+            <div class="tab-content active" id="descricao">
+              <h3>Descrição do produto</h3>
+              <p>
+                Kit com 3 bermudas masculinas em tecido leve, ideal para uso
+                casual e esportivo. Corte reto, elástico no cós e bolso lateral.
+                Disponível em cores preto, branco e cinza.
+              </p>
+              <ul>
+                <li>Composição: 95% algodão, 5% elastano</li>
+                <li>Modelagem: regular</li>
+                <li>Lavagem: à máquina</li>
+                <li>Indicado para: dia a dia, esportes, lazer</li>
+                <li>Garantia do fabricante: 30 dias contra defeitos</li>
+              </ul>
+            </div>
+
+            <div class="tab-content" id="detalhes">
+              <h3>Especificações</h3>
+              <table>
+                <tr>
+                  <td>Peso</td>
+                  <td>800g (kit)</td>
+                </tr>
+                <tr>
+                  <td>Marca</td>
+                  <td>Loja Demo</td>
+                </tr>
+                <tr>
+                  <td>Garantia</td>
+                  <td>30 dias</td>
+                </tr>
+                <tr>
+                  <td>Material</td>
+                  <td>95% Algodão, 5% Elastano</td>
+                </tr>
+                <tr>
+                  <td>Tipo de Fecho</td>
+                  <td>Elástico com cordão</td>
+                </tr>
+                <tr>
+                  <td>Origem</td>
+                  <td>Nacional</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="tab-content" id="avaliacoes">
+              <h3>Avaliações dos Clientes</h3>
+              <div class="rating-summary">
+                <div class="overall-rating">
+                  <span class="rating-value">4.8</span>
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
+                  <span class="rating-count">25 avaliações</span>
+                </div>
+              </div>
+
+              <div class="review">
+                <div class="review-header">
+                  <strong>João Silva</strong>
+                  <div class="stars">★★★★★</div>
+                </div>
+                <p>
+                  Boa qualidade pelo preço, recomendo. O tecido é confortável e
+                  a modelagem ficou boa.
+                </p>
+                <span class="review-date">Há 2 dias</span>
+              </div>
+
+              <div class="review">
+                <div class="review-header">
+                  <strong>Maria Santos</strong>
+                  <div class="stars">★★★★☆</div>
+                </div>
+                <p>
+                  Gostei muito do produto, mas achei que poderia ser um pouco
+                  mais longo. De qualquer forma, recomendo.
+                </p>
+                <span class="review-date">Há 1 semana</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="right-col">
+          <div class="status-badge">
+            <span class="badge novo">Novo</span>
+            <span class="badge oferta">Oferta</span>
+          </div>
+
+          <h1 class="product-title">
+            Kit 3 Bermudas Flanelada De Chimpá Masculina Casual Premium
+          </h1>
+
+          <div class="rating-row">
+            <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+            <div class="sold">100+ vendidos</div>
+          </div>
+
+          <div class="price-row">
+            <div class="price">R$ <span class="big">59,99</span></div>
+            <div class="installments">ou 12x de R$ 5,00 sem juros</div>
+            <div class="old-price">De R$ 79,99</div>
+            <div class="discount-badge">25% OFF</div>
+          </div>
+
+          <div class="shipping">
+            <div class="shipping-info">
+              <i class="fas fa-truck"></i>
+              <div>
+                <p><strong>Frete</strong>: R$ 9,90 • Prazo: 2 a 5 dias úteis</p>
+                <p class="free-shipping">
+                  <strong>Receba grátis</strong> com compras acima de R$ 150
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="variations">
+            <div class="variation">
+              <label>Cor</label>
+              <div class="color-options">
+                <button
+                  class="color active"
+                  data-color="preto"
+                  data-images='["bermuda-preto-1.webp", "bermuda-preto-2.webp", "bermuda-preto-3.webp", "bermuda-preto-4.webp"]'
+                >
+                  Preto
+                </button>
+                <button
+                  class="color"
+                  data-color="branco"
+                  data-images='["bermuda-branco-1.webp", "bermuda-branco-2.webp", "bermuda-branco-3.webp", "bermuda-branco-4.webp"]'
+                >
+                  Branco
+                </button>
+                <button
+                  class="color"
+                  data-color="cinza"
+                  data-images='["bermuda-cinza-1.webp", "bermuda-cinza-2.webp", "bermuda-cinza-3.webp", "bermuda-cinza-4.webp"]'
+                >
+                  Cinza
+                </button>
+              </div>
+            </div>
+
+            <div class="variation">
+              <label for="tamanho">Tamanho</label>
+              <div class="size-options">
+                <button class="size active" data-size="P">P</button>
+                <button class="size" data-size="M">M</button>
+                <button class="size" data-size="G">G</button>
+                <button class="size" data-size="GG">GG</button>
+              </div>
+            </div>
+
+            <div class="quantity-selector">
+              <label for="quantidade">Quantidade</label>
+              <div class="quantity-controls">
+                <button class="qty-btn minus">-</button>
+                <input
+                  type="number"
+                  id="quantidade"
+                  value="1"
+                  min="1"
+                  max="10"
+                />
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+
+            <div class="stock">
+              <i class="fas fa-box"></i>
+              Estoque disponível: <strong>10 unidades</strong>
+            </div>
+          </div>
+
+          <div class="buy-actions">
+            <button id="btn-comprar" class="btn big primary">
+              <i class="fas fa-bolt"></i> Comprar agora
+            </button>
+            <button id="btn-carrinho" class="btn big outline">
+              <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho
+            </button>
+          </div>
+
+          <div class="security-badges">
+            <div class="badge-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>Compra segura</span>
+            </div>
+            <div class="badge-item">
+              <i class="fas fa-undo"></i>
+              <span>Devolução grátis</span>
+            </div>
+            <div class="badge-item">
+              <i class="fas fa-truck"></i>
+              <span>Entrega rápida</span>
+            </div>
+          </div>
+
+          <div class="seller-box">
+            <h4>Vendido por <a href="#">Loja Demo</a></h4>
+            <div class="seller-info">
+              <div class="seller-rating">
+                <i class="fas fa-star"></i> 4.9 (98% positivo)
+              </div>
+              <p>3.4k vendas</p>
+            </div>
+            <a href="#" class="btn small outline">Ver loja</a>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Seção de Produtos Relacionados com Carrossel -->
+      <section class="related-products">
+        <h2>Produtos relacionados</h2>
+        
+        <div class="related-carousel-container">
+          <button class="related-carousel-seta esquerda">&#10094;</button>
+          
+          <div class="related-carousel">
+            <a href="#" class="related-card">
+              <img src="https://http2.mlstatic.com/D_Q_NP_2X_874039-MLB96841140101_102025-E-bermuda-masculina-lurk-v3s-esportiva-cross-treino.webp" alt="Bermuda Esportiva">
+              <div class="related-card-content">
+                <p>Bermuda Masculina Lurk V3s Esportiva Cross Treino</p>
+                <div class="old-price" style="font-size: 14px;">R$ 79,90</div>
+                <div class="related-price">R$ 49,90</div>
+                <p id="frete">Frete grátis</p>
+              </div>
+            </a>
+            
+            <a href="#" class="related-card">
+              <img src="https://http2.mlstatic.com/D_NQ_NP_2X_731422-MLB97018979497_112025-F-bermuda-dupla-masculina-compreenso-2-em-1-short-esporte.webp" alt="Bermuda Dupla">
+              <div class="related-card-content">
+                <p>Bermuda Dupla Masculina Compressão 2 em 1 Short Esporte</p>
+                <div class="old-price" style="font-size: 14px;">R$ 79,90</div>
+                <div class="related-price">R$ 79,90</div>
+                <p id="frete">Frete grátis</p>
+              </div>
+            </a>
+            
+            <a href="#" class="related-card">
+              <img src="https://http2.mlstatic.com/D_NQ_NP_2X_615145-MLB90274630198_082025-F-short-duplo-compreenso-fitness-bermuda-academia-feminino.webp" alt="Short Fitness">
+              <div class="related-card-content">
+                <p>Short Duplo Compressão Fitness Bermuda Academia</p>
+                <div class="old-price" style="font-size: 14px;">R$ 79,90</div>
+                <div class="related-price">R$ 69,90</div>
+                <p id="frete">Frete grátis</p>
+              </div>
+            </a>
+            
+            <a href="#" class="related-card">
+              <img src="https://http2.mlstatic.com/D_NQ_NP_2X_814720-MLB94563425399_102025-F-short-infantil-feminino-usar-embaixo-da-roupa-cotton-malwee.webp" alt="Bermuda Jeans">
+              <div class="related-card-content">
+                <p>Short Infantil Feminino Usar Embaixo Da Roupa Cotton Malwee</p>
+                <div class="old-price" style="font-size: 14px;">R$ 79,90</div>
+                <div class="related-price">R$ 89,90</div>
+                <p id="frete">Frete grátis</p>
+              </div>
+            </a>
+            
+            <a href="#" class="related-card">
+              <img src="https://http2.mlstatic.com/D_NQ_NP_2X_811638-MLB91281801825_082025-F-shorts-moletinho-feminino-vero-com-bolso-estiloso-c2.webp" alt="Bermuda Tactel">
+              <div class="related-card-content">
+                <p>Shorts Moletinho Feminino Verão Com Bolso Estiloso C2</p>
+                <div class="old-price" style="font-size: 14px;">R$ 79,90</div>
+                <div class="related-price">R$ 45,90</div>
+                <p id="frete">Frete grátis</p>
+              </div>
+            </a>
+            
+            <a href="#" class="related-card">
+              <img src="https://http2.mlstatic.com/D_NQ_NP_2X_905796-MLB97647540084_112025-F-bermuda-p-nataco-esportiva-solar-max-proteco-uv-fpu-50.webp" alt="Short Nadador">
+              <div class="related-card-content">
+                <p>Short Nadador Masculino Praia Piscina Natação</p>
+                <div class="old-price" style="font-size: 14px;">R$ 49,90</div>
+                <div class="related-price">R$ 34,90</div>
+                <p id="frete">Frete grátis</p>
+              </div>
+            </a>
+            
+            <a href="#" class="related-card">
+              <img src="https://www.calitta.com/20506-thickbox_default/bermuda-masculina-estampada-floral-e-abacaxi-moda-batedeira-do-verao.jpg" alt="Bermuda Linho">
+              <div class="related-card-content">
+                <p>Bermuda Linho Masculina Verão Casual Confortável</p>
+                <div class="old-price" style="font-size: 14px;">R$ 109,90</div>
+                <div class="related-price">R$ 99,90</div>
+                <p id="frete">Frete grátis</p>
+              </div>
+            </a>
+          </div>
+          
+          <button class="related-carousel-seta direita">&#10095;</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>Jobee</h3>
+          <p>
+            Uma colmeia de serviços que conecta pessoas e negócios de forma
+            prática e segura.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Links Úteis</h4>
+          <ul>
+            <li><a href="#">Ajuda</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Siga-nos</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Jobee - Todos os direitos reservados</p>
+      </div>
+    </footer>
+
+    <script src="js/produto.js"></script>
+  </body>
+</html>

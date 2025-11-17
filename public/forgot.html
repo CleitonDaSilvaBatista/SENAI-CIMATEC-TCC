@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esqueci Minha Senha | Jobee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/forgot.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <div class="logo"><a href="/">Jobee</a></div>
+      <div class="location">
+        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Localização">
+        <span>Informe seu CEP</span>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar serviços, empresas e muito mais...">
+      <button>
+        <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar">
+      </button>
+    </div>
+
+    <nav class="navbar-right">
+      <a href="#">Ajuda</a>
+      <a href="login.html">Entre</a>
+      <a href="criarcont.html" class="btn conta">Crie sua conta</a>
+    </nav>
+  </header>
+
+  <!-- SUB NAVBAR -->
+  <section class="sub-navbar">
+    <a href="#">Ofertas</a>
+    <a href="#">Cupons</a>
+    <a href="#">Contato</a>
+  </section>
+
+  <!-- FORMULÁRIO -->
+    <div class="forgot-container">
+      <h2>Redefinir Senha</h2>
+      <form id="forgotForm">
+        <input type="email" id="email" placeholder="Digite seu e-mail" required>
+        <button type="submit">Enviar link de redefinição</button>
+      </form>
+      <div id="mensagem" class="mensagem"></div>
+    </div>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática e segura.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+          <a href="#"><img src="img/linkedin.png" alt="LinkedIn"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    document.getElementById('forgotForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const mensagemEl = document.getElementById('mensagem');
+      mensagemEl.textContent = "Enviando link...";
+
+      try {
+        const response = await fetch('/api/forgot-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          mensagemEl.style.color = 'green';
+          mensagemEl.textContent = data.message;
+        } else {
+          mensagemEl.style.color = 'red';
+          mensagemEl.textContent = data.error || data.message || 'Erro ao enviar link.';
+        }
+      } catch (error) {
+        mensagemEl.style.color = 'red';
+        mensagemEl.textContent = 'Erro na conexão com o servidor.';
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

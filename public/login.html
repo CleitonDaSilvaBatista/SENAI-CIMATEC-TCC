@@ -1,60 +1,132 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/stylelogin.css" />
-    <title>Login | JOBEE</title>
+    <title>Jobee | Login</title>
+
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css?family=Inter&display=swap"
-      rel="stylesheet"
-    />
-    
+    <link rel="stylesheet" href="css/login.css" />
   </head>
+
   <body>
-    <header class="navbar">
-      <div class="logo">JOBEE</div>
-      <nav class="menu">
-        <a href="#">Início</a>
-        <a href="#">Sobre Nós</a>
-        <a href="#">Suporte</a>
-      </nav>
-      <div class="auth-buttons">
-        <button class="login-btn">Login</a></button>
-        <button class="signup-btn">Sign Up</button>
+     <!-- Navbar principal estilo Mercado Livre -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <div class="logo"><a href="/"></a>Jobee</div>
+      <div class="location">
+        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Localização" />
+        <span>Informe seu CEP</span>
       </div>
-    </header>
+    </div>
 
-    <main class="login-container">
-      <div class="login-card">
-        <h1>LOGIN</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar serviços, empresas e muito mais..." />
+      <button>
+        <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" />
+      </button>
+    </div>
 
+    <nav class="navbar-right">
+      <a href="#">Ofertas</a>
+      <a href="#">Ajuda</a>
+      <a href="/criarcont" class="btn conta">Crie sua Conta</a>
+    </nav>
+  </header>
+
+    <!-- Barra secundária -->
+    <section class="sub-navbar">
+      <a href="#">Categorias</a>
+      <a href="#">Cupons</a>
+      <a href="#">Serviços</a>
+      <a href="#">Contato</a>
+    </section>
+
+    <!-- Formulário de Login -->
+    <div class="form-container">
+      <h2>Bem-vindo à Jobee</h2>
+      <p class="subtitle">Acesse sua conta para continuar</p>
+
+      <form>
         <div class="input-group">
-          <label>Email ou Usuário</label>
-          <input type="text" placeholder="Email, Usuário, Telefone..." />
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="Digite seu e-mail" required />
         </div>
 
         <div class="input-group">
-          <label>Senha</label>
-          <input type="password" placeholder="Senha..." />
+          <label for="password">Senha</label>
+          <input type="password" id="password" placeholder="Digite sua senha" required />
         </div>
 
-        <button class="submit-btn">Entrar</button>
-
-        <a href="#" class="forgot-password">Esqueci minha senha?</a>
+        <button type="submit" class="btn-enviar">Entrar</button>
+        
+        <p class="forgot-password"><a href="/forgot">Esqueceu sua senha?</a></p>
 
         <p class="signup-text">
-          Não possui uma conta? <a href="#">Cadastre-se aqui!</a>
+          Não tem uma conta? <a href="/criarcont">Crie a sua aqui</a>
         </p>
+      </form>
 
-        <div class="footer-links">
-          <a href="#">Termos de Serviço</a> | <a href="#">Política de Privacidade</a>
+      <div class="divider">
+        <span>ou entre com</span>
+      </div>
+
+      <div class="social-login">
+        <button class="social-btn google">
+          <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" />
+          Entrar com Google
+        </button>
+
+        <button class="social-btn linkedin">
+          <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+          Entrar com LinkedIn
+        </button>
+
+        <button class="social-btn microsoft">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Microsoft" />
+          Entrar com Microsoft
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>
+          Uma colmeia de serviços que conecta pessoas e negócios de forma
+          prática e segura.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" /></a>
+          <a href="#"><img src="img/linkedin.png" alt="LinkedIn" /></a>
         </div>
       </div>
-    </main>
+    </div>
+
+    <section class=""></section>
+
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
   </body>
 </html>

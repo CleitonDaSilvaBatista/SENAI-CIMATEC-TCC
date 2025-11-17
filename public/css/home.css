@@ -1,0 +1,567 @@
+/* ==============================
+   BASE GERAL
+============================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #ebebeb;
+  color: #222;
+}
+
+#subtitle{
+  color: #308668;
+  font-size: 30px;
+  text-align: center;
+  font-family:'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+/* ==============================
+   NAVBAR PRINCIPAL (estilo Mercado Livre)
+============================== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #308668;
+  padding: 10px 30px;
+  position: relative;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Lado esquerdo */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.location img {
+  width: 16px;
+  height: 16px;
+}
+
+.imgnav{
+  color: white;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 6px;
+  transform: translateX(15%);
+  width: 600px;
+  padding: 4px 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  padding: 8px;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar button img {
+  width: 18px;
+  opacity: 0.7;
+}
+
+.search-bar button:hover img {
+  opacity: 1;
+}
+
+/* Lado direito */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+#entre {
+border: 2px solid #ffffff;
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: #ffffff;
+  font-weight: 600;
+  transition: 0.2s;
+}
+#entre:hover {
+  background: #ffffff;
+  color: #308668;
+}
+
+.navbar-right a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.navbar-right a:hover {
+  color: #01cc6d;
+}
+
+.btn.conta {
+  background: #fff;
+  padding: 6px 12px;
+  color: #308668;
+  border-radius: 6px;
+  border: 1px solid #888;
+  font-weight: 600;
+}
+
+.btn.conta:hover {
+  background: #f7f7f7;
+}
+
+.cart img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==============================
+   MENU HOVER CATEGORIAS
+============================== */
+
+.dropdown-categorias {
+  position: relative;
+  display: inline-block;
+}
+
+.categorias-btn {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.categorias-btn:hover {
+  background-color: #ffffff;
+}
+
+/* O menu que aparece ao passar o mouse */
+.menu-categorias {
+  display: none;
+  position: absolute;
+  top: 29px;
+  right: 0;
+  background-color: #308668;
+  min-width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  padding: 8px 0;
+}
+
+.menu-categorias li {
+  list-style: none;
+}
+
+.menu-categorias li a {
+  display: block;
+  color: #fff;
+  transform: translateX(5%);
+  padding: 10px 18px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+/* Mostra o menu no hover */
+.dropdown-categorias:hover .menu-categorias {
+  display: block;
+}
+
+/* ==============================
+   SUB-NAVBAR (segunda faixa)
+============================== */
+.sub-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  background: #308668;
+  padding: 8px 40px;
+}
+
+.sub-navbar a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s;
+  transform: translateX(-10%);
+}
+
+.sub-navbar a:hover {
+  color: #01cc6d;
+}
+
+/* ==============================
+   HERO
+============================== */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #308668, #ebebeb);
+}
+
+.hero h2 {
+  font-size: 60px;
+  color: #ffffff;
+  font-weight: 1000;
+  margin-bottom: 25px;
+  text-shadow: 3px 3px 0 #00000036;
+}
+
+.btn.explorar {
+  background: #308668;
+  border: 2px solid #389d79;
+  color: #fff;
+  padding: 16px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn.explorar:hover {
+  background: #fff;
+  color: #308668;
+}
+
+/* ==============================
+   CARDS DE SERVIÇOS
+============================== */
+.servicos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 60px 40px;
+}
+
+.card-servico {
+  width: 350px;
+  height: 380px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card-servico:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card-servico img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-servico h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #333;
+}
+
+.card-servico .preco {
+  color: #00a86b;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.avaliacao {
+  padding: 4px;
+  font-size: 15px;
+}
+
+.ver {
+  background-color: #009e54;
+  padding: 8px;
+  width: 150px;
+  cursor: pointer;
+  margin: 35px auto 0;
+  border-radius: 7px;
+  color: white;
+  border: 2px solid #389d79;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  transition: 0.3s;
+}
+
+.ver:hover {
+  background-color: #fff;
+  color: #009e54;
+}
+
+/* ==============================
+   PRODUTOS
+============================== */
+
+.produtos2 {
+  padding: 60px 40px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 180px;
+  width: 90%;
+  transform: translate(5%, 0);
+}
+.titleprodu{
+  color: #308668;
+  font-size: 30px;
+  text-align: center;
+  font-family:'Poppins', sans-serif;
+  font-weight: bold;
+  transform: translateY(-30%);
+}
+
+.produtos p {
+  transform: translateY(60%);
+} 
+
+span#desconto {
+  font-weight: 600;
+  color: rgb(2, 179, 76);
+  font-size: 14px;
+  margin-left: 10px;
+}
+#frete {
+  font-weight: 600;
+  color: #308668;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.legenda {
+  line-height: 25px;
+}
+
+.legenda a{
+  text-decoration: none;
+  color: #222;
+}
+#parcela {
+  font-weight: 600;
+  color: #555555;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.preco {
+  color: #00a86b;
+  font-weight: 400;
+  font-size: 28px;
+} 
+.old-price {
+  text-decoration: line-through;
+  color: #888;
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 3px;
+  transform: translateY(50%);
+}
+
+/* ===== CARROSSEL DE PRODUTOS ===== */
+.carrossel-container {
+  position: relative;
+  width: 90%;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 50px 0;
+  height: 600px;
+}
+.carrossel {
+  display: flex;
+  gap: 100px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0 80px;
+  height: 800px;
+}
+
+.carrossel::-webkit-scrollbar {
+  display: none;
+}
+
+.seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.seta.esquerda {
+  left: 10px;
+  height: 40px;
+  width: 40px;
+  z-index: 100;
+}
+
+.seta.direita {
+  right: 10px;
+  height: 40px;
+  width: 40px;
+  z-index: 100;
+}
+
+
+/* ==============================
+   RODAPÉ
+============================== */
+
+.footer {
+  background: #0b8a56;
+  color: white;
+  padding: 60px 10%;
+  margin-top: 60px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-col h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.footer-col h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footer-col p {
+  color: #e8f5ee;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin: 8px 0;
+}
+
+.footer-col ul li a {
+  color: #e8f5ee;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.social-links a img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.social-links a img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #d9f3e2;
+}
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .sub-navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero h2 {
+    font-size: 36px;
+  }
+}

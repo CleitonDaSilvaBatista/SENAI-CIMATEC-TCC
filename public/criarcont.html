@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Criar Conta | Jobee</title>
+  <link rel="stylesheet" href="css/criarcont.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navbar principal estilo Mercado Livre -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <div class="logo"><a href="/"></a>Jobee</div>
+      <div class="location">
+        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Localização" />
+        <span>Informe seu CEP</span>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar serviços, empresas e muito mais..." />
+      <button>
+        <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" />
+      </button>
+    </div>
+
+    <nav class="navbar-right">
+      <a href="#">Ofertas</a>
+      <a href="#">Ajuda</a>
+      <a href="/login" class="btn conta">Fazer Login</a>
+    </nav>
+  </header>
+
+  <!-- Barra secundária -->
+  <section class="sub-navbar">
+    <div class="dropdown-categorias">
+      <a href="#" class="categorias-btn">Categorias ▼</a>
+      <ul class="menu-categorias">
+        <li><a href="#">Supermercado</a></li>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">Casa e Móveis</a></li>
+        <li><a href="#">Eletrodomésticos</a></li>
+        <li><a href="#">Esportes e Fitness</a></li>
+        <li><a href="#">Ferramentas</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Beleza e Cuidados</a></li>
+      </ul>
+    </div>
+
+    <a href="#">Ofertas</a>
+    <a href="#">Cupons</a>
+    <a href="#">Serviços</a>
+    <a href="#">Contato</a>
+  </section>
+  </header>
+
+  <section id="form-cliente" class="form-section">
+    <div class="form-container">
+      <h2>Crie sua conta</h2>
+      <form onsubmit="salvar(event)">
+
+
+
+        <div class="input-group">
+          <label>Nome Completo</label>
+          <input type="text" placeholder="Digite seu nome completo" name="nome" required />
+        </div>
+
+        <div class="input-group">
+          <label>E-mail</label>
+          <input type="email" name="email" placeholder="Digite seu e-mail" required />
+        </div>
+
+        <div class="input-group">
+          <label>Confirme o seu E-mail</label>
+          <input type="email" placeholder="Digite seu e-mail novamente" name="emailVeri" required />
+        </div>
+
+        <div class="input-group">
+          <label>Senha</label>
+          <input type="password" name="senha" placeholder="Crie uma senha" required />
+        </div>
+
+        <div class="input-group">
+          <label>Confirme sua senha</label>
+          <input type="password" name="senhaVeri" placeholder="Confirme sua senha" required />
+        </div>
+
+        <label form="id_tipo_usuario" id="selector">Escolha uma opção</label>
+        <select name="id_tipo_usuario" id="changes">
+          <option value="1">Cliente</option>
+          <option value="2">Empreendedor</option>
+        </select>
+        <button type="submit" class="btn-enviar">Criar Conta</button>
+      </form>
+      <br>
+      <p>Já tem uma conta? <a href="/login" id="entre">Entre aqui</a></p>
+      <br>
+      <p>
+        Os dados serão mantidos em nossa base de dados, só em quanto for
+        desejado por você. A qualquer momento será possível editar ou remover
+        tais dados.
+        <a href="https://www.universidadesenaicimatec.edu.br/politica-de-privacidade/" id="termo" target="_blank">Termos
+          e Condições</a>.
+      </p>
+      <br /><input type="checkbox" id="termos" required /> Sim, li e concordo
+      com vossos termos.<br />
+      <input type="checkbox" /> Sim, também quero receber descontos e
+      novidades.
+      <br />
+
+    </div>
+  </section>
+
+  <!-- Footer Profissional -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>
+          Uma colmeia de serviços que conecta pessoas e negócios de forma
+          prática e segura.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" /></a>
+          <a href="#"><img src="img/linkedin.png" alt="LinkedIn" /></a>
+        </div>
+      </div>
+    </div>
+
+    <section class=""></section>
+
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
+  <script>
+    async function salvar(event) {
+      event.preventDefault();
+
+      const id_tipo_usuario = document.querySelector('[name="id_tipo_usuario"]').value;
+      const nome = document.querySelector('[name="nome"]').value.trim();
+      const email = document.querySelector('[name="email"]').value.trim();
+      const senha = document.querySelector('[name="senha"]').value.trim();
+
+      const res = await fetch('/salvar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id_tipo_usuario, nome, email, senha })
+      });
+
+      const data = await res.text();
+      alert(data);
+    }
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

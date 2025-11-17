@@ -1,0 +1,391 @@
+/* Reset e fonte */
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+  background: #ebebeb;
+  color: #222;
+}
+
+#subtitle{
+  color: #308668;
+  font-size: 30px;
+  text-align: center;
+  font-family:'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+/* ==============================
+   NAVBAR PRINCIPAL (estilo Mercado Livre)
+============================== */
+/* ======= NAVBAR ======= */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #308668;
+  padding: 10px 30px;
+  position: relative;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+a{
+ text-decoration: none;
+} 
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.location img {
+  width: 16px;
+  height: 16px;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 6px;
+  transform: translateX(15%);
+  width: 600px;
+  padding: 4px 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  padding: 8px;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar button img {
+  width: 18px;
+  opacity: 0.7;
+}
+
+.search-bar button:hover img {
+  opacity: 1;
+}
+
+/* Lado direito */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.navbar-right a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.navbar-right a:hover {
+  color: #01cc6d;
+}
+
+.btn.conta {
+  background: #fff;
+  padding: 6px 12px;
+  color: #308668;
+  border-radius: 6px;
+  border: 1px solid #888;
+  font-weight: 600;
+}
+
+.btn.conta:hover {
+  background: #f7f7f7;
+}
+
+/* ==============================
+   MENU HOVER CATEGORIAS
+============================== */
+
+.dropdown-categorias {
+  position: relative;
+  display: inline-block;
+}
+
+.categorias-btn {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.categorias-btn:hover {
+  background-color: #ffffff;
+}
+
+/* O menu que aparece ao passar o mouse */
+.menu-categorias {
+  display: none;
+  position: absolute;
+  top: 29px;
+  right: 0;
+  background-color: #308668;
+  min-width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  padding: 8px 0;
+}
+
+.menu-categorias li {
+  list-style: none;
+}
+
+.menu-categorias li a {
+  display: block;
+  color: #fff;
+  transform: translateX(5%);
+  padding: 10px 18px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+/* Mostra o menu no hover */
+.dropdown-categorias:hover .menu-categorias {
+  display: block;
+}
+
+/* ==============================
+   SUB-NAVBAR (segunda faixa)
+============================== */
+.sub-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  background: #308668;
+  padding: 8px 40px;
+}
+
+.sub-navbar a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s;
+  transform: translateX(-10%);
+}
+
+.sub-navbar a:hover {
+  color: #01cc6d;
+}
+
+
+.forgot-password a {
+  text-decoration: none;
+  color: #0b8a56;
+}
+
+
+/* Formulário */
+.form-section {
+  background: #f8f8f8;
+  padding: 80px 20px;
+}
+
+.form-container {
+  background: white;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #0b8a56;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+}
+
+.input-group input:focus {
+  border-color: #0b8a56;
+}
+
+.btn-enviar {
+  width: 100%;
+  background: #0b8a56;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 15px;
+  transform: translateY(30%);
+}
+
+.btn-enviar:hover {
+  background: #097648;
+}
+
+#entre, #termo{
+  text-decoration: none;
+  color: #0b8a56;
+}
+
+#selector{
+  padding: 5px;
+}
+
+#changes{
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #097648;
+  font-size: 16px;
+  width: 100%;
+  transform: translateY(15%);
+}
+
+/* Rodapé */
+/* ===== Footer Profissional ===== */
+.footer {
+  background: #0b8a56;
+  color: white;
+  padding: 60px 10%;
+  margin-top: 60px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-col h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.footer-col h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footer-col p {
+  color: #e8f5ee;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin: 8px 0;
+}
+
+.footer-col ul li a {
+  color: #e8f5ee;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.social-links a img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.social-links a img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #d9f3e2;
+}
