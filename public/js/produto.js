@@ -12,6 +12,11 @@ function trocarImagem(src, element) {
     element.classList.add('active');
 }
 
+document.querySelector(".buy").addEventListener("click", () => {
+    alert("Produto adicionado ao carrinho!");
+});
+
+
 // Configurar carrossel de produtos relacionados
 function setupRelatedCarousel() {
     const carrossel = document.querySelector('.related-carousel');
