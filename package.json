@@ -15,7 +15,7 @@
     "body-parser": "^2.2.0",
     "crypto": "^1.0.1",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
     "mysql": "^2.18.1",
     "mysql2": "^3.15.3",
     "nodemailer": "^7.0.10"
@@ -28,6 +28,5 @@
     "url": "https://github.com/CleitonDaSilvaBatista/TCC-SENAI-CIMATEC-JOBEE/issues"
   },
   "homepage": "https://github.com/CleitonDaSilvaBatista/TCC-SENAI-CIMATEC-JOBEE#readme",
-  "devDependencies": {},
   "description": ""
 }
