@@ -7,8 +7,33 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
+const session = require('express-session');
+
 const app = express();
 const PORT = process.env.PORT || 40001;
+
+// ============================================
+// MIDDLEWARES
+// ============================================
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(session({
+  secret: 'jobee-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 1000 * 60 * 60 * 24 }
+}));
+
+// Arquivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
+
+// ============================================
+// ROTAS DE AUTENTICAÇÃO (AGORA PODE LER req.body)
+// ============================================
+const authRoutes = require('./routes/auth');
+app.use('/api', authRoutes);
 
 // ============================================
 // CONFIGURAÇÃO DO BANCO DE DADOS
@@ -29,7 +54,7 @@ connection.connect((err) => {
 });
 
 // ============================================
-// CONFIGURAÇÃO DO NODEMAILER (ENV)
+// NODEMAILER
 // ============================================
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -41,18 +66,13 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Testa o login no SMTP
-transporter.verify((error, success) => {
+transporter.verify((error) => {
   if (error) {
     console.error('❌ Erro ao verificar SMTP:', error.message);
   } else {
     console.log('📬 Conexão SMTP verificada com sucesso.');
   }
 });
-
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 // ============================================
 // ROTAS DE PÁGINAS
@@ -67,9 +87,8 @@ app.get('/reset-password', (req, res) => res.sendFile(path.join(__dirname, 'publ
 app.get('/forgot', (req, res) => res.sendFile(path.join(__dirname, 'public', 'forgot.html')));
 app.get('/produto', (req, res) => res.sendFile(path.join(__dirname, 'public', 'produto.html')));
 
-
 // ============================================
-// ROTA: ESQUECI MINHA SENHA
+// ESQUECI MINHA SENHA
 // ============================================
 app.post('/api/forgot-password', (req, res) => {
   const { email } = req.body;
@@ -81,34 +100,31 @@ app.post('/api/forgot-password', (req, res) => {
 
     const userId = results[0].id_usuario;
     const token = crypto.randomBytes(32).toString('hex');
-    const expiresAt = new Date(Date.now() + 1000 * 60 * 30); // 30 minutos
+    const expiresAt = new Date(Date.now() + 1000 * 60 * 30);
 
     const insertToken = 'INSERT INTO password_resets (user_id, token, expires_at) VALUES (?, ?, ?)';
     connection.query(insertToken, [userId, token, expiresAt], (err2) => {
       if (err2) return res.status(500).json({ error: 'Erro ao gerar token.' });
 
       const resetLink = `http://localhost:${PORT}/reset-password?token=${token}`;
+
       const mailOptions = {
         from: process.env.SMTP_USER,
         to: email,
         subject: 'Redefinição de senha - Jobee',
-        text: `\nOlá obrigado por entrar em contato!\nClique no link abaixo para redefinir sua senha:\n\n${resetLink}\n\nEste link expira em 30 minutos.`
+        text: `Olá! Clique no link abaixo para redefinir sua senha:\n\n${resetLink}\n\nEste link expira em 30 minutos.`
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.error('Erro ao enviar e-mail:', error);
-          return res.status(500).json({ error: 'Erro ao enviar e-mail.' });
-        }
-        console.log('📧 E-mail enviado:', info.response);
-        res.json({ message: 'Link de redefinição enviado para seu e-mail!' });
+        if (error) return res.status(500).json({ error: 'Erro ao enviar e-mail.' });
+        res.json({ message: 'Link de redefinição enviado para o seu e-mail!' });
       });
     });
   });
 });
 
 // ============================================
-// ROTA: REDEFINIR SENHA
+// REDEFINIR SENHA
 // ============================================
 app.post('/api/reset-password', async (req, res) => {
   const { token, novaSenha } = req.body;
@@ -128,19 +144,16 @@ app.post('/api/reset-password', async (req, res) => {
     }
 
     const senhaHash = await bcrypt.hash(novaSenha, 10);
+    connection.query('UPDATE usuarios SET senha_hash = ? WHERE id_usuario = ?', [senhaHash, user_id]);
 
-    const updateUser = 'UPDATE usuarios SET senha_hash = ? WHERE id_usuario = ?';
-    connection.query(updateUser, [senhaHash, user_id], (err2) => {
-      if (err2) return res.status(500).json({ error: 'Erro ao atualizar senha.' });
+    connection.query('DELETE FROM password_resets WHERE token = ?', [token]);
 
-      connection.query('DELETE FROM password_resets WHERE token = ?', [token]);
-      res.json({ message: 'Senha redefinida com sucesso!' });
-    });
+    res.json({ message: 'Senha redefinida com sucesso!' });
   });
 });
 
 // ============================================
-// CADASTRO DE USUÁRIO
+// CADASTRO
 // ============================================
 app.post('/salvar', async (req, res) => {
   try {
@@ -149,25 +162,21 @@ app.post('/salvar', async (req, res) => {
 
     const sql = 'INSERT INTO usuarios (id_tipo_usuario, nome, email, senha_hash) VALUES (?, ?, ?, ?)';
     connection.query(sql, [id_tipo_usuario, nome, email, senhaHash], (err) => {
-      if (err) {
-        console.error('❌ Erro ao inserir dados:', err);
-        return res.status(500).send('Erro ao processar o cadastro.');
-      }
-      console.log('✅ Usuário cadastrado com sucesso!');
-      res.send('✅ Cadastro realizado com sucesso!');
+      if (err) return res.status(500).send('Erro ao processar o cadastro.');
+      res.send('Cadastro realizado com sucesso!');
     });
+
   } catch (error) {
-    console.error('Erro inesperado:', error);
     res.status(500).send('Erro interno do servidor.');
   }
 });
 
 // ============================================
-// BUSCA DE USUÁRIOS
+// BUSCAR
 // ============================================
 app.get('/api/buscar', (req, res) => {
   const { id_usuario, nome, email } = req.query;
-  let sql = 'SELECT id_usuario, nome, email, telefone, data_cadastro FROM jobee.usuarios WHERE 1=1';
+  let sql = 'SELECT id_usuario, nome, email, telefone, data_cadastro FROM usuarios WHERE 1=1';
   const params = [];
 
   if (id_usuario) { sql += ' AND id_usuario = ?'; params.push(id_usuario); }
@@ -177,16 +186,13 @@ app.get('/api/buscar', (req, res) => {
   sql += ' ORDER BY id_usuario DESC LIMIT 100';
 
   connection.query(sql, params, (err, rows) => {
-    if (err) {
-      console.error('❌ Erro na consulta:', err);
-      return res.status(500).json({ error: 'Erro na consulta.' });
-    }
+    if (err) return res.status(500).json({ error: 'Erro na consulta.' });
     res.json(rows);
   });
 });
 
 // ============================================
-// ATUALIZAR USUÁRIO POR ID
+// ATUALIZAR
 // ============================================
 app.put('/api/usuarios/:id', (req, res) => {
   const { id } = req.params;
