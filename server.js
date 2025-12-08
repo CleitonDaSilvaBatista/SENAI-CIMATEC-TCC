@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -5,7 +6,6 @@ const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-require('dotenv').config();
 
 const session = require('express-session');
 
@@ -111,8 +111,22 @@ app.post('/api/forgot-password', (req, res) => {
       const mailOptions = {
         from: process.env.SMTP_USER,
         to: email,
-        subject: 'Redefinição de senha - Jobee',
-        text: `Olá! Clique no link abaixo para redefinir sua senha:\n\n${resetLink}\n\nEste link expira em 30 minutos.`
+        subject: '🔐 Redefinição de Senha – Jobee',
+        text: `Olá!
+            Recebemos uma solicitação para redefinir a senha da sua conta na Jobee.
+
+              Para continuar com o processo, clique no link abaixo:
+
+              👉 Redefinir minha senha:
+                      \n\n${resetLink}\n\n
+
+                      Se você não solicitou esta alteração, pode simplesmente ignorar este e-mail — sua conta continuará segura.
+
+                      Este link é válido por 30 minutos por motivos de segurança.
+
+                      Atenciosamente,
+                      Equipe Jobee
+                      Suporte Oficial – Jobee`
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
