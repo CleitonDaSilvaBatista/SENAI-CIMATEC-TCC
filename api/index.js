@@ -23,6 +23,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'home.html'))
 })
 
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'login.html'))
+})
+
+
 app.get('/testejwt', (req, res) => {
   res.json({ secret: process.env.JWT_SECRET ? 'OK' : 'ERRO' })
 })
