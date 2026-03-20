@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(process.cwd(), 'public')))
 
-const authRoutes = require('../routes/auth')
+const authRoutes = require('./routes/auth')
 app.use('/', authRoutes)
 
 app.get('/', (req, res) => {

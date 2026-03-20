@@ -4,7 +4,7 @@ const router = express.Router()
 
 const jwt = require('jsonwebtoken')
 
-const supabase = require('../database')
+const supabase = require('../../database')
 
 // ============================
 // LOGIN
