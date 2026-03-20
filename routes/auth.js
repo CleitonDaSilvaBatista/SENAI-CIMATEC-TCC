@@ -2,6 +2,8 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 const router = express.Router()
 
+const jwt = require('jsonwebtoken')
+
 const supabase = require('../database')
 
 // ============================
@@ -31,8 +33,19 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'E-mail ou senha incorretos.' })
     }
 
+    // 🔥 JWT AQUI
+    const token = jwt.sign(
+      {
+        id: data.id_usuario,
+        email: data.email
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    )
+
     return res.json({
       success: true,
+      token,
       usuario: {
         id: data.id_usuario,
         nome: data.nome,
@@ -40,6 +53,7 @@ router.post('/login', async (req, res) => {
         tipo: data.id_tipo_usuario
       }
     })
+
   } catch (err) {
     console.error('Erro no login:', err)
     return res.status(500).json({ error: 'Erro interno no servidor.' })

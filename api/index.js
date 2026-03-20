@@ -85,12 +85,6 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-const token = jwt.sign(
-  { id: 1 },
-  process.env.JWT_SECRET,
-  { expiresIn: '1d' }
-)
-
 app.post('/forgot-password', async (req, res) => {
   try {
     const { email } = req.body
