@@ -22,6 +22,9 @@ app.use('/', authRoutes)
 app.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'home.html'))
 })
+app.get('/forgot-password', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'reset-password.html'))
+})
 
 app.get('/login', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'login.html'))
