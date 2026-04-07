@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'home.html'))
 })
 app.get('/forgot-password', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'public', 'reset-password.html'))
+  res.sendFile(path.join(process.cwd(), 'public', 'forgot.html'))
 })
 
 app.get('/login', (req, res) => {
