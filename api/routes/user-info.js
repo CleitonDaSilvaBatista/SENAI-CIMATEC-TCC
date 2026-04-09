@@ -1,5 +1,5 @@
 (async () => {
-  const res = await fetch('/api/user');
+  const res = await fetch('/api/user-info');
   const data = await res.json();
 
   const navbarRight = document.querySelector(".navbar-right");
