@@ -11,7 +11,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     });
 
     const data = await resposta.json();
-
+    
     if (data.success) {
         alert("Login realizado com sucesso!");
         window.location.href = "/";
