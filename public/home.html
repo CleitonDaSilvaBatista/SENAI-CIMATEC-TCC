@@ -2,196 +2,217 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jobee | Uma Colmeia de Serviços</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobee | Uma Colmeia de Serviços</title>
 
-<!-- Fonte -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonte profissional -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<!-- CSS -->
-<link rel="stylesheet" href="css/global.css">
-<link rel="stylesheet" href="css/navbar.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/home.css" />
 
-<!-- Navbar loader -->
-<script src="js/navbar.js" defer></script>
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/navbar.css">
+<link rel="stylesheet" href="/css/layout.css">
+<script src="/js/navbar.js" defer></script>
 
 </head>
 
 <body>
+<div id='navbar'></div>
+  </header>
 
-<!-- Navbar -->
-<div id="navbar"></div>
+  <!-- Barra secundária -->
+  <section class="sub-navbar">
+    <div class="dropdown-categorias">
+      <a href="#" class="categorias-btn">Categorias ▼</a>
+      <ul class="menu-categorias">
+        <li><a href="#">Supermercado</a></li>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">Casa e Móveis</a></li>
+        <li><a href="#">Eletrodomésticos</a></li>
+        <li><a href="#">Esportes e Fitness</a></li>
+        <li><a href="#">Ferramentas</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Beleza e Cuidados</a></li>
+      </ul>
+    </div>
 
-<!-- Barra secundária -->
-<section class="sub-navbar">
-<div class="container">
+    <a href="#">Ofertas</a>
+    <a href="#">Cupons</a>
+    <a href="#">Serviços</a>
+    <a href="#">Contato</a>
+  </section>
 
-<div class="dropdown-categorias">
-<a href="#" class="categorias-btn">Categorias ▼</a>
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Uma Colmeia de Serviços</h2>
+    <button class="btn explorar">Explorar Serviços</button>
+  </section>
+  <p id="subtitle">Serviços de maior avaliação</p>
+  <!-- Cards de serviços -->
+  <section class="servicos">
+    <div class="card-servico">
+      <img src="img/barbearia.jpeg" alt="Barbearia" />
+      <h3>Barbearia II Irmãos</h3>
+      <p class="avaliacao">⭐ 4.8 • Barbearia • 1.2 km</p>
+      <p class="tempo">⏱️ 15-25 min</p>
+      <p class="preco">R$ 49,90</p>
+      <p class="ver">Ver Serviços</p>
+    </div>
 
-<ul class="menu-categorias">
-<li><a href="#">Supermercado</a></li>
-<li><a href="#">Tecnologia</a></li>
-<li><a href="#">Casa e Móveis</a></li>
-<li><a href="#">Eletrodomésticos</a></li>
-<li><a href="#">Esportes e Fitness</a></li>
-<li><a href="#">Ferramentas</a></li>
-<li><a href="#">Moda</a></li>
-<li><a href="#">Beleza e Cuidados</a></li>
-</ul>
+    <div class="card-servico">
+      <img src="img/churros.webp" alt="Churros Doces" />
+      <h3>Churros Doces do JG</h3>
+      <p class="avaliacao">⭐ 4.8 • Lanchonete • 1.64 km</p>
+      <p class="tempo">⏱️ 20-25 min</p>
+      <p class="preco">R$ 10,00</p>
+      <p class="ver">Ver Serviços</p>
+    </div>
 
-</div>
+    <div class="card-servico">
+      <img src="img/restaurante.jpg" alt="Restaurante & Cia" />
+      <h3>Restaurante & Cia</h3>
+      <p class="avaliacao">⭐ 4.9 • Restaurante • 5.64 km</p>
+      <p class="tempo">⏱️ 45-60 min</p>
+      <p class="preco">R$ 115,00</p>
+      <p class="ver">Ver Serviços</p>
+    </div>
 
-<a href="#">Ofertas</a>
-<a href="#">Cupons</a>
-<a href="#">Serviços</a>
-<a href="#">Contato</a>
+    <div class="card-servico">
+      <img src="img/salão.jpg" alt="Salão de Beleza" />
+      <h3>Salão & Belezas</h3>
+      <p class="avaliacao">⭐ 4.5 • Beleza & Estilo • 0.8 km</p>
+      <p class="tempo">⏱️ 15 min</p>
+      <p class="preco">R$ 50,00</p>
+      <p class="ver">Ver Serviços</p>
+    </div>
+  </section>
 
-</div>
-</section>
+  <section class="produtos">
+    <div class="titleprodu">
+      <h4>Produtos em Destaque</h4>
+    </div>
 
-<!-- Hero -->
-<section class="hero">
-<div class="container">
-<h2>Uma Colmeia de Serviços</h2>
-<button class="btn explorar">Explorar Serviços</button>
-</div>
-</section>
+    <div class="carrossel-container">
+      <button class="seta esquerda">&#10094;</button>
 
-<section class="container">
+      <div class="produtos2 carrossel">
+        <div class="produto">
+          <img src="img/shorts.webp" width="300" height="300" alt="Produto 1" />
+          <div class="legenda">
+            <h5>
+              <a href="/produto">
+              Kit 4 Bermuda Masculina Short Moletom Leve Caminhada Atacado Com
+              Bolso Academia</a>
+            </h5>
+            <div class="old-price" style="font-size: 14px;">R$ 79,99</div>
+            <p class="preco">R$ 67,85 <span id="desconto">25% OFF</span></p>
+            <p id="parcela">12x R$ 6,68</p>
+            <p id="frete">Frete grátis</p>
+          </div>
+        </div>
 
-<p id="subtitle">Serviços de maior avaliação</p>
+        <div class="produto">
+          <img src="img/tv.webp" width="300" height="300" alt="Produto 2" />
+          <div class="legenda">
+            <h5>
+              Smart TV TCL 65 Polegadas QLED 4K P7K WiFi Bluetooth Google TV
+              HDR10+ Dolby Atmos Dolby Vision 65P7K
+            </h5>
+            <div class="old-price" style="font-size: 14px;">R$ 3.299,90</div>
+            <p class="preco">R$ 2.867,90 <span id="desconto">15% OFF</span></p>
+            <p id="parcela">10x R$ 286,79 sem juros</p>
+            <p id="frete">Frete grátis</p>
+          </div>
+        </div>
 
-<!-- Cards -->
-<section class="servicos">
+        <div class="produto">
+          <img src="img/ferramenta.webp" width="300" height="300" alt="Produto 3" />
+          <div class="legenda">
+            <h5>
+              Jogo de Ferramentas 200 Peças Maleta Resistente Completa uso
+              profissional Titanium Platina
+            </h5>
+            <div class="old-price" style="font-size: 14px;">R$ 89,90</div>
+            <p class="preco">R$ 59,90 <span id="desconto">33% OFF</span></p>
+            <p id="parcela">12x R$ 5,90</p>
+            <p id="frete">Frete grátis</p>
+          </div>
+        </div>
 
-<div class="card-servico">
-<img src="img/barbearia.jpeg" alt="Barbearia">
-<h3>Barbearia II Irmãos</h3>
-<p class="avaliacao">⭐ 4.8 • Barbearia • 1.2 km</p>
-<p class="tempo">⏱️ 15-25 min</p>
-<p class="preco">R$ 49,90</p>
-<p class="ver">Ver Serviços</p>
-</div>
+        <!-- Produtos extras (opcional, pode adicionar mais se quiser) -->
+        <div class="produto">
+          <img src="img/painel.webp" width="300" height="300" alt="Produto 4" />
+          <div class="legenda">
+            <h5>
+              Painel para TV até 55 Polegadas Paris com Efeito Ripado — Design
+              Moderno e Sofisticado em Promoção
+            </h5>
+            <div class="old-price" style="font-size: 14px;">R$ 429,00</div>
+            <p class="preco">R$ 349,00 <span id="desconto">19% OFF</span></p>
+            <p id="parcela">6x R$ 58,17 sem juros</p>
+            <p id="frete">Frete grátis</p>
+          </div>
+        </div>
 
-<div class="card-servico">
-<img src="img/churros.webp" alt="Churros">
-<h3>Churros Doces do JG</h3>
-<p class="avaliacao">⭐ 4.8 • Lanchonete • 1.64 km</p>
-<p class="tempo">⏱️ 20-25 min</p>
-<p class="preco">R$ 10,00</p>
-<p class="ver">Ver Serviços</p>
-</div>
+        <div class="produto">
+          <img src="img/espelho.webp" width="300" height="300" alt="Produto 5" />
+          <div class="legenda">
+            <h5>
+              Espelho Vidrex Pisa 70x50cm Retangular Decorativo Elegante
+              Contemporâneo Luxo & Sofisticação
+            </h5>
+            <div class="old-price" style="font-size: 14px;">R$ 79,90</div>
+            <p class="preco">R$ 58,10 <span id="desconto">27% OFF</span></p>
+            <p id="parcela">2x R$ 29,05 sem juros</p>
+            <p id="frete">Frete grátis</p>
+          </div>
+        </div>
+      </div>
 
-<div class="card-servico">
-<img src="img/restaurante.jpg" alt="Restaurante">
-<h3>Restaurante & Cia</h3>
-<p class="avaliacao">⭐ 4.9 • Restaurante • 5.64 km</p>
-<p class="tempo">⏱️ 45-60 min</p>
-<p class="preco">R$ 115,00</p>
-<p class="ver">Ver Serviços</p>
-</div>
+      <button class="seta direita">&#10095;</button>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>
+          Uma colmeia de serviços que conecta pessoas e negócios de forma
+          prática e segura.
+        </p>
+      </div>
 
-<div class="card-servico">
-<img src="img/salão.jpg" alt="Salão">
-<h3>Salão & Belezas</h3>
-<p class="avaliacao">⭐ 4.5 • Beleza & Estilo • 0.8 km</p>
-<p class="tempo">⏱️ 15 min</p>
-<p class="preco">R$ 50,00</p>
-<p class="ver">Ver Serviços</p>
-</div>
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
 
-</section>
-</section>
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" /></a>
+          <a href="#"><img src="img/linkedin.png" alt="LinkedIn" /></a>
+        </div>
+      </div>
+    </div>
 
-<!-- Produtos -->
-<section class="produtos">
+    <section class=""></section>
 
-<div class="container">
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
 
-<div class="titleprodu">
-<h4>Produtos em Destaque</h4>
-</div>
-
-<div class="carrossel-container">
-
-<button class="seta esquerda">&#10094;</button>
-
-<div class="produtos2 carrossel">
-
-<div class="produto">
-<img src="img/shorts.webp" alt="Produto">
-<div class="legenda">
-
-<h5>
-<a href="/produto">
-Kit 4 Bermuda Masculina Short Moletom
-</a>
-</h5>
-
-<div class="old-price">R$ 79,99</div>
-<p class="preco">R$ 67,85 <span id="desconto">25% OFF</span></p>
-<p id="parcela">12x R$ 6,68</p>
-<p id="frete">Frete grátis</p>
-
-</div>
-</div>
-
-</div>
-
-<button class="seta direita">&#10095;</button>
-
-</div>
-</div>
-
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-
-<div class="footer-container">
-
-<div class="footer-col">
-<h3>Jobee</h3>
-<p>
-Uma colmeia de serviços que conecta pessoas e negócios
-de forma prática e segura.
-</p>
-</div>
-
-<div class="footer-col">
-<h4>Links Úteis</h4>
-<ul>
-<li><a href="#">Ajuda</a></li>
-<li><a href="/sobre">Sobre</a></li>
-<li><a href="#">Política de Privacidade</a></li>
-</ul>
-</div>
-
-<div class="footer-col">
-<h4>Siga-nos</h4>
-
-<div class="social-links">
-<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
-<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png"></a>
-<a href="#"><img src="img/linkedin.png"></a>
-</div>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-<p>© 2025 Jobee - Todos os direitos reservados</p>
-</div>
-
-</footer>
-
-<script src="js/main.js"></script>
-<script src="js/user-info.js"></script>
+  <script src="js/main.js"></script>
+  <script src="/js/user-info.js"></script>
 
 </body>
+
 </html>
