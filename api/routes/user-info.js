@@ -1,13 +1,26 @@
 (async () => {
-  const res = await fetch('/api/user-info');
-  const data = await res.json();
 
-  const navbarRight = document.querySelector(".navbar-right");
+  const token = localStorage.getItem("token")
+  const navbarRight = document.querySelector(".navbar-right")
 
-  if (data.logado) {
-      navbarRight.innerHTML = `
-        <span class="user-name">Olá, ${data.nome}</span>
-        <a href="/api/logout" class="btn conta">Sair</a>
-      `;
+  if (!token) return
+
+  try {
+
+    const payload = JSON.parse(atob(token.split('.')[1]))
+
+    navbarRight.innerHTML = `
+      <span class="user-name">Olá, ${payload.email}</span>
+      <a href="#" id="logoutBtn" class="btn conta">Sair</a>
+    `
+
+    document.getElementById("logoutBtn").onclick = () => {
+      localStorage.removeItem("token")
+      location.reload()
+    }
+
+  } catch (err) {
+    console.error("Token inválido")
   }
-})();
+
+})()
