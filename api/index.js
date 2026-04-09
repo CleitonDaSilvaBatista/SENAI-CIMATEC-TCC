@@ -53,6 +53,41 @@ const transporter = nodemailer.createTransport({
     pass: process.env.SMTP_PASS
   }
 })
+app.get('/api/user-info', async (req, res) => {
+  try {
+
+    const authHeader = req.headers.authorization
+
+    if (!authHeader) {
+      return res.json({ logado: false })
+    }
+
+    const token = authHeader.split(' ')[1]
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const { data, error } = await supabase
+      .from('usuarios')
+      .select('nome, email')
+      .eq('id_usuario', decoded.id)
+      .single()
+
+    if (error || !data) {
+      return res.json({ logado: false })
+    }
+
+    return res.json({
+      logado: true,
+      nome: data.nome,
+      email: data.email
+    })
+
+  } catch (err) {
+
+    return res.json({ logado: false })
+
+  }
+})
 
 app.post('/forgot-password', async (req, res) => {
   try {
