@@ -32,6 +32,10 @@ app.get('/login', (req, res) => {
 app.get('/cadastro', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'criarcont.html'))
 })
+app.get('/produto', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'produto.html'))
+})
+
 
 
 app.get('/testejwt', (req, res) => {

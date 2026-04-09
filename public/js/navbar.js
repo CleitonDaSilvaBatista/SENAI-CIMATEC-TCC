@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="logo" data-link="/">Jobee</div>
           <div class="location">
             <img src="https://cdn-icons-png.flaticon.com/512/535/535239.png" alt="localização" width="16" height="16" />
-            <span>Enviar para João Pessoa</span>
+            <span>Informe seu CEP</span>
           </div>
         </div>
 

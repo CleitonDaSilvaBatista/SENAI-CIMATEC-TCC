@@ -6,6 +6,7 @@
 .hero {
   text-align: center;
   padding: 80px 20px;
+  background-color: #fff;
 }
 
 .hero h2 {
@@ -40,6 +41,7 @@
   text-align: center;
   font-weight: 600;
   margin-top: 50px;
+  background-color: #fff;
 }
 
 /* Cards de Serviços */
@@ -137,11 +139,13 @@
 /* Carrossel */
 .carrossel-container {
   position: relative;
-  width: 90%;
+  width: 100%;
+  max-width: 1600px;
   margin: 0 auto;
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
+  padding: 20px 0;
 }
 
 .carrossel {
@@ -149,23 +153,29 @@
   gap: 30px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 20px 40px;
+  padding: 20px 60px;
   scrollbar-width: none;
+  justify-content: center;
 }
-
 .carrossel::-webkit-scrollbar {
   display: none;
 }
 
 .produto {
   flex: 0 0 280px;
+  min-width: 280px;
   background: #fff;
   border-radius: 12px;
   transition: transform 0.3s;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  height: 480px; /* Altura fixa para todos os produtos */
 }
 
 .produto:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .produto img {
@@ -176,7 +186,11 @@
 }
 
 .legenda {
-  padding: 12px;
+  padding: 12px 15px 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Adiciona scroll se o texto for muito longo */
 }
 
 .legenda h5 {
@@ -187,17 +201,36 @@
 }
 
 .legenda h5 a {
+  text-decoration: none;
   color: #222;
+  display: block;
+  word-wrap: break-word;
 }
 
 .legenda h5 a:hover {
   color: #308668;
 }
 
+/* Personalizar scroll bar da legenda */
+.legenda::-webkit-scrollbar {
+  width: 3px;
+}
+
+.legenda::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.legenda::-webkit-scrollbar-thumb {
+  background: #308668;
+  border-radius: 10px;
+}
+
 .old-price {
   text-decoration: line-through;
   color: #888;
   font-size: 13px;
+  margin-bottom: 4px;
 }
 
 .preco-produto {
@@ -205,18 +238,26 @@
   font-weight: 700;
   font-size: 20px;
   margin: 5px 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .desconto {
   font-weight: 600;
   color: #01cc6d;
   font-size: 12px;
-  margin-left: 8px;
+  background: #e8f5ee;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
 }
 
 .parcela {
   font-size: 12px;
   color: #555;
+  margin: 4px 0;
 }
 
 .frete {
@@ -235,16 +276,16 @@
   border: 1px solid #ddd;
   font-size: 24px;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.3s;
   z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-
 .seta:hover {
   background: #308668;
   color: white;
@@ -252,11 +293,11 @@
 }
 
 .seta.esquerda {
-  left: 10px;
+  left: 20px;
 }
 
 .seta.direita {
-  right: 10px;
+  right: 20px;
 }
 
 /* Footer */
