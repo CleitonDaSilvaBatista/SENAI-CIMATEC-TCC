@@ -89,6 +89,13 @@ app.get('/api/user-info', async (req, res) => {
   }
 })
 
+app.post('/api/logout', (req, res) => {
+  return res.json({
+    success: true,
+    message: 'Logout realizado com sucesso.'
+  })
+})
+
 app.post('/forgot-password', async (req, res) => {
   try {
     const { email } = req.body

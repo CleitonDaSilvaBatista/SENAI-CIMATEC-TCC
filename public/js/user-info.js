@@ -21,13 +21,20 @@
       `
   }
 
-  document.addEventListener("click", (e) => {
+})();
+
+document.addEventListener("click", async (e) => {
 
   if (e.target.id === "logoutBtn") {
+
+    await fetch('/api/logout', {
+      method: "POST"
+    })
+
     localStorage.removeItem("token")
-    location.reload()
+
+    window.location.href = "/login"
+
   }
 
 })
-
-})();
