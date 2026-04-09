@@ -29,6 +29,9 @@ app.get('/forgot-password', (req, res) => {
 app.get('/login', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'login.html'))
 })
+app.get('/cadastro', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'criarcont.html'))
+})
 
 
 app.get('/testejwt', (req, res) => {

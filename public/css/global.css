@@ -1,35 +1,38 @@
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Arial, Helvetica, sans-serif;
+/* ==============================
+   GLOBAL RESET & BASE
+============================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-  background:#f5f5f5;
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #ebebeb;
+  color: #222;
+  line-height: 1.5;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.btn{
-  background:#ff6600;
-  color:white;
-  padding:10px 20px;
-  border-radius:6px;
-  border:none;
-  cursor:pointer;
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
-.btn:hover{
-  background:#e65c00;
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
 }

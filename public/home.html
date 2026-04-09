@@ -9,20 +9,23 @@
   <!-- Fonte profissional -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/home.css" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/home.css">
 
-<link rel="stylesheet" href="/css/global.css">
-<link rel="stylesheet" href="/css/navbar.css">
-<link rel="stylesheet" href="/css/layout.css">
-<script src="/js/navbar.js" defer></script>
-
+  <!-- JavaScript -->
+  <script src="js/navbar.js" defer></script>
+  <script src="js/carrossel.js" defer></script>
+  <script src="js/main.js" defer></script>
 </head>
 
 <body>
-<div id='navbar'></div>
-  </header>
 
-  <!-- Barra secundária -->
+  <!-- Navbar será injetada aqui via JS -->
+  <div id="navbar-container"></div>
+
+  <!-- Sub-navbar -->
   <section class="sub-navbar">
     <div class="dropdown-categorias">
       <a href="#" class="categorias-btn">Categorias ▼</a>
@@ -37,7 +40,6 @@
         <li><a href="#">Beleza e Cuidados</a></li>
       </ul>
     </div>
-
     <a href="#">Ofertas</a>
     <a href="#">Cupons</a>
     <a href="#">Serviços</a>
@@ -47,9 +49,11 @@
   <!-- Hero -->
   <section class="hero">
     <h2>Uma Colmeia de Serviços</h2>
-    <button class="btn explorar">Explorar Serviços</button>
+    <button class="btn explorar" id="btn-explorar">Explorar Serviços</button>
   </section>
+
   <p id="subtitle">Serviços de maior avaliação</p>
+
   <!-- Cards de serviços -->
   <section class="servicos">
     <div class="card-servico">
@@ -89,27 +93,26 @@
     </div>
   </section>
 
-  <section class="produtos">
-    <div class="titleprodu">
+  <!-- Produtos em Destaque -->
+  <section class="produtos-section">
+    <div class="title-produ">
       <h4>Produtos em Destaque</h4>
     </div>
 
     <div class="carrossel-container">
-      <button class="seta esquerda">&#10094;</button>
+      <button class="seta esquerda" id="seta-esquerda">&#10094;</button>
 
-      <div class="produtos2 carrossel">
+      <div class="carrossel" id="carrossel">
         <div class="produto">
           <img src="img/shorts.webp" width="300" height="300" alt="Produto 1" />
           <div class="legenda">
             <h5>
-              <a href="/produto">
-              Kit 4 Bermuda Masculina Short Moletom Leve Caminhada Atacado Com
-              Bolso Academia</a>
+              <a href="#">Kit 4 Bermuda Masculina Short Moletom Leve Caminhada Atacado Com Bolso Academia</a>
             </h5>
-            <div class="old-price" style="font-size: 14px;">R$ 79,99</div>
-            <p class="preco">R$ 67,85 <span id="desconto">25% OFF</span></p>
-            <p id="parcela">12x R$ 6,68</p>
-            <p id="frete">Frete grátis</p>
+            <div class="old-price">R$ 79,99</div>
+            <p class="preco-produto">R$ 67,85 <span class="desconto">25% OFF</span></p>
+            <p class="parcela">12x R$ 6,68</p>
+            <p class="frete">Frete grátis</p>
           </div>
         </div>
 
@@ -117,13 +120,12 @@
           <img src="img/tv.webp" width="300" height="300" alt="Produto 2" />
           <div class="legenda">
             <h5>
-              Smart TV TCL 65 Polegadas QLED 4K P7K WiFi Bluetooth Google TV
-              HDR10+ Dolby Atmos Dolby Vision 65P7K
+              <a href="#">Smart TV TCL 65 Polegadas QLED 4K P7K WiFi Bluetooth Google TV HDR10+ Dolby Atmos Dolby Vision 65P7K</a>
             </h5>
-            <div class="old-price" style="font-size: 14px;">R$ 3.299,90</div>
-            <p class="preco">R$ 2.867,90 <span id="desconto">15% OFF</span></p>
-            <p id="parcela">10x R$ 286,79 sem juros</p>
-            <p id="frete">Frete grátis</p>
+            <div class="old-price">R$ 3.299,90</div>
+            <p class="preco-produto">R$ 2.867,90 <span class="desconto">15% OFF</span></p>
+            <p class="parcela">10x R$ 286,79 sem juros</p>
+            <p class="frete">Frete grátis</p>
           </div>
         </div>
 
@@ -131,28 +133,25 @@
           <img src="img/ferramenta.webp" width="300" height="300" alt="Produto 3" />
           <div class="legenda">
             <h5>
-              Jogo de Ferramentas 200 Peças Maleta Resistente Completa uso
-              profissional Titanium Platina
+              <a href="#">Jogo de Ferramentas 200 Peças Maleta Resistente Completa uso profissional Titanium Platina</a>
             </h5>
-            <div class="old-price" style="font-size: 14px;">R$ 89,90</div>
-            <p class="preco">R$ 59,90 <span id="desconto">33% OFF</span></p>
-            <p id="parcela">12x R$ 5,90</p>
-            <p id="frete">Frete grátis</p>
+            <div class="old-price">R$ 89,90</div>
+            <p class="preco-produto">R$ 59,90 <span class="desconto">33% OFF</span></p>
+            <p class="parcela">12x R$ 5,90</p>
+            <p class="frete">Frete grátis</p>
           </div>
         </div>
 
-        <!-- Produtos extras (opcional, pode adicionar mais se quiser) -->
         <div class="produto">
           <img src="img/painel.webp" width="300" height="300" alt="Produto 4" />
           <div class="legenda">
             <h5>
-              Painel para TV até 55 Polegadas Paris com Efeito Ripado — Design
-              Moderno e Sofisticado em Promoção
+              <a href="#">Painel para TV até 55 Polegadas Paris com Efeito Ripado — Design Moderno e Sofisticado em Promoção</a>
             </h5>
-            <div class="old-price" style="font-size: 14px;">R$ 429,00</div>
-            <p class="preco">R$ 349,00 <span id="desconto">19% OFF</span></p>
-            <p id="parcela">6x R$ 58,17 sem juros</p>
-            <p id="frete">Frete grátis</p>
+            <div class="old-price">R$ 429,00</div>
+            <p class="preco-produto">R$ 349,00 <span class="desconto">19% OFF</span></p>
+            <p class="parcela">6x R$ 58,17 sem juros</p>
+            <p class="frete">Frete grátis</p>
           </div>
         </div>
 
@@ -160,35 +159,33 @@
           <img src="img/espelho.webp" width="300" height="300" alt="Produto 5" />
           <div class="legenda">
             <h5>
-              Espelho Vidrex Pisa 70x50cm Retangular Decorativo Elegante
-              Contemporâneo Luxo & Sofisticação
+              <a href="#">Espelho Vidrex Pisa 70x50cm Retangular Decorativo Elegante Contemporâneo Luxo & Sofisticação</a>
             </h5>
-            <div class="old-price" style="font-size: 14px;">R$ 79,90</div>
-            <p class="preco">R$ 58,10 <span id="desconto">27% OFF</span></p>
-            <p id="parcela">2x R$ 29,05 sem juros</p>
-            <p id="frete">Frete grátis</p>
+            <div class="old-price">R$ 79,90</div>
+            <p class="preco-produto">R$ 58,10 <span class="desconto">27% OFF</span></p>
+            <p class="parcela">2x R$ 29,05 sem juros</p>
+            <p class="frete">Frete grátis</p>
           </div>
         </div>
       </div>
 
-      <button class="seta direita">&#10095;</button>
+      <button class="seta direita" id="seta-direita">&#10095;</button>
     </div>
   </section>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col">
         <h3>Jobee</h3>
-        <p>
-          Uma colmeia de serviços que conecta pessoas e negócios de forma
-          prática e segura.
-        </p>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática e segura.</p>
       </div>
 
       <div class="footer-col">
         <h4>Links Úteis</h4>
         <ul>
           <li><a href="#">Ajuda</a></li>
-          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
           <li><a href="#">Política de Privacidade</a></li>
         </ul>
       </div>
@@ -203,16 +200,13 @@
       </div>
     </div>
 
-    <section class=""></section>
-
     <div class="footer-bottom">
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
-  <script src="/js/user-info.js"></script>
-
 </body>
-
+<script src="js/main.js"></script>
+<script src="js/carrossel.js"></script>
 </html>
+
