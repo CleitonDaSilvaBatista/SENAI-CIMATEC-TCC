@@ -36,58 +36,12 @@ app.get('/produto', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'produto.html'))
 })
 
-
-
 app.get('/testejwt', (req, res) => {
   res.json({ secret: process.env.JWT_SECRET ? 'OK' : 'ERRO' })
 })
 
 app.get('/teste', (req, res) => {
   res.status(200).json({ funcionando: true })
-})
-
-app.get('/testedbjobee', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('usuarios')
-      .select('*')
-      .limit(1)
-
-    if (error) {
-      console.error('Erro Supabase:', error)
-      return res.status(500).json({ error: error.message })
-    }
-
-    return res.json({ status: 'ok', data })
-  } catch (err) {
-    console.error('Erro /testedbjobee:', err)
-    return res.status(500).json({ error: 'Erro interno no servidor.' })
-  }
-})
-app.get('/testeinsertjobee', async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('usuarios')
-      .insert([
-        {
-          id_tipo_usuario: 1,
-          nome: 'Usuário Teste',
-          email: 'teste@email.com',
-          senha_hash: await bcrypt.hash('123456', 10)
-        }
-      ])
-      .select()
-
-    if (error) {
-      console.error('Erro ao inserir:', error)
-      return res.status(500).json({ error: error.message })
-    }
-
-    return res.json({ message: 'Inserido com sucesso!', data })
-  } catch (err) {
-    console.error('Erro em /testeinsertjobee:', err)
-    return res.status(500).json({ error: 'Erro interno no servidor.' })
-  }
 })
 
 const transporter = nodemailer.createTransport({

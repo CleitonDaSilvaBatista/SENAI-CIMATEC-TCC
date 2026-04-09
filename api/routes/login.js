@@ -4,7 +4,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     const email = document.getElementById("email").value;
     const senha = document.getElementById("password").value;
 
-    const resposta = await fetch("/api/login", {
+    const resposta = await fetch("/api/routes/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, senha })
