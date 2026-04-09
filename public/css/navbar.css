@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #308668;
+  background: #0b8a56;
   padding: 12px 40px;
   position: sticky;
   top: 0;
@@ -192,7 +192,7 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
-  background-color: #308668;
+  background-color: #0b8a56;
   padding: 10px 40px;
   flex-wrap: wrap;
 }
