@@ -142,11 +142,13 @@
   transition: 0.2s;
   white-space: nowrap;
   background: transparent;
+  cursor: pointer;
 }
 
 #entrar:hover {
   background: #ffffff;
   color: #308668;
+    cursor: pointer;
 }
 
 #criar-conta {
@@ -159,18 +161,21 @@
   transition: 0.2s;
   white-space: nowrap;
   border: 2px solid #ffffff;
+  cursor: pointer;
 }
 
 #criar-conta:hover {
   background: transparent;
   color: #ffffff;
   border-color: #ffffff;
+  cursor: pointer;
 }
 
 .cart {
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 }
 
 .cart img {
@@ -178,10 +183,12 @@
   height: 24px;
   filter: brightness(0) invert(1);
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .cart:hover img {
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 /* ==============================
