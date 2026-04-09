@@ -12,7 +12,7 @@
 
   const data = await res.json()
 
-  const navbarRight = document.querySelector("#navbar-container")
+  const navbarRight = document.querySelector(".navbar-right")
 
   if (data.logado) {
       navbarRight.innerHTML = `
