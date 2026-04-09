@@ -126,6 +126,35 @@
   justify-content: flex-end;
 }
 
+.navbar-right .user-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.navbar-right .btn.conta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  padding: 8px 20px;
+  color: #ffffff;
+  background: transparent;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.navbar-right .btn.conta:hover {
+  background: #ffffff;
+  color: #308668;
+}
+
 .auth-buttons {
   display: flex;
   align-items: center;

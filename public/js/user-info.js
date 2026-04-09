@@ -16,7 +16,7 @@
 
   if (data.logado) {
       navbarRight.innerHTML = `
-        <span class="user-name" color:white;>Olá, ${data.nome}</span>
+        <span class="user-name">Olá, ${data.nome}</span>
         <a href="#" id="logoutBtn" class="btn conta">Sair</a>
       `
   }
