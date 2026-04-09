@@ -33,7 +33,7 @@
       <h2>Bem-vindo à Jobee</h2>
       <p class="subtitle">Acesse sua conta para continuar</p>
 
-      <form>
+      <form action="/login" method="post">
         <div class="input-group">
           <label for="email">E-mail</label>
           <input type="email" id="email" placeholder="Digite seu e-mail" required />
@@ -111,8 +111,51 @@
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
   </footer>
-  <script src="/api/routes/produto.js"></script>
-  <script src="/api/routes/user-info.js"></script>
+  <script>
 
+document.querySelector("form").addEventListener("submit", async (e) => {
+  e.preventDefault()
+
+  const email = document.getElementById("email").value
+  const senha = document.getElementById("password").value
+
+  try {
+
+    const resposta = await fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        senha: senha
+      })
+    })
+
+    const data = await resposta.json()
+
+    if (data.success) {
+
+      // salva token
+      localStorage.setItem("token", data.token)
+
+      alert("Login realizado com sucesso!")
+
+      window.location.href = "/"
+
+    } else {
+
+      alert(data.error || "Erro no login")
+
+    }
+
+  } catch (erro) {
+    console.error(erro)
+    alert("Erro ao conectar com o servidor")
+  }
+
+})
+
+</script>
   </body>
 </html>
