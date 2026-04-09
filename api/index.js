@@ -49,15 +49,31 @@ app.get('/teste', (req, res) => {
   res.status(200).json({ funcionando: true })
 })
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  }
-})
+// Configurar transporter de e-mail verificando se há variáveis de ambiente
+let transporter
+
+if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+  transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '587'),
+    secure: process.env.SMTP_SECURE === 'true' || false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS
+    }
+  })
+  
+  // Testar conexão
+  transporter.verify((error, success) => {
+    if (error) {
+      console.error('Erro na conexão SMTP:', error)
+    } else {
+      console.log('✓ Conexão SMTP estabelecida com sucesso')
+    }
+  })
+} else {
+  console.warn('⚠ Variáveis SMTP não configuradas. Alguns recursos de e-mail estarão desativados.')
+}
 app.get('/api/user-info', async (req, res) => {
   try {
 
@@ -101,57 +117,59 @@ app.post('/api/logout', (req, res) => {
   })
 })
 
-app.post('/forgot-password', async (req, res) => {
+app.post('/api/forgot-password', async (req, res) => {
   try {
     const { email } = req.body
 
     if (!email) {
-      return res.status(400).json({ message: 'E-mail é obrigatório.' })
+      return res.status(400).json({ error: 'E-mail é obrigatório.' })
     }
 
     const { data: user, error: userError } = await supabase
       .from('usuarios')
-      .select('id_usuario')
+      .select('id_usuario, email')
       .eq('email', email)
       .single()
 
     if (userError || !user) {
-      return res.status(404).json({ message: 'Usuário não encontrado.' })
+      return res.status(404).json({ error: 'Usuário não encontrado.' })
     }
 
-    const token = crypto.randomBytes(32).toString('hex')
-    const expiresAt = new Date(Date.now() + 1000 * 60 * 30).toISOString()
+    // Gerar JWT com expiração de 30 minutos
+    const resetToken = jwt.sign(
+      { id: user.id_usuario, email: user.email, type: 'password-reset' },
+      process.env.JWT_SECRET,
+      { expiresIn: '30m' }
+    )
 
-    const { error: insertError } = await supabase
-      .from('password_resets')
-      .insert([{
-        user_id: user.id_usuario,
-        token,
-        expires_at: expiresAt
-      }])
+    const resetLink = `${process.env.BASE_URL}/reset-password?token=${resetToken}`
 
-    if (insertError) {
-      console.error('Erro ao salvar token:', insertError)
-      return res.status(500).json({ message: 'Erro ao gerar token.' })
+    // Enviar e-mail com nodemailer
+    if (!transporter) {
+      return res.status(500).json({ error: 'Serviço de e-mail não configurado.' })
     }
-
-    const resetLink = `${process.env.BASE_URL}/reset-password?token=${token}`
 
     await transporter.sendMail({
       from: process.env.SMTP_USER,
       to: email,
-      subject: 'Redefinição de senha',
-      text: resetLink
+      subject: 'Redefinição de senha - Jobee',
+      html: `
+        <h2>Redefinição de Senha</h2>
+        <p>Você solicitou a redefinição de senha da sua conta.</p>
+        <p><a href="${resetLink}">Clique aqui para redefinir sua senha</a></p>
+        <p>Este link expira em 30 minutos.</p>
+        <p>Se não solicitou esta redefinição, ignore este e-mail.</p>
+      `
     })
 
-    return res.json({ message: 'Link enviado!' })
+    return res.status(200).json({ message: 'Link de redefinição enviado para seu e-mail!' })
   } catch (err) {
-    console.error('Erro em /forgot-password:', err)
-    return res.status(500).json({ message: 'Erro interno no servidor.' })
+    console.error('Erro em /api/forgot-password:', err)
+    return res.status(500).json({ error: 'Erro ao processar solicitação. Tente novamente mais tarde.' })
   }
 })
 
-app.post('/reset-password', async (req, res) => {
+app.post('/api/reset-password', async (req, res) => {
   try {
     const { token, novaSenha } = req.body
 
@@ -159,41 +177,43 @@ app.post('/reset-password', async (req, res) => {
       return res.status(400).json({ error: 'Token e nova senha são obrigatórios.' })
     }
 
-    const { data, error } = await supabase
-      .from('password_resets')
-      .select('*')
-      .eq('token', token)
-      .single()
+    if (novaSenha.length < 6) {
+      return res.status(400).json({ error: 'A senha deve ter pelo menos 6 caracteres.' })
+    }
 
-    if (error || !data) {
+    // Verificar JWT
+    let decoded
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET)
+      
+      // Validar que é um token de reset de senha
+      if (decoded.type !== 'password-reset') {
+        return res.status(400).json({ error: 'Token inválido.' })
+      }
+    } catch (err) {
+      if (err.name === 'TokenExpiredError') {
+        return res.status(400).json({ error: 'Token expirado. Solicite um novo link de redefinição.' })
+      }
       return res.status(400).json({ error: 'Token inválido.' })
     }
 
-    if (new Date(data.expires_at) < new Date()) {
-      return res.status(400).json({ error: 'Token expirado.' })
-    }
-
+    // Atualizar senha do usuário
     const senhaHash = await bcrypt.hash(novaSenha, 10)
 
     const { error: updateError } = await supabase
       .from('usuarios')
       .update({ senha_hash: senhaHash })
-      .eq('id_usuario', data.user_id)
+      .eq('id_usuario', decoded.id)
 
     if (updateError) {
       console.error('Erro ao atualizar senha:', updateError)
-      return res.status(500).json({ error: 'Erro ao atualizar senha.' })
+      return res.status(500).json({ error: 'Erro ao redefinir senha.' })
     }
 
-    await supabase
-      .from('password_resets')
-      .delete()
-      .eq('token', token)
-
-    return res.json({ message: 'Senha redefinida!' })
+    return res.status(200).json({ message: 'Senha redefinida com sucesso!' })
   } catch (err) {
-    console.error('Erro em /reset-password:', err)
-    return res.status(500).json({ error: 'Erro interno no servidor.' })
+    console.error('Erro em /api/reset-password:', err)
+    return res.status(500).json({ error: 'Erro ao processar redefinição de senha.' })
   }
 })
 
