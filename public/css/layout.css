@@ -1,0 +1,10 @@
+
+.page{
+  padding-top:30px;
+}
+
+.center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}

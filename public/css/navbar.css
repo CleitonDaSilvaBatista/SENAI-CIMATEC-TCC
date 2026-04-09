@@ -1,0 +1,21 @@
+
+.navbar{
+  width:100%;
+  background:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar nav a{
+  margin:0 15px;
+  font-weight:bold;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  color:#ff6600;
+}
