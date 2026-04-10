@@ -101,3 +101,32 @@ document.addEventListener('DOMContentLoaded', function() {
   // Iniciar autoplay
   resetAutoPlay();
 })();
+// Filtro de serviços por categoria
+(function() {
+  const filterButtons = document.querySelectorAll('.cat-btn');
+  const serviceCards = document.querySelectorAll('.servico-micro-card');
+  
+  if (filterButtons.length && serviceCards.length) {
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active de todos os botões
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Adiciona active ao clicado
+        button.classList.add('active');
+        
+        const categoria = button.getAttribute('data-categoria');
+        
+        serviceCards.forEach(card => {
+          const cardCategoria = card.getAttribute('data-categoria');
+          
+          if (categoria === 'todos' || cardCategoria === categoria) {
+            card.style.display = 'flex';
+            card.style.animation = 'fadeInUp 0.4s ease forwards';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+})();
