@@ -839,101 +839,88 @@ body {
 
 /* Footer */
 .footer {
-  background: rgb(48, 134, 104);
-  color: var(--white);
-  padding: 64px 0 32px;
-  margin-top: 64px;
+  background: linear-gradient(180deg, var(--brand-dark), var(--brand));
+  color: white;
+  padding: 50px 0 20px;
+  margin-top: 60px;
 }
 
 .footer-container {
-  max-width: var(--container);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--container-padding);
+  padding: 0 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 48px;
+  gap: 40px;
 }
 
 .footer-col h3 {
-  font-size: 1.75rem;
-  margin-bottom: 16px;
+  font-size: 24px;
+  margin-bottom: 15px;
   font-weight: 700;
-  letter-spacing: -0.02em;
 }
 
 .footer-col h4 {
-  font-size: 1rem;
-  margin-bottom: 20px;
+  font-size: 18px;
+  margin-bottom: 15px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.8;
 }
 
 .footer-col p {
-  opacity: 0.7;
+  color: #e8f5ee;
   line-height: 1.6;
-  font-size: 0.875rem;
 }
 
 .footer-col ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .footer-col ul li {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .footer-col ul li a {
-  color: rgba(255, 255, 255, 0.7);
+  color: #e8f5ee;
   text-decoration: none;
-  transition: var(--transition-fast);
-  font-size: 0.875rem;
+  transition: color 0.3s;
 }
 
 .footer-col ul li a:hover {
-  color: var(--white);
-  opacity: 1;
-  padding-left: 4px;
+  color: white;
+  text-decoration: underline;
 }
 
 .social-links {
   display: flex;
-  gap: 16px;
-  margin-top: 20px;
+  gap: 15px;
 }
 
 .social-links a {
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  transition: var(--transition);
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .social-links a:hover {
-  background: var(--primary);
-  transform: translateY(-2px);
-}
-
-.social-links a img {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1);
+  background: white;
+  color: var(--brand);
+  transform: translateY(-3px);
 }
 
 .footer-bottom {
   text-align: center;
-  padding-top: 48px;
-  margin-top: 48px;
+  margin-top: 40px;
+  padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.813rem;
-  opacity: 0.6;
+  color: #d9f3e2;
+  font-size: 14px;
 }
 .ofertas-duplas {
   max-width: 1200px;
