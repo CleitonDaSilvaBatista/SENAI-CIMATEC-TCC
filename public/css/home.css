@@ -839,88 +839,101 @@ body {
 
 /* Footer */
 .footer {
-  background: linear-gradient(180deg, var(--brand-dark), var(--brand));
-  color: white;
-  padding: 50px 0 20px;
-  margin-top: 60px;
+  background: rgb(48, 134, 104);
+  color: var(--white);
+  padding: 64px 0 32px;
+  margin-top: 64px;
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--container-padding);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  gap: 48px;
 }
 
 .footer-col h3 {
-  font-size: 24px;
-  margin-bottom: 15px;
+  font-size: 1.75rem;
+  margin-bottom: 16px;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .footer-col h4 {
-  font-size: 18px;
-  margin-bottom: 15px;
+  font-size: 1rem;
+  margin-bottom: 20px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
 }
 
 .footer-col p {
-  color: #e8f5ee;
+  opacity: 0.7;
   line-height: 1.6;
+  font-size: 0.875rem;
 }
 
 .footer-col ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .footer-col ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .footer-col ul li a {
-  color: #e8f5ee;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: var(--transition-fast);
+  font-size: 0.875rem;
 }
 
 .footer-col ul li a:hover {
-  color: white;
-  text-decoration: underline;
+  color: var(--white);
+  opacity: 1;
+  padding-left: 4px;
 }
 
 .social-links {
   display: flex;
-  gap: 15px;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .social-links a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  transition: var(--transition);
 }
 
 .social-links a:hover {
-  background: white;
-  color: var(--brand);
-  transform: translateY(-3px);
+  background: var(--primary);
+  transform: translateY(-2px);
+}
+
+.social-links a img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
 }
 
 .footer-bottom {
   text-align: center;
-  margin-top: 40px;
-  padding-top: 20px;
+  padding-top: 48px;
+  margin-top: 48px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: #d9f3e2;
-  font-size: 14px;
+  font-size: 0.813rem;
+  opacity: 0.6;
 }
 .ofertas-duplas {
   max-width: 1200px;
