@@ -40,7 +40,7 @@ function initMap() {
   negocios.forEach((negocio) => {
     const marker = new google.maps.Marker({
       position: { lat: negocio.lat, lng: negocio.lng },
-      map: map,
+      map,
       title: negocio.nome
     });
 
@@ -53,9 +53,7 @@ function initMap() {
       `
     });
 
-    marker.addListener("click", () => {
-      info.open(map, marker);
-    });
+    marker.addListener("click", () => info.open(map, marker));
   });
 
   if ("geolocation" in navigator) {
@@ -69,7 +67,7 @@ function initMap() {
         if (!userMarker) {
           userMarker = new google.maps.Marker({
             position: userLocationAtual,
-            map: map,
+            map,
             title: "Você está aqui",
             icon: {
               path: google.maps.SymbolPath.CIRCLE,
@@ -85,7 +83,7 @@ function initMap() {
         }
       },
       (error) => {
-        console.error("Erro ao obter localização:", error);
+        console.error("Erro no watchPosition:", error);
       },
       {
         enableHighAccuracy: true,
@@ -107,10 +105,51 @@ function toggleTraffic() {
 }
 
 function centralizarUsuario() {
-  if (userLocationAtual) {
-    map.setCenter(userLocationAtual);
-    map.setZoom(15);
-  } else {
-    alert("Sua localização ainda não foi carregada.");
+  if (!("geolocation" in navigator)) {
+    alert("Seu navegador não suporta geolocalização.");
+    return;
   }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      userLocationAtual = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      if (!userMarker) {
+        userMarker = new google.maps.Marker({
+          position: userLocationAtual,
+          map,
+          title: "Você está aqui",
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 10,
+            fillColor: "#2563eb",
+            fillOpacity: 1,
+            strokeColor: "#ffffff",
+            strokeWeight: 3
+          }
+        });
+      } else {
+        userMarker.setPosition(userLocationAtual);
+      }
+
+      map.setCenter(userLocationAtual);
+      map.setZoom(15);
+    },
+    (error) => {
+      console.error("Erro ao obter localização:", error);
+      alert("Não foi possível carregar sua localização.");
+    },
+    {
+      enableHighAccuracy: true,
+      maximumAge: 0,
+      timeout: 10000
+    }
+  );
 }
+
+window.initMap = initMap;
+window.toggleTraffic = toggleTraffic;
+window.centralizarUsuario = centralizarUsuario;
