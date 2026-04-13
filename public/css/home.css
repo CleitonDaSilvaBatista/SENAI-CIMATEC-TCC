@@ -1185,7 +1185,7 @@ body {
 .servico-meta span {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
   line-height: 1.4;
 }
