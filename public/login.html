@@ -74,7 +74,56 @@
         </button>
       </div>
     </div>
+<!-- Modal de sucesso -->
+<div class="modal-feedback-overlay" id="modalSucessoLogin">
+  <div class="modal-feedback-box sucesso">
+    <button class="modal-feedback-close" id="fecharModalSucessoLogin" aria-label="Fechar">
+      &times;
+    </button>
 
+    <div class="modal-feedback-icon-wrap">
+      <div class="modal-feedback-icon-circle sucesso">
+        <svg viewBox="0 0 52 52" class="modal-feedback-check" aria-hidden="true">
+          <circle class="modal-feedback-check-circle" cx="26" cy="26" r="25" fill="none"></circle>
+          <path class="modal-feedback-check-path" fill="none" d="M14 27l7 7 17-17"></path>
+        </svg>
+      </div>
+    </div>
+
+    <h3>Login realizado com sucesso!</h3>
+    <p>Seja bem-vindo de volta à Jobee. Estamos redirecionando você agora.</p>
+
+    <div class="modal-feedback-actions">
+      <button type="button" class="modal-feedback-btn primary" id="irAgoraHome">
+        Ir agora
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de erro -->
+<div class="modal-feedback-overlay" id="modalErroLogin">
+  <div class="modal-feedback-box erro">
+    <button class="modal-feedback-close" id="fecharModalErroLogin" aria-label="Fechar">
+      &times;
+    </button>
+
+    <div class="modal-feedback-icon-wrap">
+      <div class="modal-feedback-icon-circle erro">
+        <span class="modal-feedback-error-symbol">!</span>
+      </div>
+    </div>
+
+    <h3>Não foi possível entrar</h3>
+    <p id="mensagemErroLogin">Verifique seu e-mail e senha e tente novamente.</p>
+
+    <div class="modal-feedback-actions">
+      <button type="button" class="modal-feedback-btn secondary" id="tentarNovamenteLogin">
+        Tentar novamente
+      </button>
+    </div>
+  </div>
+</div>
     <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
@@ -113,49 +162,85 @@
   </footer>
 
   <script>
+  const modalSucessoLogin = document.getElementById("modalSucessoLogin");
+  const modalErroLogin = document.getElementById("modalErroLogin");
+  const fecharModalSucessoLogin = document.getElementById("fecharModalSucessoLogin");
+  const fecharModalErroLogin = document.getElementById("fecharModalErroLogin");
+  const tentarNovamenteLogin = document.getElementById("tentarNovamenteLogin");
+  const irAgoraHome = document.getElementById("irAgoraHome");
+  const mensagemErroLogin = document.getElementById("mensagemErroLogin");
 
-document.querySelector("form").addEventListener("submit", async (e) => {
-  e.preventDefault()
-
-  const email = document.getElementById("email").value
-  const senha = document.getElementById("password").value
-
-  try {
-
-    const resposta = await fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: email,
-        senha: senha
-      })
-    })
-
-    const data = await resposta.json()
-
-    if (data.success) {
-
-      // salva token
-      localStorage.setItem("token", data.token)
-
-      alert("Login realizado com sucesso!")
-
-      window.location.href = "/"
-
-    } else {
-
-      alert(data.error || "Erro no login")
-
-    }
-
-  } catch (erro) {
-    console.error(erro)
-    alert("Erro ao conectar com o servidor")
+  function abrirModal(modal) {
+    modal.classList.add("ativo");
+    document.body.style.overflow = "hidden";
   }
 
-})
+  function fecharModal(modal) {
+    modal.classList.remove("ativo");
+    document.body.style.overflow = "";
+  }
+
+  fecharModalSucessoLogin.addEventListener("click", () => fecharModal(modalSucessoLogin));
+  fecharModalErroLogin.addEventListener("click", () => fecharModal(modalErroLogin));
+  tentarNovamenteLogin.addEventListener("click", () => fecharModal(modalErroLogin));
+  irAgoraHome.addEventListener("click", () => {
+    window.location.href = "/";
+  });
+
+  [modalSucessoLogin, modalErroLogin].forEach((modal) => {
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        fecharModal(modal);
+      }
+    });
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      if (modalSucessoLogin.classList.contains("ativo")) fecharModal(modalSucessoLogin);
+      if (modalErroLogin.classList.contains("ativo")) fecharModal(modalErroLogin);
+    }
+  });
+
+  document.querySelector("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("password").value.trim();
+
+    try {
+      const resposta = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: email,
+          senha: senha
+        })
+      });
+
+      const data = await resposta.json();
+
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+
+        abrirModal(modalSucessoLogin);
+
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2200);
+      } else {
+        mensagemErroLogin.textContent = data.error || "E-mail ou senha inválidos.";
+        abrirModal(modalErroLogin);
+      }
+
+    } catch (erro) {
+      console.error(erro);
+      mensagemErroLogin.textContent = "Erro ao conectar com o servidor. Tente novamente em instantes.";
+      abrirModal(modalErroLogin);
+    }
+  });
 </script>
   </body>
 </html>
