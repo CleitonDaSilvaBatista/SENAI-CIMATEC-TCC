@@ -2,6 +2,7 @@ let map;
 let userMarker;
 let userLocationAtual = null;
 let trafficLayer;
+const marcadoresNegocios = {};
 
 function initMap() {
   const fallbackCenter = { lat: -12.9714, lng: -38.5014 };
@@ -53,8 +54,18 @@ function initMap() {
       `
     });
 
-    marker.addListener("click", () => info.open(map, marker));
+    marker.addListener("click", () => {
+      info.open(map, marker);
+    });
+
+    marcadoresNegocios[negocio.nome.trim().toLowerCase()] = {
+      marker,
+      info,
+      position: { lat: negocio.lat, lng: negocio.lng }
+    };
   });
+
+  conectarCardsAoMapa();
 
   if ("geolocation" in navigator) {
     navigator.geolocation.watchPosition(
@@ -86,12 +97,40 @@ function initMap() {
         console.error("Erro no watchPosition:", error);
       },
       {
-        enableHighAccuracy: true,
-        maximumAge: 0,
-        timeout: 10000
+        enableHighAccuracy: false,
+        maximumAge: 60000,
+        timeout: 20000
       }
     );
   }
+}
+
+function conectarCardsAoMapa() {
+  const cards = document.querySelectorAll(".servico-micro-card");
+
+  cards.forEach((card) => {
+    const titulo = card.querySelector("h3");
+    if (!titulo) return;
+
+    const nomeNegocio = titulo.textContent.trim().toLowerCase();
+    const negocioMapa = marcadoresNegocios[nomeNegocio];
+
+    if (!negocioMapa) return;
+
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", () => {
+      map.setCenter(negocioMapa.position);
+      map.setZoom(16);
+
+      negocioMapa.info.open(map, negocioMapa.marker);
+
+      document.getElementById("map").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  });
 }
 
 function toggleTraffic() {
@@ -143,9 +182,9 @@ function centralizarUsuario() {
       alert("Não foi possível carregar sua localização.");
     },
     {
-      enableHighAccuracy: true,
-      maximumAge: 0,
-      timeout: 10000
+      enableHighAccuracy: false,
+      maximumAge: 60000,
+      timeout: 20000
     }
   );
 }
