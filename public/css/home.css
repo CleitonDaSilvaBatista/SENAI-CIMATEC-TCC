@@ -1174,7 +1174,6 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: start;
-  column-gap: 18px;
   row-gap: 8px;
   margin-bottom: 16px;
   font-size: 0.75rem;
