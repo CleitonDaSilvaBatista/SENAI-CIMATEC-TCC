@@ -16,6 +16,10 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(process.cwd(), 'public')))
 
+// =================================
+// ROTAS (ATUALIZAR PARA O FRONTEND)
+// =================================
+
 const authRoutes = require('./routes/auth')
 app.use('/', authRoutes)
 
@@ -41,13 +45,25 @@ app.get('/carrinho', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'cart.html'))
 })
 
-app.get('/testejwt', (req, res) => {
-  res.json({ secret: process.env.JWT_SECRET ? 'OK' : 'ERRO' })
+// =================================
+//          ROTAS FOOTER
+// =================================
+
+app.get('/sobre', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'sobre.html'))
 })
 
-app.get('/teste', (req, res) => {
-  res.status(200).json({ funcionando: true })
+app.get('/ajuda', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'ajuda.html'))
 })
+
+app.get('/politica-privacidade', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'politica-privacidade.html'))
+})
+
+// =================================
+//         FIM ROTAS FOOTER
+// =================================
 
 // Configurar transporter de e-mail verificando se há variáveis de ambiente
 let transporter
