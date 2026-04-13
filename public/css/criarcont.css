@@ -389,3 +389,209 @@ a{
   font-size: 0.9rem;
   color: #d9f3e2;
 }
+/* ==============================
+   MODAL DE SUCESSO
+============================== */
+
+.modal-sucesso-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 20, 16, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  z-index: 9999;
+}
+
+.modal-sucesso-overlay.ativo {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-sucesso-box {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%);
+  border-radius: 24px;
+  padding: 34px 28px 28px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+  text-align: center;
+  transform: translateY(24px) scale(0.96);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.modal-sucesso-overlay.ativo .modal-sucesso-box {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal-sucesso-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #f2f5f3;
+  color: #446055;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.modal-sucesso-close:hover {
+  background: #e6eeea;
+  transform: rotate(90deg);
+}
+
+.modal-sucesso-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.modal-sucesso-icon-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #dff7ea, #b9ebd0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 12px 30px rgba(11, 138, 86, 0.18),
+    inset 0 2px 10px rgba(255, 255, 255, 0.8);
+  animation: modalPulse 1.8s ease-in-out infinite;
+}
+
+.modal-sucesso-check {
+  width: 54px;
+  height: 54px;
+  display: block;
+}
+
+.modal-sucesso-check-circle {
+  stroke: #15a265;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  opacity: 0.2;
+}
+
+.modal-sucesso-check-path {
+  stroke: #0b8a56;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: drawCheck 0.7s ease forwards 0.2s;
+}
+
+.modal-sucesso-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.8rem;
+  color: #123e2a;
+  font-weight: 700;
+}
+
+.modal-sucesso-box p {
+  margin: 0 auto 24px;
+  max-width: 360px;
+  color: #5a6c63;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+.modal-sucesso-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-sucesso-btn {
+  min-width: 150px;
+  min-height: 48px;
+  border-radius: 12px;
+  border: none;
+  font-size: 0.96rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.modal-sucesso-btn:hover {
+  transform: translateY(-2px);
+}
+
+.modal-sucesso-btn.primary {
+  background: linear-gradient(135deg, #0b8a56, #16a36a);
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(11, 138, 86, 0.22);
+}
+
+.modal-sucesso-btn.primary:hover {
+  box-shadow: 0 18px 34px rgba(11, 138, 86, 0.28);
+}
+
+.modal-sucesso-btn.secondary {
+  background: #eef5f1;
+  color: #21553f;
+  border: 1px solid #d8e7df;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes modalPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 12px 30px rgba(11, 138, 86, 0.18),
+      inset 0 2px 10px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow:
+      0 18px 36px rgba(11, 138, 86, 0.24),
+      inset 0 2px 10px rgba(255, 255, 255, 0.85);
+  }
+}
+
+@media (max-width: 520px) {
+  .modal-sucesso-box {
+    padding: 30px 20px 24px;
+    border-radius: 20px;
+  }
+
+  .modal-sucesso-box h3 {
+    font-size: 1.45rem;
+  }
+
+  .modal-sucesso-actions {
+    flex-direction: column;
+  }
+
+  .modal-sucesso-btn {
+    width: 100%;
+  }
+}

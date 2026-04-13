@@ -133,16 +133,88 @@
     <div class="footer-bottom">
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
+
+    <!-- Modal de sucesso -->
+<div class="modal-sucesso-overlay" id="modalSucesso">
+  <div class="modal-sucesso-box">
+    <button class="modal-sucesso-close" id="fecharModalSucesso" aria-label="Fechar modal">
+      &times;
+    </button>
+
+    <div class="modal-sucesso-icon-wrap">
+      <div class="modal-sucesso-icon-circle">
+        <svg viewBox="0 0 52 52" class="modal-sucesso-check" aria-hidden="true">
+          <circle class="modal-sucesso-check-circle" cx="26" cy="26" r="25" fill="none"></circle>
+          <path class="modal-sucesso-check-path" fill="none" d="M14 27l7 7 17-17"></path>
+        </svg>
+      </div>
+    </div>
+
+    <h3>Conta criada com sucesso!</h3>
+    <p>
+      Seu cadastro foi concluído. Agora você já pode acessar sua conta e aproveitar a plataforma.
+    </p>
+
+    <div class="modal-sucesso-actions">
+      <a href="/login" class="modal-sucesso-btn primary">Ir para login</a>
+      <button type="button" class="modal-sucesso-btn secondary" id="continuarNaPagina">
+        Continuar aqui
+      </button>
+    </div>
+  </div>
+</div>
   </footer>
-  <script>
-    async function salvar(event) {
-      event.preventDefault();
+<script>
+  const modalSucesso = document.getElementById('modalSucesso');
+  const fecharModalSucesso = document.getElementById('fecharModalSucesso');
+  const continuarNaPagina = document.getElementById('continuarNaPagina');
 
-      const id_tipo_usuario = document.querySelector('[name="id_tipo_usuario"]').value;
-      const nome = document.querySelector('[name="nome"]').value.trim();
-      const email = document.querySelector('[name="email"]').value.trim();
-      const senha = document.querySelector('[name="senha"]').value.trim();
+  function abrirModalSucesso() {
+    modalSucesso.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+  }
 
+  function fecharModal() {
+    modalSucesso.classList.remove('ativo');
+    document.body.style.overflow = '';
+  }
+
+  fecharModalSucesso.addEventListener('click', fecharModal);
+  continuarNaPagina.addEventListener('click', fecharModal);
+
+  modalSucesso.addEventListener('click', function (event) {
+    if (event.target === modalSucesso) {
+      fecharModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && modalSucesso.classList.contains('ativo')) {
+      fecharModal();
+    }
+  });
+
+  async function salvar(event) {
+    event.preventDefault();
+
+    const id_tipo_usuario = document.querySelector('[name="id_tipo_usuario"]').value;
+    const nome = document.querySelector('[name="nome"]').value.trim();
+    const email = document.querySelector('[name="email"]').value.trim();
+    const emailVeri = document.querySelector('[name="emailVeri"]').value.trim();
+    const senha = document.querySelector('[name="senha"]').value.trim();
+    const senhaVeri = document.querySelector('[name="senhaVeri"]').value.trim();
+
+    if (email !== emailVeri) {
+      alert('Os e-mails não coincidem.');
+      return;
+    }
+
+    if (senha !== senhaVeri) {
+      alert('As senhas não coincidem.');
+      return;
+    }
+
+    try {
       const res = await fetch('/salvar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -150,9 +222,23 @@
       });
 
       const data = await res.text();
-      alert(data);
+
+      if (res.ok) {
+        abrirModalSucesso();
+        document.querySelector('form').reset();
+
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 3500);
+      } else {
+        alert(data || 'Não foi possível criar a conta.');
+      }
+    } catch (error) {
+      alert('Erro ao conectar com o servidor.');
+      console.error(error);
     }
-  </script>
+  }
+</script>
 
   <script src="js/main.js"></script>
   <script src="/js/user-info.js"></script>
