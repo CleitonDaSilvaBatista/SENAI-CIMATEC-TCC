@@ -45,6 +45,10 @@ app.get('/carrinho', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'cart.html'))
 })
 
+app.get('/loja/:slug', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'loja.html'));
+})
+
 // =================================
 //          ROTAS FOOTER
 // =================================
@@ -314,6 +318,96 @@ app.put('/usuarios/:id', async (req, res) => {
     return res.json({ message: 'Atualizado!' })
   } catch (err) {
     console.error('Erro em PUT /usuarios/:id', err)
+    return res.status(500).json({ error: 'Erro interno no servidor.' })
+  }
+})
+
+// NOVA ROTA PARA LISTAR LOJAS
+// Ela retorna todas as lojas ativas da tabela lojas, que hoje contém id_loja, nome_fantasia, descricao, imagem_url, ativo e demais campos.
+
+app.get('/api/lojas', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('lojas')
+      .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo')
+      .eq('ativo', true)
+      .order('id_loja', { ascending: false })
+
+    if (error) {
+      console.error('Erro ao buscar lojas:', error)
+      return res.status(500).json({ error: 'Erro ao buscar lojas.' })
+    }
+
+    return res.json(data || [])
+  } catch (err) {
+    console.error('Erro em /api/lojas:', err)
+    return res.status(500).json({ error: 'Erro interno no servidor.' })
+  }
+})
+
+// ROTA PARA LISTAR SERVIÇOS DE UMA LOJA
+// Ela recebe o slug da loja como parâmetro e retorna os serviços ativos relacionados a essa loja, buscando na tabela serviços onde há id_servico, id_loja, nome_servico, descricao, preco, imagem_url, ativo e demais campos.
+
+app.get('/api/lojas/:slug', async (req, res) => {
+  try {
+    const { slug } = req.params
+
+    const { data: loja, error: lojaError } = await supabase
+      .from('lojas')
+      .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo')
+      .eq('slug', slug)
+      .eq('ativo', true)
+      .single()
+
+    if (lojaError || !loja) {
+      return res.status(404).json({ error: 'Loja não encontrada.' })
+    }
+
+    const { data: tiposItem, error: tiposError } = await supabase
+      .from('tipos_item')
+      .select('id_tipo_item, nome')
+
+    if (tiposError) {
+      console.error('Erro ao buscar tipos_item:', tiposError)
+      return res.status(500).json({ error: 'Erro ao buscar tipos de item.' })
+    }
+
+    const idProduto = tiposItem.find(t => t.nome === 'produto')?.id_tipo_item
+    const idServico = tiposItem.find(t => t.nome === 'servico')?.id_tipo_item
+
+    const { data: produtos, error: produtosError } = await supabase
+      .from('itens')
+      .select('id_item, nome, descricao, preco, imagem_url, estoque, duracao_minutos, ativo')
+      .eq('id_loja', loja.id_loja)
+      .eq('id_tipo_item', idProduto)
+      .eq('ativo', true)
+      .order('id_item', { ascending: false })
+
+    if (produtosError) {
+      console.error('Erro ao buscar produtos:', produtosError)
+      return res.status(500).json({ error: 'Erro ao buscar produtos.' })
+    }
+
+    const { data: servicos, error: servicosError } = await supabase
+      .from('itens')
+      .select('id_item, nome, descricao, preco, imagem_url, estoque, duracao_minutos, ativo')
+      .eq('id_loja', loja.id_loja)
+      .eq('id_tipo_item', idServico)
+      .eq('ativo', true)
+      .order('id_item', { ascending: false })
+
+    if (servicosError) {
+      console.error('Erro ao buscar serviços:', servicosError)
+      return res.status(500).json({ error: 'Erro ao buscar serviços.' })
+    }
+
+    return res.json({
+      loja,
+      produtos: produtos || [],
+      servicos: servicos || []
+    })
+  } catch (err) {
+    console.error('Erro em /api/lojas/:slug:', err)
     return res.status(500).json({ error: 'Erro interno no servidor.' })
   }
 })
