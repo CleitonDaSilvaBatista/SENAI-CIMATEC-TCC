@@ -898,34 +898,23 @@ body {
   opacity: 1;
   padding-left: 4px;
 }
-
 .social-links {
   display: flex;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.social-links a {
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transition: var(--transition);
-}
-
-.social-links a:hover {
-  background: var(--primary);
-  transform: translateY(-2px);
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .social-links a img {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1);
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s, filter 0.3s;
 }
+
+.social-links a img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.4);
+}
+
 
 .footer-bottom {
   text-align: center;
