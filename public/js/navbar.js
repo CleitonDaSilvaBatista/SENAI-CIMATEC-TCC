@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <a data-link="/login" id="entrar">Entrar</a>
             <a data-link="/cadastro" id="criar-conta">Criar Conta</a>
           </div>
-          <a data-link="/carrinho" class="cart">
-            <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
-          </a>
+         <a data-link="/carrinho" class="cart">
+  <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
+  <span class="navbar-cart-count" id="navbar-cart-count">0</span>
+</a>
         </div>
       </header>
 
@@ -49,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
     `;
+
+    
 
     const links = document.querySelectorAll('[data-link]');
     links.forEach(link => {
@@ -199,6 +202,10 @@ function iniciarCepNavbar() {
       fecharModalCep();
     }
   });
+
+if (typeof updateCartBadge === "function") {
+  updateCartBadge();
+}
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('ativo')) {

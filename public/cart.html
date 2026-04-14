@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="/js/navbar.js" defer></script>
+  <script src="js/cart.js"></script>
   <style>
     :root {
       --primary: #1f9d67;
@@ -674,7 +675,7 @@
       }
     ];
 
-    let cart = [];
+    let cart = getCart();
 
     const productList = document.getElementById('productList');
     const cartItems = document.getElementById('cartItems');
@@ -731,98 +732,96 @@
         </article>
       `).join('');
     }
+function addToCart(productId) {
+  const product = products.find(item => item.id === productId);
+  const size = document.getElementById(`size-${productId}`).value;
 
-    function addToCart(productId) {
-      const product = products.find(item => item.id === productId);
-      const size = document.getElementById(`size-${productId}`).value;
+  if (!size) {
+    showToast('Selecione um tamanho antes de adicionar.');
+    return;
+  }
 
-      if (!size) {
-        showToast('Selecione um tamanho antes de adicionar.');
-        return;
-      }
+  addItemToCart({
+    ...product,
+    size,
+    quantity: 1
+  });
 
-      const existingItem = cart.find(item => item.id === productId && item.size === size);
+  renderCart();
+  showToast(`${product.title} adicionado ao carrinho.`);
+}
 
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push({ ...product, size, quantity: 1 });
-      }
+function changeQuantity(productId, size, delta) {
+  updateItemQuantity(productId, size, delta);
+  renderCart();
+}
 
-      renderCart();
-      showToast(`${product.title} adicionado ao carrinho.`);
-    }
+function removeItem(productId, size) {
+  removeItemFromCart(productId, size);
+  renderCart();
+  showToast('Produto removido do carrinho.');
+}
 
-    function changeQuantity(productId, size, delta) {
-      const item = cart.find(product => product.id === productId && product.size === size);
-      if (!item) return;
+    function clearCartItems() {
+  clearCart();
+  renderCart();
+  showToast('Carrinho limpo com sucesso.');
+}
+function renderCart() {
+  const cart = getCart();
 
-      item.quantity += delta;
-      if (item.quantity <= 0) {
-        cart = cart.filter(product => !(product.id === productId && product.size === size));
-      }
-      renderCart();
-    }
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const discount = cart.reduce((acc, item) => acc + ((item.oldPrice - item.price) * item.quantity), 0);
+  const total = subtotal;
 
-    function removeItem(productId, size) {
-      cart = cart.filter(product => !(product.id === productId && product.size === size));
-      renderCart();
-      showToast('Produto removido do carrinho.');
-    }
+  const headerCartCount = document.getElementById('headerCartCount');
+  if (headerCartCount) {
+    headerCartCount.textContent = totalItems;
+  }
 
-    function clearCart() {
-      cart = [];
-      renderCart();
-      showToast('Carrinho limpo com sucesso.');
-    }
+  cartSubtitle.textContent = `${totalItems} ${totalItems === 1 ? 'item adicionado' : 'itens adicionados'}`;
+  summaryItems.textContent = totalItems;
+  summarySubtotal.textContent = formatPrice(subtotal);
+  summaryDiscount.textContent = formatPrice(discount);
+  summaryTotal.textContent = formatPrice(total);
 
-    function renderCart() {
-      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-      const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-      const discount = cart.reduce((acc, item) => acc + ((item.oldPrice - item.price) * item.quantity), 0);
-      const total = subtotal;
-
-      if (headerCartCount) {
-        headerCartCount.textContent = totalItems;
-      }
-      cartSubtitle.textContent = `${totalItems} ${totalItems === 1 ? 'item adicionado' : 'itens adicionados'}`;
-      summaryItems.textContent = totalItems;
-      summarySubtotal.textContent = formatPrice(subtotal);
-      summaryDiscount.textContent = formatPrice(discount);
-      summaryTotal.textContent = formatPrice(total);
-
-      if (cart.length === 0) {
-        cartItems.innerHTML = '';
-        emptyState.classList.add('show');
-      } else {
-        emptyState.classList.remove('show');
-        cartItems.innerHTML = cart.map(item => `
-          <div class="cart-item">
-            <div class="thumb">
-              <img src="${item.image}" alt="${item.title}">
+  if (cart.length === 0) {
+    cartItems.innerHTML = '';
+    emptyState.classList.add('show');
+  } else {
+    emptyState.classList.remove('show');
+    cartItems.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="thumb">
+          <img src="${item.image}" alt="${item.title}">
+        </div>
+        <div>
+          <div class="item-title">${item.title}</div>
+          <div class="item-meta">Tamanho: ${item.size}</div>
+          <div class="item-controls">
+            <div class="qty">
+              <button onclick="changeQuantity(${item.id}, '${item.size}', -1)">−</button>
+              <span>${item.quantity}</span>
+              <button onclick="changeQuantity(${item.id}, '${item.size}', 1)">+</button>
             </div>
-            <div>
-              <div class="item-title">${item.title}</div>
-              <div class="item-meta">Tamanho: ${item.size}</div>
-              <div class="item-controls">
-                <div class="qty">
-                  <button onclick="changeQuantity(${item.id}, '${item.size}', -1)">−</button>
-                  <span>${item.quantity}</span>
-                  <button onclick="changeQuantity(${item.id}, '${item.size}', 1)">+</button>
-                </div>
-                <button class="remove-btn" onclick="removeItem(${item.id}, '${item.size}')">Remover</button>
-              </div>
-            </div>
-            <div class="item-price">
-              <strong>${formatPrice(item.price * item.quantity)}</strong>
-              <small>${item.quantity} x ${formatPrice(item.price)}</small>
-            </div>
+            <button class="remove-btn" onclick="removeItem(${item.id}, '${item.size}')">Remover</button>
           </div>
-        `).join('');
-      }
-    }
+        </div>
+        <div class="item-price">
+          <strong>${formatPrice(item.price * item.quantity)}</strong>
+          <small>${item.quantity} x ${formatPrice(item.price)}</small>
+        </div>
+      </div>
+    `).join('');
+  }
 
-    clearCartBtn.addEventListener('click', clearCart);
+  if (typeof updateCartBadge === "function") {
+    updateCartBadge();
+  }
+}
+
+    clearCartBtn.addEventListener('click', clearCartItems);
 
     renderProducts();
     renderCart();
