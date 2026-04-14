@@ -1,6 +1,12 @@
 /* ==============================
    GLOBAL RESET & BASE
 ============================== */
+:root {
+  --white: #ffffff;
+  --container: 1280px;
+  --container-padding: 24px;
+  --transition-fast: 0.2s ease;
+}
 * {
   box-sizing: border-box;
   margin: 0;
