@@ -246,13 +246,17 @@
 
     .empty-state {
       display: none;
-      padding: 54px 24px;
+      min-height: 420px;
+      padding: 40px 24px;
       text-align: center;
       color: var(--muted);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
 
     .empty-state.show {
-      display: block;
+      display: flex;
     }
 
     .empty-icon {
@@ -543,8 +547,6 @@
     <section class="hero">
       <div>
         <h1>Seu carrinho mais bonito, moderno e funcional</h1>
-        <p>Visual inspirado no layout de referência, com identidade verde, resumo lateral e atualização automática na
-          tela.</p>
       </div>
       <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Compra segura e protegida</div>
     </section>
