@@ -162,7 +162,7 @@ app.post('/api/forgot-password', async (req, res) => {
       { expiresIn: '30m' }
     )
 
-    const resetLink = `${process.env.BASE_URL}/reset-password?token=${resetToken}`
+    const resetLink = `${process.env.SUPABASE_URL}/reset-password?token=${resetToken}`
 
     // Enviar e-mail com nodemailer
     if (!transporter) {
