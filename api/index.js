@@ -26,6 +26,7 @@ app.use('/', authRoutes)
 app.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'home.html'))
 })
+
 app.get('/forgot-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'forgot.html'))
 })
@@ -33,6 +34,7 @@ app.get('/forgot-password', (req, res) => {
 app.get('/login', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'login.html'))
 })
+
 app.get('/cadastro', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'criarcont.html'))
 })
@@ -48,6 +50,7 @@ app.get('/carrinho', (req, res) => {
 app.get('/loja/:slug', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'loja.html'));
 })
+
 app.get('/reset-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'reset-password.html'))
 })
