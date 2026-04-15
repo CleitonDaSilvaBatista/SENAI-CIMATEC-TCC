@@ -1,23 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById('email').value.trim();
-    const senha = document.getElementById('password').value.trim();
-
-    try {
-      await authService.login(email, senha);
-      alert('Login realizado com sucesso!');
-      window.location.href = '/';
-    } catch (error) {
-      alert(error.message);
-    }
-  });
-});
-
 document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
