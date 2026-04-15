@@ -352,6 +352,9 @@ app.get('/api/lojas/:slug', async (req, res) => {
   try {
     const { slug } = req.params
 
+    const ID_TIPO_PRODUTO = 1
+    const ID_TIPO_SERVICO = 2
+
     const { data: loja, error: lojaError } = await supabase
       .from('lojas')
       .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo')
@@ -360,45 +363,40 @@ app.get('/api/lojas/:slug', async (req, res) => {
       .single()
 
     if (lojaError || !loja) {
+      console.error('Erro ao buscar loja:', lojaError)
       return res.status(404).json({ error: 'Loja não encontrada.' })
     }
-
-    const { data: tiposItem, error: tiposError } = await supabase
-      .from('tipos_item')
-      .select('id_tipo_item, nome')
-
-    if (tiposError) {
-      console.error('Erro ao buscar tipos_item:', tiposError)
-      return res.status(500).json({ error: 'Erro ao buscar tipos de item.' })
-    }
-
-    const idProduto = tiposItem.find(t => t.nome === 'produto')?.id_tipo_item
-    const idServico = tiposItem.find(t => t.nome === 'servico')?.id_tipo_item
 
     const { data: produtos, error: produtosError } = await supabase
       .from('itens')
       .select('id_item, nome, descricao, preco, imagem_url, estoque, duracao_minutos, ativo')
       .eq('id_loja', loja.id_loja)
-      .eq('id_tipo_item', idProduto)
+      .eq('id_tipo_item', ID_TIPO_PRODUTO)
       .eq('ativo', true)
       .order('id_item', { ascending: false })
 
     if (produtosError) {
       console.error('Erro ao buscar produtos:', produtosError)
-      return res.status(500).json({ error: 'Erro ao buscar produtos.' })
+      return res.status(500).json({
+        error: 'Erro ao buscar produtos.',
+        details: produtosError.message
+      })
     }
 
     const { data: servicos, error: servicosError } = await supabase
       .from('itens')
       .select('id_item, nome, descricao, preco, imagem_url, estoque, duracao_minutos, ativo')
       .eq('id_loja', loja.id_loja)
-      .eq('id_tipo_item', idServico)
+      .eq('id_tipo_item', ID_TIPO_SERVICO)
       .eq('ativo', true)
       .order('id_item', { ascending: false })
 
     if (servicosError) {
       console.error('Erro ao buscar serviços:', servicosError)
-      return res.status(500).json({ error: 'Erro ao buscar serviços.' })
+      return res.status(500).json({
+        error: 'Erro ao buscar serviços.',
+        details: servicosError.message
+      })
     }
 
     return res.json({
