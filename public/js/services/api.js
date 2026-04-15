@@ -1,16 +1,15 @@
 async function apiFetch(url, options = {}) {
-  const response = await fetch(url, {
+  const res = await fetch(url, {
     headers: {
-      'Content-Type': 'application/json',
-      ...(options.headers || {})
+      'Content-Type': 'application/json'
     },
     ...options
   });
 
-  const data = await response.json();
+  const data = await res.json();
 
-  if (!response.ok) {
-    throw new Error(data.error || 'Erro na requisição');
+  if (!res.ok) {
+    throw new Error(data.error || 'Erro na API');
   }
 
   return data;

@@ -1,13 +1,5 @@
-function getToken() {
-  return localStorage.getItem('token');
-}
-
 function saveToken(token) {
   localStorage.setItem('token', token);
-}
-
-function removeToken() {
-  localStorage.removeItem('token');
 }
 
 async function login(email, senha) {
@@ -20,18 +12,4 @@ async function login(email, senha) {
   return data;
 }
 
-async function logout() {
-  await apiFetch('/api/auth/logout', {
-    method: 'POST'
-  });
-
-  removeToken();
-}
-
-window.authService = {
-  getToken,
-  saveToken,
-  removeToken,
-  login,
-  logout
-};
+window.authService = { login };
