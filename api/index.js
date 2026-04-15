@@ -48,6 +48,9 @@ app.get('/carrinho', (req, res) => {
 app.get('/loja/:slug', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'loja.html'));
 })
+app.get('/reset-password', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'reset-password.html'))
+})
 
 // =================================
 //          ROTAS FOOTER
@@ -162,7 +165,7 @@ app.post('/api/forgot-password', async (req, res) => {
       { expiresIn: '30m' }
     )
 
-    const resetLink = `${process.env.SUPABASE_URL}/reset-password?token=${resetToken}`
+    const resetLink = `${process.env.BASE_URL}/reset-password?token=${resetToken}`
 
     // Enviar e-mail com nodemailer
     if (!transporter) {
