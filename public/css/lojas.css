@@ -168,8 +168,7 @@
     .categorias-btn {
       padding: 10px 14px;
       border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary) !important;
+      color: white;
       font-weight: 700 !important;
     }
 
