@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="navbar-right">
           <div class="auth-buttons">
             <a data-link="/login" id="entrar">Entrar</a>
-            <div id="user-status" style="display: none;">Carregando...</div>
+            <div id="user-status" style="display: none;"></div>
             <a data-link="/cadastro" id="criar-conta">Criar Conta</a>
           </div>
 
@@ -230,6 +230,7 @@ function mostrarStatusLogin() {
 
   if (!token) {
     userBox.style.display = 'none';
+    userBox.textContent = '';
     entrarBtn.style.display = 'inline-block';
     criarContaBtn.style.display = 'inline-block';
     return;
@@ -238,17 +239,58 @@ function mostrarStatusLogin() {
   entrarBtn.style.display = 'none';
   criarContaBtn.style.display = 'none';
   userBox.style.display = 'inline-block';
+  userBox.textContent = 'Carregando...';
 
-  try {
-    const usuario = usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
+  setTimeout(() => {
+    try {
+      const usuario = usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
+      const nome = usuario && usuario.nome ? usuario.nome : 'Usuário';
 
-    if (usuario && usuario.nome) {
-      userBox.textContent = `Você entrou, ${usuario.nome}`;
-    } else {
-      userBox.textContent = 'Você entrou';
+      userBox.innerHTML = `
+        <span>Você entrou, ${nome}</span>
+        <button id="logout-btn" style="
+          margin-left: 10px;
+          background: none;
+          border: none;
+          color: #dc2626;
+          cursor: pointer;
+          font-weight: bold;
+        ">
+          Sair
+        </button>
+      `;
+
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout);
+      }
+    } catch (error) {
+      console.error('Erro ao ler usuário salvo:', error);
+
+      userBox.innerHTML = `
+        <span>Você entrou</span>
+        <button id="logout-btn" style="
+          margin-left: 10px;
+          background: none;
+          border: none;
+          color: #dc2626;
+          cursor: pointer;
+          font-weight: bold;
+        ">
+          Sair
+        </button>
+      `;
+
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout);
+      }
     }
-  } catch (error) {
-    console.error('Erro ao ler usuário salvo:', error);
-    userBox.textContent = 'Você entrou';
-  }
+  }, 3000);
+}
+
+function logout() {
+  localStorage.removeItem('jobee_token');
+  localStorage.removeItem('jobee_user');
+  location.reload();
 }
