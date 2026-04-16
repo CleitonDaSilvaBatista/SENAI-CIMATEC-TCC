@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jobee | Login</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/login.css" />
 
-<link rel="stylesheet" href="/css/global.css">
-<link rel="stylesheet" href="/css/navbar.css">
-<link rel="stylesheet" href="/css/layout.css">
-<link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="css/login.css">
+
   <script src="/js/navbar.js" defer></script>
-
 </head>
 
 <body>
-  <div id='navbar-container'></div>
-  <!-- Barra secundária -->
+  <div id="navbar-container"></div>
+
   <section class="sub-navbar">
     <a href="#">Categorias</a>
     <a href="#">Cupons</a>
@@ -28,72 +26,67 @@
   </section>
 
   <section class="login-section">
-
-  <!-- LADO ESQUERDO -->
-<section class="login-section">
-  <div class="login-left">
-    <img src="img/imagemlogin.png" alt="Ilustração Jobee">
-  </div>
-  <!-- LADO DIREITO -->
-  <div class="login-right">
-    <div class="login-text">
-      <h1>Entre na Jobee</h1>
-      <p>Compre, contrate serviços e acompanhe tudo em um só lugar.</p>
+    <div class="login-left">
+      <img src="img/imagemlogin.png" alt="Ilustração Jobee">
     </div>
 
-<div class="form-container">
-    <h2>Bem-vindo à Jobee</h2>
-    <p class="subtitle">Acesse sua conta para continuar</p>
-
-    <form action="/login" method="post">
-      <div class="input-group">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" placeholder="Digite seu e-mail" required />
+    <div class="login-right">
+      <div class="login-text">
+        <h1>Entre na Jobee</h1>
+        <p>Compre, contrate serviços e acompanhe tudo em um só lugar.</p>
       </div>
 
-      <div class="input-group">
-        <label for="password">Senha</label>
-        <input type="password" id="password" placeholder="Digite sua senha" required />
+      <div class="form-container">
+        <h2>Bem-vindo à Jobee</h2>
+        <p class="subtitle">Acesse sua conta para continuar</p>
+
+        <form action="/login" method="post">
+          <div class="input-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="Digite seu e-mail" required />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="Digite sua senha" required />
+          </div>
+
+          <button type="submit" class="btn-enviar">Entrar</button>
+
+          <p class="forgot-password"><a href="/forgot-password">Esqueceu sua senha?</a></p>
+
+          <p class="signup-text">
+            Não tem uma conta? <a href="/criarcont">Crie a sua aqui</a>
+          </p>
+        </form>
+
+        <div class="divider">
+          <span>ou entre com</span>
+        </div>
+
+        <div class="social-login">
+          <button class="social-btn google">
+            <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" />
+            Entrar com Google
+          </button>
+
+          <button class="social-btn linkedin">
+            <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+            Entrar com LinkedIn
+          </button>
+
+          <button class="social-btn microsoft">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Microsoft" />
+            Entrar com Microsoft
+          </button>
+        </div>
       </div>
-
-      <button type="submit" class="btn-enviar">Entrar</button>
-
-      <p class="forgot-password"><a href="/forgot-password">Esqueceu sua senha?</a></p>
-
-      <p class="signup-text">
-        Não tem uma conta? <a href="/criarcont">Crie a sua aqui</a>
-      </p>
-    </form>
-
-    <div class="divider">
-      <span>ou entre com</span>
     </div>
+  </section>
 
-    <div class="social-login">
-      <button class="social-btn google">
-        <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" />
-        Entrar com Google
-      </button>
-
-      <button class="social-btn linkedin">
-        <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
-        Entrar com LinkedIn
-      </button>
-
-      <button class="social-btn microsoft">
-        <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Microsoft" />
-        Entrar com Microsoft
-      </button>
-    </div>
-  </div>
-  </div>
-</section>
-  <!-- Modal de sucesso -->
   <div class="modal-feedback-overlay" id="modalSucessoLogin">
     <div class="modal-feedback-box sucesso">
-      <button class="modal-feedback-close" id="fecharModalSucessoLogin" aria-label="Fechar">
-        &times;
-      </button>
+      <button class="modal-feedback-close" id="fecharModalSucessoLogin" aria-label="Fechar">&times;</button>
 
       <div class="modal-feedback-icon-wrap">
         <div class="modal-feedback-icon-circle sucesso">
@@ -108,19 +101,14 @@
       <p>Seja bem-vindo de volta à Jobee. Estamos redirecionando você agora.</p>
 
       <div class="modal-feedback-actions">
-        <button type="button" class="modal-feedback-btn primary" id="irAgoraHome">
-          Ir agora
-        </button>
+        <button type="button" class="modal-feedback-btn primary" id="irAgoraHome">Ir agora</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal de erro -->
   <div class="modal-feedback-overlay" id="modalErroLogin">
     <div class="modal-feedback-box erro">
-      <button class="modal-feedback-close" id="fecharModalErroLogin" aria-label="Fechar">
-        &times;
-      </button>
+      <button class="modal-feedback-close" id="fecharModalErroLogin" aria-label="Fechar">&times;</button>
 
       <div class="modal-feedback-icon-wrap">
         <div class="modal-feedback-icon-circle erro">
@@ -132,21 +120,16 @@
       <p id="mensagemErroLogin">Verifique seu e-mail e senha e tente novamente.</p>
 
       <div class="modal-feedback-actions">
-        <button type="button" class="modal-feedback-btn secondary" id="tentarNovamenteLogin">
-          Tentar novamente
-        </button>
+        <button type="button" class="modal-feedback-btn secondary" id="tentarNovamenteLogin">Tentar novamente</button>
       </div>
     </div>
   </div>
-  <!-- Footer -->
+
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col">
         <h3>Jobee</h3>
-        <p>
-          Uma colmeia de serviços que conecta pessoas e negócios de forma
-          prática e segura.
-        </p>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática e segura.</p>
       </div>
 
       <div class="footer-col">
@@ -173,8 +156,6 @@
         </div>
       </div>
     </div>
-
-    <section class=""></section>
 
     <div class="footer-bottom">
       <p>© 2025 Jobee - Todos os direitos reservados.</p>
@@ -209,9 +190,7 @@
 
     [modalSucessoLogin, modalErroLogin].forEach((modal) => {
       modal.addEventListener("click", function (event) {
-        if (event.target === modal) {
-          fecharModal(modal);
-        }
+        if (event.target === modal) fecharModal(modal);
       });
     });
 
@@ -231,20 +210,14 @@
       try {
         const resposta = await fetch("/login", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email: email,
-            senha: senha
-          })
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, senha })
         });
 
         const data = await resposta.json();
 
         if (data.success) {
           localStorage.setItem("token", data.token);
-
           abrirModal(modalSucessoLogin);
 
           setTimeout(() => {
@@ -254,7 +227,6 @@
           mensagemErroLogin.textContent = data.error || "E-mail ou senha inválidos.";
           abrirModal(modalErroLogin);
         }
-
       } catch (erro) {
         console.error(erro);
         mensagemErroLogin.textContent = "Erro ao conectar com o servidor. Tente novamente em instantes.";
@@ -263,5 +235,4 @@
     });
   </script>
 </body>
-
 </html>
