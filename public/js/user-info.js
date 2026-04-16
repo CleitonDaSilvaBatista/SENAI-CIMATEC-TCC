@@ -1,40 +1,34 @@
-(async () => {
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(carregarInfoUsuario, 300);
+});
 
-  const token = localStorage.getItem("token")
+async function carregarInfoUsuario() {
+  const token = localStorage.getItem('jobee_token');
+  const userBox = document.getElementById('user-status');
 
-  if (!token) return
+  if (!userBox) return;
 
-  const res = await fetch('/api/user-info', {
-    headers: {
-      Authorization: `Bearer ${token}`
+  if (!token) {
+    userBox.textContent = 'Você não entrou';
+    return;
+  }
+
+  try {
+    const resposta = await fetch('/api/user-info', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await resposta.json();
+
+    if (data.logado) {
+      userBox.textContent = `Você entrou, ${data.nome}`;
+    } else {
+      userBox.textContent = 'Você não entrou';
     }
-  })
-
-  const data = await res.json()
-
-  const navbarRight = document.querySelector(".navbar-right")
-
-  if (data.logado) {
-      navbarRight.innerHTML = `
-        <span class="user-name">Olá, ${data.nome}</span>
-        <a href="#" id="logoutBtn" class="btn conta">Sair</a>
-      `
+  } catch (error) {
+    console.error('Erro ao buscar usuário logado:', error);
+    userBox.textContent = 'Você não entrou';
   }
-
-})();
-
-document.addEventListener("click", async (e) => {
-
-  if (e.target.id === "logoutBtn") {
-
-    await fetch('/api/logout', {
-      method: "POST"
-    })
-
-    localStorage.removeItem("token")
-
-    window.location.href = "/login"
-
-  }
-
-})
+}

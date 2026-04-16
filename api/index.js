@@ -100,18 +100,22 @@ if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
 } else {
   console.warn('⚠ Variáveis SMTP não configuradas. Alguns recursos de e-mail estarão desativados.')
 }
+
 app.get('/api/user-info', async (req, res) => {
   try {
-
     const authHeader = req.headers.authorization
+    console.log('Authorization header:', authHeader)
 
     if (!authHeader) {
-      return res.json({ logado: false })
+      console.log('Sem authorization header')
+      return res.json({ logado: false, motivo: 'Sem token' })
     }
 
     const token = authHeader.split(' ')[1]
+    console.log('Token recebido:', token)
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    console.log('Token decodificado:', decoded)
 
     const { data, error } = await supabase
       .from('usuarios')
@@ -119,8 +123,10 @@ app.get('/api/user-info', async (req, res) => {
       .eq('id_usuario', decoded.id)
       .single()
 
+    console.log('Resultado do banco:', data, error)
+
     if (error || !data) {
-      return res.json({ logado: false })
+      return res.json({ logado: false, motivo: 'Usuário não encontrado' })
     }
 
     return res.json({
@@ -128,19 +134,10 @@ app.get('/api/user-info', async (req, res) => {
       nome: data.nome,
       email: data.email
     })
-
   } catch (err) {
-
-    return res.json({ logado: false })
-
+    console.error('Erro em /api/user-info:', err)
+    return res.json({ logado: false, motivo: 'Token inválido ou erro interno' })
   }
-})
-
-app.post('/api/logout', (req, res) => {
-  return res.json({
-    success: true,
-    message: 'Logout realizado com sucesso.'
-  })
 })
 
 app.post('/api/forgot-password', async (req, res) => {
