@@ -23,13 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="navbar-right">
           <div class="auth-buttons">
             <a data-link="/login" id="entrar">Entrar</a>
-            <div id="user-status">Carregando...</div>
+            <div id="user-status" style="display: none;">Carregando...</div>
             <a data-link="/cadastro" id="criar-conta">Criar Conta</a>
           </div>
-         <a data-link="/carrinho" class="cart">
-  <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
-  <span class="navbar-cart-count" id="navbar-cart-count">0</span>
-</a>
+
+          <a data-link="/carrinho" class="cart">
+            <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
+            <span class="navbar-cart-count" id="navbar-cart-count">0</span>
+          </a>
         </div>
       </header>
 
@@ -51,8 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
     `;
-
-    
 
     const links = document.querySelectorAll('[data-link]');
     links.forEach(link => {
@@ -84,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     iniciarCepNavbar();
+    mostrarStatusLogin();
   }
 });
 
@@ -204,13 +204,51 @@ function iniciarCepNavbar() {
     }
   });
 
-if (typeof updateCartBadge === "function") {
-  updateCartBadge();
-}
+  if (typeof updateCartBadge === 'function') {
+    updateCartBadge();
+  }
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('ativo')) {
       fecharModalCep();
     }
   });
+}
+
+function mostrarStatusLogin() {
+  const userBox = document.getElementById('user-status');
+  const entrarBtn = document.getElementById('entrar');
+  const criarContaBtn = document.getElementById('criar-conta');
+
+  if (!userBox || !entrarBtn || !criarContaBtn) {
+    console.warn('Elementos de autenticação não encontrados');
+    return;
+  }
+
+  const token = localStorage.getItem('jobee_token');
+  const usuarioSalvo = localStorage.getItem('jobee_user');
+
+  if (!token) {
+    userBox.style.display = 'none';
+    entrarBtn.style.display = 'inline-block';
+    criarContaBtn.style.display = 'inline-block';
+    return;
+  }
+
+  entrarBtn.style.display = 'none';
+  criarContaBtn.style.display = 'none';
+  userBox.style.display = 'inline-block';
+
+  try {
+    const usuario = usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
+
+    if (usuario && usuario.nome) {
+      userBox.textContent = `Você entrou, ${usuario.nome}`;
+    } else {
+      userBox.textContent = 'Você entrou';
+    }
+  } catch (error) {
+    console.error('Erro ao ler usuário salvo:', error);
+    userBox.textContent = 'Você entrou';
+  }
 }
