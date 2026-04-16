@@ -1,6 +1,6 @@
-/* Reset e fonte */
-
-
+/* ==============================
+   RESET
+============================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,191 +8,20 @@
   font-family: 'Poppins', sans-serif;
 }
 
-
+html,
 body {
-  background: #ebebeb;
+  width: 100%;
+  min-height: 100%;
+  background: #ffffff;
   color: #222;
 }
 
-#subtitle{
-  color: #308668;
-  font-size: 30px;
-  text-align: center;
-  font-family:'Poppins', sans-serif;
-  font-weight: bold;
+a {
+  text-decoration: none;
 }
 
 /* ==============================
-   NAVBAR PRINCIPAL (estilo Mercado Livre)
-============================== */
-/* ======= NAVBAR ======= */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #308668;
-  padding: 10px 30px;
-  position: relative;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-a{
- text-decoration: none;
-} 
-
-.location {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.location img {
-  width: 16px;
-  height: 16px;
-}
-
-/* Barra de pesquisa */
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 6px;
-  transform: translateX(15%);
-  width: 600px;
-  padding: 4px 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.search-bar input {
-  border: none;
-  outline: none;
-  flex: 1;
-  font-size: 14px;
-  color: #333;
-  padding: 8px;
-}
-
-.search-bar button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.search-bar button img {
-  width: 18px;
-  opacity: 0.7;
-}
-
-.search-bar button:hover img {
-  opacity: 1;
-}
-
-/* Lado direito */
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.navbar-right a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.2s;
-}
-
-.navbar-right a:hover {
-  color: #01cc6d;
-}
-
-.btn.conta {
-  background: #fff;
-  padding: 6px 12px;
-  color: #308668;
-  border-radius: 6px;
-  border: 1px solid #888;
-  font-weight: 600;
-}
-
-.btn.conta:hover {
-  background: #f7f7f7;
-}
-
-/* ==============================
-   MENU HOVER CATEGORIAS
-============================== */
-
-.dropdown-categorias {
-  position: relative;
-  display: inline-block;
-}
-
-.categorias-btn {
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-.categorias-btn:hover {
-  background-color: #ffffff;
-}
-
-/* O menu que aparece ao passar o mouse */
-.menu-categorias {
-  display: none;
-  position: absolute;
-  top: 29px;
-  right: 0;
-  background-color: #308668;
-  min-width: 250px;
-  border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  padding: 8px 0;
-}
-
-.menu-categorias li {
-  list-style: none;
-}
-
-.menu-categorias li a {
-  display: block;
-  color: #fff;
-  transform: translateX(5%);
-  padding: 10px 18px;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background 0.3s ease;
-}
-/* Mostra o menu no hover */
-.dropdown-categorias:hover .menu-categorias {
-  display: block;
-}
-
-/* ==============================
-   SUB-NAVBAR (segunda faixa)
+   SUB-NAVBAR
 ============================== */
 .sub-navbar {
   display: flex;
@@ -204,54 +33,128 @@ a{
 }
 
 .sub-navbar a {
-  text-decoration: none;
   color: #ffffff;
   font-size: 14px;
   font-weight: 500;
   transition: 0.2s;
-  transform: translateX(-10%);
 }
 
 .sub-navbar a:hover {
   color: #01cc6d;
 }
 
-
-.forgot-password a {
-  text-decoration: none;
-  color: #0b8a56;
+.dropdown-categorias {
+  position: relative;
+  display: inline-block;
 }
 
+.categorias-btn {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
 
-/* Formulário */
+.categorias-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.menu-categorias {
+  display: none;
+  position: absolute;
+  top: 29px;
+  right: 0;
+  background-color: #308668;
+  min-width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+  z-index: 1000;
+  padding: 8px 0;
+}
+
+.menu-categorias li {
+  list-style: none;
+}
+
+.menu-categorias li a {
+  display: block;
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.menu-categorias li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dropdown-categorias:hover .menu-categorias {
+  display: block;
+}
+
+/* ==============================
+   LAYOUT CRIAR CONTA
+============================== */
 .form-section {
-  background: #f8f8f8;
-  padding: 80px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  background: #ffffff;
 }
 
+/* lado esquerdo com imagem */
+.form-section::before {
+  content: "";
+  display: block;
+  background:
+    linear-gradient(135deg, rgba(48,134,104,0.12), rgba(30,94,70,0.22)),
+    url("/mnt/data/a_modern_digital_illustration_in_a_flat_style_pro.png") center/cover no-repeat;
+  min-height: 100%;
+}
+
+/* lado direito */
 .form-container {
-  background: white;
-  max-width: 450px;
+  width: 100%;
+  max-width: 520px;
   margin: 0 auto;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  align-self: center;
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 22px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
 }
 
 .form-container h2 {
   text-align: center;
   color: #0b8a56;
-  margin-bottom: 30px;
+  margin-bottom: 12px;
+  font-size: 2rem;
 }
 
+.form-container h2::after {
+  content: "Junte-se à Jobee e aproveite ofertas e serviços exclusivos.";
+  display: block;
+  margin-top: 10px;
+  color: #5f6d66;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ==============================
+   FORMULÁRIO
+============================== */
 .input-group {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .input-group label {
   display: block;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   color: #333;
 }
 
@@ -262,10 +165,36 @@ a{
   border: 1px solid #ccc;
   outline: none;
   font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input-group input:focus {
   border-color: #0b8a56;
+  box-shadow: 0 0 0 4px rgba(11, 138, 86, 0.08);
+}
+
+#selector {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+#changes {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #097648;
+  font-size: 16px;
+  margin-bottom: 18px;
+  outline: none;
+}
+
+#changes:focus {
+  border-color: #0b8a56;
+  box-shadow: 0 0 0 4px rgba(11, 138, 86, 0.08);
 }
 
 .btn-enviar {
@@ -273,36 +202,39 @@ a{
   background: #0b8a56;
   color: white;
   border: none;
-  padding: 12px;
+  padding: 13px;
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
-  margin-top: 15px;
-  transform: translateY(30%);
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 8px;
 }
 
 .btn-enviar:hover {
   background: #097648;
+  transform: translateY(-1px);
 }
 
-#entre, #termo{
-  text-decoration: none;
+#entre,
+#termo {
   color: #0b8a56;
+  font-weight: 600;
 }
 
-#selector{
-  padding: 5px;
+#entre:hover,
+#termo:hover {
+  text-decoration: underline;
 }
 
-#changes{
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #ffffff;
-  color: #097648;
-  font-size: 16px;
-  width: 100%;
-  transform: translateY(15%);
+.form-container p {
+  color: #5f6d66;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+#termos {
+  margin-right: 8px;
+  accent-color: #0b8a56;
 }
 
 /* ==============================
@@ -493,7 +425,43 @@ a{
   }
 }
 
+/* ==============================
+   RESPONSIVO
+============================== */
+@media (max-width: 900px) {
+  .form-section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    background: #ffffff;
+  }
+
+  .form-section::before {
+    display: none;
+  }
+
+  .form-container {
+    max-width: 520px;
+    margin: 32px auto;
+    padding: 28px 22px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+}
+
 @media (max-width: 520px) {
+  .sub-navbar {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 16px;
+  }
+
+  .form-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .form-container h2::after {
+    font-size: 0.92rem;
+  }
+
   .modal-sucesso-box {
     padding: 30px 20px 24px;
     border-radius: 20px;
