@@ -299,16 +299,16 @@ a{
   height: 20px;
 }
 .login-section{
-  min-height: calc(100vh - 220px);
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  align-items: center;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 24px;
-  position: relative;
-  z-index: 1;
+    min-height: calc(100vh - 220px);
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 24px;
+    position: relative;
+    z-index: 1;
 }
 
 .login-info h1{
