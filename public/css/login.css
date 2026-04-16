@@ -16,7 +16,7 @@
 .login-left {
   position: relative;
   overflow: hidden;
-  background: #eaf5ef;
+  background: #ffffff;
 }
 
 .login-left img {
@@ -25,20 +25,7 @@
   object-fit: cover;
   display: block;
 }
-
 /* Overlay leve verde (opcional, bonito) */
-.login-left::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(48,134,104,0.15),
-    rgba(30,94,70,0.25)
-  );
-  pointer-events: none;
-}
-
 /* ===============================
    LADO DIREITO
 =============================== */
@@ -184,7 +171,7 @@
 
 .divider {
   text-align: center;
-  color: #777;
+  color: #ffffff;
   margin: 25px 0;
   position: relative;
 }
@@ -203,7 +190,7 @@
   left: 10%;
   right: 10%;
   height: 1px;
-  background: #ccc;
+  background: #ffffff;
   z-index: 1;
 }
 
