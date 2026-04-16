@@ -163,54 +163,32 @@
   </footer>
 
   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const modalSucessoLogin = document.getElementById("modalSucessoLogin");
+    const modalSucessoLogin = document.getElementById("modalSucessoLogin");
   const modalErroLogin = document.getElementById("modalErroLogin");
   const fecharModalSucessoLogin = document.getElementById("fecharModalSucessoLogin");
   const fecharModalErroLogin = document.getElementById("fecharModalErroLogin");
   const tentarNovamenteLogin = document.getElementById("tentarNovamenteLogin");
   const irAgoraHome = document.getElementById("irAgoraHome");
   const mensagemErroLogin = document.getElementById("mensagemErroLogin");
-  const form = document.getElementById("login-form");
-
-  if (!form) {
-    console.warn("Formulário de login não encontrado.");
-    return;
-  }
 
   function abrirModal(modal) {
-    if (!modal) return;
     modal.classList.add("ativo");
     document.body.style.overflow = "hidden";
   }
 
   function fecharModal(modal) {
-    if (!modal) return;
     modal.classList.remove("ativo");
     document.body.style.overflow = "";
   }
 
-  if (fecharModalSucessoLogin) {
-    fecharModalSucessoLogin.addEventListener("click", () => fecharModal(modalSucessoLogin));
-  }
-
-  if (fecharModalErroLogin) {
-    fecharModalErroLogin.addEventListener("click", () => fecharModal(modalErroLogin));
-  }
-
-  if (tentarNovamenteLogin) {
-    tentarNovamenteLogin.addEventListener("click", () => fecharModal(modalErroLogin));
-  }
-
-  if (irAgoraHome) {
-    irAgoraHome.addEventListener("click", () => {
-      window.location.href = "/";
-    });
-  }
+  fecharModalSucessoLogin.addEventListener("click", () => fecharModal(modalSucessoLogin));
+  fecharModalErroLogin.addEventListener("click", () => fecharModal(modalErroLogin));
+  tentarNovamenteLogin.addEventListener("click", () => fecharModal(modalErroLogin));
+  irAgoraHome.addEventListener("click", () => {
+    window.location.href = "/";
+  });
 
   [modalSucessoLogin, modalErroLogin].forEach((modal) => {
-    if (!modal) return;
-
     modal.addEventListener("click", function (event) {
       if (event.target === modal) {
         fecharModal(modal);
@@ -220,29 +198,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
-      if (modalSucessoLogin && modalSucessoLogin.classList.contains("ativo")) {
-        fecharModal(modalSucessoLogin);
-      }
-
-      if (modalErroLogin && modalErroLogin.classList.contains("ativo")) {
-        fecharModal(modalErroLogin);
-      }
+      if (modalSucessoLogin.classList.contains("ativo")) fecharModal(modalSucessoLogin);
+      if (modalErroLogin.classList.contains("ativo")) fecharModal(modalErroLogin);
     }
   });
 
-  form.addEventListener("submit", async (e) => {
+  document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("email")?.value.trim();
-    const senha = document.getElementById("password")?.value.trim();
-
-    if (!email || !senha) {
-      if (mensagemErroLogin) {
-        mensagemErroLogin.textContent = "Preencha e-mail e senha.";
-      }
-      abrirModal(modalErroLogin);
-      return;
-    }
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("password").value.trim();
 
     try {
       const resposta = await fetch("/login", {
@@ -251,27 +216,63 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          email,
-          senha
+          email: email,
+          senha: senha
         })
       });
 
       const data = await resposta.json();
+
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+
+        abrirModal(modalSucessoLogin);
+
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 4200);
+      } else {
+        mensagemErroLogin.textContent = data.error || "E-mail ou senha inválidos.";
+        abrirModal(modalErroLogin);
+      }
+
+    } catch (erro) {
+      console.error(erro);
+      mensagemErroLogin.textContent = "Erro ao conectar com o servidor. Tente novamente em instantes.";
+      abrirModal(modalErroLogin);
+    }
+  });
+  document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("login-form");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+
+    try {
+      const resposta = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, senha })
+      });
+
+      const data = await resposta.json();
+
       console.log("Resposta do login:", data);
 
-      if (!resposta.ok || !data.success) {
-        if (mensagemErroLogin) {
-          mensagemErroLogin.textContent = data.error || data.mensagem || "E-mail ou senha inválidos.";
-        }
-        abrirModal(modalErroLogin);
+      if (!resposta.ok) {
+        alert(data.mensagem || "E-mail ou senha inválidos");
         return;
       }
 
       if (!data.token) {
-        if (mensagemErroLogin) {
-          mensagemErroLogin.textContent = "Login realizado, mas nenhum token foi recebido.";
-        }
-        abrirModal(modalErroLogin);
+        alert("Login realizado, mas nenhum token foi recebido.");
         return;
       }
 
@@ -279,26 +280,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (data.usuario) {
         localStorage.setItem("jobee_user", JSON.stringify(data.usuario));
-      } else if (data.user) {
-        localStorage.setItem("jobee_user", JSON.stringify(data.user));
       } else {
-        localStorage.setItem("jobee_user", JSON.stringify({ nome: "Usuário" }));
+        localStorage.setItem(
+          "jobee_user",
+          JSON.stringify({ nome: "Usuário" })
+        );
       }
 
-      abrirModal(modalSucessoLogin);
+      alert("Login realizado com sucesso!");
 
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 3000);
-
+      window.location.href = "/";
     } catch (erro) {
       console.error("Erro ao fazer login:", erro);
-
-      if (mensagemErroLogin) {
-        mensagemErroLogin.textContent = "Erro ao conectar com o servidor. Tente novamente em instantes.";
-      }
-
-      abrirModal(modalErroLogin);
+      alert("Erro ao conectar com o servidor.");
     }
   });
 });
