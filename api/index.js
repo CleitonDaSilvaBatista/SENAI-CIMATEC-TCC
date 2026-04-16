@@ -413,4 +413,39 @@ app.get('/api/lojas/:slug', async (req, res) => {
   }
 })
 
+app.get('/api/itens/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const { data: item, error: itemError } = await supabase
+      .from('itens')
+      .select('id_item, id_loja, nome, descricao, preco, imagem_url, estoque, duracao_minutos, ativo')
+      .eq('id_item', id)
+      .eq('ativo', true)
+      .single()
+
+    if (itemError || !item) {
+      return res.status(404).json({ error: 'Item não encontrado.' })
+    }
+
+    const { data: loja, error: lojaError } = await supabase
+      .from('lojas')
+      .select('id_loja, nome_fantasia, slug')
+      .eq('id_loja', item.id_loja)
+      .single()
+
+    if (lojaError || !loja) {
+      return res.status(404).json({ error: 'Loja do item não encontrada.' })
+    }
+
+    return res.json({
+      ...item,
+      loja
+    })
+  } catch (err) {
+    console.error('Erro em /api/itens/:id:', err)
+    return res.status(500).json({ error: 'Erro interno no servidor.' })
+  }
+}) 
+
 module.exports = app

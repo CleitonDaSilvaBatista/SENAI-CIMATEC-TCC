@@ -1,91 +1,99 @@
-const CART_STORAGE_KEY = "jobee_cart";
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("cart.js carregado");
+  renderizarCarrinho();
+});
 
-function getCart() {
-  const cart = localStorage.getItem(CART_STORAGE_KEY);
-  return cart ? JSON.parse(cart) : [];
-}
-
-function saveCart(cart) {
-  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-  updateCartBadge();
-}
-
-function addItemToCart(product) {
-  const cart = getCart();
-
-  const existingItem = cart.find(
-    (item) => item.id === product.id && item.size === product.size
-  );
-
-  if (existingItem) {
-    existingItem.quantity += product.quantity || 1;
-  } else {
-    cart.push({
-      ...product,
-      quantity: product.quantity || 1
-    });
+function obterCarrinho() {
+  try {
+    return JSON.parse(localStorage.getItem("jobee_cart")) || [];
+  } catch (error) {
+    console.error("Erro ao ler carrinho:", error);
+    return [];
   }
-
-  saveCart(cart);
 }
 
-function removeItemFromCart(productId, size) {
-  const cart = getCart().filter(
-    (item) => !(item.id === productId && item.size === size)
-  );
-
-  saveCart(cart);
+function salvarCarrinho(carrinho) {
+  localStorage.setItem("jobee_cart", JSON.stringify(carrinho));
 }
 
-function updateItemQuantity(productId, size, delta) {
-  const cart = getCart();
-  const item = cart.find(
-    (product) => product.id === productId && product.size === size
-  );
+function renderizarCarrinho() {
+  const containerItens = document.getElementById("cart-items");
+  const resumo = document.getElementById("cart-summary");
 
-  if (!item) return;
-
-  item.quantity += delta;
-
-  if (item.quantity <= 0) {
-    const updatedCart = cart.filter(
-      (product) => !(product.id === productId && product.size === size)
-    );
-    saveCart(updatedCart);
+  if (!containerItens || !resumo) {
+    console.error("Elementos #cart-items ou #cart-summary não encontrados");
     return;
   }
 
-  saveCart(cart);
-}
+  const carrinho = obterCarrinho();
+  console.log("Carrinho atual:", carrinho);
 
-function clearCart() {
-  localStorage.removeItem(CART_STORAGE_KEY);
-  updateCartBadge();
-}
+  if (!carrinho.length) {
+    containerItens.innerHTML = "<p>Seu carrinho está vazio.</p>";
+    resumo.innerHTML = "";
+    return;
+  }
 
-function getCartCount() {
-  return getCart().reduce((total, item) => total + item.quantity, 0);
-}
+  containerItens.innerHTML = carrinho.map(item => `
+    <div class="cart-item" style="display:flex; gap:16px; margin-bottom:20px; border:1px solid #ddd; padding:16px; border-radius:12px;">
+      <img src="${item.imagem_url || '/img/placeholder-loja.png'}" alt="${item.nome}" width="120" height="120" style="object-fit:cover; border-radius:8px;">
+      <div class="cart-item-info">
+        <h3>${item.nome || 'Item sem nome'}</h3>
+        <p><strong>Loja:</strong> ${item.nome_loja || 'Loja não informada'}</p>
+        <p><strong>Preço:</strong> R$ ${Number(item.preco || 0).toFixed(2).replace('.', ',')}</p>
 
-function updateCartBadge() {
-  const badge = document.getElementById("navbar-cart-count");
-  if (!badge) return;
+        <div class="cart-actions" style="display:flex; gap:8px; align-items:center; margin-top:10px;">
+          <button onclick="alterarQuantidade(${item.id_item}, -1)">-</button>
+          <span>${item.quantidade || 1}</span>
+          <button onclick="alterarQuantidade(${item.id_item}, 1)">+</button>
+          <button onclick="removerItem(${item.id_item})">Remover</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
 
-  const count = getCartCount();
-  badge.textContent = count;
+  const total = carrinho.reduce((acc, item) => {
+    return acc + (Number(item.preco || 0) * Number(item.quantidade || 1));
+  }, 0);
 
-  if (count > 0) {
-    badge.style.display = "grid";
-  } else {
-    badge.style.display = "none";
+  resumo.innerHTML = `
+    <div class="cart-total" style="padding:16px; border:1px solid #ddd; border-radius:12px;">
+      <h2>Total</h2>
+      <p><strong>R$ ${total.toFixed(2).replace('.', ',')}</strong></p>
+      <button id="btn-finalizar">Finalizar pedido</button>
+    </div>
+  `;
+
+  const btnFinalizar = document.getElementById("btn-finalizar");
+  if (btnFinalizar) {
+    btnFinalizar.addEventListener("click", finalizarPedido);
   }
 }
 
-window.getCart = getCart;
-window.saveCart = saveCart;
-window.addItemToCart = addItemToCart;
-window.removeItemFromCart = removeItemFromCart;
-window.updateItemQuantity = updateItemQuantity;
-window.clearCart = clearCart;
-window.getCartCount = getCartCount;
-window.updateCartBadge = updateCartBadge;
+function alterarQuantidade(idItem, delta) {
+  const carrinho = obterCarrinho();
+  const item = carrinho.find(prod => Number(prod.id_item) === Number(idItem));
+
+  if (!item) return;
+
+  item.quantidade = Number(item.quantidade || 1) + delta;
+
+  if (item.quantidade <= 0) {
+    const novoCarrinho = carrinho.filter(prod => Number(prod.id_item) !== Number(idItem));
+    salvarCarrinho(novoCarrinho);
+  } else {
+    salvarCarrinho(carrinho);
+  }
+
+  renderizarCarrinho();
+}
+
+function removerItem(idItem) {
+  const carrinho = obterCarrinho().filter(prod => Number(prod.id_item) !== Number(idItem));
+  salvarCarrinho(carrinho);
+  renderizarCarrinho();
+}
+
+function finalizarPedido() {
+  alert("Carrinho funcionando. Próximo passo: gravar pedido no banco.");
+}

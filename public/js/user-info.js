@@ -1,22 +1,22 @@
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(mostrarStatusLogin, 300);
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(mostrarStatusLogin, 500);
 });
 
 function mostrarStatusLogin() {
-  const userBox = document.getElementById('user-status');
+  const userBox = document.getElementById("user-status");
   if (!userBox) {
-    console.warn('Elemento #user-status não encontrado');
+    console.warn("Elemento #user-status não encontrado");
     return;
   }
 
-  const token = localStorage.getItem('jobee_token');
-  const usuarioSalvo = localStorage.getItem('jobee_user');
+  const token = localStorage.getItem("jobee_token");
+  const usuarioSalvo = localStorage.getItem("jobee_user");
 
-  console.log('Token na Home:', token);
-  console.log('Usuário salvo na Home:', usuarioSalvo);
+  console.log("Token na página:", token);
+  console.log("Usuário salvo:", usuarioSalvo);
 
   if (!token) {
-    userBox.textContent = 'Você não entrou';
+    userBox.textContent = "Você não entrou";
     return;
   }
 
@@ -26,10 +26,10 @@ function mostrarStatusLogin() {
     if (usuario && usuario.nome) {
       userBox.textContent = `Você entrou, ${usuario.nome}`;
     } else {
-      userBox.textContent = 'Você entrou';
+      userBox.textContent = "Você entrou";
     }
   } catch (error) {
-    console.error('Erro ao ler usuário salvo:', error);
-    userBox.textContent = 'Você entrou';
+    console.error("Erro ao ler usuário salvo:", error);
+    userBox.textContent = "Você entrou";
   }
 }
