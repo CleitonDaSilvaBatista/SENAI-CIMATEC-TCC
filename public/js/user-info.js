@@ -1,12 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(carregarInfoUsuario, 300);
+  setTimeout(mostrarStatusLogin, 300);
 });
 
-async function carregarInfoUsuario() {
-  const token = localStorage.getItem('jobee_token');
+function mostrarStatusLogin() {
   const userBox = document.getElementById('user-status');
+  if (!userBox) {
+    console.warn('Elemento #user-status não encontrado');
+    return;
+  }
 
-  if (!userBox) return;
+  const token = localStorage.getItem('jobee_token');
+  const usuarioSalvo = localStorage.getItem('jobee_user');
+
+  console.log('Token na Home:', token);
+  console.log('Usuário salvo na Home:', usuarioSalvo);
 
   if (!token) {
     userBox.textContent = 'Você não entrou';
@@ -14,21 +21,15 @@ async function carregarInfoUsuario() {
   }
 
   try {
-    const resposta = await fetch('/api/user-info', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const usuario = usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
 
-    const data = await resposta.json();
-
-    if (data.logado) {
-      userBox.textContent = `Você entrou, ${data.nome}`;
+    if (usuario && usuario.nome) {
+      userBox.textContent = `Você entrou, ${usuario.nome}`;
     } else {
-      userBox.textContent = 'Você não entrou';
+      userBox.textContent = 'Você entrou';
     }
   } catch (error) {
-    console.error('Erro ao buscar usuário logado:', error);
-    userBox.textContent = 'Você não entrou';
+    console.error('Erro ao ler usuário salvo:', error);
+    userBox.textContent = 'Você entrou';
   }
 }
