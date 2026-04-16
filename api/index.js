@@ -47,6 +47,7 @@ app.get('/carrinho', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'cart.html'))
 })
 
+
 app.get('/loja/:slug', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'loja.html'));
 })
@@ -54,6 +55,7 @@ app.get('/loja/:slug', (req, res) => {
 app.get('/reset-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'reset-password.html'))
 })
+
 
 // =================================
 //          ROTAS FOOTER
@@ -415,5 +417,6 @@ app.get('/api/lojas/:slug', async (req, res) => {
     return res.status(500).json({ error: 'Erro interno no servidor.' })
   }
 })
+
 
 module.exports = app
