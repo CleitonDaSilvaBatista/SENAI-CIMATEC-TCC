@@ -1,160 +1,78 @@
-/* ======= RESET ======= */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
+/* ===============================
+   LAYOUT PRINCIPAL
+=============================== */
+
+.login-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  min-height: calc(100vh - 140px);
 }
 
-html, body {
+/* ===============================
+   LADO ESQUERDO (IMAGEM)
+=============================== */
+
+.login-left {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.login-left img {
   width: 100%;
   height: 100%;
-  background: #f5f5f5;
+  object-fit: cover;
+  display: block;
 }
+/* Overlay leve verde (opcional, bonito) */
+/* ===============================
+   LADO DIREITO
+=============================== */
 
-/* ======= NAVBAR ======= */
-.navbar {
+.login-right {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #308668;
-  padding: 10px 30px;
-  position: relative;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-a{
- text-decoration: none;
-} 
-
-.location {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.location img {
-  width: 16px;
-  height: 16px;
-}
-
-/* Barra de pesquisa */
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 6px;
-  transform: translateX(5%);
-  width: 600px;
-  padding: 4px 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.search-bar input {
-  border: none;
-  outline: none;
-  flex: 1;
-  font-size: 14px;
-  color: #333;
-  padding: 8px;
-}
-
-.search-bar button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.search-bar button img {
-  width: 18px;
-  opacity: 0.7;
-}
-
-.search-bar button:hover img {
-  opacity: 1;
-}
-
-/* Lado direito */
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.navbar-right a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.2s;
-}
-
-.navbar-right a:hover {
-  color: #01cc6d;
-}
-
-.btn.conta {
-  background: #fff;
-  padding: 6px 12px;
-  color: #308668;
-  border-radius: 6px;
-  border: 1px solid #888;
-  font-weight: 600;
-}
-
-.btn.conta:hover {
-  background: #f7f7f7;
-}
-
-/* ======= SUB-NAVBAR ======= */
-.sub-navbar {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  gap: 25px;
-  background: #308668;
-  padding: 8px 40px;
+  align-items: center;
+  padding: 48px;
+  background: #ffffff;
 }
 
-.sub-navbar a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.2s;
-}
+/* ===============================
+   TEXTO
+=============================== */
 
-.sub-navbar a:hover {
-  color: #01cc6d;
-}
-
-
-
-/* ======= FORMULÁRIO LOGIN ======= */
-.form-container {
-  background: white;
+.login-text {
+  text-align: center;
+  margin-bottom: 30px;
   max-width: 420px;
-  margin: 60px auto;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.login-text h1 {
+  font-size: 2.8rem;
+  color: #24644e;
+  margin-bottom: 10px;
+}
+
+.login-text p {
+  color: #5f6d66;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ===============================
+   FORMULÁRIO
+=============================== */
+
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 0;
+  padding: 36px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
 }
 
 .form-container h2 {
@@ -169,6 +87,10 @@ a{
   margin-bottom: 25px;
   font-size: 0.95rem;
 }
+
+/* ===============================
+   INPUTS
+=============================== */
 
 .input-group {
   margin-bottom: 18px;
@@ -194,6 +116,10 @@ a{
   border-color: #0b8a56;
 }
 
+/* ===============================
+   BOTÃO
+=============================== */
+
 .btn-enviar {
   width: 100%;
   background: #0b8a56;
@@ -203,11 +129,29 @@ a{
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 .btn-enviar:hover {
   background: #097648;
+}
+
+/* ===============================
+   LINKS
+=============================== */
+
+.forgot-password {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  font-size: 13px;
+  color: #888;
+}
+
+.forgot-password a:hover {
+  color: #0b8a56;
 }
 
 .signup-text {
@@ -218,37 +162,16 @@ a{
 
 .signup-text a {
   color: #0b8a56;
-  text-decoration: none;
   font-weight: 600;
 }
 
-.signup-text a:hover {
-  text-decoration: underline;
-}
+/* ===============================
+   DIVISOR
+=============================== */
 
-.forgot-password {
-  text-align: right;
-  margin-top: 10px;
-}
-
-.forgot-password a {
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  color: #888; /* cinza neutro */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.forgot-password a:hover {
-  color: #0b8a56; /* amarelo destaque */
-  text-decoration: underline;
-}
-
-
-/* Login social */
 .divider {
   text-align: center;
-  color: #777;
+  color: #ffffff;
   margin: 25px 0;
   position: relative;
 }
@@ -267,9 +190,13 @@ a{
   left: 10%;
   right: 10%;
   height: 1px;
-  background: #ccc;
+  background: #ffffff;
   z-index: 1;
 }
+
+/* ===============================
+   LOGIN SOCIAL
+=============================== */
 
 .social-login {
   display: flex;
@@ -286,9 +213,8 @@ a{
   border-radius: 10px;
   background: #fff;
   padding: 10px;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 .social-btn:hover {
@@ -297,9 +223,7 @@ a{
 
 .social-btn img {
   width: 20px;
-  height: 20px;
 }
-
 /* ==============================
    MODAIS DE FEEDBACK - LOGIN
 ============================== */
@@ -481,66 +405,25 @@ a{
   border: 1px solid #dbe6e0;
 }
 
-@keyframes drawLoginCheck {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
+/* ===============================
+   RESPONSIVO
+=============================== */
 
-@keyframes modalPulseSuccess {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.04);
-  }
-}
-
-@keyframes modalPulseError {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-}
-
-@media (max-width: 520px) {
-  .modal-feedback-box {
-    padding: 30px 20px 24px;
-    border-radius: 20px;
+@media (max-width: 900px) {
+  .login-section {
+    grid-template-columns: 1fr;
   }
 
-  .modal-feedback-box h3 {
-    font-size: 1.45rem;
-  }
-
-  .modal-feedback-btn {
-    width: 100%;
-  }
-}
-
-/* ======= RESPONSIVO ======= */
-@media (max-width: 768px) {
-  .search-bar {
+  .login-left {
     display: none;
   }
 
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
+  .login-right {
+    padding: 30px 20px;
+    background: #fff;
   }
 
-  .form-container {
-    margin: 40px 20px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .social-links {
-    justify-content: center;
+  .login-text h1 {
+    font-size: 2.2rem;
   }
 }
