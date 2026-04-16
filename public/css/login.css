@@ -298,60 +298,62 @@ a{
   width: 20px;
   height: 20px;
 }
-.login-section{
-    min-height: calc(100vh - 220px);
-    display: grid;
-    grid-template-columns: 1fr 420px;
-    align-items: center;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 24px;
-    position: relative;
-    z-index: 1;
-}
-
-.login-info h1{
-  font-size: 3rem;
-  color: #24644e;
-  margin-bottom: 16px;
-}
-
-.login-info p{
-  font-size: 1.1rem;
-  color: #5f6d66;
-  max-width: 520px;
-}
-
 .login-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
+  width: 100%;
+  min-height: calc(100vh - 140px);
 }
 
-/* ESQUERDA */
-.login-left{
-  background: linear-gradient(135deg, #308668, #1e5e46);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:40px;
+.login-left {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background: #eaf5ef;
 }
 
-.login-left img{
+.login-left img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
-.login-left::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(48,134,104,0.4),
-    rgba(30,94,70,0.6)
-  );
+
+.login-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+  background: #f8fcfa;
+}
+
+.login-text {
+  text-align: center;
+  margin-bottom: 28px;
+  max-width: 420px;
+}
+
+.login-text h1 {
+  font-size: 3rem;
+  color: #24644e;
+  margin-bottom: 12px;
+}
+
+.login-text p {
+  font-size: 1.05rem;
+  color: #5f6d66;
+  line-height: 1.6;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 0;
+  background: #fff;
+  padding: 36px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 /* DIREITA */
 .login-right{
@@ -378,13 +380,6 @@ a{
   color:#6b7280;
   font-size:1rem;
   max-width:400px;
-}
-
-/* FORM AJUSTE */
-.form-container{
-  margin:0;
-  width:100%;
-  max-width:420px;
 }
 /* ==============================
    MODAIS DE FEEDBACK - LOGIN
