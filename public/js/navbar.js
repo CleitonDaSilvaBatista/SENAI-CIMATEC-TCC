@@ -23,12 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="navbar-right">
           <div class="auth-buttons">
             <a data-link="/login" id="entrar">Entrar</a>
+            <div id="user-status">Carregando...</div>
             <a data-link="/cadastro" id="criar-conta">Criar Conta</a>
           </div>
-         <a data-link="/carrinho" class="cart">
-  <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
-  <span class="navbar-cart-count" id="navbar-cart-count">0</span>
-</a>
+
+          <a data-link="/carrinho" class="cart">
+            <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
+            <span class="navbar-cart-count" id="navbar-cart-count">0</span>
+          </a>
         </div>
       </header>
 
@@ -50,8 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
     `;
-
-    
 
     const links = document.querySelectorAll('[data-link]');
     links.forEach(link => {
@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     iniciarCepNavbar();
+    mostrarStatusLogin();
   }
 });
 
@@ -203,13 +204,45 @@ function iniciarCepNavbar() {
     }
   });
 
-if (typeof updateCartBadge === "function") {
-  updateCartBadge();
-}
+  if (typeof updateCartBadge === 'function') {
+    updateCartBadge();
+  }
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('ativo')) {
       fecharModalCep();
     }
   });
+}
+
+function mostrarStatusLogin() {
+  const userBox = document.getElementById('user-status');
+  if (!userBox) {
+    console.warn('Elemento #user-status não encontrado');
+    return;
+  }
+
+  const token = localStorage.getItem('jobee_token');
+  const usuarioSalvo = localStorage.getItem('jobee_user');
+
+  console.log('Token na página:', token);
+  console.log('Usuário salvo:', usuarioSalvo);
+
+  if (!token) {
+    userBox.textContent = 'Você não entrou';
+    return;
+  }
+
+  try {
+    const usuario = usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
+
+    if (usuario && usuario.nome) {
+      userBox.textContent = `Você entrou, ${usuario.nome}`;
+    } else {
+      userBox.textContent = 'Você entrou';
+    }
+  } catch (error) {
+    console.error('Erro ao ler usuário salvo:', error);
+    userBox.textContent = 'Você entrou';
+  }
 }
