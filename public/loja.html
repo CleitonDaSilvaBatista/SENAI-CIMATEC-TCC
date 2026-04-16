@@ -4,54 +4,200 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loja | Jobee</title>
-  <link rel="stylesheet" href="/css/global.css" />
-  <link rel="stylesheet" href="/css/navbar.css" />
-  <link rel="stylesheet" href="/css/lojas.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/lojas.css">
+  <script src="js/loja.js"></script>
 </head>
 <body>
-  <div id="navbar-container"></div>
-    <section class="sub-navbar" aria-label="Atalhos de navegação">
-    <div class="dropdown-categorias">
-      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Categorias ▼</a>
-      <ul class="menu-categorias">
-        <li><a href="#">Supermercado</a></li>
-        <li><a href="#">Tecnologia</a></li>
-        <li><a href="#">Casa e Móveis</a></li>
-        <li><a href="#">Eletrodomésticos</a></li>
-        <li><a href="#">Esportes e Fitness</a></li>
-        <li><a href="#">Ferramentas</a></li>
-        <li><a href="#">Moda</a></li>
-        <li><a href="#">Beleza e Cuidados</a></li>
-      </ul>
-    </div>
-    <a href="#">Ofertas</a>
-    <a href="#">Cupons</a>
-    <a href="#">Serviços</a>
-    <a href="#">Contato</a>
-  </section>
-  <main class="loja-page">
-    <a href="/" class="voltar-home">← Voltar para a Home</a>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#" class="brand">
+        <span class="brand-badge">J</span>
+        <span>Jobee</span>
+      </a>
 
-    <section class="loja-header">
-      <img id="imagem-loja" src="/img/placeholder-loja.png" alt="Imagem da loja" />
-      <div class="loja-header-info">
-        <h1 id="nome-loja">Carregando loja...</h1>
-        <p id="descricao-loja">Aguarde enquanto carregamos as informações.</p>
+      <nav class="nav-links">
+        <a href="#">Início</a>
+        <a href="#">Explorar</a>
+        <a href="#">Lojas</a>
+        <a href="#">Serviços</a>
+        <a href="#">Contato</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline">Entrar</button>
+        <button class="btn btn-primary">Cadastrar</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="sub-navbar" aria-label="Atalhos de navegação">
+    <div class="container">
+      <a href="#" class="categorias-btn">Categorias ▼</a>
+      <a href="#">Ofertas</a>
+      <a href="#">Cupons</a>
+      <a href="#">Serviços</a>
+      <a href="#">Tecnologia</a>
+      <a href="#">Moda</a>
+      <a href="#">Casa e Móveis</a>
+      <a href="#">Beleza</a>
+      <a href="#">Esportes</a>
+      <a href="#">Contato</a>
+    </div>
+  </section>
+
+  <main class="loja-page">
+    <div class="container">
+      <a href="/" class="voltar-home">← Voltar para a Home</a>
+
+      <section class="loja-hero">
+        <div class="loja-hero-content">
+          <div class="loja-identidade">
+            <img
+              id="imagem-loja"
+              class="loja-logo"
+              src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=300&q=80"
+              alt="Logo da loja"
+            />
+
+            <div class="loja-header-info">
+              <span class="loja-badge">✓ Loja verificada</span>
+              <h1 id="nome-loja">Verde Style Store</h1>
+              <p id="descricao-loja">
+                Produtos e serviços com qualidade premium, atendimento rápido e uma experiência moderna para quem quer comprar com confiança.
+              </p>
+
+              <div class="loja-meta">
+                <span>⭐ 4.8 de 5</span>
+                <span>📍 São Paulo - SP</span>
+                <span>🚚 Entrega rápida</span>
+                <span>💬 Responde em minutos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="loja-acoes">
+            <button>♡ Favoritar</button>
+            <button>↗ Compartilhar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <strong>1.250+</strong>
+          <span>Pedidos concluídos</span>
+        </div>
+        <div class="stat-card">
+          <strong>4.8/5</strong>
+          <span>Avaliação média</span>
+        </div>
+        <div class="stat-card">
+          <strong>98%</strong>
+          <span>Clientes satisfeitos</span>
+        </div>
+        <div class="stat-card">
+          <strong>24h</strong>
+          <span>Atendimento ágil</span>
+        </div>
+      </section>
+    </div>
+
+    <section class="loja-tabs">
+      <div class="container loja-tabs-inner">
+        <a href="#produtos" class="active">Produtos</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre a loja</a>
+        <a href="#avaliacoes">Avaliações</a>
       </div>
     </section>
 
-    <section class="secao-itens">
-      <h2>Produtos</h2>
-      <div class="grid-itens" id="lista-produtos"></div>
-    </section>
+    <div class="container">
+      <section class="filtros">
+        <input type="text" id="busca" placeholder="Buscar produto ou serviço..." />
+        <select id="filtroCategoria">
+          <option value="todos">Todas as categorias</option>
+          <option value="Tecnologia">Tecnologia</option>
+          <option value="Moda">Moda</option>
+          <option value="Casa">Casa</option>
+          <option value="Serviço">Serviço</option>
+        </select>
 
-    <section class="secao-itens">
-      <h2>Serviços</h2>
-      <div class="grid-itens" id="lista-servicos"></div>
-    </section>
+        <select id="filtroTipo">
+          <option value="todos">Tudo</option>
+          <option value="produto">Só produtos</option>
+          <option value="servico">Só serviços</option>
+        </select>
+
+        <select id="ordenacao">
+          <option value="padrao">Ordenar por</option>
+          <option value="menor-preco">Menor preço</option>
+          <option value="maior-preco">Maior preço</option>
+          <option value="melhor-avaliado">Melhor avaliado</option>
+        </select>
+      </section>
+
+      <section class="secao" id="produtos">
+        <div class="secao-header">
+          <div>
+            <h2>Produtos em destaque</h2>
+            <p>Escolha entre os itens mais vendidos da loja.</p>
+          </div>
+          <div class="contador" id="contador-produtos">0 produtos</div>
+        </div>
+
+        <div class="grid-itens" id="lista-produtos"></div>
+      </section>
+
+      <section class="secao" id="servicos">
+        <div class="secao-header">
+          <div>
+            <h2>Serviços disponíveis</h2>
+            <p>Atendimentos profissionais com agendamento rápido.</p>
+          </div>
+          <div class="contador" id="contador-servicos">0 serviços</div>
+        </div>
+
+        <div class="grid-itens" id="lista-servicos"></div>
+      </section>
+
+      <section class="duas-colunas">
+        <div class="box" id="sobre">
+          <h3>Sobre a loja</h3>
+          <p>
+            A Verde Style Store nasceu para oferecer uma experiência moderna, prática e confiável. Trabalhamos com produtos selecionados, atendimento rápido e serviços especializados, sempre focando em qualidade, transparência e agilidade para nossos clientes.
+          </p>
+          <br>
+          <p>
+            Nosso diferencial está na curadoria dos itens, no cuidado com o atendimento e na entrega de uma jornada mais bonita e profissional dentro da plataforma.
+          </p>
+        </div>
+
+        <div class="box" id="avaliacoes">
+          <h3>Avaliações recentes</h3>
+
+          <div class="avaliacao">
+            <strong>Marina Souza</strong>
+            <div class="nota">★★★★★</div>
+            <p>Produto chegou rápido e com ótima qualidade. Loja muito confiável.</p>
+          </div>
+
+          <div class="avaliacao">
+            <strong>Pedro Henrique</strong>
+            <div class="nota">★★★★★</div>
+            <p>Atendimento excelente e serviço realizado no prazo combinado.</p>
+          </div>
+
+          <div class="avaliacao">
+            <strong>Ana Clara</strong>
+            <div class="nota">★★★★☆</div>
+            <p>Página linda e fácil de usar. Compraria novamente com certeza.</p>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
-
-  <script src="/js/navbar.js" defer></script>
-  <script src="/js/loja.js" defer></script>
 </body>
 </html>
