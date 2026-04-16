@@ -225,7 +225,7 @@ function mostrarStatusLogin() {
     return;
   }
 
-  const token = localStorage.getItem('jobee_token') || localStorage.getItem('token');
+  const token = localStorage.getItem('jobee_token');
   const usuarioSalvo = localStorage.getItem('jobee_user');
 
   if (!token) {
@@ -286,7 +286,7 @@ function mostrarStatusLogin() {
         logoutBtn.addEventListener('click', logout);
       }
     }
-  }, 150);
+  }, 3000);
 }
 
 function logout() {

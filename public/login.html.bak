@@ -40,7 +40,7 @@
         <h2>Bem-vindo à Jobee</h2>
         <p class="subtitle">Acesse sua conta para continuar</p>
 
-        <form id="login-form" action="/login" method="post">
+        <form action="/login" method="post">
           <div class="input-group">
             <label for="email">E-mail</label>
             <input type="email" id="email" placeholder="Digite seu e-mail" required />
@@ -163,7 +163,7 @@
   </footer>
 
   <script>
-  const modalSucessoLogin = document.getElementById("modalSucessoLogin");
+    const modalSucessoLogin = document.getElementById("modalSucessoLogin");
   const modalErroLogin = document.getElementById("modalErroLogin");
   const fecharModalSucessoLogin = document.getElementById("fecharModalSucessoLogin");
   const fecharModalErroLogin = document.getElementById("fecharModalErroLogin");
@@ -203,7 +203,7 @@
     }
   });
 
-  document.getElementById("login-form").addEventListener("submit", async (e) => {
+  document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = document.getElementById("email").value.trim();
@@ -215,24 +215,22 @@
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, senha })
+        body: JSON.stringify({
+          email: email,
+          senha: senha
+        })
       });
 
       const data = await resposta.json();
 
       if (data.success) {
-        localStorage.setItem("jobee_token", data.token);
         localStorage.setItem("token", data.token);
-        localStorage.setItem("jobee_user", JSON.stringify(data.usuario || { nome: "Usuário" }));
-
-        console.log("Token salvo:", localStorage.getItem("jobee_token"));
-        console.log("Usuário salvo:", localStorage.getItem("jobee_user"));
 
         abrirModal(modalSucessoLogin);
 
         setTimeout(() => {
           window.location.href = "/";
-        }, 1200);
+        }, 4200);
       } else {
         mensagemErroLogin.textContent = data.error || "E-mail ou senha inválidos.";
         abrirModal(modalErroLogin);
@@ -244,6 +242,60 @@
       abrirModal(modalErroLogin);
     }
   });
-</script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("login-form");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+
+    try {
+      const resposta = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, senha })
+      });
+
+      const data = await resposta.json();
+
+      console.log("Resposta do login:", data);
+
+      if (!resposta.ok) {
+        alert(data.mensagem || "E-mail ou senha inválidos");
+        return;
+      }
+
+      if (!data.token) {
+        alert("Login realizado, mas nenhum token foi recebido.");
+        return;
+      }
+
+      localStorage.setItem("jobee_token", data.token);
+
+      if (data.usuario) {
+        localStorage.setItem("jobee_user", JSON.stringify(data.usuario));
+      } else {
+        localStorage.setItem(
+          "jobee_user",
+          JSON.stringify({ nome: "Usuário" })
+        );
+      }
+
+      alert("Login realizado com sucesso!");
+
+      window.location.href = "/";
+    } catch (erro) {
+      console.error("Erro ao fazer login:", erro);
+      alert("Erro ao conectar com o servidor.");
+    }
+  });
+});
+  </script>
 </body>
 </html>
