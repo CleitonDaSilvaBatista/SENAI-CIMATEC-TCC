@@ -242,6 +242,60 @@
       abrirModal(modalErroLogin);
     }
   });
+  document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("login-form");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+
+    try {
+      const resposta = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, senha })
+      });
+
+      const data = await resposta.json();
+
+      console.log("Resposta do login:", data);
+
+      if (!resposta.ok) {
+        alert(data.mensagem || "E-mail ou senha inválidos");
+        return;
+      }
+
+      if (!data.token) {
+        alert("Login realizado, mas nenhum token foi recebido.");
+        return;
+      }
+
+      localStorage.setItem("jobee_token", data.token);
+
+      if (data.usuario) {
+        localStorage.setItem("jobee_user", JSON.stringify(data.usuario));
+      } else {
+        localStorage.setItem(
+          "jobee_user",
+          JSON.stringify({ nome: "Usuário" })
+        );
+      }
+
+      alert("Login realizado com sucesso!");
+
+      window.location.href = "/";
+    } catch (erro) {
+      console.error("Erro ao fazer login:", erro);
+      alert("Erro ao conectar com o servidor.");
+    }
+  });
+});
   </script>
 </body>
 </html>
