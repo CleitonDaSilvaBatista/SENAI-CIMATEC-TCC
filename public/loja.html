@@ -7,44 +7,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/lojas.css" />
+  <link rel="stylesheet" href="../css/lojas.css"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/home.css">
   <script src="../js/loja.js"></script>
 </head>
 <body>
-  <header class="navbar">
-    <div class="container navbar-inner">
-      <a href="#" class="brand">
-        <span>Jobee</span>
-      </a>
-
-      <nav class="nav-links">
-        <a href="#">Início</a>
-        <a href="#">Explorar</a>
-        <a href="#">Lojas</a>
-        <a href="#">Serviços</a>
-        <a href="#">Contato</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="btn btn-outline">Entrar</button>
-        <button class="btn btn-primary">Cadastrar</button>
-      </div>
-    </div>
-  </header>
-
   <section class="sub-navbar" aria-label="Atalhos de navegação">
-    <div class="container">
-      <a href="#" class="categorias-btn">Categorias ▼</a>
-      <a href="#">Ofertas</a>
-      <a href="#">Cupons</a>
-      <a href="#">Serviços</a>
-      <a href="#">Tecnologia</a>
-      <a href="#">Moda</a>
-      <a href="#">Casa e Móveis</a>
-      <a href="#">Beleza</a>
-      <a href="#">Esportes</a>
-      <a href="#">Contato</a>
+    <div class="dropdown-categorias">
+      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Categorias ▼</a>
+      <ul class="menu-categorias">
+        <li><a href="#">Supermercado</a></li>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">Casa e Móveis</a></li>
+        <li><a href="#">Eletrodomésticos</a></li>
+        <li><a href="#">Esportes e Fitness</a></li>
+        <li><a href="#">Ferramentas</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Beleza e Cuidados</a></li>
+      </ul>
     </div>
+    <a href="#">Ofertas</a>
+    <a href="#">Cupons</a>
+    <a href="#">Serviços</a>
+    <a href="#">Contato</a>
   </section>
 
   <main class="loja-page">
