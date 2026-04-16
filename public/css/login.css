@@ -333,7 +333,30 @@ a{
   width: 20px;
   height: 20px;
 }
+.login-section{
+  min-height: calc(100vh - 220px);
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  position: relative;
+  z-index: 1;
+}
 
+.login-info h1{
+  font-size: 3rem;
+  color: #24644e;
+  margin-bottom: 16px;
+}
+
+.login-info p{
+  font-size: 1.1rem;
+  color: #5f6d66;
+  max-width: 520px;
+}
 /* ==============================
    MODAIS DE FEEDBACK - LOGIN
 ============================== */
