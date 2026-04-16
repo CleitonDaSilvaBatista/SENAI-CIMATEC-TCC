@@ -11,38 +11,6 @@ html, body {
   height: 100%;
   background:#ffffff;
 }
-.bg-shape{
-  position:absolute;
-  border-radius:50%;
-  filter: blur(40px);
-  z-index:0;
-}
-
-.shape-1{
-  width:220px;
-  height:220px;
-  background: rgba(48,134,104,0.12);
-  top:120px;
-  left:120px;
-}
-
-.shape-2{
-  width:180px;
-  height:180px;
-  background: rgba(48,134,104,0.10);
-  right:140px;
-  top:220px;
-}
-
-.shape-3{
-  width:260px;
-  height:260px;
-  background: rgba(48,134,104,0.08);
-  bottom:100px;
-  left:50%;
-  transform: translateX(-50%);
-}
-
 /* ======= NAVBAR ======= */
 .navbar {
   display: flex;
@@ -353,6 +321,60 @@ a{
   font-size: 1.1rem;
   color: #5f6d66;
   max-width: 520px;
+}
+
+.login-section{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 160px);
+}
+
+/* ESQUERDA */
+.login-left{
+  background: linear-gradient(135deg, #308668, #1e5e46);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+
+.login-left img{
+  width: 80%;
+  max-width: 500px;
+}
+
+/* DIREITA */
+.login-right{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+}
+
+/* TEXTO */
+.login-text{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.login-text h1{
+  font-size:2.5rem;
+  color:#24644e;
+  margin-bottom:10px;
+}
+
+.login-text p{
+  color:#6b7280;
+  font-size:1rem;
+  max-width:400px;
+}
+
+/* FORM AJUSTE */
+.form-container{
+  margin:0;
+  width:100%;
+  max-width:420px;
 }
 /* ==============================
    MODAIS DE FEEDBACK - LOGIN
