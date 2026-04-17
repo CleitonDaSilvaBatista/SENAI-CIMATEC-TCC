@@ -340,7 +340,7 @@ app.get('/api/lojas/:slug', async (req, res) => {
 
     const { data: loja, error: lojaError } = await supabase
       .from('lojas')
-      .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo')
+      .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo, sobre_loja')
       .eq('slug', slug)
       .eq('ativo', true)
       .single()
