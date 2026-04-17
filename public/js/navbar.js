@@ -242,9 +242,10 @@ function mostrarStatusLogin() {
   authButtons.style.display = 'none';
   userBox.style.display = 'flex';
   userBox.innerHTML = `
-    <span>Olá, ${nome}</span>
+      <div class="user-box">
+    <span class="user-name">Olá, ${nome}</span>
     <button id="logout-btn" class="logout-btn" type="button">Sair</button>
-  `;
+  </div>`;
 
   const logoutBtn = document.getElementById('logout-btn');
   logoutBtn?.addEventListener('click', logout);
