@@ -28,7 +28,7 @@ async function carregarLoja() {
     descricaoLoja.textContent = dados.loja.descricao || "Sem descrição disponível.";
     imagemLoja.src = dados.loja.imagem_url || "/img/placeholder-loja.png";
     imagemLoja.alt = dados.loja.nome_fantasia;
-    sobreLoja.textContent = dados.loja.sobre || "Sem informações disponíveis.";
+    sobreLoja.textContent = dados.loja.sobre_loja || "Sem informações disponíveis."; 
 
     const listaProdutos = document.getElementById("lista-produtos");
     listaProdutos.innerHTML = dados.produtos.length
