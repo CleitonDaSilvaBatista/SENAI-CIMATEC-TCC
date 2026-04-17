@@ -54,6 +54,12 @@ app.get('/loja/:slug', (req, res) => {
 app.get('/reset-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'reset-password.html'))
 })
+app.get('/perfil', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'perfil.html'))
+} ) 
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'dashboard-jobee.html'))
+} ) 
 
 // =================================
 //          ROTAS FOOTER
