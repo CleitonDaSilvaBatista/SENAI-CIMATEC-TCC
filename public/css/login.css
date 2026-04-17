@@ -391,6 +391,29 @@
   color: #29473a;
   border: 1px solid #dbe6e0;
 }
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes modalPulseSuccess {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes modalPulseError {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
 
 /* ===============================
    RESPONSIVO
