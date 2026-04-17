@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(carregarInfoUsuario, 300);
+  console.log('user-info.js carregado sem controlar navbar');
 });
 
 async function carregarInfoUsuario() {

@@ -12,7 +12,6 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     });
 
     const data = await resposta.json();
-    console.log("Resposta completa do login:", data);
 
     if (!data.success) {
       alert(data.error || "Erro no login");
@@ -21,9 +20,6 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
     localStorage.setItem("jobee_token", data.token);
     localStorage.setItem("jobee_user", JSON.stringify(data.usuario));
-
-    console.log("Token salvo:", localStorage.getItem("jobee_token"));
-    console.log("Usuário salvo:", localStorage.getItem("jobee_user"));
 
     alert("Login realizado com sucesso!");
     window.location.href = "/";

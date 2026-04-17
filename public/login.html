@@ -222,7 +222,6 @@
 
       if (data.success) {
         localStorage.setItem("jobee_token", data.token);
-        localStorage.setItem("token", data.token);
         localStorage.setItem("jobee_user", JSON.stringify(data.usuario || { nome: "Usuário" }));
 
         console.log("Token salvo:", localStorage.getItem("jobee_token"));

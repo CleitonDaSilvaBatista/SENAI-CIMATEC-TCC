@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'E-mail ou senha incorretos.' })
     }
 
-    // 🔥 JWT AQUI
+   // JWT
     const token = jwt.sign(
       {
         id: data.id_usuario,
