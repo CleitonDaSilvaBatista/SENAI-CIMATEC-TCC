@@ -328,7 +328,7 @@
   stroke-linejoin: round;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
-  animation: drawLoginCheck 0.7s ease forwards 0.2s;
+  animation: drawCheck 0.7s ease forwards 0.2s;
 }
 
 .modal-feedback-error-symbol {

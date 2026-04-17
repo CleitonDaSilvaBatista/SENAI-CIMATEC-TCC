@@ -1074,7 +1074,7 @@ body {
 
 .servico-meta {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
   align-items: start;
   row-gap: 8px;
   margin-bottom: 16px;
