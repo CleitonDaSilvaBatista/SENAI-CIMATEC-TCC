@@ -9,22 +9,6 @@
   min-height: calc(100vh - 140px);
 }
 
-/* ===============================
-   LADO ESQUERDO (IMAGEM)
-=============================== */
-
-.login-left {
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-}
-
-.login-left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
 /* Overlay leve verde (opcional, bonito) */
 /* ===============================
    LADO DIREITO
