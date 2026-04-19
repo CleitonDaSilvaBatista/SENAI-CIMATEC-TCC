@@ -55,6 +55,14 @@ app.get('/reset-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'reset-password.html'))
 })
 
+app.get('/perfil', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'perfil.html'))
+} ) 
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'dashboard-jobee.html'))
+} ) 
+
 // =================================
 //          ROTAS FOOTER
 // =================================
@@ -98,7 +106,7 @@ if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
     }
   })
 } else {
-  console.warn('⚠ Variáveis SMTP não configuradas. Alguns recursos de e-mail estarão desativados.')
+  console.warn('Variáveis SMTP não configuradas. Alguns recursos de e-mail estarão desativados.')
 }
 
 app.get('/api/user-info', async (req, res) => {
@@ -271,34 +279,6 @@ app.post('/salvar', async (req, res) => {
   }
 })
 
-app.get('/buscar', async (req, res) => {
-  try {
-    const { id_usuario, nome, email } = req.query
-
-    let query = supabase
-      .from('usuarios')
-      .select('id_usuario, nome, email, telefone, data_cadastro')
-      .order('id_usuario', { ascending: false })
-      .limit(100)
-
-    if (id_usuario) query = query.eq('id_usuario', id_usuario)
-    if (nome) query = query.ilike('nome', `%${nome}%`)
-    if (email) query = query.ilike('email', `%${email}%`)
-
-    const { data, error } = await query
-
-    if (error) {
-      console.error('Erro na consulta:', error)
-      return res.status(500).json({ error: 'Erro na consulta.' })
-    }
-
-    return res.json(data)
-  } catch (err) {
-    console.error('Erro em /buscar:', err)
-    return res.status(500).json({ error: 'Erro interno no servidor.' })
-  }
-})
-
 app.put('/usuarios/:id', async (req, res) => {
   try {
     const { id } = req.params
@@ -360,7 +340,7 @@ app.get('/api/lojas/:slug', async (req, res) => {
 
     const { data: loja, error: lojaError } = await supabase
       .from('lojas')
-      .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo')
+      .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo, sobre_loja')
       .eq('slug', slug)
       .eq('ativo', true)
       .single()

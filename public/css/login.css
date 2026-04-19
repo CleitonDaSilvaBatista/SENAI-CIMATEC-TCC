@@ -6,25 +6,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 140px); /* ocupa tela toda menos navbar/footer */
+  display: flex;
+  justify-content: center;  /* horizontal */
+  align-items: center;      /* vertical */
 }
 
-/* ===============================
-   LADO ESQUERDO (IMAGEM)
-=============================== */
-
-.login-left {
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-}
-
-.login-left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
 /* Overlay leve verde (opcional, bonito) */
 /* ===============================
    LADO DIREITO
@@ -341,7 +328,7 @@
   stroke-linejoin: round;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
-  animation: drawLoginCheck 0.7s ease forwards 0.2s;
+  animation: drawCheck 0.7s ease forwards 0.2s;
 }
 
 .modal-feedback-error-symbol {
@@ -403,6 +390,29 @@
   background: #eef2f0;
   color: #29473a;
   border: 1px solid #dbe6e0;
+}
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes modalPulseSuccess {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes modalPulseError {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
 }
 
 /* ===============================
