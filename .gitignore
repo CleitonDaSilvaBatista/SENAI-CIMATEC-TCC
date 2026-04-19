@@ -1,2 +1,60 @@
+# ========================
+# NODE / DEPENDÊNCIAS
+# ========================
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ========================
+# VARIÁVEIS DE AMBIENTE
+# ========================
 .env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# ========================
+# EDITORES / IDE
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ========================
+# ARQUIVOS TEMPORÁRIOS
+# ========================
+tmp/
+temp/
+*.tmp
+
+# ========================
+# CACHE
+# ========================
+.cache/
+.npm/
+.eslintcache
+
+# ========================
+# POSTMAN
+# ========================
+postman/
+*postman*.json
+*collection*.json
+*environment*.json
+
+# ========================
+# BACKUPS / ANTIGO
+# ========================
+api_old/
+api_backup/
+
+# ========================
+# ARQUIVOS SENSÍVEIS
+# ========================
+*.key
+*.pem
+*.crt
