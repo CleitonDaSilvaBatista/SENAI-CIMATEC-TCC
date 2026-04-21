@@ -42,6 +42,7 @@ temp/
 # POSTMAN
 # ========================
 postman/
+.postman/
 *postman*.json
 *collection*.json
 *environment*.json
