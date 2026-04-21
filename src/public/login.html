@@ -206,7 +206,7 @@
     const senha = document.getElementById("password").value.trim();
 
     try {
-      const resposta = await fetch("/login", {
+      const resposta = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

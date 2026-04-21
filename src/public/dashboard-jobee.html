@@ -1,672 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dashboard operacional da Jobee com visão completa de vendas, lojas, serviços e performance." />
+  <meta name="description"
+    content="Dashboard operacional da Jobee com visão completa de vendas, lojas, serviços e performance." />
   <meta name="theme-color" content="#198754" />
   <title>Jobee | Dashboard</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
 
+  <!-- CSS -->
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <!-- JavaScript -->
   <script src="./js/navbar.js" defer></script>
   <script src="./js/user-info.js" defer></script>
   <script src="./js/cart.js" defer></script>
 
-  <style>
-    :root {
-      --jobee-primary: #308668;
-      --jobee-primary-dark: #256b52;
-      --jobee-primary-soft: #e8f5ef;
-      --jobee-accent: #f5b700;
-      --jobee-bg: #f6f8f7;
-      --jobee-surface: #ffffff;
-      --jobee-text: #1f2937;
-      --jobee-muted: #6b7280;
-      --jobee-border: #e5e7eb;
-      --jobee-danger: #e05252;
-      --jobee-warning: #d19a00;
-      --jobee-success: #198754;
-      --shadow-sm: 0 10px 25px rgba(18, 38, 30, 0.06);
-      --shadow-md: 0 18px 40px rgba(18, 38, 30, 0.10);
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      background: linear-gradient(180deg, #f5faf7 0%, #f6f8f7 28%, #eef3f1 100%);
-      color: var(--jobee-text);
-    }
-
-    .dashboard-shell {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 28px 20px 0;
-    }
-
-    .dashboard-hero {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #308668 0%, #256b52 55%, #1c4e3d 100%);
-      color: #fff;
-      border-radius: 30px;
-      padding: 34px;
-      box-shadow: var(--shadow-md);
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .dashboard-hero::after,
-    .dashboard-hero::before {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      pointer-events: none;
-    }
-
-    .dashboard-hero::before {
-      width: 280px;
-      height: 280px;
-      top: -80px;
-      right: -40px;
-    }
-
-    .dashboard-hero::after {
-      width: 180px;
-      height: 180px;
-      left: 42%;
-      bottom: -70px;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .dashboard-hero h1 {
-      font-size: clamp(2rem, 3.5vw, 3.2rem);
-      line-height: 1.05;
-      margin-bottom: 14px;
-      max-width: 760px;
-    }
-
-    .dashboard-hero p {
-      color: rgba(255, 255, 255, 0.88);
-      max-width: 720px;
-      font-size: 1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .hero-btn {
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .hero-btn.primary {
-      background: #fff;
-      color: var(--jobee-primary-dark);
-    }
-
-    .hero-btn.secondary {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: #fff;
-    }
-
-    .hero-btn:hover { transform: translateY(-2px); opacity: 0.96; }
-
-    .hero-side {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      align-self: stretch;
-    }
-
-    .mini-stat {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(4px);
-      border-radius: 20px;
-      padding: 18px;
-      min-height: 120px;
-    }
-
-    .mini-stat span {
-      display: block;
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-    }
-
-    .mini-stat strong {
-      display: block;
-      font-size: 1.8rem;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-
-    .mini-stat small {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.82rem;
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .dashboard-column {
-      display: grid;
-      gap: 24px;
-    }
-
-    .card {
-      background: var(--jobee-surface);
-      border: 1px solid rgba(48, 134, 104, 0.08);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      padding: 24px;
-    }
-
-    .card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .card-title h2,
-    .card-title h3 {
-      font-size: 1.2rem;
-      margin-bottom: 6px;
-      color: #183126;
-    }
-
-    .card-title p {
-      color: var(--jobee-muted);
-      font-size: 0.92rem;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--jobee-primary-soft);
-      color: var(--jobee-primary-dark);
-      font-size: 0.82rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .metric-box {
-      border: 1px solid var(--jobee-border);
-      border-radius: 20px;
-      padding: 18px;
-      background: linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
-    }
-
-    .metric-box .label {
-      color: var(--jobee-muted);
-      font-size: 0.88rem;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .metric-box strong {
-      font-size: 1.7rem;
-      line-height: 1.1;
-      display: block;
-      color: #163528;
-      margin-bottom: 10px;
-    }
-
-    .delta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-
-    .delta.positive {
-      background: #e8f8ef;
-      color: #157347;
-    }
-
-    .delta.warning {
-      background: #fff7df;
-      color: #9a6c00;
-    }
-
-    .delta.negative {
-      background: #fdecec;
-      color: #c23d3d;
-    }
-
-    .chart-card {
-      display: grid;
-      gap: 20px;
-    }
-
-    .chart-bars {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 14px;
-      align-items: end;
-      min-height: 250px;
-    }
-
-    .bar-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .bar-track {
-      width: 100%;
-      height: 210px;
-      background: #edf3ef;
-      border-radius: 999px;
-      display: flex;
-      align-items: end;
-      padding: 8px;
-    }
-
-    .bar-fill {
-      width: 100%;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #69c59f 0%, #308668 100%);
-    }
-
-    .bar-col strong {
-      font-size: 0.9rem;
-      color: #274539;
-    }
-
-    .bar-col span {
-      font-size: 0.8rem;
-      color: var(--jobee-muted);
-    }
-
-    .progress-list {
-      display: grid;
-      gap: 16px;
-    }
-
-    .progress-item {
-      display: grid;
-      gap: 8px;
-    }
-
-    .progress-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.92rem;
-      color: #274539;
-      font-weight: 600;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 12px;
-      background: #edf2ef;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-value {
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #2a7c60 0%, #4aa47f 100%);
-    }
-
-    .split-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .info-panel {
-      padding: 18px;
-      border-radius: 18px;
-      background: #f7faf8;
-      border: 1px solid var(--jobee-border);
-    }
-
-    .info-panel h4 {
-      font-size: 1rem;
-      margin-bottom: 10px;
-      color: #1f4032;
-    }
-
-    .info-panel ul {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      color: var(--jobee-muted);
-      font-size: 0.92rem;
-    }
-
-    .info-panel li {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px dashed #d7e2dc;
-    }
-
-    .info-panel li:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 18px;
-      border: 1px solid var(--jobee-border);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 720px;
-      background: #fff;
-    }
-
-    thead {
-      background: #f7faf8;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 15px 16px;
-      border-bottom: 1px solid #eef1ef;
-      font-size: 0.92rem;
-    }
-
-    th {
-      color: #274539;
-      font-size: 0.84rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    tbody tr:hover {
-      background: #fbfdfc;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .status.success { background: #e8f8ef; color: #157347; }
-    .status.warning { background: #fff7df; color: #9a6c00; }
-    .status.danger { background: #fdecec; color: #c23d3d; }
-    .status.info { background: #e8f1ff; color: #2757a5; }
-
-    .ranking-list,
-    .timeline-list,
-    .alerts-list,
-    .quick-actions {
-      display: grid;
-      gap: 14px;
-    }
-
-    .ranking-item,
-    .timeline-item,
-    .alert-item {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 14px;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid #edf1ee;
-    }
-
-    .ranking-item:last-child,
-    .timeline-item:last-child,
-    .alert-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-    .ranking-index,
-    .timeline-dot,
-    .alert-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: var(--jobee-primary-soft);
-      color: var(--jobee-primary-dark);
-      font-weight: 800;
-      flex-shrink: 0;
-    }
-
-    .ranking-item strong,
-    .timeline-item strong,
-    .alert-item strong {
-      display: block;
-      color: #193428;
-      margin-bottom: 2px;
-      font-size: 0.96rem;
-    }
-
-    .ranking-item span,
-    .timeline-item span,
-    .alert-item span {
-      color: var(--jobee-muted);
-      font-size: 0.86rem;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: #f3f7f5;
-      color: #264537;
-      font-size: 0.8rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .map-panel {
-      background: radial-gradient(circle at top right, rgba(48, 134, 104, 0.22), rgba(48, 134, 104, 0.02) 42%), #f8fbf9;
-      border: 1px solid var(--jobee-border);
-      border-radius: 24px;
-      padding: 18px;
-      min-height: 320px;
-      display: grid;
-      align-content: space-between;
-      gap: 18px;
-    }
-
-    .map-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      min-height: 170px;
-      align-items: end;
-    }
-
-    .map-block {
-      min-height: 62px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(48, 134, 104, 0.16), rgba(48, 134, 104, 0.32));
-      position: relative;
-      overflow: hidden;
-    }
-
-    .map-block::after {
-      content: "";
-      position: absolute;
-      inset: auto 8px 8px 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    .map-cities {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .city-chip {
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid #dbe7e0;
-      font-size: 0.85rem;
-      color: #254536;
-      font-weight: 600;
-    }
-
-    .quick-actions {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .action-card {
-      padding: 18px;
-      border-radius: 18px;
-      border: 1px solid var(--jobee-border);
-      background: linear-gradient(180deg, #ffffff 0%, #f9fcfa 100%);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .action-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .action-card strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #193428;
-      font-size: 1rem;
-    }
-
-    .action-card p {
-      color: var(--jobee-muted);
-      font-size: 0.9rem;
-    }
-
-    .kpi-banner {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .kpi-banner .banner-box {
-      padding: 20px;
-      border-radius: 20px;
-      color: #fff;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .banner-box.primary { background: linear-gradient(135deg, #308668 0%, #225844 100%); }
-    .banner-box.gold { background: linear-gradient(135deg, #e7b100 0%, #bf8800 100%); }
-    .banner-box.dark { background: linear-gradient(135deg, #243c31 0%, #12211a 100%); }
-
-    .banner-box span {
-      display: block;
-      opacity: 0.8;
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-    }
-
-    .banner-box strong {
-      font-size: 1.9rem;
-      line-height: 1.1;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .banner-box p {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.82);
-    }
-
-    @media (max-width: 1200px) {
-      .dashboard-hero,
-      .dashboard-grid,
-      .split-2,
-      .kpi-banner {
-        grid-template-columns: 1fr;
-      }
-
-      .metrics-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero-side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 768px) {
-      .dashboard-shell { padding-inline: 14px; }
-      .dashboard-hero,
-      .card { padding: 18px; border-radius: 22px; }
-      .metrics-grid,
-      .hero-side,
-      .quick-actions { grid-template-columns: 1fr; }
-      .chart-bars { gap: 10px; }
-      .bar-track { height: 180px; }
-      .kpi-banner { grid-template-columns: 1fr; }
-    }
-  </style>
 </head>
+
 <body>
   <div id="navbar-container"></div>
   <section class="sub-navbar" aria-label="Atalhos de navegação">
@@ -692,7 +51,8 @@
     <section class="dashboard-hero" aria-labelledby="dashboard-title">
       <div>
         <span class="hero-eyebrow">Painel executivo • visão geral Jobee</span>
-        <h1 id="dashboard-title">Dashboard completo para acompanhar operação, vendas, serviços, lojas e experiência do cliente.</h1>
+        <h1 id="dashboard-title">Dashboard completo para acompanhar operação, vendas, serviços, lojas e experiência do
+          cliente.</h1>
         <p>
           Uma página estratégica para leitura rápida do negócio, com indicadores de receita, desempenho regional,
           volume de pedidos, SLA de atendimento, engajamento de lojistas e oportunidades operacionais.
@@ -708,23 +68,23 @@
       <div class="hero-side">
         <div class="mini-stat">
           <span>Receita consolidada</span>
-          <strong>R$ 284,9 mil</strong>
-          <small>+14,8% em relação ao último ciclo</small>
+          <strong id="receita-consolidada">...</strong>
+          <small id="receita-variacao">...</small>
         </div>
         <div class="mini-stat">
           <span>Pedidos ativos</span>
-          <strong>1.248</strong>
-          <small>312 em preparação e 89 em rota</small>
+          <strong id="pedidos-ativos">...</strong>
+          <small id="pedidos-detalhe">...</small>
         </div>
         <div class="mini-stat">
           <span>Lojas online</span>
-          <strong>186</strong>
-          <small>94,2% da base com operação estável</small>
+          <strong id="lojas-online">...</strong>
+          <small id="lojas-estabilidade">...</small>
         </div>
         <div class="mini-stat">
           <span>Satisfação média</span>
-          <strong>4,8/5</strong>
-          <small>NPS estimado de 79 pontos</small>
+          <strong id="satisfacao-media">...</strong>
+          <small id="satisfacao-detalhe">...</small>
         </div>
       </div>
     </section>
@@ -735,29 +95,29 @@
           <h2>Indicadores principais</h2>
           <p>Resumo executivo com foco em crescimento, conversão, recorrência e saúde operacional.</p>
         </div>
-        <span class="tag">Atualizado hoje às 09:30</span>
+        <span class="tag" id="kpi-updated-at">...</span>
       </div>
 
       <div class="metrics-grid">
         <div class="metric-box">
           <span class="label">GMV do marketplace</span>
-          <strong>R$ 148.320</strong>
-          <span class="delta positive">▲ +12,4%</span>
+          <strong id="gmv-valor">...</strong>
+          <span class="delta positive" id="gmv-variacao">...</span>
         </div>
         <div class="metric-box">
           <span class="label">Taxa de conversão</span>
-          <strong>8,7%</strong>
-          <span class="delta positive">▲ +1,1 p.p.</span>
+          <strong id="conversao-valor">...</strong>
+          <span class="delta positive" id="conversao-variacao">...</span>
         </div>
         <div class="metric-box">
           <span class="label">Ticket médio</span>
-          <strong>R$ 118,84</strong>
-          <span class="delta warning">● Atenção em produtos premium</span>
+          <strong id="ticket-medio-valor">...</strong>
+          <span class="delta warning" id="ticket-medio-observacao">...</span>
         </div>
         <div class="metric-box">
           <span class="label">Cancelamentos</span>
-          <strong>2,3%</strong>
-          <span class="delta negative">▼ +0,4 p.p.</span>
+          <strong id="cancelamentos-valor">...</strong>
+          <span class="delta negative" id="cancelamentos-variacao">...</span>
         </div>
       </div>
     </section>
@@ -773,14 +133,42 @@
             <span class="tag">Últimos 7 dias</span>
           </div>
 
-          <div class="chart-bars" aria-label="Gráfico de barras de faturamento semanal">
-            <div class="bar-col"><div class="bar-track"><div class="bar-fill" style="height: 52%;"></div></div><strong>Seg</strong><span>R$ 22k</span></div>
-            <div class="bar-col"><div class="bar-track"><div class="bar-fill" style="height: 66%;"></div></div><strong>Ter</strong><span>R$ 28k</span></div>
-            <div class="bar-col"><div class="bar-track"><div class="bar-fill" style="height: 74%;"></div></div><strong>Qua</strong><span>R$ 31k</span></div>
-            <div class="bar-col"><div class="bar-track"><div class="bar-fill" style="height: 61%;"></div></div><strong>Qui</strong><span>R$ 25k</span></div>
-            <div class="bar-col"><div class="bar-track"><div class="bar-fill" style="height: 86%;"></div></div><strong>Sex</strong><span>R$ 36k</span></div>
-            <div class="bar-col"><div class="bar-track"><div class="bar-fill" style="height: 97%;"></div></div><strong>Sáb</strong><span>R$ 41k</span></div>
-            <div class="bar-col"><div class="bar-track"><div class="bar-fill" style="height: 78%;"></div></div><strong>Dom</strong><span>R$ 33k</span></div>
+          <div class="chart-bars" id="grafico-semana" aria-label="Gráfico de barras de faturamento semanal">
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 52%;"></div>
+              </div><strong>Seg</strong><span>R$ 22k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 66%;"></div>
+              </div><strong>Ter</strong><span>R$ 28k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 74%;"></div>
+              </div><strong>Qua</strong><span>R$ 31k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 61%;"></div>
+              </div><strong>Qui</strong><span>R$ 25k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 86%;"></div>
+              </div><strong>Sex</strong><span>R$ 36k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 97%;"></div>
+              </div><strong>Sáb</strong><span>R$ 41k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 78%;"></div>
+              </div><strong>Dom</strong><span>R$ 33k</span>
+            </div>
           </div>
         </section>
 
@@ -805,7 +193,7 @@
                   <th>Status</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="tabela-pedidos">
                 <tr>
                   <td>#JB-10429</td>
                   <td>Amanda Lima</td>
@@ -860,26 +248,36 @@
             <span class="tag">Mix de operação</span>
           </div>
 
-          <div class="progress-list">
+          <div class="progress-list" id="lista-categorias">
             <div class="progress-item">
               <div class="progress-meta"><span>Supermercado</span><span>91%</span></div>
-              <div class="progress-track"><div class="progress-value" style="width: 91%;"></div></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 91%;"></div>
+              </div>
             </div>
             <div class="progress-item">
               <div class="progress-meta"><span>Tecnologia</span><span>84%</span></div>
-              <div class="progress-track"><div class="progress-value" style="width: 84%;"></div></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 84%;"></div>
+              </div>
             </div>
             <div class="progress-item">
               <div class="progress-meta"><span>Serviços residenciais</span><span>79%</span></div>
-              <div class="progress-track"><div class="progress-value" style="width: 79%;"></div></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 79%;"></div>
+              </div>
             </div>
             <div class="progress-item">
               <div class="progress-meta"><span>Moda</span><span>68%</span></div>
-              <div class="progress-track"><div class="progress-value" style="width: 68%;"></div></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 68%;"></div>
+              </div>
             </div>
             <div class="progress-item">
               <div class="progress-meta"><span>Beleza e cuidados</span><span>74%</span></div>
-              <div class="progress-track"><div class="progress-value" style="width: 74%;"></div></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 74%;"></div>
+              </div>
             </div>
           </div>
         </section>
@@ -893,7 +291,7 @@
             <span class="tag">Próximas 48h</span>
           </div>
 
-          <div class="timeline-list">
+          <div class="timeline-list" id="agenda-operacional">
             <div class="timeline-item">
               <div class="timeline-dot">09h</div>
               <div>
@@ -944,19 +342,19 @@
             <div class="info-panel">
               <h4>Atendimento</h4>
               <ul>
-                <li><span>Tempo médio de resposta</span><strong>3m 42s</strong></li>
-                <li><span>Tickets resolvidos hoje</span><strong>184</strong></li>
-                <li><span>Fila crítica</span><strong>12 casos</strong></li>
-                <li><span>CSAT</span><strong>96,1%</strong></li>
+                <li><span>Tempo médio de resposta</span><strong id="atendimento-tempo">...</strong></li>
+                <li><span>Tickets resolvidos hoje</span><strong id="atendimento-tickets">...</strong></li>
+                <li><span>Fila crítica</span><strong id="atendimento-fila">...</strong></li>
+                <li><span>CSAT</span><strong id="atendimento-csat">...</strong></li>
               </ul>
             </div>
             <div class="info-panel">
               <h4>Logística</h4>
               <ul>
-                <li><span>Entregas no prazo</span><strong>93,8%</strong></li>
-                <li><span>Rotas em risco</span><strong>18</strong></li>
-                <li><span>Tempo médio de coleta</span><strong>14 min</strong></li>
-                <li><span>Motoristas ativos</span><strong>132</strong></li>
+                <li><span>Entregas no prazo</span><strong id="logistica-prazo">...</strong></li>
+                <li><span>Rotas em risco</span><strong id="logistica-risco">...</strong></li>
+                <li><span>Tempo médio de coleta</span><strong id="logistica-coleta">...</strong></li>
+                <li><span>Motoristas ativos</span><strong id="logistica-motoristas">...</strong></li>
               </ul>
             </div>
           </div>
@@ -971,7 +369,7 @@
             <span class="tag">Top 5 da semana</span>
           </div>
 
-          <div class="ranking-list">
+          <div class="ranking-list" id="ranking-parceiros">
             <div class="ranking-item">
               <div class="ranking-index">1</div>
               <div><strong>Mercado Central</strong><span>R$ 28,4 mil • 98,2% no prazo • nota 4,9</span></div>
@@ -979,12 +377,14 @@
             </div>
             <div class="ranking-item">
               <div class="ranking-index">2</div>
-              <div><strong>BeeTech Store</strong><span>R$ 24,7 mil • alto ticket médio • destaque em eletrônicos</span></div>
+              <div><strong>BeeTech Store</strong><span>R$ 24,7 mil • alto ticket médio • destaque em eletrônicos</span>
+              </div>
               <span class="pill">+18%</span>
             </div>
             <div class="ranking-item">
               <div class="ranking-index">3</div>
-              <div><strong>Resolve Já</strong><span>210 ordens concluídas • liderança em serviços residenciais</span></div>
+              <div><strong>Resolve Já</strong><span>210 ordens concluídas • liderança em serviços residenciais</span>
+              </div>
               <span class="pill">+15%</span>
             </div>
             <div class="ranking-item">
@@ -994,7 +394,8 @@
             </div>
             <div class="ranking-item">
               <div class="ranking-index">5</div>
-              <div><strong>Lar Ideal</strong><span>Baixa taxa de devolução • crescimento contínuo no segmento</span></div>
+              <div><strong>Lar Ideal</strong><span>Baixa taxa de devolução • crescimento contínuo no segmento</span>
+              </div>
               <span class="pill">+9%</span>
             </div>
           </div>
@@ -1022,7 +423,7 @@
               <div class="map-block" style="height: 138px;"></div>
               <div class="map-block" style="height: 72px;"></div>
             </div>
-            <div class="map-cities">
+            <div class="map-cities" id="cidades-fortes">
               <span class="city-chip">Salvador • 48 lojas</span>
               <span class="city-chip">Feira de Santana • 31 lojas</span>
               <span class="city-chip">Camaçari • 24 lojas</span>
@@ -1083,18 +484,18 @@
       <div class="kpi-banner">
         <div class="banner-box primary">
           <span>Retenção de lojistas</span>
-          <strong>92,6%</strong>
-          <p>Expansão saudável da base com churn sob controle e boa recorrência.</p>
+          <strong id="retencao-valor">...</strong>
+          <p id="retencao-desc">...</p>
         </div>
         <div class="banner-box gold">
           <span>Clientes recorrentes</span>
-          <strong>64%</strong>
-          <p>Base fidelizada sustentando crescimento com melhor eficiência de aquisição.</p>
+          <strong id="clientes-recorrentes-valor">...</strong>
+          <p id="clientes-recorrentes-desc">...</p>
         </div>
         <div class="banner-box dark">
           <span>Disponibilidade da plataforma</span>
-          <strong>99,94%</strong>
-          <p>Estabilidade técnica mantendo a jornada de compra e contratação sem fricção.</p>
+          <strong id="disponibilidade-valor">...</strong>
+          <p id="disponibilidade-desc">...</p>
         </div>
       </div>
     </section>
@@ -1108,7 +509,7 @@
         <span class="tag">Navegação funcional</span>
       </div>
 
-      <div class="quick-actions">
+      <div class="quick-actions" id="acoes-rapidas">
         <div class="action-card">
           <strong>Gerenciar parceiros</strong>
           <p>Entrar no painel de aprovação, ativação e acompanhamento de lojistas e prestadores.</p>
@@ -1164,5 +565,9 @@
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
   </footer>
+
+  <script src="./js/dashboard.js" defer></script>
+
 </body>
+
 </html>
