@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   carregarLojas();
 
   const btnExplorar = document.getElementById('btn-explorar');
@@ -35,25 +35,32 @@ async function carregarLojas() {
     }
 
     grid.innerHTML = lojas.map(loja => `
-      <div class="servico-micro-card" data-categoria="${inferirCategoria(loja.nome_fantasia)}">
-        <div class="card-badge">${gerarBadge(loja.nome_fantasia)}</div>
-        <img src="${loja.imagem_url || 'img/placeholder-loja.png'}" alt="${loja.nome_fantasia}">
-        <div class="servico-micro-info">
-          <h3>${loja.nome_fantasia}</h3>
-          <p class="descricao">${loja.descricao || 'Sem descrição disponível.'}</p>
-          <div class="servico-meta">
-            <span class="distancia">📍 Negócio local</span>
-            <span class="tempo">⏱️ Atendimento sob consulta</span>
-          </div>
-          <div class="servico-precos">
-            <span class="servico-preco">Ver produtos e serviços</span>
-          </div>
-          <button class="btn-agendar" data-slug="${loja.slug}">
-            Ver loja →
-          </button>
+  <a href="/loja/${loja.slug}" class="servico-micro-card-link">
+    <div class="servico-micro-card" data-categoria="${inferirCategoria(loja.nome_fantasia)}">
+      <div class="card-badge">${gerarBadge(loja.nome_fantasia)}</div>
+
+      <img src="${loja.imagem_url || 'img/placeholder-loja.png'}" alt="${loja.nome_fantasia}">
+
+      <div class="servico-micro-info">
+        <h3>${loja.nome_fantasia}</h3>
+        <p class="descricao">${loja.descricao || 'Sem descrição disponível.'}</p>
+
+        <div class="servico-meta">
+          <span class="distancia">📍 Negócio local</span>
+          <span class="tempo">⏱️ Atendimento sob consulta</span>
         </div>
+
+        <div class="servico-precos">
+          <span class="servico-preco">Ver produtos e serviços</span>
+        </div>
+
+        <button class="btn-agendar">
+          Ver loja →
+        </button>
       </div>
-    `).join('');
+    </div>
+  </a>
+`).join('');
 
     ativarBotoesLojas();
     reiniciarFiltroCategorias();
@@ -130,7 +137,7 @@ function reiniciarFiltroCategorias() {
 // ===============================
 // HERO CARROSSEL
 // ===============================
-(function() {
+(function () {
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-dot');
   const prevBtn = document.getElementById('hero-seta-esquerda');

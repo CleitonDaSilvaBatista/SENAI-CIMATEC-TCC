@@ -1,0 +1,20 @@
+const express = require('express')
+const router = express.Router()
+const dashboardController = require('../controllers/dashboard.controller')
+const authMiddleware = require('../middlewares/auth.middleware')
+
+router.get('/executive/summary', authMiddleware, dashboardController.getExecutiveSummary)
+router.get('/executive/kpis', authMiddleware, dashboardController.getExecutiveKpis)
+router.get('/executive/revenue-week', authMiddleware, dashboardController.getRevenueWeek)
+router.get('/executive/recent-orders', authMiddleware, dashboardController.getRecentOrders)
+router.get('/executive/category-performance', authMiddleware, dashboardController.getCategoryPerformance)
+router.get('/executive/operational-agenda', authMiddleware, dashboardController.getOperationalAgenda)
+router.get('/executive/health', authMiddleware, dashboardController.getOperationalHealth)
+router.get('/executive/top-partners', authMiddleware, dashboardController.getTopPartners)
+router.get('/executive/regional-coverage', authMiddleware, dashboardController.getRegionalCoverage)
+router.get('/executive/alerts', authMiddleware, dashboardController.getAlerts)
+router.get('/executive/strategic-block', authMiddleware, dashboardController.getStrategicBlock)
+router.get('/executive/quick-actions', authMiddleware, dashboardController.getQuickActions)
+router.get('/executive/full', authMiddleware, dashboardController.getExecutiveFull)
+
+module.exports = router

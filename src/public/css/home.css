@@ -1000,7 +1000,11 @@ body {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
 }
-
+.servico-micro-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
 .card-badge {
   position: absolute;
   top: 16px;
@@ -1022,6 +1026,7 @@ body {
   object-fit: cover;
   transition: var(--transition-slow);
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .servico-micro-card:hover img {
