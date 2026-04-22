@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", carregarLoja);
 
-document.addEventListener("DOMContentLoaded", carregarLoja);
-
 async function carregarLoja() {
   abrirLoadingModal("Estamos carregando os dados da loja...");
 
