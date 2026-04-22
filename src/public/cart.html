@@ -180,29 +180,12 @@
       }
     ];
 
-    let cart = getCart();
-
-    const productList = document.getElementById('productList');
-    const cartItems = document.getElementById('cartItems');
-    const emptyState = document.getElementById('emptyState');
-    const headerCartCount = document.getElementById('headerCartCount');
-    const cartSubtitle = document.getElementById('cartSubtitle');
-    const summaryItems = document.getElementById('summaryItems');
-    const summarySubtotal = document.getElementById('summarySubtotal');
-    const summaryDiscount = document.getElementById('summaryDiscount');
-    const summaryTotal = document.getElementById('summaryTotal');
-    const clearCartBtn = document.getElementById('clearCartBtn');
-    const toast = document.getElementById('toast');
-
+  
     function formatPrice(value) {
-      return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    }
-
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.add('show');
-      clearTimeout(showToast.timeout);
-      showToast.timeout = setTimeout(() => toast.classList.remove('show'), 2200);
+      return Number(value || 0).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      });
     }
 
     function getStars(rating) {
@@ -212,124 +195,68 @@
     }
 
     function renderProducts() {
+      const productList = document.getElementById('productList');
+
       productList.innerHTML = products.map(product => `
         <article class="product-card">
           <div class="product-media">
             <img src="${product.image}" alt="${product.title}">
             <span class="badge">${product.badge}</span>
           </div>
+
           <div class="product-content">
             <div class="stars">${getStars(product.rating)}</div>
             <h3 class="product-title">${product.title}</h3>
             <p class="product-desc">${product.desc}</p>
+
             <div class="product-price">
               <strong>${formatPrice(product.price)}</strong>
               <span>${formatPrice(product.oldPrice)}</span>
             </div>
+
             <div class="options">
               <select id="size-${product.id}">
-                <option value="">Tamanho</option>
-                ${product.options.map(option => `<option value="${option}">${option}</option>`).join('')}
+                <option value="">Selecione o tamanho</option>
+                ${product.options.map(option => `
+                  <option value="${option}">${option}</option>
+                `).join('')}
               </select>
             </div>
-            <button class="add-btn" onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
+
+            <button class="add-btn" onclick="addToCart(${product.id})">
+              Adicionar ao carrinho
+            </button>
           </div>
         </article>
       `).join('');
     }
-function addToCart(productId) {
-  const product = products.find(item => item.id === productId);
-  const size = document.getElementById(`size-${productId}`).value;
 
-  if (!size) {
-    showToast('Selecione um tamanho antes de adicionar.');
-    return;
-  }
+    function addToCart(productId) {
+      const product = products.find(item => item.id === productId);
+      const size = document.getElementById(`size-${productId}`).value;
 
-  addItemToCart({
-    ...product,
-    size,
-    quantity: 1
-  });
+      if (!size) {
+        alert('Selecione um tamanho antes de adicionar.');
+        return;
+      }
 
-  renderCart();
-  showToast(`${product.title} adicionado ao carrinho.`);
-}
+      adicionarAoCarrinho({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        oldPrice: product.oldPrice,
+        image: product.image,
+        badge: product.badge,
+        rating: product.rating,
+        desc: product.desc,
+        size: size
+      });
+    }
 
-function changeQuantity(productId, size, delta) {
-  updateItemQuantity(productId, size, delta);
-  renderCart();
-}
-
-function removeItem(productId, size) {
-  removeItemFromCart(productId, size);
-  renderCart();
-  showToast('Produto removido do carrinho.');
-}
-
-    function clearCartItems() {
-  clearCart();
-  renderCart();
-  showToast('Carrinho limpo com sucesso.');
-}
-function renderCart() {
-  const cart = getCart();
-
-  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-  const discount = cart.reduce((acc, item) => acc + ((item.oldPrice - item.price) * item.quantity), 0);
-  const total = subtotal;
-
-  const headerCartCount = document.getElementById('headerCartCount');
-  if (headerCartCount) {
-    headerCartCount.textContent = totalItems;
-  }
-
-  cartSubtitle.textContent = `${totalItems} ${totalItems === 1 ? 'item adicionado' : 'itens adicionados'}`;
-  summaryItems.textContent = totalItems;
-  summarySubtotal.textContent = formatPrice(subtotal);
-  summaryDiscount.textContent = formatPrice(discount);
-  summaryTotal.textContent = formatPrice(total);
-
-  if (cart.length === 0) {
-    cartItems.innerHTML = '';
-    emptyState.classList.add('show');
-  } else {
-    emptyState.classList.remove('show');
-    cartItems.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <div class="thumb">
-          <img src="${item.image}" alt="${item.title}">
-        </div>
-        <div>
-          <div class="item-title">${item.title}</div>
-          <div class="item-meta">Tamanho: ${item.size}</div>
-          <div class="item-controls">
-            <div class="qty">
-              <button onclick="changeQuantity(${item.id}, '${item.size}', -1)">−</button>
-              <span>${item.quantity}</span>
-              <button onclick="changeQuantity(${item.id}, '${item.size}', 1)">+</button>
-            </div>
-            <button class="remove-btn" onclick="removeItem(${item.id}, '${item.size}')">Remover</button>
-          </div>
-        </div>
-        <div class="item-price">
-          <strong>${formatPrice(item.price * item.quantity)}</strong>
-          <small>${item.quantity} x ${formatPrice(item.price)}</small>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  if (typeof updateCartBadge === "function") {
-    updateCartBadge();
-  }
-}
-
-    clearCartBtn.addEventListener('click', clearCartItems);
+    document.getElementById('clearCartBtn').addEventListener('click', limparCarrinho);
 
     renderProducts();
-    renderCart();
+    renderizarCarrinho();
   </script>
 </body>
 
