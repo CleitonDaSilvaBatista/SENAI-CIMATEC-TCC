@@ -59,6 +59,15 @@ app.get('/reset-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'reset-password.html'))
 })
 
+
+app.get('/perfil-cliente', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'perfil-cliente.html'))
+})
+
+app.get('/perfil-empreendedor', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'perfil-empreendedor.html'))
+})
+
 // =================================
 //          ROTAS FOOTER
 // =================================
