@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../css/global.css"/>
   <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/home.css">
+  
   <script src="../js/loja.js"></script>
   <script src="../js/navbar.js"></script>
   <script src="./js/user-info.js"></script>
@@ -54,9 +55,9 @@
 
             <div class="loja-header-info">
               <span class="loja-badge">✓ Loja verificada</span>
-              <h1 id="nome-loja">Verde Style Store</h1>
+              <h1 id="nome-loja">Carregando...</h1>
               <p id="descricao-loja">
-                Produtos e serviços com qualidade premium, atendimento rápido e uma experiência moderna para quem quer comprar com confiança.
+                Carregando...
               </p>
 
               <div class="loja-meta">
@@ -99,7 +100,7 @@
       <div class="container loja-tabs-inner">
         <a href="#produtos" class="active">Produtos</a>
         <a href="#servicos">Serviços</a>
-        <a href="#sobre">Sobre a loja</a>
+        <a href="/sobre">Sobre a loja</a>
         <a href="#avaliacoes">Avaliações</a>
       </div>
     </section>
@@ -147,21 +148,17 @@
             <h2>Serviços disponíveis</h2>
             <p>Atendimentos profissionais com agendamento rápido.</p>
           </div>
-          <div class="contador" id="contador-servicos">0 serviços</div>
+          <div class="contador" id="contador-servicos">null</div>
         </div>
-
         <div class="grid-itens" id="lista-servicos"></div>
       </section>
 
       <section class="duas-colunas">
         <div class="box" id="sobre">
           <h3>Sobre a loja</h3>
-          <p>
-            A Verde Style Store nasceu para oferecer uma experiência moderna, prática e confiável. Trabalhamos com produtos selecionados, atendimento rápido e serviços especializados, sempre focando em qualidade, transparência e agilidade para nossos clientes.
-          </p>
           <br>
-          <p>
-            Nosso diferencial está na curadoria dos itens, no cuidado com o atendimento e na entrega de uma jornada mais bonita e profissional dentro da plataforma.
+          <p id="sobre_loja">
+           Carregando...
           </p>
         </div>
 

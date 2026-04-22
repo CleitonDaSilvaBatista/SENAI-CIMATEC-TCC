@@ -22,11 +22,13 @@ async function carregarLoja() {
     const nomeLoja = document.getElementById("nome-loja");
     const descricaoLoja = document.getElementById("descricao-loja");
     const imagemLoja = document.getElementById("imagem-loja");
+    const sobreLoja = document.getElementById("sobre_loja");
 
     nomeLoja.textContent = dados.loja.nome_fantasia;
     descricaoLoja.textContent = dados.loja.descricao || "Sem descrição disponível.";
     imagemLoja.src = dados.loja.imagem_url || "/img/placeholder-loja.png";
     imagemLoja.alt = dados.loja.nome_fantasia;
+    sobreLoja.textContent = dados.loja.sobre_loja || "Sem informações disponíveis."; 
 
     const listaProdutos = document.getElementById("lista-produtos");
     listaProdutos.innerHTML = dados.produtos.length
