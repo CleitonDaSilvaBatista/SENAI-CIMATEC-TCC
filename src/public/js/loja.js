@@ -88,6 +88,23 @@ async function carregarLoja() {
     document.body.innerHTML = "<p>Erro ao carregar a loja.</p>";
   }
 }
+
+async function carregarContadores(idLoja) {
+  try {
+    const response = await fetch(`/api/loja/${idLoja}/contagem`)
+    const data = await response.json()
+
+    document.getElementById('contador-produtos').innerText =
+      `${data.produtos} produto${data.produtos !== 1 ? 's' : ''}`
+
+    document.getElementById('contador-servicos').innerText =
+      `${data.servicos} serviço${data.servicos !== 1 ? 's' : ''}`
+
+  } catch (error) {
+    console.error('Erro ao carregar contadores:', error)
+  }
+}
+
 function abrirLoadingModal(texto = "Estamos buscando as informações no banco de dados...") {
   const modal = document.getElementById("loading-modal");
   const textoModal = modal?.querySelector("p");
