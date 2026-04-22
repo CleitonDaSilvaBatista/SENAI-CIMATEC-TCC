@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Dashboard operacional da Jobee com visão completa de vendas, lojas, serviços e performance." />
+  <meta name="theme-color" content="#198754" />
+  <title>Jobee | Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <!-- JavaScript -->
+  <script src="./js/navbar.js" defer></script>
+  <script src="./js/user-info.js" defer></script>
+  <script src="./js/cart.js" defer></script>
+
+</head>
+
+<body>
+  <div id="navbar-container"></div>
+  <section class="sub-navbar" aria-label="Atalhos de navegação">
+    <div class="dropdown-categorias">
+      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Categorias ▼</a>
+      <ul class="menu-categorias">
+        <li><a href="#">Supermercado</a></li>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">Casa e Móveis</a></li>
+        <li><a href="#">Eletrodomésticos</a></li>
+        <li><a href="#">Esportes e Fitness</a></li>
+        <li><a href="#">Ferramentas</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Beleza e Cuidados</a></li>
+      </ul>
+    </div>
+    <a href="#">Ofertas</a>
+    <a href="#">Cupons</a>
+    <a href="#">Serviços</a>
+    <a href="#">Contato</a>
+  </section>
+  <main class="dashboard-shell">
+    <section class="dashboard-hero" aria-labelledby="dashboard-title">
+      <div>
+        <span class="hero-eyebrow">Painel executivo • visão geral Jobee</span>
+        <h1 id="dashboard-title">Dashboard completo para acompanhar operação, vendas, serviços, lojas e experiência do
+          cliente.</h1>
+        <p>
+          Uma página estratégica para leitura rápida do negócio, com indicadores de receita, desempenho regional,
+          volume de pedidos, SLA de atendimento, engajamento de lojistas e oportunidades operacionais.
+        </p>
+
+        <div class="hero-actions">
+          <button class="hero-btn primary">Exportar relatório</button>
+          <button class="hero-btn secondary">Filtrar período</button>
+          <button class="hero-btn secondary">Comparar regiões</button>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="mini-stat">
+          <span>Receita consolidada</span>
+          <strong id="receita-consolidada">...</strong>
+          <small id="receita-variacao">...</small>
+        </div>
+        <div class="mini-stat">
+          <span>Pedidos ativos</span>
+          <strong id="pedidos-ativos">...</strong>
+          <small id="pedidos-detalhe">...</small>
+        </div>
+        <div class="mini-stat">
+          <span>Lojas online</span>
+          <strong id="lojas-online">...</strong>
+          <small id="lojas-estabilidade">...</small>
+        </div>
+        <div class="mini-stat">
+          <span>Satisfação média</span>
+          <strong id="satisfacao-media">...</strong>
+          <small id="satisfacao-detalhe">...</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <h2>Indicadores principais</h2>
+          <p>Resumo executivo com foco em crescimento, conversão, recorrência e saúde operacional.</p>
+        </div>
+        <span class="tag" id="kpi-updated-at">...</span>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-box">
+          <span class="label">GMV do marketplace</span>
+          <strong id="gmv-valor">...</strong>
+          <span class="delta positive" id="gmv-variacao">...</span>
+        </div>
+        <div class="metric-box">
+          <span class="label">Taxa de conversão</span>
+          <strong id="conversao-valor">...</strong>
+          <span class="delta positive" id="conversao-variacao">...</span>
+        </div>
+        <div class="metric-box">
+          <span class="label">Ticket médio</span>
+          <strong id="ticket-medio-valor">...</strong>
+          <span class="delta warning" id="ticket-medio-observacao">...</span>
+        </div>
+        <div class="metric-box">
+          <span class="label">Cancelamentos</span>
+          <strong id="cancelamentos-valor">...</strong>
+          <span class="delta negative" id="cancelamentos-variacao">...</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="dashboard-column">
+        <section class="card chart-card">
+          <div class="card-header">
+            <div class="card-title">
+              <h3>Desempenho da semana</h3>
+              <p>Faturamento diário combinado entre produtos e serviços.</p>
+            </div>
+            <span class="tag">Últimos 7 dias</span>
+          </div>
+
+          <div class="chart-bars" id="grafico-semana" aria-label="Gráfico de barras de faturamento semanal">
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 52%;"></div>
+              </div><strong>Seg</strong><span>R$ 22k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 66%;"></div>
+              </div><strong>Ter</strong><span>R$ 28k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 74%;"></div>
+              </div><strong>Qua</strong><span>R$ 31k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 61%;"></div>
+              </div><strong>Qui</strong><span>R$ 25k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 86%;"></div>
+              </div><strong>Sex</strong><span>R$ 36k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 97%;"></div>
+              </div><strong>Sáb</strong><span>R$ 41k</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-track">
+                <div class="bar-fill" style="height: 78%;"></div>
+              </div><strong>Dom</strong><span>R$ 33k</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h3>Pedidos recentes</h3>
+              <p>Acompanhamento das transações mais importantes em andamento.</p>
+            </div>
+            <span class="tag">Monitoramento em tempo real</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pedido</th>
+                  <th>Cliente</th>
+                  <th>Categoria</th>
+                  <th>Loja/Prestador</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-pedidos">
+                <tr>
+                  <td>#JB-10429</td>
+                  <td>Amanda Lima</td>
+                  <td>Supermercado</td>
+                  <td>Mercado Central</td>
+                  <td>R$ 248,90</td>
+                  <td><span class="status success">Concluído</span></td>
+                </tr>
+                <tr>
+                  <td>#JB-10430</td>
+                  <td>Marcos Silva</td>
+                  <td>Serviço residencial</td>
+                  <td>Resolve Já</td>
+                  <td>R$ 180,00</td>
+                  <td><span class="status info">Em rota</span></td>
+                </tr>
+                <tr>
+                  <td>#JB-10431</td>
+                  <td>Bianca Souza</td>
+                  <td>Tecnologia</td>
+                  <td>BeeTech Store</td>
+                  <td>R$ 1.299,00</td>
+                  <td><span class="status warning">Preparando</span></td>
+                </tr>
+                <tr>
+                  <td>#JB-10432</td>
+                  <td>Rafael Cruz</td>
+                  <td>Beleza</td>
+                  <td>Studio Prime</td>
+                  <td>R$ 95,00</td>
+                  <td><span class="status danger">Atrasado</span></td>
+                </tr>
+                <tr>
+                  <td>#JB-10433</td>
+                  <td>Juliana Rocha</td>
+                  <td>Casa e móveis</td>
+                  <td>Lar Ideal</td>
+                  <td>R$ 740,00</td>
+                  <td><span class="status info">Em separação</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h3>Performance por categoria</h3>
+              <p>Nível de ocupação e demanda por segmento dentro da Jobee.</p>
+            </div>
+            <span class="tag">Mix de operação</span>
+          </div>
+
+          <div class="progress-list" id="lista-categorias">
+            <div class="progress-item">
+              <div class="progress-meta"><span>Supermercado</span><span>91%</span></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 91%;"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>Tecnologia</span><span>84%</span></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 84%;"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>Serviços residenciais</span><span>79%</span></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 79%;"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>Moda</span><span>68%</span></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 68%;"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>Beleza e cuidados</span><span>74%</span></div>
+              <div class="progress-track">
+                <div class="progress-value" style="width: 74%;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h3>Agenda operacional</h3>
+              <p>Próximos marcos, campanhas e entregas críticas do ecossistema.</p>
+            </div>
+            <span class="tag">Próximas 48h</span>
+          </div>
+
+          <div class="timeline-list" id="agenda-operacional">
+            <div class="timeline-item">
+              <div class="timeline-dot">09h</div>
+              <div>
+                <strong>Disparo da campanha “Sextou na Jobee”</strong>
+                <span>Segmentação por clientes recorrentes e cupons regionais.</span>
+              </div>
+              <span class="pill">Marketing</span>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot">11h</div>
+              <div>
+                <strong>Revisão do SLA de entregas da zona norte</strong>
+                <span>Análise de atraso acima de 20 min em operações críticas.</span>
+              </div>
+              <span class="pill">Operações</span>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot">14h</div>
+              <div>
+                <strong>Onboarding de novos parceiros locais</strong>
+                <span>Entrada de 12 lojas do segmento de alimentação.</span>
+              </div>
+              <span class="pill">Expansão</span>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot">17h</div>
+              <div>
+                <strong>Fechamento parcial do relatório executivo</strong>
+                <span>Consolidação de receita, CAC, retenção e churn de lojistas.</span>
+              </div>
+              <span class="pill">BI</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="dashboard-column">
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h3>Saúde da operação</h3>
+              <p>Indicadores de suporte, logística e atendimento em um único bloco.</p>
+            </div>
+            <span class="tag">SLA e estabilidade</span>
+          </div>
+
+          <div class="split-2">
+            <div class="info-panel">
+              <h4>Atendimento</h4>
+              <ul>
+                <li><span>Tempo médio de resposta</span><strong id="atendimento-tempo">...</strong></li>
+                <li><span>Tickets resolvidos hoje</span><strong id="atendimento-tickets">...</strong></li>
+                <li><span>Fila crítica</span><strong id="atendimento-fila">...</strong></li>
+                <li><span>CSAT</span><strong id="atendimento-csat">...</strong></li>
+              </ul>
+            </div>
+            <div class="info-panel">
+              <h4>Logística</h4>
+              <ul>
+                <li><span>Entregas no prazo</span><strong id="logistica-prazo">...</strong></li>
+                <li><span>Rotas em risco</span><strong id="logistica-risco">...</strong></li>
+                <li><span>Tempo médio de coleta</span><strong id="logistica-coleta">...</strong></li>
+                <li><span>Motoristas ativos</span><strong id="logistica-motoristas">...</strong></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h3>Top lojas e parceiros</h3>
+              <p>Ranking por volume, qualidade de entrega e satisfação do usuário.</p>
+            </div>
+            <span class="tag">Top 5 da semana</span>
+          </div>
+
+          <div class="ranking-list" id="ranking-parceiros">
+            <div class="ranking-item">
+              <div class="ranking-index">1</div>
+              <div><strong>Mercado Central</strong><span>R$ 28,4 mil • 98,2% no prazo • nota 4,9</span></div>
+              <span class="pill">+22%</span>
+            </div>
+            <div class="ranking-item">
+              <div class="ranking-index">2</div>
+              <div><strong>BeeTech Store</strong><span>R$ 24,7 mil • alto ticket médio • destaque em eletrônicos</span>
+              </div>
+              <span class="pill">+18%</span>
+            </div>
+            <div class="ranking-item">
+              <div class="ranking-index">3</div>
+              <div><strong>Resolve Já</strong><span>210 ordens concluídas • liderança em serviços residenciais</span>
+              </div>
+              <span class="pill">+15%</span>
+            </div>
+            <div class="ranking-item">
+              <div class="ranking-index">4</div>
+              <div><strong>Studio Prime</strong><span>Conversão de 12,3% • boa recorrência de clientes</span></div>
+              <span class="pill">+11%</span>
+            </div>
+            <div class="ranking-item">
+              <div class="ranking-index">5</div>
+              <div><strong>Lar Ideal</strong><span>Baixa taxa de devolução • crescimento contínuo no segmento</span>
+              </div>
+              <span class="pill">+9%</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h3>Cobertura regional</h3>
+              <p>Leitura rápida da expansão geográfica e da densidade operacional.</p>
+            </div>
+            <span class="tag">5 cidades mais fortes</span>
+          </div>
+
+          <div class="map-panel">
+            <div class="map-grid" aria-hidden="true">
+              <div class="map-block" style="height: 74px;"></div>
+              <div class="map-block" style="height: 128px;"></div>
+              <div class="map-block" style="height: 100px;"></div>
+              <div class="map-block" style="height: 150px;"></div>
+              <div class="map-block" style="height: 88px;"></div>
+              <div class="map-block" style="height: 90px;"></div>
+              <div class="map-block" style="height: 162px;"></div>
+              <div class="map-block" style="height: 114px;"></div>
+              <div class="map-block" style="height: 138px;"></div>
+              <div class="map-block" style="height: 72px;"></div>
+            </div>
+            <div class="map-cities" id="cidades-fortes">
+              <span class="city-chip">Salvador • 48 lojas</span>
+              <span class="city-chip">Feira de Santana • 31 lojas</span>
+              <span class="city-chip">Camaçari • 24 lojas</span>
+              <span class="city-chip">Lauro de Freitas • 19 lojas</span>
+              <span class="city-chip">Vitória da Conquista • 16 lojas</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h3>Alertas e prioridades</h3>
+              <p>Pontos que merecem ação rápida da operação ou do time comercial.</p>
+            </div>
+            <span class="tag">Ação recomendada</span>
+          </div>
+
+          <div class="alerts-list">
+            <div class="alert-item">
+              <div class="alert-icon">!</div>
+              <div>
+                <strong>Pico de cancelamento em tecnologia</strong>
+                <span>Concentrado em dois parceiros com ruptura de estoque.</span>
+              </div>
+              <span class="status warning">Médio</span>
+            </div>
+            <div class="alert-item">
+              <div class="alert-icon">⏱</div>
+              <div>
+                <strong>Atraso acima da meta em rotas centrais</strong>
+                <span>Necessário redimensionar 6 motoristas no turno da tarde.</span>
+              </div>
+              <span class="status danger">Alto</span>
+            </div>
+            <div class="alert-item">
+              <div class="alert-icon">★</div>
+              <div>
+                <strong>Campanha local com alta adesão</strong>
+                <span>Categoria mercado teve CTR 31% acima da média.</span>
+              </div>
+              <span class="status success">Oportunidade</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <h3>Bloco estratégico</h3>
+          <p>Resumo ampliado para gestão comercial, produto e operação.</p>
+        </div>
+        <span class="tag">Visão 360°</span>
+      </div>
+
+      <div class="kpi-banner">
+        <div class="banner-box primary">
+          <span>Retenção de lojistas</span>
+          <strong id="retencao-valor">...</strong>
+          <p id="retencao-desc">...</p>
+        </div>
+        <div class="banner-box gold">
+          <span>Clientes recorrentes</span>
+          <strong id="clientes-recorrentes-valor">...</strong>
+          <p id="clientes-recorrentes-desc">...</p>
+        </div>
+        <div class="banner-box dark">
+          <span>Disponibilidade da plataforma</span>
+          <strong id="disponibilidade-valor">...</strong>
+          <p id="disponibilidade-desc">...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top: 24px;">
+      <div class="card-header">
+        <div class="card-title">
+          <h3>Ações rápidas</h3>
+          <p>Atalhos para fluxos que combinam com um dashboard operacional detalhado.</p>
+        </div>
+        <span class="tag">Navegação funcional</span>
+      </div>
+
+      <div class="quick-actions" id="acoes-rapidas">
+        <div class="action-card">
+          <strong>Gerenciar parceiros</strong>
+          <p>Entrar no painel de aprovação, ativação e acompanhamento de lojistas e prestadores.</p>
+        </div>
+        <div class="action-card">
+          <strong>Monitorar pedidos</strong>
+          <p>Acessar a fila operacional com filtros por SLA, atraso, categoria e região.</p>
+        </div>
+        <div class="action-card">
+          <strong>Ver campanha ativa</strong>
+          <p>Analisar desempenho de promoções, cupons e ativações sazonais do marketplace.</p>
+        </div>
+        <div class="action-card">
+          <strong>Exportar BI</strong>
+          <p>Baixar a consolidação de métricas financeiras, comerciais e operacionais.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática, segura e moderna.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+          </a>
+          <a href="#" aria-label="Instagram">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <img src="img/linkedin.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="./js/dashboard.js" defer></script>
+
+</body>
+
+</html>
