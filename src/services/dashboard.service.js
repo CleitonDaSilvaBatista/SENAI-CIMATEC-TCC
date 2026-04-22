@@ -1,22 +1,88 @@
+const supabase = require('../config/database')
+
+function formatCurrencyCompact(value) {
+  const n = Number(value || 0)
+
+  if (n >= 1000) {
+    return `R$ ${(n / 1000).toFixed(1).replace('.', ',')} mil`
+  }
+
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(n)
+}
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(Number(value || 0))
+}
+
+function weekdayPt(dateString) {
+  const date = new Date(dateString)
+  const dias = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
+  return dias[date.getDay()]
+}
+
 async function getExecutiveSummary() {
+  const [{ data: pedidos, error: pedidosError }, { data: lojas, error: lojasError }] =
+    await Promise.all([
+      supabase
+        .from('pedidos')
+        .select('valor_total, status'),
+      supabase
+        .from('lojas')
+        .select('id_loja, ativo, nota_media')
+        .eq('ativo', true)
+    ])
+
+  if (pedidosError) throw new Error('Erro ao buscar pedidos do resumo.')
+  if (lojasError) throw new Error('Erro ao buscar lojas do resumo.')
+
+  const receitaTotal = (pedidos || []).reduce((acc, p) => acc + Number(p.valor_total || 0), 0)
+
+  const pedidosAtivos = (pedidos || []).filter(p =>
+    ['preparando', 'em rota', 'em separação', 'em separacao'].includes(
+      String(p.status || '').toLowerCase()
+    )
+  )
+
+  const emPreparacao = (pedidos || []).filter(p =>
+    String(p.status || '').toLowerCase() === 'preparando'
+  ).length
+
+  const emRota = (pedidos || []).filter(p =>
+    String(p.status || '').toLowerCase() === 'em rota'
+  ).length
+
+  const notas = (lojas || [])
+    .map(l => Number(l.nota_media))
+    .filter(n => !Number.isNaN(n) && n > 0)
+
+  const mediaNota = notas.length
+    ? Number((notas.reduce((a, b) => a + b, 0) / notas.length).toFixed(1))
+    : 4.8
+
   return {
     receitaConsolidada: {
-      valor: 284900,
-      formatado: 'R$ 284,9 mil',
-      variacao: '+14,8%',
+      valor: receitaTotal,
+      formatado: formatCurrencyCompact(receitaTotal),
+      variacao: '+0,0%',
       descricao: 'em relação ao último ciclo'
     },
     pedidosAtivos: {
-      total: 1248,
-      emPreparacao: 312,
-      emRota: 89
+      total: pedidosAtivos.length,
+      emPreparacao,
+      emRota
     },
     lojasOnline: {
-      total: 186,
+      total: (lojas || []).length,
       estabilidade: '94,2%'
     },
     satisfacaoMedia: {
-      nota: 4.8,
+      nota: mediaNota,
       escala: '/5',
       npsEstimado: 79
     }
@@ -24,102 +90,148 @@ async function getExecutiveSummary() {
 }
 
 async function getExecutiveKpis() {
+  const { data: pedidos, error } = await supabase
+    .from('pedidos')
+    .select('valor_total, status, created_at')
+
+  if (error) throw new Error('Erro ao buscar KPIs.')
+
+  const rows = pedidos || []
+  const totalPedidos = rows.length || 1
+  const gmv = rows.reduce((acc, p) => acc + Number(p.valor_total || 0), 0)
+  const ticketMedio = gmv / totalPedidos
+
+  const cancelados = rows.filter(p =>
+    String(p.status || '').toLowerCase() === 'cancelado'
+  ).length
+
+  const cancelamentosPct = ((cancelados / totalPedidos) * 100).toFixed(1).replace('.', ',')
+
   return {
-    updatedAt: '2026-04-20T09:30:00-03:00',
+    updatedAt: new Date().toISOString(),
     gmvMarketplace: {
-      valor: 148320,
-      variacao: '+12,4%'
+      valor: gmv,
+      variacao: '+0,0%'
     },
     taxaConversao: {
       valor: '8,7%',
-      variacao: '+1,1 p.p.'
+      variacao: '+0,0 p.p.'
     },
     ticketMedio: {
-      valor: 118.84,
-      formatado: 'R$ 118,84',
-      observacao: 'Atenção em produtos premium'
+      valor: ticketMedio,
+      formatado: formatCurrency(ticketMedio),
+      observacao: 'Baseado nos pedidos registrados'
     },
     cancelamentos: {
-      valor: '2,3%',
-      variacao: '+0,4 p.p.',
-      tendencia: 'queda'
+      valor: `${cancelamentosPct}%`,
+      variacao: '+0,0 p.p.',
+      tendencia: 'estável'
     }
   }
 }
 
 async function getRevenueWeek() {
+  const seteDiasAtras = new Date()
+  seteDiasAtras.setDate(seteDiasAtras.getDate() - 6)
+
+  const { data, error } = await supabase
+    .from('pedidos')
+    .select('valor_total, created_at')
+    .gte('created_at', seteDiasAtras.toISOString())
+    .order('created_at', { ascending: true })
+
+  if (error) throw new Error('Erro ao buscar faturamento semanal.')
+
+  const mapa = {
+    Seg: 0,
+    Ter: 0,
+    Qua: 0,
+    Qui: 0,
+    Sex: 0,
+    Sáb: 0,
+    Dom: 0
+  }
+
+  ;(data || []).forEach(item => {
+    const dia = weekdayPt(item.created_at)
+    mapa[dia] += Number(item.valor_total || 0)
+  })
+
   return {
     periodo: 'Últimos 7 dias',
-    dias: [
-      { dia: 'Seg', valor: 22000 },
-      { dia: 'Ter', valor: 28000 },
-      { dia: 'Qua', valor: 31000 },
-      { dia: 'Qui', valor: 25000 },
-      { dia: 'Sex', valor: 36000 },
-      { dia: 'Sáb', valor: 41000 },
-      { dia: 'Dom', valor: 33000 }
-    ]
+    dias: Object.entries(mapa).map(([dia, valor]) => ({
+      dia,
+      valor
+    }))
   }
 }
 
 async function getRecentOrders() {
+  const { data, error } = await supabase
+    .from('pedidos')
+    .select('codigo, categoria, valor_total, status, created_at, id_loja, id_usuario')
+    .order('created_at', { ascending: false })
+    .limit(10)
+
+  if (error) throw new Error('Erro ao buscar pedidos recentes.')
+
+  const pedidos = data || []
+
+  const lojaIds = [...new Set(pedidos.map(p => p.id_loja).filter(Boolean))]
+  const userIds = [...new Set(pedidos.map(p => p.id_usuario).filter(Boolean))]
+
+  const [{ data: lojas }, { data: usuarios }] = await Promise.all([
+    lojaIds.length
+      ? supabase.from('lojas').select('id_loja, nome_fantasia').in('id_loja', lojaIds)
+      : Promise.resolve({ data: [] }),
+    userIds.length
+      ? supabase.from('usuarios').select('id_usuario, nome').in('id_usuario', userIds)
+      : Promise.resolve({ data: [] })
+  ])
+
+  const lojasMap = new Map((lojas || []).map(l => [l.id_loja, l.nome_fantasia]))
+  const usuariosMap = new Map((usuarios || []).map(u => [u.id_usuario, u.nome]))
+
   return {
     modo: 'Monitoramento em tempo real',
-    pedidos: [
-      {
-        codigo: 'JB-10429',
-        cliente: 'Amanda Lima',
-        categoria: 'Supermercado',
-        lojaPrestador: 'Mercado Central',
-        valor: 248.9,
-        status: 'Concluído'
-      },
-      {
-        codigo: 'JB-10430',
-        cliente: 'Marcos Silva',
-        categoria: 'Serviço residencial',
-        lojaPrestador: 'Resolve Já',
-        valor: 180,
-        status: 'Em rota'
-      },
-      {
-        codigo: 'JB-10431',
-        cliente: 'Bianca Souza',
-        categoria: 'Tecnologia',
-        lojaPrestador: 'BeeTech Store',
-        valor: 1299,
-        status: 'Preparando'
-      },
-      {
-        codigo: 'JB-10432',
-        cliente: 'Rafael Cruz',
-        categoria: 'Beleza',
-        lojaPrestador: 'Studio Prime',
-        valor: 95,
-        status: 'Atrasado'
-      },
-      {
-        codigo: 'JB-10433',
-        cliente: 'Juliana Rocha',
-        categoria: 'Casa e móveis',
-        lojaPrestador: 'Lar Ideal',
-        valor: 740,
-        status: 'Em separação'
-      }
-    ]
+    pedidos: pedidos.map(p => ({
+      codigo: p.codigo,
+      cliente: usuariosMap.get(p.id_usuario) || 'Cliente',
+      categoria: p.categoria || 'Marketplace',
+      lojaPrestador: lojasMap.get(p.id_loja) || 'Loja',
+      valor: Number(p.valor_total || 0),
+      status: p.status
+    }))
   }
 }
 
 async function getCategoryPerformance() {
+  const { data, error } = await supabase
+    .from('pedidos')
+    .select('categoria')
+
+  if (error) throw new Error('Erro ao buscar performance por categoria.')
+
+  const contagem = {}
+
+  ;(data || []).forEach(item => {
+    const nome = item.categoria || 'Outros'
+    contagem[nome] = (contagem[nome] || 0) + 1
+  })
+
+  const total = Object.values(contagem).reduce((a, b) => a + b, 0) || 1
+
+  const categorias = Object.entries(contagem)
+    .map(([nome, qtd]) => ({
+      nome,
+      ocupacao: Math.round((qtd / total) * 100)
+    }))
+    .sort((a, b) => b.ocupacao - a.ocupacao)
+    .slice(0, 5)
+
   return {
     titulo: 'Mix de operação',
-    categorias: [
-      { nome: 'Supermercado', ocupacao: 91 },
-      { nome: 'Tecnologia', ocupacao: 84 },
-      { nome: 'Serviços residenciais', ocupacao: 79 },
-      { nome: 'Moda', ocupacao: 68 },
-      { nome: 'Beleza e cuidados', ocupacao: 74 }
-    ]
+    categorias
   }
 }
 
@@ -129,26 +241,14 @@ async function getOperationalAgenda() {
     eventos: [
       {
         hora: '09h',
-        titulo: 'Disparo da campanha “Sextou na Jobee”',
-        descricao: 'Segmentação por clientes recorrentes e cupons regionais.',
-        area: 'Marketing'
-      },
-      {
-        hora: '11h',
-        titulo: 'Revisão do SLA de entregas da zona norte',
-        descricao: 'Análise de atraso acima de 20 min em operações críticas.',
+        titulo: 'Revisão operacional do marketplace',
+        descricao: 'Acompanhamento automático baseado nos dados da plataforma.',
         area: 'Operações'
       },
       {
         hora: '14h',
-        titulo: 'Onboarding de novos parceiros locais',
-        descricao: 'Entrada de 12 lojas do segmento de alimentação.',
-        area: 'Expansão'
-      },
-      {
-        hora: '17h',
-        titulo: 'Fechamento parcial do relatório executivo',
-        descricao: 'Consolidação de receita, CAC, retenção e churn de lojistas.',
+        titulo: 'Consolidação parcial de vendas',
+        descricao: 'Fechamento parcial com base nos pedidos registrados.',
         area: 'BI'
       }
     ]
@@ -156,6 +256,20 @@ async function getOperationalAgenda() {
 }
 
 async function getOperationalHealth() {
+  const { data: pedidos, error } = await supabase
+    .from('pedidos')
+    .select('status')
+
+  if (error) throw new Error('Erro ao buscar saúde operacional.')
+
+  const total = (pedidos || []).length || 1
+  const concluidos = (pedidos || []).filter(p =>
+    String(p.status || '').toLowerCase() === 'concluído' ||
+    String(p.status || '').toLowerCase() === 'concluido'
+  ).length
+
+  const entregasNoPrazo = ((concluidos / total) * 100).toFixed(1).replace('.', ',')
+
   return {
     atendimento: {
       tempoMedioResposta: '3m 42s',
@@ -164,7 +278,7 @@ async function getOperationalHealth() {
       csat: '96,1%'
     },
     logistica: {
-      entregasNoPrazo: '93,8%',
+      entregasNoPrazo: `${entregasNoPrazo}%`,
       rotasEmRisco: 18,
       tempoMedioColeta: '14 min',
       motoristasAtivos: 132
@@ -173,97 +287,134 @@ async function getOperationalHealth() {
 }
 
 async function getTopPartners() {
+  const { data: pedidos, error } = await supabase
+    .from('pedidos')
+    .select('id_loja, valor_total')
+
+  if (error) throw new Error('Erro ao buscar top parceiros.')
+
+  const somaPorLoja = {}
+
+  ;(pedidos || []).forEach(p => {
+    const id = p.id_loja
+    if (!id) return
+    somaPorLoja[id] = (somaPorLoja[id] || 0) + Number(p.valor_total || 0)
+  })
+
+  const lojaIds = Object.keys(somaPorLoja).map(Number)
+
+  const { data: lojas, error: lojasError } = lojaIds.length
+    ? await supabase.from('lojas').select('id_loja, nome_fantasia').in('id_loja', lojaIds)
+    : { data: [], error: null }
+
+  if (lojasError) throw new Error('Erro ao buscar lojas do ranking.')
+
+  const lojasMap = new Map((lojas || []).map(l => [l.id_loja, l.nome_fantasia]))
+
+  const itens = Object.entries(somaPorLoja)
+    .map(([idLoja, total]) => ({
+      idLoja: Number(idLoja),
+      total
+    }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 5)
+    .map((item, index) => ({
+      posicao: index + 1,
+      nome: lojasMap.get(item.idLoja) || `Loja ${item.idLoja}`,
+      resumo: `${formatCurrency(item.total)} em vendas no período`,
+      variacao: '+0%'
+    }))
+
   return {
     titulo: 'Top 5 da semana',
-    itens: [
-      {
-        posicao: 1,
-        nome: 'Mercado Central',
-        resumo: 'R$ 28,4 mil • 98,2% no prazo • nota 4,9',
-        variacao: '+22%'
-      },
-      {
-        posicao: 2,
-        nome: 'BeeTech Store',
-        resumo: 'R$ 24,7 mil • alto ticket médio • destaque em eletrônicos',
-        variacao: '+18%'
-      },
-      {
-        posicao: 3,
-        nome: 'Resolve Já',
-        resumo: '210 ordens concluídas • liderança em serviços residenciais',
-        variacao: '+15%'
-      },
-      {
-        posicao: 4,
-        nome: 'Studio Prime',
-        resumo: 'Conversão de 12,3% • boa recorrência de clientes',
-        variacao: '+11%'
-      },
-      {
-        posicao: 5,
-        nome: 'Lar Ideal',
-        resumo: 'Baixa taxa de devolução • crescimento contínuo no segmento',
-        variacao: '+9%'
-      }
-    ]
+    itens
   }
 }
 
 async function getRegionalCoverage() {
+  const { data, error } = await supabase
+    .from('lojas')
+    .select('cidade')
+    .eq('ativo', true)
+
+  if (error) throw new Error('Erro ao buscar cobertura regional.')
+
+  const contagem = {}
+
+  ;(data || []).forEach(item => {
+    const cidade = item.cidade || 'Sem cidade'
+    contagem[cidade] = (contagem[cidade] || 0) + 1
+  })
+
+  const cidades = Object.entries(contagem)
+    .map(([nome, lojas]) => ({ nome, lojas }))
+    .sort((a, b) => b.lojas - a.lojas)
+    .slice(0, 5)
+
   return {
     titulo: '5 cidades mais fortes',
-    cidades: [
-      { nome: 'Salvador', lojas: 48 },
-      { nome: 'Feira de Santana', lojas: 31 },
-      { nome: 'Camaçari', lojas: 24 },
-      { nome: 'Lauro de Freitas', lojas: 19 },
-      { nome: 'Vitória da Conquista', lojas: 16 }
-    ]
+    cidades
   }
 }
 
 async function getAlerts() {
-  return {
-    alertas: [
-      {
-        tipo: 'acao',
-        icone: '!',
-        titulo: 'Pico de cancelamento em tecnologia',
-        descricao: 'Concentrado em dois parceiros com ruptura de estoque.',
-        nivel: 'Médio'
-      },
-      {
-        tipo: 'risco',
-        icone: '⏱',
-        titulo: 'Atraso acima da meta em rotas centrais',
-        descricao: 'Necessário redimensionar 6 motoristas no turno da tarde.',
-        nivel: 'Alto'
-      },
-      {
-        tipo: 'oportunidade',
-        icone: '★',
-        titulo: 'Campanha local com alta adesão',
-        descricao: 'Categoria mercado teve CTR 31% acima da média.',
-        nivel: 'Oportunidade'
-      }
-    ]
+  const { data: pedidos, error } = await supabase
+    .from('pedidos')
+    .select('categoria, status')
+
+  if (error) throw new Error('Erro ao buscar alertas.')
+
+  const canceladosTecnologia = (pedidos || []).filter(p =>
+    (p.categoria || '').toLowerCase().includes('tecnologia') &&
+    String(p.status || '').toLowerCase() === 'cancelado'
+  ).length
+
+  const alertas = []
+
+  if (canceladosTecnologia > 0) {
+    alertas.push({
+      tipo: 'acao',
+      icone: '!',
+      titulo: 'Pico de cancelamento em tecnologia',
+      descricao: 'Há pedidos cancelados concentrados na categoria tecnologia.',
+      nivel: 'Médio'
+    })
   }
+
+  alertas.push({
+    tipo: 'risco',
+    icone: '⏱',
+    titulo: 'Acompanhamento logístico necessário',
+    descricao: 'Monitorar pedidos em rota e em preparação para evitar atrasos.',
+    nivel: 'Alto'
+  })
+
+  return { alertas }
 }
 
 async function getStrategicBlock() {
+  const { data: lojas, error } = await supabase
+    .from('lojas')
+    .select('id_loja, ativo')
+
+  if (error) throw new Error('Erro ao buscar bloco estratégico.')
+
+  const totalLojas = (lojas || []).length || 1
+  const lojasAtivas = (lojas || []).filter(l => l.ativo).length
+  const retencao = ((lojasAtivas / totalLojas) * 100).toFixed(1).replace('.', ',')
+
   return {
     retencaoLojistas: {
-      valor: '92,6%',
-      descricao: 'Expansão saudável da base com churn sob controle e boa recorrência.'
+      valor: `${retencao}%`,
+      descricao: 'Base calculada a partir das lojas ativas registradas.'
     },
     clientesRecorrentes: {
       valor: '64%',
-      descricao: 'Base fidelizada sustentando crescimento com melhor eficiência de aquisição.'
+      descricao: 'Indicador mantido temporariamente até entrada da métrica real.'
     },
     disponibilidadePlataforma: {
       valor: '99,94%',
-      descricao: 'Estabilidade técnica mantendo a jornada de compra e contratação sem fricção.'
+      descricao: 'Indicador técnico mantido temporariamente.'
     }
   }
 }
@@ -273,22 +424,17 @@ async function getQuickActions() {
     acoes: [
       {
         titulo: 'Gerenciar parceiros',
-        descricao: 'Entrar no painel de aprovação, ativação e acompanhamento de lojistas e prestadores.',
+        descricao: 'Acompanhar lojistas e prestadores cadastrados.',
         rota: '/dashboard/parceiros'
       },
       {
         titulo: 'Monitorar pedidos',
-        descricao: 'Acessar a fila operacional com filtros por SLA, atraso, categoria e região.',
+        descricao: 'Acessar a fila operacional dos pedidos registrados.',
         rota: '/dashboard/pedidos'
       },
       {
-        titulo: 'Ver campanha ativa',
-        descricao: 'Analisar desempenho de promoções, cupons e ativações sazonais do marketplace.',
-        rota: '/dashboard/campanhas'
-      },
-      {
         titulo: 'Exportar BI',
-        descricao: 'Baixar a consolidação de métricas financeiras, comerciais e operacionais.',
+        descricao: 'Baixar consolidação de métricas financeiras e operacionais.',
         rota: '/dashboard/exportar'
       }
     ]
