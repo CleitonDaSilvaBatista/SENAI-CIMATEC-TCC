@@ -1,10 +1,15 @@
 document.addEventListener("DOMContentLoaded", carregarLoja);
 
+document.addEventListener("DOMContentLoaded", carregarLoja);
+
 async function carregarLoja() {
+  abrirLoadingModal("Estamos carregando os dados da loja...");
+
   const partes = window.location.pathname.split("/");
   const slug = partes[partes.length - 1];
 
   if (!slug) {
+    fecharLoadingModal();
     document.body.innerHTML = "<p>Loja não informada.</p>";
     return;
   }
@@ -28,13 +33,17 @@ async function carregarLoja() {
     descricaoLoja.textContent = dados.loja.descricao || "Sem descrição disponível.";
     imagemLoja.src = dados.loja.imagem_url || "/img/placeholder-loja.png";
     imagemLoja.alt = dados.loja.nome_fantasia;
-    sobreLoja.textContent = dados.loja.sobre_loja || "Sem informações disponíveis."; 
+    sobreLoja.textContent = dados.loja.sobre_loja || "Sem informações disponíveis.";
 
     const listaProdutos = document.getElementById("lista-produtos");
     listaProdutos.innerHTML = dados.produtos.length
       ? dados.produtos.map(produto => `
           <div class="item-card">
-            <img src="${produto.imagem_url || '/img/placeholder-loja.png'}" alt="${produto.nome}">
+            <img 
+              src="${produto.imagem_url || '/img/placeholder-loja.png'}" 
+              alt="${produto.nome}"
+              onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
+            >
             <div class="item-card-content">
               <h3>${produto.nome}</h3>
               <p>${produto.descricao || 'Sem descrição.'}</p>
@@ -54,7 +63,11 @@ async function carregarLoja() {
     listaServicos.innerHTML = dados.servicos.length
       ? dados.servicos.map(servico => `
           <div class="item-card">
-            <img src="${servico.imagem_url || '/img/placeholder-loja.png'}" alt="${servico.nome}">
+            <img 
+              src="${servico.imagem_url || '/img/placeholder-loja.png'}" 
+              alt="${servico.nome}"
+              onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
+            >
             <div class="item-card-content">
               <h3>${servico.nome}</h3>
               <p>${servico.descricao || 'Sem descrição.'}</p>
@@ -68,12 +81,28 @@ async function carregarLoja() {
       : "<p>Nenhum serviço cadastrado.</p>";
 
     ativarBotoesCarrinho();
+    fecharLoadingModal();
   } catch (error) {
     console.error("Erro ao carregar loja:", error);
+    fecharLoadingModal();
     document.body.innerHTML = "<p>Erro ao carregar a loja.</p>";
   }
 }
+function abrirLoadingModal(texto = "Estamos buscando as informações no banco de dados...") {
+  const modal = document.getElementById("loading-modal");
+  const textoModal = modal?.querySelector("p");
 
+  if (textoModal) {
+    textoModal.textContent = texto;
+  }
+
+  modal?.classList.add("active");
+}
+
+function fecharLoadingModal() {
+  const modal = document.getElementById("loading-modal");
+  modal?.classList.remove("active");
+}
 function ativarBotoesCarrinho() {
   const botoes = document.querySelectorAll(".btn-add-cart");
 
