@@ -103,6 +103,7 @@ async function carregarContadores(idLoja) {
   } catch (error) {
     console.error('Erro ao carregar contadores:', error)
   }
+  
 }
 
 function abrirLoadingModal(texto = "Estamos buscando as informações no banco de dados...") {

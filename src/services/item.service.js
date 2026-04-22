@@ -32,38 +32,6 @@ async function getItemById(id) {
   }
 }
 
-async function getItensCountByLoja(id_loja) {
-  // Produtos (sem duração)
-  const { count: produtosCount, error: produtosError } = await supabase
-    .from('itens')
-    .select('*', { count: 'exact', head: true })
-    .eq('id_loja', id_loja)
-    .eq('ativo', true)
-    .is('duracao_minutos', null)
-
-  if (produtosError) {
-    throw new Error('Erro ao contar produtos')
-  }
-
-  // Serviços (com duração)
-  const { count: servicosCount, error: servicosError } = await supabase
-    .from('itens')
-    .select('*', { count: 'exact', head: true })
-    .eq('id_loja', id_loja)
-    .eq('ativo', true)
-    .not('duracao_minutos', 'is', null)
-
-  if (servicosError) {
-    throw new Error('Erro ao contar serviços')
-  }
-
-  return {
-    produtos: produtosCount || 0,
-    servicos: servicosCount || 0
-  }
-}
-
 module.exports = {
   getItemById,
-  getItensCountByLoja
 }
