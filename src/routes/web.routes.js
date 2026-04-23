@@ -11,6 +11,10 @@ router.get('/forgot-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'forgot.html'))
 })
 
+router.get('/compra', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'compra.html'))
+})
+
 router.get('/login', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'login.html'))
 })
