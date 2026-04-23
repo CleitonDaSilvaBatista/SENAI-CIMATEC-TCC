@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Jobee - Uma colmeia de serviços que conecta pessoas, negócios e produtos de forma prática, moderna e segura." />
+  <meta name="theme-color" content="#198754" />
+  <title>Jobee | Uma Colmeia de Serviços</title>
+
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/home.css">
+  
+  <!-- JavaScript -->
+  <script src="js/navbar.js" defer></script>
+  <script src="js/carrossel.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="/js/user-info.js" defer></script>
+  <script src="js/map.js"></script>
+  <script src="/js/cart.js" defer></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxCYc_QvCJJ5_nJS6hvUcBh88wcWTa-VQ&callback=initMap">
+  </script>
+
+</head>
+
+<body>
+
+  <!-- Navbar será injetada aqui via JS -->
+  <div id="navbar-container"></div>
+
+  <!-- Sub-navbar -->
+  <section class="sub-navbar" aria-label="Atalhos de navegação">
+    <div class="dropdown-categorias">
+      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Categorias ▼</a>
+      <ul class="menu-categorias">
+        <li><a href="#">Supermercado</a></li>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">Casa e Móveis</a></li>
+        <li><a href="#">Eletrodomésticos</a></li>
+        <li><a href="#">Esportes e Fitness</a></li>
+        <li><a href="#">Ferramentas</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Beleza e Cuidados</a></li>
+      </ul>
+    </div>
+    <a href="/dashboard">Ofertas</a>
+    <a href="#">Cupons</a>
+    <a href="#">Serviços</a>
+    <a href="#">Contato</a>
+  </section>
+
+  <main>
+    <!-- Hero -->
+    <!-- Hero com Carrossel -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-carousel-container">
+        <div class="hero-carousel" id="hero-carousel">
+
+          <!-- Slide 1 -->
+          <div class="hero-slide active">
+            <div class="hero-slide-content">
+              <div class="hero-badge">🔥 OFERTA ESPECIAL</div>
+              <h2 id="hero-title">CONJ. MESA CADEIRA</h2>
+              <div class="hero-prices">
+                <span class="old-price-hero">R$ 2.019,90</span>
+                <span class="new-price-hero">R$ 1.874,14</span>
+                <span class="discount-badge-hero">-7% OFF</span>
+              </div>
+              <div class="hero-info">
+                <p class="hero-tagline">SEU LAR QUENTINHO</p>
+                <p class="hero-festival">FESTIVAL DE INVERNO</p>
+                <div class="hero-installments">ATÉ 18X SEM JUROS*</div>
+                <div class="hero-payment">
+                  <span>COM CARTÃO</span>
+                  <strong>mercado pago</strong>
+                </div>
+                <div class="hero-shipping">🚚 ENVIO MAIS RÁPIDO DO BRASIL</div>
+              </div>
+              <button class="btn-hero-shop">COMPRAR AGORA →</button>
+            </div>
+            <div class="hero-slide-image">
+              <img src="img/conjuntomesa.webp" alt="Conjunto Mesa e Cadeira" />
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="hero-slide">
+            <div class="hero-slide-content">
+              <div class="hero-badge">⚡ SUPER OFERTA</div>
+              <h2>SMARTWATCH PEJE ZW04</h2>
+              <div class="hero-prices">
+                <span class="old-price-hero">R$ 905,87</span>
+                <span class="new-price-hero">R$ 669,99</span>
+                <span class="discount-badge-hero">-26% OFF</span>
+              </div>
+              <div class="hero-info">
+                <p class="hero-tagline">TECNOLOGIA QUE MOVE</p>
+                <p class="hero-festival">LANÇAMENTO 2026</p>
+                <div class="hero-installments">ATÉ 12X SEM JUROS*</div>
+                <div class="hero-payment">
+                  <span>COM CARTÃO</span>
+                  <strong>mercado pago</strong>
+                </div>
+                <div class="hero-shipping">🚚 ENTREGA EXPRESSA</div>
+              </div>
+              <button class="btn-hero-shop">COMPRAR AGORA →</button>
+            </div>
+            <div class="hero-slide-image">
+              <img src="img/relogio.png" alt="Smartwatch Peje ZW04" />
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="hero-slide">
+            <div class="hero-slide-content">
+              <div class="hero-badge">🎯 MAIS VENDIDO</div>
+              <h2>PLACA DE VÍDEO NVIDIA RTX 5070TI</h2>
+              <div class="hero-prices">
+                <span class="old-price-hero">R$ 7.149,90</span>
+                <span class="new-price-hero">R$ 6.899,90</span>
+                <span class="discount-badge-hero">-3% OFF</span>
+              </div>
+              <div class="hero-info">
+                <p class="hero-tagline">TENHA MAIS DESEMPENHO</p>
+                <p class="hero-festival">16GB GDDR6</p>
+                <div class="hero-installments">ATÉ 10X SEM JUROS*</div>
+                <div class="hero-payment">
+                  <span>COM CARTÃO</span>
+                  <strong>mercado pago</strong>
+                </div>
+                <div class="hero-shipping">🚚 FRETE GRÁTIS</div>
+              </div>
+              <button class="btn-hero-shop">COMPRAR AGORA →</button>
+            </div>
+            <div class="hero-slide-image">
+              <img src="img/placa de video.png" alt="Placa de vídeo" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegação do Carrossel -->
+        <button class="hero-seta hero-seta-esquerda" id="hero-seta-esquerda" aria-label="Slide anterior">❮</button>
+        <button class="hero-seta hero-seta-direita" id="hero-seta-direita" aria-label="Próximo slide">❯</button>
+
+        <!-- Indicadores -->
+        <div class="hero-dots" id="hero-dots">
+          <span class="hero-dot active"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+        </div>
+      </div>
+    </section>
+    <!-- Produtos em Destaque -->
+    <section class="produtos-section" aria-labelledby="produtos-destaque">
+      <div class="title-produ">
+        <h4 id="produtos-destaque">Produtos em Destaque</h4>
+      </div>
+
+      <div class="carrossel-container">
+        <button class="seta esquerda" id="seta-esquerda" type="button" aria-label="Ver produtos anteriores">
+          &#10094;
+        </button>
+
+        <div class="carrossel" id="carrossel" aria-label="Lista de produtos em destaque">
+
+          <article class="produto">
+            <img src="img/shorts.webp" width="300" height="300" alt="Kit 4 bermudas masculinas de moletom" />
+            <div class="legenda">
+              <h5>
+                <a href="/produto">Kit 4 Bermuda Masculina Short Moletom Leve Caminhada Atacado com Bolso Academia</a>
+              </h5>
+              <div class="old-price">R$ 79,99</div>
+              <p class="preco-produto">R$ 67,85 <span class="desconto">25% OFF</span></p>
+              <p class="parcela">12x R$ 6,68</p>
+              <p class="frete">Frete grátis</p>
+            </div>
+          </article>
+
+          <article class="produto">
+            <img src="img/tv.webp" width="300" height="300" alt="Smart TV TCL 65 polegadas QLED 4K" />
+            <div class="legenda">
+              <h5>
+                <a href="#">Smart TV TCL 65 Polegadas QLED 4K P7K WiFi Bluetooth Google TV HDR10+ Dolby Atmos Dolby
+                  Vision 65P7K</a>
+              </h5>
+              <div class="old-price">R$ 3.299,90</div>
+              <p class="preco-produto">R$ 2.867,90 <span class="desconto">15% OFF</span></p>
+              <p class="parcela">10x R$ 286,79 sem juros</p>
+              <p class="frete">Frete grátis</p>
+            </div>
+          </article>
+
+          <article class="produto">
+            <img src="img/ferramenta.webp" width="300" height="300" alt="Jogo de ferramentas com 200 peças" />
+            <div class="legenda">
+              <h5>
+                <a href="#">Jogo de Ferramentas 200 Peças Maleta Resistente Completa uso profissional Titanium
+                  Platina</a>
+              </h5>
+              <div class="old-price">R$ 89,90</div>
+              <p class="preco-produto">R$ 59,90 <span class="desconto">33% OFF</span></p>
+              <p class="parcela">12x R$ 5,90</p>
+              <p class="frete">Frete grátis</p>
+            </div>
+          </article>
+
+          <article class="produto">
+            <img src="img/painel.webp" width="300" height="300" alt="Painel para TV até 55 polegadas" />
+            <div class="legenda">
+              <h5>
+                <a href="#">Painel para TV até 55 Polegadas Paris com Efeito Ripado — Design Moderno e Sofisticado em
+                  Promoção</a>
+              </h5>
+              <div class="old-price">R$ 429,00</div>
+              <p class="preco-produto">R$ 349,00 <span class="desconto">19% OFF</span></p>
+              <p class="parcela">6x R$ 58,17 sem juros</p>
+              <p class="frete">Frete grátis</p>
+            </div>
+          </article>
+
+          <article class="produto">
+            <img src="img/espelho.webp" width="300" height="300" alt="Espelho decorativo retangular 70x50 cm" />
+            <div class="legenda">
+              <h5>
+                <a href="#">Espelho Vidrex Pisa 70x50cm Retangular Decorativo Elegante Contemporâneo Luxo &amp;
+                  Sofisticação</a>
+              </h5>
+              <div class="old-price">R$ 79,90</div>
+              <p class="preco-produto">R$ 58,10 <span class="desconto">27% OFF</span></p>
+              <p class="parcela">2x R$ 29,05 sem juros</p>
+              <p class="frete">Frete grátis</p>
+            </div>
+          </article>
+        </div>
+
+        <button class="seta direita" id="seta-direita" type="button" aria-label="Ver próximos produtos">
+          &#10095;
+        </button>
+      </div>
+    </section>
+
+    <section class="ofertas-duplas">
+      <div class="oferta-card">
+        <div class="oferta-texto">
+          <span class="oferta-tag">ATÉ 35% OFF</span>
+          <h3>SEU MUNDO TECH COMPLETO</h3>
+          <a href="#" class="oferta-btn">Ver mais</a>
+        </div>
+        <div class="oferta-imagem">
+          <img src="https://http2.mlstatic.com/D_NQ_608954-MLA109046130448_032026-OO.webp" alt="Oferta de tecnologia" />
+        </div>
+      </div>
+
+      <div class="oferta-card">
+        <div class="oferta-texto">
+          <span class="oferta-tag">ATÉ 40% OFF</span>
+          <h3>DISPOSITIVOS INCRÍVEIS</h3>
+          <a href="#" class="oferta-btn">Ver mais</a>
+        </div>
+        <div class="oferta-imagem">
+          <img src="https://http2.mlstatic.com/D_NQ_852985-MLA109050201156_032026-OO.webp" alt="Achadinhos incríveis" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Serviços para Microempresas -->
+    <section class="servicos-micro-section" aria-labelledby="servicos-micro-titulo">
+      <div class="servicos-micro-header">
+        <h2 id="servicos-micro-titulo"> Negócios Locais em Destaque</h2>
+        <p class="servicos-micro-sub">Conecte-se com as melhores microempresas da sua região</p>
+        <div class="servicos-micro-categorias">
+          <button class="cat-btn active" data-categoria="todos">Todos</button>
+          <button class="cat-btn" data-categoria="barbearia">✂️ Barbearia</button>
+          <button class="cat-btn" data-categoria="restaurante">🍽️ Restaurantes</button>
+          <button class="cat-btn" data-categoria="loja">🛍️ Lojas</button>
+          <button class="cat-btn" data-categoria="beleza">💅 Beleza & Estética</button>
+          <button class="cat-btn" data-categoria="autocuidado">🧘 Autocuidado</button>
+        </div>
+      </div>
+
+      <div class="servicos-micro-grid" id="servicos-micro-grid">
+      </div>
+
+      <div class="servicos-micro-footer">
+        <button class="btn-ver-mais-servicos">Ver todos os negócios locais →</button>
+      </div>
+    </section>
+  </main>
+
+  <section class="mapa-section" aria-labelledby="mapa-titulo">
+    <div class="mapa-container">
+      <div class="mapa-header">
+        <span class="mapa-badge">📍 Perto de você</span>
+        <h2 id="mapa-titulo">Encontre negócios no mapa</h2>
+        <p>
+          Veja a localização dos estabelecimentos e navegue pelo mapa livremente.
+        </p>
+      </div>
+
+      <div class="mapa-actions">
+        <button type="button" onclick="toggleTraffic()">Trânsito</button>
+        <button type="button" onclick="centralizarUsuario()">Minha localização</button>
+      </div>
+
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática, segura e moderna.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+          </a>
+          <a href="#" aria-label="Instagram">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <img src="img/linkedin.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+
+</html>

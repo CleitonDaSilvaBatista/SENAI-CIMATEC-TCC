@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#198754" />
+  <title>Jobee | Perfil do Cliente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/perfil.css" />
+  <script src="/js/navbar.js" defer></script>
+  <script src="/js/user-info.js" defer></script>
+  <script src="/js/cart.js" defer></script>
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <section class="sub-navbar" aria-label="Atalhos de navegação">
+    <div class="dropdown-categorias">
+      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Categorias ▼</a>
+      <ul class="menu-categorias">
+        <li><a href="#">Supermercado</a></li>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">Casa e Móveis</a></li>
+        <li><a href="#">Eletrodomésticos</a></li>
+        <li><a href="#">Esportes e Fitness</a></li>
+        <li><a href="#">Ferramentas</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Beleza e Cuidados</a></li>
+      </ul>
+    </div>
+    <a href="/home.html">Início</a>
+    <a href="/carrinho">Compras</a>
+    <a href="/sobre">Conta</a>
+    <a href="/ajuda">Suporte</a>
+  </section>
+
+  <main class="profile-page">
+    <div class="profile-shell">
+      <section class="profile-hero">
+        <div class="profile-hero__content">
+          <span class="profile-badge">Cliente Jobee • Conta ativa</span>
+          <h1>Seu perfil em um só lugar para acompanhar compras, favoritos e preferências.</h1>
+          <p>
+            Uma área pensada para o cliente acompanhar pedidos, editar dados pessoais, revisar endereços,
+            verificar formas de pagamento e manter suas preferências salvas com a identidade visual padrão do projeto.
+          </p>
+
+          <div class="profile-highlights">
+            <div class="highlight-card">
+              <strong>12</strong>
+              <span>pedidos concluídos</span>
+            </div>
+            <div class="highlight-card">
+              <strong>5</strong>
+              <span>itens favoritos</span>
+            </div>
+            <div class="highlight-card">
+              <strong>3</strong>
+              <span>endereços salvos</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="profile-summary">
+          <div class="avatar-row">
+            <div class="profile-avatar">CB</div>
+            <div>
+              <h2>Cleiton Batista</h2>
+              <p>Cliente verificado • Desde 2025</p>
+            </div>
+          </div>
+
+          <ul class="contact-list">
+            <li><strong>E-mail:</strong> cleiton@email.com</li>
+            <li><strong>Telefone:</strong> (71) 99999-1234</li>
+            <li><strong>Localização:</strong> Salvador • BA</li>
+          </ul>
+
+          <div class="profile-actions">
+            <a href="#" class="btn-primary">Editar perfil</a>
+            <a href="#" class="btn-secondary">Gerenciar segurança</a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="profile-grid">
+        <div class="panel-column">
+          <article class="info-card">
+            <h3>Resumo da conta</h3>
+            <div class="metrics-grid">
+              <div class="metric-box">
+                <strong>R$ 1.284</strong>
+                <span>gasto total nos últimos 30 dias</span>
+              </div>
+              <div class="metric-box">
+                <strong>08</strong>
+                <span>compras acompanhadas em tempo real</span>
+              </div>
+              <div class="metric-box">
+                <strong>92%</strong>
+                <span>taxa de avaliações publicadas</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3>Pedidos recentes</h3>
+            <ul class="product-list">
+              <li>
+                <div>
+                  <h4>Smartwatch Peje ZW04</h4>
+                  <p>Entrega prevista para amanhã • Pagamento aprovado</p>
+                </div>
+                <span class="item-price">R$ 669,99</span>
+              </li>
+              <li>
+                <div>
+                  <h4>Jogo de Ferramentas 200 Peças</h4>
+                  <p>Pedido finalizado • Avaliação pendente</p>
+                </div>
+                <span class="item-price">R$ 59,90</span>
+              </li>
+              <li>
+                <div>
+                  <h4>Kit 4 Bermudas Masculinas</h4>
+                  <p>Em separação no centro de distribuição</p>
+                </div>
+                <span class="item-price">R$ 67,85</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <h3>Preferências salvas</h3>
+            <div class="tag-row">
+              <span class="tag">Tecnologia</span>
+              <span class="tag">Moda masculina</span>
+              <span class="tag">Casa e móveis</span>
+              <span class="tag">Entrega expressa</span>
+              <span class="tag">Notificações por e-mail</span>
+            </div>
+          </article>
+        </div>
+
+        <aside class="panel-column">
+          <article class="info-card">
+            <h3>Segurança e acesso</h3>
+            <ul class="preference-list">
+              <li><strong>Senha:</strong> atualizada há 18 dias</li>
+              <li><strong>Verificação:</strong> autenticação em duas etapas ativada</li>
+              <li><strong>Sessões:</strong> último acesso hoje às 08:42</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <h3>Endereços cadastrados</h3>
+            <ul class="activity-list">
+              <li><strong>Casa:</strong> Rua das Flores, 221 • Salvador/BA</li>
+              <li><strong>Trabalho:</strong> Av. Paralela, 1450 • Salvador/BA</li>
+              <li><strong>Família:</strong> Lauro de Freitas/BA • entrega eventual</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <h3>Próximos passos</h3>
+            <ul class="feature-list">
+              <li>Atualizar foto do perfil e preferências visuais da conta.</li>
+              <li>Adicionar novo cartão para acelerar o checkout.</li>
+              <li>Revisar lista de desejos para futuras promoções.</li>
+            </ul>
+            <p class="muted-note">Estrutura pronta para integrar dados reais da API futuramente.</p>
+          </article>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática e segura.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="/ajuda">Ajuda</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="/politica-privacidade">Política de Privacidade</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" /></a>
+          <a href="#"><img src="/img/linkedin.png" alt="LinkedIn" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+</html>
