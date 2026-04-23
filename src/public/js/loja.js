@@ -38,50 +38,60 @@ async function carregarLoja() {
     const listaProdutos = document.getElementById("lista-produtos");
     listaProdutos.innerHTML = dados.produtos.length
       ? dados.produtos.map(produto => `
-          <div class="item-card">
-            <img 
-              src="${produto.imagem_url || '/img/placeholder-loja.png'}" 
-              alt="${produto.nome}"
-              onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
-            >
-            <div class="item-card-content">
-              <h3>${produto.nome}</h3>
-              <p>${produto.descricao || 'Sem descrição.'}</p>
-              <div class="item-meta">
-                <strong>R$ ${Number(produto.preco).toFixed(2).replace('.', ',')}</strong>
-                <span>Estoque: ${produto.estoque ?? 0}</span>
-              </div>
-              <button class="btn-add-cart" data-id="${produto.id_item}">
-                Adicionar ao carrinho
-              </button>
-            </div>
-          </div>
-        `).join("")
+    <div class="card-item">
+      <div class="card-img-wrap">
+        <img 
+          src="${produto.imagem_url || '/img/placeholder-loja.png'}" 
+          alt="${produto.nome}"
+        >
+        <span class="selo green">Produto</span>
+      </div>
+
+      <div class="card-conteudo">
+        <div class="card-categoria">Produto</div>
+        <h3>${produto.nome}</h3>
+        <p class="card-desc">${produto.descricao || 'Sem descrição.'}</p>
+
+        <div class="card-preco">
+          <strong>R$ ${Number(produto.preco).toFixed(2).replace('.', ',')}</strong>
+        </div>
+
+        <div class="card-footer">
+          <button class="btn btn-primary" data-id="${produto.id_item}">
+            Comprar
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join("")
       : "<p>Nenhum produto cadastrado.</p>";
 
     const listaServicos = document.getElementById("lista-servicos");
     listaServicos.innerHTML = dados.servicos.length
       ? dados.servicos.map(servico => `
-          <div class="item-card">
-            <img 
-              src="${servico.imagem_url || '/img/placeholder-loja.png'}" 
-              alt="${servico.nome}"
-              onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
-            >
-            <div class="item-card-content">
-              <h3>${servico.nome}</h3>
-              <p>${servico.descricao || 'Sem descrição.'}</p>
-              <div class="item-meta">
-                <strong>R$ ${Number(servico.preco).toFixed(2).replace('.', ',')}</strong>
-                <span>Duração: ${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
-              </div>
-            </div>
-          </div>
-        `).join("")
-      : "<p>Nenhum serviço cadastrado.</p>";
+    <div class="card-servico">
+      <div class="servico-topo">
+        <h3>${servico.nome}</h3>
+        <span class="tag-servico">Serviço</span>
+      </div>
 
-    ativarBotoesCarrinho();
-    fecharLoadingModal();
+      <p>${servico.descricao || 'Sem descrição.'}</p>
+
+      <div class="servico-meta">
+        <span>R$ ${Number(servico.preco).toFixed(2).replace('.', ',')}</span>
+        <span>
+          ${servico.duracao_minutos
+          ? `${servico.duracao_minutos} min`
+          : 'Sob consulta'}
+        </span>
+      </div>
+
+      <button class="btn">
+        Solicitar serviço
+      </button>
+    </div>
+  `).join("")
+      : "<p>Nenhum serviço cadastrado.</p>";
   } catch (error) {
     console.error("Erro ao carregar loja:", error);
     fecharLoadingModal();
