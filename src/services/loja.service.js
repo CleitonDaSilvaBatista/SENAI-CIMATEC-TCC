@@ -1,5 +1,4 @@
 const supabase = require('../config/database')
-const lojaService = require('../../services/loja.service')
 
 async function getLojas() {
   const { data, error } = await supabase
@@ -62,45 +61,46 @@ async function getLojaBySlug(slug) {
     throw err
   }
 
-  const supabase = require('../config/database')
-
-  async function getItensCountByLoja(id_loja) {
-    const { count: produtosCount, error: produtosError } = await supabase
-      .from('itens')
-      .select('*', { count: 'exact', head: true })
-      .eq('id_loja', id_loja)
-      .eq('ativo', true)
-      .is('duracao_minutos', null)
-
-    if (produtosError) {
-      throw new Error('Erro ao contar produtos')
-    }
-
-    const { count: servicosCount, error: servicosError } = await supabase
-      .from('itens')
-      .select('*', { count: 'exact', head: true })
-      .eq('id_loja', id_loja)
-      .eq('ativo', true)
-      .not('duracao_minutos', 'is', null)
-
-    if (servicosError) {
-      throw new Error('Erro ao contar serviços')
-    }
-
-    return {
-      produtos: produtosCount || 0,
-      servicos: servicosCount || 0
-    }
-  }
-
-  module.exports = {
-    getItensCountByLoja
-  }
-
   return {
     loja,
     produtos: produtos || [],
     servicos: servicos || []
+  }
+}
+
+async function getItensCountByLoja(id_loja) {
+  const ID_TIPO_PRODUTO = 1
+  const ID_TIPO_SERVICO = 2
+
+  const { count: produtosCount, error: produtosError } = await supabase
+    .from('itens')
+    .select('*', { count: 'exact', head: true })
+    .eq('id_loja', id_loja)
+    .eq('id_tipo_item', ID_TIPO_PRODUTO)
+    .eq('ativo', true)
+
+  if (produtosError) {
+    const err = new Error('Erro ao contar produtos.')
+    err.statusCode = 500
+    throw err
+  }
+
+  const { count: servicosCount, error: servicosError } = await supabase
+    .from('itens')
+    .select('*', { count: 'exact', head: true })
+    .eq('id_loja', id_loja)
+    .eq('id_tipo_item', ID_TIPO_SERVICO)
+    .eq('ativo', true)
+
+  if (servicosError) {
+    const err = new Error('Erro ao contar serviços.')
+    err.statusCode = 500
+    throw err
+  }
+
+  return {
+    produtos: produtosCount || 0,
+    servicos: servicosCount || 0
   }
 }
 

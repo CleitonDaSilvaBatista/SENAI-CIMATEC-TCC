@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", carregarLoja);
 
-document.addEventListener("DOMContentLoaded", carregarLoja);
-
 async function carregarLoja() {
   abrirLoadingModal("Estamos carregando os dados da loja...");
 
@@ -34,6 +32,8 @@ async function carregarLoja() {
     imagemLoja.src = dados.loja.imagem_url || "/img/placeholder-loja.png";
     imagemLoja.alt = dados.loja.nome_fantasia;
     sobreLoja.textContent = dados.loja.sobre_loja || "Sem informações disponíveis.";
+
+    await carregarContadores(dados.loja.id_loja);
 
     const listaProdutos = document.getElementById("lista-produtos");
     listaProdutos.innerHTML = dados.produtos.length
@@ -91,19 +91,21 @@ async function carregarLoja() {
 
 async function carregarContadores(idLoja) {
   try {
-    const response = await fetch(`/api/loja/${idLoja}/contagem`)
-    const data = await response.json()
+    const response = await fetch(`/api/lojas/${idLoja}/contagem`);
+    const data = await response.json();
 
-    document.getElementById('contador-produtos').innerText =
-      `${data.produtos} produto${data.produtos !== 1 ? 's' : ''}`
+    if (!response.ok) {
+      throw new Error(data.error || "Erro ao carregar contadores");
+    }
 
-    document.getElementById('contador-servicos').innerText =
-      `${data.servicos} serviço${data.servicos !== 1 ? 's' : ''}`
+    document.getElementById("contador-produtos").innerText =
+      `${data.produtos} produto${data.produtos !== 1 ? "s" : ""}`;
 
+    document.getElementById("contador-servicos").innerText =
+      `${data.servicos} serviço${data.servicos !== 1 ? "s" : ""}`;
   } catch (error) {
-    console.error('Erro ao carregar contadores:', error)
+    console.error("Erro ao carregar contadores:", error);
   }
-  
 }
 
 function abrirLoadingModal(texto = "Estamos buscando as informações no banco de dados...") {
@@ -121,6 +123,7 @@ function fecharLoadingModal() {
   const modal = document.getElementById("loading-modal");
   modal?.classList.remove("active");
 }
+
 function ativarBotoesCarrinho() {
   const botoes = document.querySelectorAll(".btn-add-cart");
 

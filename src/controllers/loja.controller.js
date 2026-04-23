@@ -18,15 +18,13 @@ async function getLojaBySlug(req, res, next) {
   }
 }
 
-async function getContagemItens(req, res) {
+async function getContagemItens(req, res, next) {
   try {
     const { id } = req.params
     const contagem = await lojaService.getItensCountByLoja(id)
-
-    return res.status(200).json(contagem)
+    return res.json(contagem)
   } catch (error) {
-    console.error('Erro ao buscar contagem de itens da loja:', error)
-    return res.status(500).json({ error: error.message })
+    next(error)
   }
 }
 
