@@ -143,7 +143,6 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: rgba(255,255,255,.12);
       color: #fff;
       font-size: 18px;
     }
@@ -587,14 +586,31 @@
 <body>
             <div id="navbar-container"></div>
   </header>
-
-  <section class="sub-navbar" aria-label="Atalhos de navegação">
-    <div class="dropdown-categorias">Categorias ▼</div>
-    <a href="#">Ofertas</a>
-    <a href="#">Cupons</a>
-    <a href="#">Serviços</a>
-    <a href="#">Contato</a>
-  </section>
+<section class="sub-navbar" aria-label="Atalhos de navegação">
+      <div class="dropdown-categorias">
+        <a
+          href="#"
+          class="categorias-btn"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Categorias ▼</a
+        >
+        <ul class="menu-categorias">
+          <li><a href="#">Supermercado</a></li>
+          <li><a href="#">Tecnologia</a></li>
+          <li><a href="#">Casa e Móveis</a></li>
+          <li><a href="#">Eletrodomésticos</a></li>
+          <li><a href="#">Esportes e Fitness</a></li>
+          <li><a href="#">Ferramentas</a></li>
+          <li><a href="#">Moda</a></li>
+          <li><a href="#">Beleza e Cuidados</a></li>
+        </ul>
+      </div>
+      <a href="#">Ofertas</a>
+      <a href="#">Cupons</a>
+      <a href="#">Serviços</a>
+      <a href="#">Contato</a>
+    </section>
 
   <main>
     <div class="hero-wrap">
