@@ -7,6 +7,10 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'home.html'))
 })
 
+router.get('/compra', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'compra.html'))
+})
+
 router.get('/forgot-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'forgot.html'))
 })
