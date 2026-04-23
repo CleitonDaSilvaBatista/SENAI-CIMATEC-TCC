@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#308668" />
+  <meta name="description" content="Cadastro de empresa na Jobee" />
+  <title>Cadastro de Empresa | Jobee</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #308668;
+      --primary-dark: #266a53;
+      --primary-soft: #e9f5f0;
+      --primary-border: rgba(48, 134, 104, 0.18);
+      --accent: #01cc6d;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --line: #e5e7eb;
+      --bg: #f7faf8;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --container: 1280px;
+      --container-padding: 24px;
+      --transition-fast: 0.2s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #f6fbf8 0%, #ffffff 26%, #f7faf8 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; border: none; }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #308668;
+      padding: 12px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .navbar-left, .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex: 1;
+    }
+
+    .navbar-right { justify-content: flex-end; }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+      white-space: nowrap;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #fff;
+      background: rgba(255,255,255,.15);
+      padding: 6px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 40px;
+      width: 500px;
+      padding: 4px 8px 4px 18px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+      margin: 0 auto;
+      transition: all .3s ease;
+    }
+
+    .search-bar:focus-within {
+      box-shadow: 0 0 0 2px #01cc6d;
+      transform: scale(1.01);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 14px;
+      color: #333;
+      padding: 10px 0;
+      background: transparent;
+    }
+
+    .search-bar button {
+      background: none;
+      padding: 8px 12px;
+      border-radius: 50%;
+    }
+
+    .search-bar button:hover { background: #f0f0f0; }
+
+    .auth-buttons { display: flex; gap: 12px; align-items: center; }
+
+    #entrar, #criar-conta {
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.2s;
+      white-space: nowrap;
+      border: 2px solid #fff;
+    }
+
+    #entrar {
+      color: #fff;
+      background: transparent;
+    }
+
+    #entrar:hover {
+      background: #fff;
+      color: #308668;
+    }
+
+    #criar-conta {
+      background: #fff;
+      color: #308668;
+    }
+
+    #criar-conta:hover {
+      background: transparent;
+      color: #fff;
+    }
+
+    .cart {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .sub-navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      background-color: #308668;
+      padding: 10px 40px 16px;
+      flex-wrap: wrap;
+      color: #fff;
+    }
+
+    .dropdown-categorias {
+      background-color: rgba(255,255,255,.12);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .sub-navbar a { font-size: 14px; opacity: .96; }
+
+    .hero-wrap {
+      max-width: var(--container);
+      margin: 28px auto 0;
+      padding: 0 var(--container-padding);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items: stretch;
+      background: linear-gradient(135deg, rgba(48,134,104,0.09), rgba(255,255,255,0.92));
+      border: 1px solid var(--primary-border);
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-content {
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .hero-badge {
+      width: fit-content;
+      background: rgba(48, 134, 104, .12);
+      color: var(--primary);
+      border: 1px solid rgba(48,134,104,.15);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: #153d30;
+    }
+
+    .hero p {
+      color: #4b5563;
+      max-width: 680px;
+      font-size: 1rem;
+    }
+
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .hero-highlights span {
+      background: #fff;
+      border: 1px solid var(--primary-border);
+      color: var(--primary-dark);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero-side {
+      background: linear-gradient(180deg, #308668 0%, #266a53 100%);
+      color: #fff;
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .hero-side h2 {
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+
+    .hero-side ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-side li {
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: .95rem;
+    }
+
+    .page-grid {
+      max-width: var(--container);
+      margin: 28px auto 0;
+      padding: 0 var(--container-padding);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .form-shell {
+      background: #fff;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .form-header {
+      padding: 28px 30px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
+    }
+
+    .form-header h2 {
+      font-size: 1.7rem;
+      color: #173f32;
+      margin-bottom: 6px;
+    }
+
+    .form-header p {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: .95rem;
+    }
+
+    .status-pill {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary-border);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+
+    .form-section {
+      padding: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .form-section:last-of-type { border-bottom: none; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      box-shadow: 0 10px 20px rgba(48,134,104,.18);
+    }
+
+    .section-title h3 {
+      font-size: 1.2rem;
+      color: #153d30;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .field { grid-column: span 12; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .span-3 { grid-column: span 3; }
+    .span-8 { grid-column: span 8; }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: .92rem;
+      font-weight: 600;
+      color: #213547;
+    }
+
+    .field .hint {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .control, .field textarea, .field select {
+      width: 100%;
+      border: 1px solid #dbe2e7;
+      background: #fff;
+      border-radius: 14px;
+      padding: 14px 15px;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+
+    .control:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(1, 204, 109, .12);
+    }
+
+    textarea.control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .inline-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .choice-card {
+      flex: 1 1 220px;
+      border: 1px solid #dce6e0;
+      border-radius: 18px;
+      padding: 16px;
+      background: #fcfefd;
+      transition: .2s ease;
+    }
+
+    .choice-card:hover {
+      border-color: rgba(48,134,104,.35);
+      transform: translateY(-1px);
+    }
+
+    .choice-card input { margin-right: 8px; }
+    .choice-card strong { color: #183c31; }
+    .choice-card p { color: var(--muted); font-size: .84rem; margin-top: 8px; }
+
+    .checks {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid #e5ece8;
+      border-radius: 16px;
+      background: #fbfcfc;
+    }
+
+    .check input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+    }
+
+    .check p {
+      color: var(--muted);
+      font-size: .84rem;
+      margin-top: 3px;
+    }
+
+    .actions {
+      padding: 24px 30px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fcfa 100%);
+    }
+
+    .actions small {
+      color: var(--muted);
+      max-width: 700px;
+      display: block;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-soft);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: 2px solid var(--primary);
+      box-shadow: 0 12px 24px rgba(48,134,104,.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .side-panel {
+      display: grid;
+      gap: 20px;
+      position: sticky;
+      top: 120px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      border: 1px solid rgba(15,23,42,.06);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .card h3 {
+      color: #173f32;
+      margin-bottom: 14px;
+      font-size: 1.15rem;
+    }
+
+    .benefits, .steps {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .benefits li, .steps li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: #324150;
+      font-size: .92rem;
+    }
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 700;
+      flex: 0 0 28px;
+    }
+
+    .security-box {
+      background: linear-gradient(180deg, rgba(48,134,104,.08), rgba(48,134,104,.02));
+      border: 1px solid var(--primary-border);
+      color: #214639;
+    }
+
+    .security-box p {
+      color: #3f5b50;
+      font-size: .9rem;
+    }
+
+    .footer {
+      background: rgb(48, 134, 104);
+      color: var(--white);
+      padding: 64px 0 32px;
+      margin-top: 64px;
+    }
+
+    .footer-container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 48px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.75rem;
+      margin-bottom: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-col h4 {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+    }
+
+    .footer-col p {
+      opacity: 0.7;
+      line-height: 1.6;
+      font-size: 0.875rem;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,.7);
+      font-size: .875rem;
+      transition: var(--transition-fast);
+    }
+
+    .footer-col ul li a:hover {
+      color: #fff;
+      padding-left: 4px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.12);
+      font-size: 18px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 48px;
+      margin-top: 48px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      font-size: .813rem;
+      opacity: .6;
+    }
+
+    @media (max-width: 1100px) {
+      .hero, .page-grid { grid-template-columns: 1fr; }
+      .side-panel { position: static; }
+      .search-bar { width: 100%; order: 3; }
+    }
+
+    @media (max-width: 820px) {
+      .navbar, .sub-navbar { padding-left: 18px; padding-right: 18px; }
+      .hero-content, .hero-side, .form-section, .form-header, .actions, .card { padding: 22px; }
+      .span-6, .span-4, .span-3, .span-8 { grid-column: span 12; }
+      .hero h1 { font-size: 2.2rem; }
+      .section-title { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-left">
+      <div class="logo">Jobee</div>
+      <div class="location">📍 <span>Informe seu CEP</span></div>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar serviços, produtos ou lojas..." />
+      <button type="button">🔎</button>
+    </div>
+
+    <div class="navbar-right">
+      <div class="auth-buttons">
+        <a href="#" id="entrar">Entrar</a>
+        <a href="#" id="criar-conta">Criar Conta</a>
+      </div>
+      <div class="cart" aria-label="Carrinho">🛒</div>
+    </div>
+  </header>
+
+  <section class="sub-navbar" aria-label="Atalhos de navegação">
+    <div class="dropdown-categorias">Categorias ▼</div>
+    <a href="#">Ofertas</a>
+    <a href="#">Cupons</a>
+    <a href="#">Serviços</a>
+    <a href="#">Contato</a>
+  </section>
+
+  <main>
+    <div class="hero-wrap">
+      <section class="hero">
+        <div class="hero-content">
+          <span class="hero-badge">Cadastro empresarial premium</span>
+          <h1>Cadastre sua empresa na Jobee e amplie sua presença digital com credibilidade.</h1>
+          <p>
+            Uma página de cadastro robusta, profissional e pronta para operações B2B e B2C. Estruturada para coletar dados institucionais, fiscais, operacionais, bancários e comerciais com clareza, confiança e ótima experiência de preenchimento.
+          </p>
+          <div class="hero-highlights">
+            <span>Validação cadastral</span>
+            <span>Dados fiscais e bancários</span>
+            <span>Responsáveis da conta</span>
+            <span>Conformidade e termos</span>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <h2>O que esta página entrega</h2>
+          <ul>
+            <li><strong>Captação completa:</strong> razão social, CNPJ, CNAE, porte, contatos e endereço.</li>
+            <li><strong>Fluxo profissional:</strong> blocos organizados, microtextos e hierarquia visual executiva.</li>
+            <li><strong>Mais confiança:</strong> seções de segurança, revisão e aceite legal em destaque.</li>
+          </ul>
+        </aside>
+      </section>
+    </div>
+
+    <div class="page-grid">
+      <section class="form-shell">
+        <div class="form-header">
+          <div>
+            <h2>Cadastro de Empresa</h2>
+            <p>Preencha as informações abaixo para criar a conta corporativa da sua empresa e começar a vender, contratar serviços ou operar como parceiro dentro da plataforma Jobee.</p>
+          </div>
+          <div class="status-pill">Perfil empresarial</div>
+        </div>
+
+        <form>
+          <div class="form-section">
+            <div class="section-title">
+              <div class="section-number">1</div>
+              <div>
+                <h3>Dados institucionais</h3>
+                <p>Informações principais da empresa e posicionamento comercial.</p>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="field span-8">
+                <label for="razao">Razão social</label>
+                <input class="control" id="razao" type="text" placeholder="Ex.: Jobee Soluções Digitais LTDA" />
+              </div>
+              <div class="field span-4">
+                <label for="cnpj">CNPJ</label>
+                <input class="control" id="cnpj" type="text" placeholder="00.000.000/0001-00" />
+              </div>
+
+              <div class="field span-6">
+                <label for="fantasia">Nome fantasia</label>
+                <input class="control" id="fantasia" type="text" placeholder="Ex.: Jobee Empresas" />
+              </div>
+              <div class="field span-3">
+                <label for="porte">Porte da empresa</label>
+                <select id="porte" class="control">
+                  <option>Selecione</option>
+                  <option>MEI</option>
+                  <option>Microempresa</option>
+                  <option>Pequeno porte</option>
+                  <option>Médio porte</option>
+                  <option>Grande porte</option>
+                </select>
+              </div>
+              <div class="field span-3">
+                <label for="fundacao">Data de fundação</label>
+                <input class="control" id="fundacao" type="date" />
+              </div>
+
+              <div class="field span-4">
+                <label for="segmento">Segmento principal</label>
+                <select id="segmento" class="control">
+                  <option>Selecione</option>
+                  <option>Tecnologia</option>
+                  <option>Serviços</option>
+                  <option>Varejo</option>
+                  <option>Indústria</option>
+                  <option>Saúde</option>
+                  <option>Educação</option>
+                  <option>Logística</option>
+                </select>
+              </div>
+              <div class="field span-4">
+                <label for="cnae">CNAE principal</label>
+                <input class="control" id="cnae" type="text" placeholder="Ex.: 6201-5/01" />
+              </div>
+              <div class="field span-4">
+                <label for="site">Site institucional</label>
+                <input class="control" id="site" type="url" placeholder="https://www.suaempresa.com.br" />
+              </div>
+
+              <div class="field">
+                <label for="descricao">Descrição institucional</label>
+                <textarea class="control" id="descricao" placeholder="Apresente a empresa, diferenciais, área de atuação, serviços prestados e proposta de valor."></textarea>
+                <span class="hint">Uma boa descrição fortalece a análise cadastral e melhora a confiança dos usuários na sua marca.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="section-title">
+              <div class="section-number">2</div>
+              <div>
+                <h3>Contato e responsáveis</h3>
+                <p>Dados das pessoas que representarão a empresa na plataforma.</p>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="field span-6">
+                <label for="responsavel">Nome do responsável legal</label>
+                <input class="control" id="responsavel" type="text" placeholder="Nome completo" />
+              </div>
+              <div class="field span-3">
+                <label for="cargo">Cargo</label>
+                <input class="control" id="cargo" type="text" placeholder="Ex.: Diretor(a)" />
+              </div>
+              <div class="field span-3">
+                <label for="cpf">CPF do responsável</label>
+                <input class="control" id="cpf" type="text" placeholder="000.000.000-00" />
+              </div>
+
+              <div class="field span-4">
+                <label for="emailcorp">E-mail corporativo</label>
+                <input class="control" id="emailcorp" type="email" placeholder="contato@empresa.com.br" />
+              </div>
+              <div class="field span-4">
+                <label for="telefone">Telefone comercial</label>
+                <input class="control" id="telefone" type="tel" placeholder="(00) 0000-0000" />
+              </div>
+              <div class="field span-4">
+                <label for="whatsapp">WhatsApp corporativo</label>
+                <input class="control" id="whatsapp" type="tel" placeholder="(00) 00000-0000" />
+              </div>
+
+              <div class="field span-6">
+                <label for="gestor">Gestor operacional da conta</label>
+                <input class="control" id="gestor" type="text" placeholder="Nome do contato principal para operações" />
+              </div>
+              <div class="field span-6">
+                <label for="emailgestor">E-mail do gestor operacional</label>
+                <input class="control" id="emailgestor" type="email" placeholder="gestor@empresa.com.br" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="section-title">
+              <div class="section-number">3</div>
+              <div>
+                <h3>Endereço e operação</h3>
+                <p>Onde a empresa atua e como funciona sua cobertura operacional.</p>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="field span-3">
+                <label for="cep">CEP</label>
+                <input class="control" id="cep" type="text" placeholder="00000-000" />
+              </div>
+              <div class="field span-7">
+                <label for="logradouro">Logradouro</label>
+                <input class="control" id="logradouro" type="text" placeholder="Rua, avenida, travessa..." />
+              </div>
+              <div class="field span-2">
+                <label for="numero">Número</label>
+                <input class="control" id="numero" type="text" placeholder="123" />
+              </div>
+
+              <div class="field span-4">
+                <label for="complemento">Complemento</label>
+                <input class="control" id="complemento" type="text" placeholder="Sala, andar, bloco..." />
+              </div>
+              <div class="field span-4">
+                <label for="bairro">Bairro</label>
+                <input class="control" id="bairro" type="text" placeholder="Seu bairro" />
+              </div>
+              <div class="field span-4">
+                <label for="cidade">Cidade / UF</label>
+                <input class="control" id="cidade" type="text" placeholder="Salvador / BA" />
+              </div>
+
+              <div class="field span-6">
+                <label for="atuacao">Área de atuação geográfica</label>
+                <select id="atuacao" class="control">
+                  <option>Selecione</option>
+                  <option>Municipal</option>
+                  <option>Regional</option>
+                  <option>Estadual</option>
+                  <option>Nacional</option>
+                  <option>Internacional</option>
+                </select>
+              </div>
+              <div class="field span-6">
+                <label for="operacao">Modelo de operação</label>
+                <select id="operacao" class="control">
+                  <option>Selecione</option>
+                  <option>Loja física</option>
+                  <option>E-commerce</option>
+                  <option>Prestação de serviços</option>
+                  <option>Marketplace</option>
+                  <option>Operação híbrida</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="section-title">
+              <div class="section-number">4</div>
+              <div>
+                <h3>Perfil na plataforma</h3>
+                <p>Defina como sua empresa vai operar dentro da Jobee.</p>
+              </div>
+            </div>
+
+            <div class="inline-group">
+              <label class="choice-card">
+                <input type="radio" name="perfil" checked />
+                <strong>Fornecedor / Prestador</strong>
+                <p>Ideal para empresas que oferecem serviços, produtos ou soluções especializadas.</p>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="perfil" />
+                <strong>Comprador corporativo</strong>
+                <p>Para empresas que contratarão parceiros, fornecedores e serviços pela plataforma.</p>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="perfil" />
+                <strong>Operação híbrida</strong>
+                <p>Combine compra e venda em um único ambiente de gestão empresarial.</p>
+              </label>
+            </div>
+
+            <div class="grid" style="margin-top: 18px;">
+              <div class="field span-6">
+                <label for="usuarios">Quantidade estimada de usuários internos</label>
+                <select id="usuarios" class="control">
+                  <option>Selecione</option>
+                  <option>1 a 5 usuários</option>
+                  <option>6 a 20 usuários</option>
+                  <option>21 a 50 usuários</option>
+                  <option>Mais de 50 usuários</option>
+                </select>
+              </div>
+              <div class="field span-6">
+                <label for="volume">Volume mensal estimado</label>
+                <select id="volume" class="control">
+                  <option>Selecione</option>
+                  <option>Até R$ 10 mil</option>
+                  <option>R$ 10 mil a R$ 50 mil</option>
+                  <option>R$ 50 mil a R$ 200 mil</option>
+                  <option>Acima de R$ 200 mil</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="section-title">
+              <div class="section-number">5</div>
+              <div>
+                <h3>Financeiro e segurança</h3>
+                <p>Dados para validação, repasse e controle da conta empresarial.</p>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="field span-4">
+                <label for="banco">Banco</label>
+                <input class="control" id="banco" type="text" placeholder="Ex.: Banco do Brasil" />
+              </div>
+              <div class="field span-4">
+                <label for="agencia">Agência</label>
+                <input class="control" id="agencia" type="text" placeholder="0001" />
+              </div>
+              <div class="field span-4">
+                <label for="conta">Conta</label>
+                <input class="control" id="conta" type="text" placeholder="00000-0" />
+              </div>
+
+              <div class="field span-6">
+                <label for="titular">Titular da conta bancária</label>
+                <input class="control" id="titular" type="text" placeholder="Nome da empresa ou responsável" />
+              </div>
+              <div class="field span-6">
+                <label for="pix">Chave PIX</label>
+                <input class="control" id="pix" type="text" placeholder="CNPJ, e-mail, telefone ou chave aleatória" />
+              </div>
+
+              <div class="field span-6">
+                <label for="senha">Senha de acesso</label>
+                <input class="control" id="senha" type="password" placeholder="Crie uma senha forte" />
+              </div>
+              <div class="field span-6">
+                <label for="confirmar">Confirmar senha</label>
+                <input class="control" id="confirmar" type="password" placeholder="Repita a senha criada" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="section-title">
+              <div class="section-number">6</div>
+              <div>
+                <h3>Conformidade e aceite</h3>
+                <p>Confirmações necessárias para ativação da conta empresarial.</p>
+              </div>
+            </div>
+
+            <div class="checks">
+              <label class="check">
+                <input type="checkbox" />
+                <div>
+                  <strong>Declaro que as informações fornecidas são verdadeiras e atualizadas.</strong>
+                  <p>Esses dados poderão ser utilizados para verificação cadastral, segurança da conta e processos internos da plataforma.</p>
+                </div>
+              </label>
+
+              <label class="check">
+                <input type="checkbox" />
+                <div>
+                  <strong>Concordo com os Termos de Uso, Política de Privacidade e regras comerciais da Jobee.</strong>
+                  <p>Ao continuar, sua empresa aceita as condições aplicáveis ao uso da plataforma, relacionamento com clientes e repasses financeiros.</p>
+                </div>
+              </label>
+
+              <label class="check">
+                <input type="checkbox" />
+                <div>
+                  <strong>Autorizo o contato do time Jobee para onboarding, suporte e validação documental.</strong>
+                  <p>Você poderá receber contato por e-mail, telefone ou WhatsApp corporativo cadastrado.</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <small>
+              Ao enviar, sua solicitação pode passar por uma etapa de análise. Em implementações reais, você pode acoplar máscara de campos, validação de CNPJ, integração com CEP, upload de documentos e envio ao back-end.
+            </small>
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary">Salvar rascunho</button>
+              <button type="submit" class="btn btn-primary">Cadastrar empresa</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <aside class="side-panel">
+        <div class="card">
+          <h3>Vantagens para sua empresa</h3>
+          <ul class="benefits">
+            <li><span class="icon">✓</span><div><strong>Presença profissional</strong><br>Cadastre sua operação com aparência corporativa e dados completos.</div></li>
+            <li><span class="icon">✓</span><div><strong>Onboarding estruturado</strong><br>Facilita aprovação interna e melhora a qualidade das informações.</div></li>
+            <li><span class="icon">✓</span><div><strong>Mais credibilidade</strong><br>Organização visual que transmite confiança desde o primeiro acesso.</div></li>
+          </ul>
+        </div>
+
+        <div class="card security-box">
+          <h3>Segurança da conta</h3>
+          <p>Recomenda-se ativar verificação em duas etapas, validação documental e perfis com diferentes níveis de permissão para equipes administrativas, financeiras e operacionais.</p>
+        </div>
+
+        <div class="card">
+          <h3>Etapas após o cadastro</h3>
+          <ul class="steps">
+            <li><span class="icon">1</span><div>Validação do cadastro e análise de consistência.</div></li>
+            <li><span class="icon">2</span><div>Confirmação do e-mail e do responsável legal.</div></li>
+            <li><span class="icon">3</span><div>Liberação do painel empresarial e início da operação.</div></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática, segura e moderna.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+</html>
