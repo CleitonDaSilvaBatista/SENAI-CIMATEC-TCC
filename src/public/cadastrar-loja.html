@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="js/navbar.js" defer></script>
+  <script src="/js/user-info.js" defer></script>
+  <link rel="stylesheet" href="css/global.css"/>
 
   <style>
     :root {
@@ -45,28 +48,6 @@
     img { max-width: 100%; display: block; }
     button, input, select, textarea { font: inherit; }
     button { cursor: pointer; border: none; }
-
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #308668;
-      padding: 12px 40px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .navbar-left, .navbar-right {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      flex: 1;
-    }
-
-    .navbar-right { justify-content: flex-end; }
 
     .logo {
       font-size: 26px;
@@ -587,82 +568,6 @@
       font-size: .9rem;
     }
 
-    .footer {
-      background: rgb(48, 134, 104);
-      color: var(--white);
-      padding: 64px 0 32px;
-      margin-top: 64px;
-    }
-
-    .footer-container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--container-padding);
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 48px;
-    }
-
-    .footer-col h3 {
-      font-size: 1.75rem;
-      margin-bottom: 16px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .footer-col h4 {
-      font-size: 1rem;
-      margin-bottom: 20px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      opacity: 0.8;
-    }
-
-    .footer-col p {
-      opacity: 0.7;
-      line-height: 1.6;
-      font-size: 0.875rem;
-    }
-
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 12px; }
-    .footer-col ul li a {
-      color: rgba(255,255,255,.7);
-      font-size: .875rem;
-      transition: var(--transition-fast);
-    }
-
-    .footer-col ul li a:hover {
-      color: #fff;
-      padding-left: 4px;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .social-links a {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,.12);
-      font-size: 18px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 48px;
-      margin-top: 48px;
-      border-top: 1px solid rgba(255,255,255,.1);
-      font-size: .813rem;
-      opacity: .6;
-    }
-
     @media (max-width: 1100px) {
       .hero, .page-grid { grid-template-columns: 1fr; }
       .side-panel { position: static; }
@@ -679,24 +584,7 @@
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="navbar-left">
-      <div class="logo">Jobee</div>
-      <div class="location">📍 <span>Informe seu CEP</span></div>
-    </div>
-
-    <div class="search-bar">
-      <input type="text" placeholder="Buscar serviços, produtos ou lojas..." />
-      <button type="button">🔎</button>
-    </div>
-
-    <div class="navbar-right">
-      <div class="auth-buttons">
-        <a href="#" id="entrar">Entrar</a>
-        <a href="#" id="criar-conta">Criar Conta</a>
-      </div>
-      <div class="cart" aria-label="Carrinho">🛒</div>
-    </div>
+            <div id="navbar-container"></div>
   </header>
 
   <section class="sub-navbar" aria-label="Atalhos de navegação">
@@ -1092,18 +980,17 @@
     </div>
   </main>
 
-  <footer class="footer">
+    <footer class="footer">
     <div class="footer-container">
       <div class="footer-col">
         <h3>Jobee</h3>
         <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática, segura e moderna.</p>
       </div>
-
       <div class="footer-col">
         <h4>Links Úteis</h4>
         <ul>
           <li><a href="#">Ajuda</a></li>
-          <li><a href="#">Sobre</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
           <li><a href="#">Política de Privacidade</a></li>
         </ul>
       </div>
@@ -1111,9 +998,15 @@
       <div class="footer-col">
         <h4>Siga-nos</h4>
         <div class="social-links">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">◎</a>
-          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Facebook">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+          </a>
+          <a href="#" aria-label="Instagram">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <img src="img/linkedin.png" alt="LinkedIn" />
+          </a>
         </div>
       </div>
     </div>
