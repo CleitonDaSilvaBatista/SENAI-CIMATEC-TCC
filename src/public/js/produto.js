@@ -148,7 +148,6 @@ function setupQuantityControl() {
     if (value < parseInt(quantityInput.max || '10', 10)) quantityInput.value = value + 1;
   });
 }
-
 function obterDadosProdutoAtual() {
   const titulo = document.querySelector('.product-title')?.textContent?.trim() || 'Produto Jobee';
   const precoTexto = document.querySelector('.price .big')?.textContent?.trim() || '0,00';
@@ -212,6 +211,10 @@ function exibirModalRedirecionamento(produto) {
 }
 
 function adicionarAoCarrinho() {
+  if (!exigirLoginParaCarrinho()) {
+    return;
+  }
+
   const produto = obterDadosProdutoAtual();
   const carrinhoAtual = JSON.parse(localStorage.getItem('jobee_cart') || '[]');
   const itemExistente = carrinhoAtual.find(
@@ -235,7 +238,7 @@ function adicionarAoCarrinho() {
 
   localStorage.setItem('jobee_cart', JSON.stringify(carrinhoAtual));
   if (typeof updateCartBadge === 'function') updateCartBadge();
-  window.alert(`Produto adicionado ao carrinho!\nCor: ${produto.cor}\nTamanho: ${produto.tamanho}\nQuantidade: ${produto.quantidade}`);
+  showToast('Produto adicionado ao carrinho!', 'success');
 }
 
 function setupBuyButtons() {
