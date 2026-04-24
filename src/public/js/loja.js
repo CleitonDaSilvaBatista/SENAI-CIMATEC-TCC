@@ -179,6 +179,9 @@ function ativarBotoesCarrinho() {
 }
 
 async function adicionarAoCarrinho(idItem) {
+    if (!exigirLoginParaCarrinho()) {
+    return;
+    }
   try {
     const resposta = await fetch(`/api/itens/${idItem}`);
     const item = await resposta.json();

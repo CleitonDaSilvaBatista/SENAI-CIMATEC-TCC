@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="/css/navbar.css">
 <link rel="stylesheet" href="/css/layout.css">
 
+<script src="/js/auth-required-modal.js"></script>
 <script src="/js/navbar.js" defer></script>
 <script src="/js/cart.js" defer></script>
 
@@ -505,5 +506,16 @@
     </footer>
 
     <script src="./js/produto.js"></script>
+  <div id="modal-login" class="modal-hidden">
+  <div class="modal-box">
+    <h2>Login necessário</h2>
+    <p>Você precisa estar logado para adicionar produtos ao carrinho.</p>
+
+    <div class="modal-actions">
+      <button id="btn-login-agora">Fazer login</button>
+      <button id="btn-login-depois">Agora não</button>
+    </div>
+  </div>
+</div>
   </body>
 </html>
