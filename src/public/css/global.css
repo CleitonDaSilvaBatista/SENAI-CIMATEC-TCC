@@ -129,3 +129,38 @@ button {
   font-size: 0.813rem;
   opacity: 0.6;
 }
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  background: #1f2937;
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sucesso */
+.toast.success {
+  background: #16a34a;
+}
+
+/* Erro */
+.toast.error {
+  background: #dc2626;
+}

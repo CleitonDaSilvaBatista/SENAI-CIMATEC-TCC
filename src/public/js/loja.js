@@ -212,9 +212,9 @@ async function adicionarAoCarrinho(idItem) {
 
     localStorage.setItem("jobee_cart", JSON.stringify(carrinhoAtual));
     console.log("Carrinho salvo:", carrinhoAtual);
-    alert("Produto adicionado ao carrinho!");
+    showToast('Produto adicionado ao carrinho!', 'success');
   } catch (error) {
     console.error("Erro ao adicionar ao carrinho:", error);
-    alert("Não foi possível adicionar o item ao carrinho.");
+    showToast('Erro ao adicionar produto', 'error');
   }
 }
