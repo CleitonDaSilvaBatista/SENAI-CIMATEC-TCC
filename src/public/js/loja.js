@@ -40,9 +40,14 @@ async function carregarLoja() {
       imagemLoja.src = dados.loja?.imagem_url || "/img/placeholder-loja.png";
       imagemLoja.alt = dados.loja?.nome_fantasia || "Logo da loja";
     }
+
     if (bannerLoja) {
       const bannerUrl = dados.loja?.banner_url || "/img/banercarrosel.webp";
-      bannerLoja.style.backgroundImage = `linear-gradient(135deg, rgba(10, 20, 17, 0.75), rgba(14, 40, 31, 0.55)), url("${bannerUrl}")`;
+
+      bannerLoja.style.backgroundImage = `
+    linear-gradient(135deg, rgba(10, 20, 17, 0.75), rgba(14, 40, 31, 0.55)),
+    url("${bannerUrl}")
+  `;
     }
     if (sobreLoja) {
       sobreLoja.textContent = dados.loja?.sobre_loja || "Sem informações disponíveis.";
