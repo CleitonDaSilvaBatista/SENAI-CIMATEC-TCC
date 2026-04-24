@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", carregarLoja);
 
-document.addEventListener("DOMContentLoaded", carregarLoja);
-
 async function carregarLoja() {
   abrirLoadingModal("Estamos carregando os dados da loja...");
 
@@ -59,7 +57,7 @@ async function carregarLoja() {
 
     const produtos = Array.isArray(dados.produtos) ? dados.produtos : [];
     const servicos = Array.isArray(dados.servicos) ? dados.servicos : [];
-
+    
     const listaProdutos = document.getElementById("lista-produtos");
     if (listaProdutos) {
       listaProdutos.innerHTML = produtos.length
@@ -98,22 +96,31 @@ async function carregarLoja() {
     if (listaServicos) {
       listaServicos.innerHTML = servicos.length
         ? servicos.map(servico => `
-            <div class="card-servico">
-              <div class="servico-topo">
-                <h3>${servico.nome || 'Serviço sem nome'}</h3>
-                <span class="tag-servico">Serviço</span>
-              </div>
+        <div class="card-servico">
+          <div class="card-img-wrap">
+            <img 
+              src="${servico.imagem_url || '/img/placeholder-loja.png'}" 
+              alt="${servico.nome || 'Serviço'}"
+              onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
+            >
+            <span class="selo green">Serviço</span>
+          </div>
 
-              <p>${servico.descricao || 'Sem descrição.'}</p>
+          <div class="servico-topo">
+            <h3>${servico.nome || 'Serviço sem nome'}</h3>
+            <span class="tag-servico">Serviço</span>
+          </div>
 
-              <div class="servico-meta">
-                <span>R$ ${Number(servico.preco || 0).toFixed(2).replace('.', ',')}</span>
-                <span>${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
-              </div>
+          <p>${servico.descricao || 'Sem descrição.'}</p>
 
-              <button class="btn">Solicitar serviço</button>
-            </div>
-          `).join("")
+          <div class="servico-meta">
+            <span>R$ ${Number(servico.preco || 0).toFixed(2).replace('.', ',')}</span>
+            <span>${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
+          </div>
+
+          <button class="btn">Solicitar serviço</button>
+        </div>
+      `).join("")
         : `<div class="empty-state">Nenhum serviço cadastrado.</div>`;
     }
 
@@ -135,6 +142,7 @@ async function carregarLoja() {
     fecharLoadingModal();
   }
 }
+
 async function carregarContadores(idLoja) {
   try {
     const response = await fetch(`/api/lojas/${idLoja}/contagem`);
