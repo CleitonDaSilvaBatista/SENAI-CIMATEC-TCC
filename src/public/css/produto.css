@@ -798,42 +798,126 @@ table td:first-child {
   right: 15px;
 }
 
- .modal-hidden {
-  display: none;
-}
-
-#modal-login {
+.modal-feedback-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-
-  display: none;
+  inset: 0;
+  background: rgba(9, 20, 16, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
   z-index: 9999;
 }
 
-#modal-login.active {
-  display: flex;
+.modal-feedback-overlay.ativo {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
-.modal-box {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
+.modal-feedback-box {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%);
+  border-radius: 24px;
+  padding: 34px 26px 26px;
   text-align: center;
-  max-width: 300px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+  transform: translateY(24px) scale(0.96);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.modal-actions {
-  margin-top: 15px;
+.modal-feedback-overlay.ativo .modal-feedback-box {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal-feedback-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #f2f5f3;
+  color: #4e6359;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-feedback-icon-wrap {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-bottom: 18px;
 }
 
+.modal-feedback-icon-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-feedback-icon-circle.erro {
+  background: radial-gradient(circle at 30% 30%, #ffe8e8, #ffc8c8);
+}
+
+.modal-feedback-error-symbol {
+  font-size: 42px;
+  font-weight: 700;
+  color: #dc2626;
+}
+
+.modal-feedback-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.7rem;
+  color: #153d2c;
+}
+
+.modal-feedback-box p {
+  margin: 0 auto 22px;
+  max-width: 340px;
+  color: #5f6d66;
+  line-height: 1.65;
+}
+
+.modal-feedback-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.modal-feedback-btn {
+  min-width: 150px;
+  min-height: 48px;
+  border: none;
+  border-radius: 12px;
+  padding: 0 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-feedback-btn.primary {
+  background: linear-gradient(135deg, #0b8a56, #16a36a);
+  color: #fff;
+}
+
+.modal-feedback-btn.secondary {
+  background: #eef2f0;
+  color: #29473a;
+  border: 1px solid #dbe6e0;
+}
 /* ==============================
    RESPONSIVIDADE
 ============================== */

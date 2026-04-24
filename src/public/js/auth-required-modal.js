@@ -1,25 +1,16 @@
 (function () {
   function abrirModalLogin() {
     const modal = document.getElementById('modal-login');
+    if (!modal) return;
 
-    if (!modal) {
-      console.error('Modal de login não encontrado na página. Verifique se existe o elemento #modal-login no HTML.');
-      return;
-    }
-
-    modal.classList.remove('modal-hidden');
-    modal.classList.add('active');
-    modal.style.display = 'flex';
+    modal.classList.add('ativo');
   }
 
   function fecharModalLogin() {
     const modal = document.getElementById('modal-login');
-
     if (!modal) return;
 
-    modal.classList.remove('active');
-    modal.classList.add('modal-hidden');
-    modal.style.display = 'none';
+    modal.classList.remove('ativo');
   }
 
   window.exigirLoginParaCarrinho = function exigirLoginParaCarrinho() {
@@ -32,11 +23,21 @@
   };
 
   document.addEventListener('click', function (event) {
-    if (event.target && event.target.id === 'btn-login-agora') {
-      window.location.href = '/login';
+    if (
+      event.target.id === 'btn-login-depois' ||
+      event.target.id === 'btn-login-depois-modal' ||
+      event.target.id === 'modal-login'
+    ) {
+      fecharModalLogin();
     }
 
-    if (event.target && event.target.id === 'btn-login-depois') {
+    if (event.target.id === 'btn-login-agora') {
+      window.location.href = '/login';
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
       fecharModalLogin();
     }
   });
