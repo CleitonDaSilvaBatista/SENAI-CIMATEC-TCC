@@ -3,7 +3,7 @@ const supabase = require('../config/database')
 async function getLojas() {
   const { data, error } = await supabase
     .from('lojas')
-    .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo')
+    .select('id_loja, nome_fantasia, descricao, imagem_url, banner_url, slug, ativo')
     .eq('ativo', true)
     .order('id_loja', { ascending: false })
 
@@ -22,7 +22,7 @@ async function getLojaBySlug(slug) {
 
   const { data: loja, error: lojaError } = await supabase
     .from('lojas')
-    .select('id_loja, nome_fantasia, descricao, imagem_url, slug, ativo, sobre_loja')
+    .select('id_loja, nome_fantasia, descricao, imagem_url, banner_url, slug, ativo, sobre_loja')
     .eq('slug', slug)
     .eq('ativo', true)
     .single()

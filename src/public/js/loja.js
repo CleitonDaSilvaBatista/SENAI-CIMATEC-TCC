@@ -29,6 +29,7 @@ async function carregarLoja() {
     const nomeLoja = document.getElementById("nome-loja");
     const descricaoLoja = document.getElementById("descricao-loja");
     const imagemLoja = document.getElementById("imagem-loja");
+    const bannerLoja = document.querySelector(".loja-hero");
     const sobreLoja = document.getElementById("sobre_loja");
 
     if (nomeLoja) nomeLoja.textContent = dados.loja?.nome_fantasia || "Loja sem nome";
@@ -38,6 +39,15 @@ async function carregarLoja() {
     if (imagemLoja) {
       imagemLoja.src = dados.loja?.imagem_url || "/img/placeholder-loja.png";
       imagemLoja.alt = dados.loja?.nome_fantasia || "Logo da loja";
+    }
+
+    if (bannerLoja) {
+      const bannerUrl = dados.loja?.banner_url || "/img/banercarrosel.webp";
+
+      bannerLoja.style.backgroundImage = `
+    linear-gradient(135deg, rgba(10, 20, 17, 0.75), rgba(14, 40, 31, 0.55)),
+    url("${bannerUrl}")
+  `;
     }
     if (sobreLoja) {
       sobreLoja.textContent = dados.loja?.sobre_loja || "Sem informações disponíveis.";
@@ -212,9 +222,9 @@ async function adicionarAoCarrinho(idItem) {
 
     localStorage.setItem("jobee_cart", JSON.stringify(carrinhoAtual));
     console.log("Carrinho salvo:", carrinhoAtual);
-    alert("Produto adicionado ao carrinho!");
+    showToast('Produto adicionado ao carrinho!', 'success');
   } catch (error) {
     console.error("Erro ao adicionar ao carrinho:", error);
-    alert("Não foi possível adicionar o item ao carrinho.");
+    showToast('Erro ao adicionar produto', 'error');
   }
 }
