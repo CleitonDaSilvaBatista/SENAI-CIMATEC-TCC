@@ -211,34 +211,9 @@ function exibirModalRedirecionamento(produto) {
 }
 
 function adicionarAoCarrinho() {
-function exigirLoginParaCarrinho() {
-  const token = localStorage.getItem('jobee_token');
-
-  if (token) return true;
-
-  const modal = document.getElementById('modal-login');
-  modal.classList.add('active'); // 👈 mostra modal
-
-  return false;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const btnLogin = document.getElementById('btn-login-agora');
-  const btnDepois = document.getElementById('btn-login-depois');
-  const modal = document.getElementById('modal-login');
-
-  if (btnLogin) {
-    btnLogin.addEventListener('click', () => {
-      window.location.href = '/login';
-    });
+  if (!exigirLoginParaCarrinho()) {
+    return;
   }
-
-  if (btnDepois) {
-    btnDepois.addEventListener('click', () => {
-      modal.classList.remove('active'); // 👈 fecha modal
-    });
-  }
-});
 
   const produto = obterDadosProdutoAtual();
   const carrinhoAtual = JSON.parse(localStorage.getItem('jobee_cart') || '[]');

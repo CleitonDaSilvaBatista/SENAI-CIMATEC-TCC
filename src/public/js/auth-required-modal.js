@@ -4,12 +4,14 @@ function exigirLoginParaCarrinho() {
   if (token) return true;
 
   const modal = document.getElementById('modal-login');
-  modal.classList.remove('modal-hidden');
+
+  if (modal) {
+    modal.classList.add('active');
+  }
 
   return false;
 }
 
-// Botões do modal
 document.addEventListener('DOMContentLoaded', () => {
   const btnLogin = document.getElementById('btn-login-agora');
   const btnDepois = document.getElementById('btn-login-depois');
@@ -21,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (btnDepois) {
+  if (btnDepois && modal) {
     btnDepois.addEventListener('click', () => {
-      modal.classList.add('modal-hidden');
+      modal.classList.remove('active');
     });
   }
 });
