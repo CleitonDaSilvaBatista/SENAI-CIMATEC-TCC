@@ -1,14 +1,16 @@
 document.addEventListener("DOMContentLoaded", carregarLoja);
 
+document.addEventListener("DOMContentLoaded", carregarLoja);
+
 async function carregarLoja() {
   abrirLoadingModal("Estamos carregando os dados da loja...");
 
   const partes = window.location.pathname.split("/");
-  const slug = partes[partes.length - 1];
+  const slug = partes[partes.length - 1] || partes[partes.length - 2];
 
   if (!slug) {
-    fecharLoadingModal();
     document.body.innerHTML = "<p>Loja não informada.</p>";
+    fecharLoadingModal();
     return;
   }
 
@@ -16,79 +18,113 @@ async function carregarLoja() {
     const resposta = await fetch(`/api/lojas/${slug}`);
     const dados = await resposta.json();
 
+    console.log("Resposta da API:", dados);
+
     if (!resposta.ok) {
       throw new Error(dados.error || "Erro ao carregar loja");
     }
 
-    document.title = `${dados.loja.nome_fantasia} | Jobee`;
+    document.title = `${dados.loja?.nome_fantasia || "Loja"} | Jobee`;
 
     const nomeLoja = document.getElementById("nome-loja");
     const descricaoLoja = document.getElementById("descricao-loja");
     const imagemLoja = document.getElementById("imagem-loja");
     const sobreLoja = document.getElementById("sobre_loja");
 
-    nomeLoja.textContent = dados.loja.nome_fantasia;
-    descricaoLoja.textContent = dados.loja.descricao || "Sem descrição disponível.";
-    imagemLoja.src = dados.loja.imagem_url || "/img/placeholder-loja.png";
-    imagemLoja.alt = dados.loja.nome_fantasia;
-    sobreLoja.textContent = dados.loja.sobre_loja || "Sem informações disponíveis.";
+    if (nomeLoja) nomeLoja.textContent = dados.loja?.nome_fantasia || "Loja sem nome";
+    if (descricaoLoja) {
+      descricaoLoja.textContent = dados.loja?.descricao || "Sem descrição disponível.";
+    }
+    if (imagemLoja) {
+      imagemLoja.src = dados.loja?.imagem_url || "/img/placeholder-loja.png";
+      imagemLoja.alt = dados.loja?.nome_fantasia || "Logo da loja";
+    }
+    if (sobreLoja) {
+      sobreLoja.textContent = dados.loja?.sobre_loja || "Sem informações disponíveis.";
+    }
 
-    await carregarContadores(dados.loja.id_loja);
+    if (dados.loja?.id_loja) {
+      await carregarContadores(dados.loja.id_loja);
+    }
+
+    const produtos = Array.isArray(dados.produtos) ? dados.produtos : [];
+    const servicos = Array.isArray(dados.servicos) ? dados.servicos : [];
 
     const listaProdutos = document.getElementById("lista-produtos");
-    listaProdutos.innerHTML = dados.produtos.length
-      ? dados.produtos.map(produto => `
-          <div class="item-card">
-            <img 
-              src="${produto.imagem_url || '/img/placeholder-loja.png'}" 
-              alt="${produto.nome}"
-              onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
-            >
-            <div class="item-card-content">
-              <h3>${produto.nome}</h3>
-              <p>${produto.descricao || 'Sem descrição.'}</p>
-              <div class="item-meta">
-                <strong>R$ ${Number(produto.preco).toFixed(2).replace('.', ',')}</strong>
-                <span>Estoque: ${produto.estoque ?? 0}</span>
+    if (listaProdutos) {
+      listaProdutos.innerHTML = produtos.length
+        ? produtos.map(produto => `
+            <div class="card-item">
+              <div class="card-img-wrap">
+                <img 
+                  src="${produto.imagem_url || '/img/placeholder-loja.png'}" 
+                  alt="${produto.nome || 'Produto'}"
+                  onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
+                >
+                <span class="selo green">Produto</span>
               </div>
-              <button class="btn-add-cart" data-id="${produto.id_item}">
-                Adicionar ao carrinho
-              </button>
+
+              <div class="card-conteudo">
+                <div class="card-categoria">Produto</div>
+                <h3>${produto.nome || 'Sem nome'}</h3>
+                <p class="card-desc">${produto.descricao || 'Sem descrição.'}</p>
+
+                <div class="card-preco">
+                  <strong>R$ ${Number(produto.preco || 0).toFixed(2).replace('.', ',')}</strong>
+                </div>
+
+                <div class="card-footer">
+                  <button class="btn btn-primary btn-add-cart" data-id="${produto.id_item}">
+                    Adicionar ao carrinho
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        `).join("")
-      : "<p>Nenhum produto cadastrado.</p>";
+          `).join("")
+        : `<div class="empty-state">Nenhum produto cadastrado.</div>`;
+    }
 
     const listaServicos = document.getElementById("lista-servicos");
-    listaServicos.innerHTML = dados.servicos.length
-      ? dados.servicos.map(servico => `
-          <div class="item-card">
-            <img 
-              src="${servico.imagem_url || '/img/placeholder-loja.png'}" 
-              alt="${servico.nome}"
-              onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
-            >
-            <div class="item-card-content">
-              <h3>${servico.nome}</h3>
-              <p>${servico.descricao || 'Sem descrição.'}</p>
-              <div class="item-meta">
-                <strong>R$ ${Number(servico.preco).toFixed(2).replace('.', ',')}</strong>
-                <span>Duração: ${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
+    if (listaServicos) {
+      listaServicos.innerHTML = servicos.length
+        ? servicos.map(servico => `
+            <div class="card-servico">
+              <div class="servico-topo">
+                <h3>${servico.nome || 'Serviço sem nome'}</h3>
+                <span class="tag-servico">Serviço</span>
               </div>
+
+              <p>${servico.descricao || 'Sem descrição.'}</p>
+
+              <div class="servico-meta">
+                <span>R$ ${Number(servico.preco || 0).toFixed(2).replace('.', ',')}</span>
+                <span>${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
+              </div>
+
+              <button class="btn">Solicitar serviço</button>
             </div>
-          </div>
-        `).join("")
-      : "<p>Nenhum serviço cadastrado.</p>";
+          `).join("")
+        : `<div class="empty-state">Nenhum serviço cadastrado.</div>`;
+    }
 
     ativarBotoesCarrinho();
-    fecharLoadingModal();
   } catch (error) {
     console.error("Erro ao carregar loja:", error);
+
+    const listaProdutos = document.getElementById("lista-produtos");
+    const listaServicos = document.getElementById("lista-servicos");
+
+    if (listaProdutos) {
+      listaProdutos.innerHTML = `<div class="empty-state">Erro ao carregar os produtos.</div>`;
+    }
+
+    if (listaServicos) {
+      listaServicos.innerHTML = `<div class="empty-state">Erro ao carregar os serviços.</div>`;
+    }
+  } finally {
     fecharLoadingModal();
-    document.body.innerHTML = "<p>Erro ao carregar a loja.</p>";
   }
 }
-
 async function carregarContadores(idLoja) {
   try {
     const response = await fetch(`/api/lojas/${idLoja}/contagem`);
@@ -98,11 +134,18 @@ async function carregarContadores(idLoja) {
       throw new Error(data.error || "Erro ao carregar contadores");
     }
 
-    document.getElementById("contador-produtos").innerText =
-      `${data.produtos} produto${data.produtos !== 1 ? "s" : ""}`;
+    const contadorProdutos = document.getElementById("contador-produtos");
+    const contadorServicos = document.getElementById("contador-servicos");
 
-    document.getElementById("contador-servicos").innerText =
-      `${data.servicos} serviço${data.servicos !== 1 ? "s" : ""}`;
+    if (contadorProdutos) {
+      contadorProdutos.innerText =
+        `${data.produtos || 0} produto${data.produtos !== 1 ? "s" : ""}`;
+    }
+
+    if (contadorServicos) {
+      contadorServicos.innerText =
+        `${data.servicos || 0} serviço${data.servicos !== 1 ? "s" : ""}`;
+    }
   } catch (error) {
     console.error("Erro ao carregar contadores:", error);
   }
@@ -136,6 +179,10 @@ function ativarBotoesCarrinho() {
 }
 
 async function adicionarAoCarrinho(idItem) {
+  if (!exigirLoginParaCarrinho()) {
+    return;
+  }
+
   try {
     const resposta = await fetch(`/api/itens/${idItem}`);
     const item = await resposta.json();

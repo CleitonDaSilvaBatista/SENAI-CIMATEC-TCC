@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="/css/navbar.css">
 <link rel="stylesheet" href="/css/layout.css">
 
+<script src="/js/auth-required-modal.js" defer></script>
 <script src="/js/navbar.js" defer></script>
 <script src="/js/cart.js" defer></script>
 
@@ -505,5 +506,30 @@
     </footer>
 
     <script src="./js/produto.js"></script>
+  <div class="modal-feedback-overlay" id="modal-login">
+  <div class="modal-feedback-box erro">
+    <button class="modal-feedback-close" id="btn-login-depois" aria-label="Fechar">&times;</button>
+
+    <div class="modal-feedback-icon-wrap">
+      <div class="modal-feedback-icon-circle erro">
+        <span class="modal-feedback-error-symbol">!</span>
+      </div>
+    </div>
+
+    <h3>Login necessário</h3>
+    <p>Você precisa estar logado para adicionar produtos ao carrinho.</p>
+
+    <div class="modal-feedback-actions">
+      <button type="button" class="modal-feedback-btn primary" id="btn-login-agora">
+        Fazer login
+      </button>
+
+      <button type="button" class="modal-feedback-btn secondary" id="btn-login-depois-modal">
+        Agora não
+      </button>
+    </div>
+  </div>
+</div>
+</div>
   </body>
 </html>

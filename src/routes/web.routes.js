@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const { resourceLimits } = require('worker_threads')
 
 const router = express.Router()
 
@@ -11,12 +12,32 @@ router.get('/forgot-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'forgot.html'))
 })
 
+router.get('/compra', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'compra.html'))
+})
+
 router.get('/login', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'login.html'))
 })
 
 router.get('/cadastro', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'criarcont.html'))
+})
+
+router.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dashboard-jobee.html'))
+} )
+
+router.get('/perfil', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil-cliente.html'))
+})
+      
+router.get('/perfilempreendedor', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil-empreendedor.html'))
+})
+
+router.get('/cadastrar-loja', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'cadastrar-loja.html'))
 })
 
 router.get('/produto', (req, res) => {
