@@ -90,7 +90,10 @@ async function carregarLoja() {
         ? servicos.map(servico => `
             <div class="card-servico">
               <div class="servico-topo">
-                <h3>${servico.nome || 'Serviço sem nome'}</h3>
+                img src="${servico.imagem_url || '/img/placeholder-loja.png'}" 
+                  alt="${servico.nome || 'Serviço'}"
+                  onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
+                >
                 <span class="tag-servico">Serviço</span>
               </div>
 
