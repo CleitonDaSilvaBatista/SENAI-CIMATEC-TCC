@@ -13,18 +13,37 @@
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/home.css" />
   <link rel="stylesheet" href="../css/lojas.css" />
+  <link rel="stylesheet" href="/css/pro-theme.css">
 
   <script src="/js/auth-required-modal.js" defer></script>
+  <script src="/js/toast.js"></script>
   <script src="../js/loja.js" defer></script>
   <script src="../js/navbar.js"></script>
-  <script src="./js/user-info.js"></script>
+  <script src="./user-info.js"></script>
 </head>
 
-<body>
+<body class="jobee-page page-loja">
+  <div class="jobee-ambient" aria-hidden="true">
+    <span class="honey-orb honey-orb--one"></span>
+    <span class="honey-orb honey-orb--two"></span>
+    <span class="bee-flight bee-flight--one">🐝</span>
+    <span class="bee-flight bee-flight--two">🐝</span>
+    <div class="honeycomb-pattern"></div>
+  </div>
+
   <div id="navbar-container"></div>
+  <section class="jobee-brand-strip" aria-label="Identidade Jobee">
+    <div class="brand-strip__mark">⬡</div>
+    <div>
+      <strong>Jobee</strong>
+      <span>Uma colmeia de serviços</span>
+    </div>
+    <div class="brand-strip__bees">mel • conexão • confiança</div>
+  </section>
+
   <section class="sub-navbar" aria-label="Atalhos de navegação">
     <div class="dropdown-categorias">
-      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Categorias ▼</a>
+      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Colmeias de serviços ▼</a>
       <ul class="menu-categorias">
         <li><a href="#">Supermercado</a></li>
         <li><a href="#">Tecnologia</a></li>
@@ -136,12 +155,11 @@
       <section class="secao" id="produtos">
         <div class="secao-header">
           <div>
-            <h2>Produtos em destaque</h2>
+            <h2>Achados da colmeia</h2>
             <p>Escolha entre os itens mais vendidos da loja.</p>
           </div>
           <div class="contador" id="contador-produtos">0 produtos</div>
         </div>
-
         <div class="grid-itens" id="lista-produtos"></div>
       </section>
 
@@ -167,27 +185,23 @@
           <h3>Avaliações recentes</h3>
 
           <div class="avaliacao">
-            <strong>Marina Souza</strong>
-            <div class="nota">★★★★★</div>
+            <strong></strong>
+            <div class="nota"></div>
             <p>
-              Produto chegou rápido e com ótima qualidade. Loja muito
-              confiável.
             </p>
           </div>
 
           <div class="avaliacao">
-            <strong>Pedro Henrique</strong>
-            <div class="nota">★★★★★</div>
+            <strong></strong>
+            <div class="nota"></div>
             <p>
-              Atendimento excelente e serviço realizado no prazo combinado.
             </p>
           </div>
 
           <div class="avaliacao">
-            <strong>Ana Clara</strong>
-            <div class="nota">★★★★☆</div>
+            <strong></strong>
+            <div class="nota"></div>
             <p>
-              Página linda e fácil de usar. Compraria novamente com certeza.
             </p>
           </div>
         </div>
@@ -219,6 +233,7 @@
   </div>
 </div>
 </div>
+<div id="toast-container"></div>
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col">
@@ -254,6 +269,7 @@
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
   </footer>
+
 </body>
 
 </html>

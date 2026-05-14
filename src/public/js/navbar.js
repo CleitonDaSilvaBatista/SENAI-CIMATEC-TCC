@@ -7,20 +7,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   navbarContainer.innerHTML = `
-    <header class="navbar">
+    <header class="navbar jobee-topbar">
       <div class="navbar-left">
-        <div class="logo" data-link="/">Jobee</div>
+        <div class="logo jobee-logo" data-link="/">
+          <span class="logo-comb" aria-hidden="true">⬢</span>
+          <span class="logo-text">Jobee</span>
+          <small>Uma colmeia de serviços</small>
+        </div>
 
         <div class="location" id="location-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/535/535239.png" alt="localização" width="16" height="16" />
+          <span class="location-icon">⌖</span>
           <span id="location-text">Informe seu CEP</span>
         </div>
       </div>
 
       <div class="search-bar">
-        <input type="text" placeholder="Buscar serviços, produtos ou lojas..." id="search-input" />
-        <button id="search-btn" type="button">
-          <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" width="18" height="18" />
+        <input type="text" placeholder="Buscar na colmeia: serviços, produtos ou lojas..." id="search-input" />
+        <button id="search-btn" type="button" aria-label="Buscar">
+          <span>⌕</span>
         </button>
       </div>
 
@@ -32,20 +36,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         <div id="user-status" class="user-status" style="display: none;"></div>
 
-        <a data-link="/carrinho" class="cart">
-          <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
+        <a data-link="/carrinho" class="cart" aria-label="Carrinho">
+          <span class="cart-comb">⬡</span>
           <span class="navbar-cart-count" id="navbar-cart-count">0</span>
         </a>
       </div>
     </header>
 
     <div class="cep-modal-overlay" id="cep-modal-overlay">
-      <div class="cep-modal">
+      <div class="cep-modal honey-modal">
         <button class="cep-modal-close" id="cep-modal-close" aria-label="Fechar modal">&times;</button>
 
-        <div class="cep-modal-icon">📍</div>
-        <h3>Informe seu CEP</h3>
-        <p>Digite seu CEP para encontrarmos sua cidade.</p>
+        <div class="cep-modal-icon">🐝</div>
+        <h3>Qual colmeia vamos atender?</h3>
+        <p>Digite seu CEP para conectarmos você aos serviços próximos.</p>
 
         <input type="text" id="cep-input-modal" placeholder="00000-000" maxlength="9" />
         <small id="cep-feedback"></small>
@@ -64,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
   mostrarStatusLogin();
   atualizarBadgeCarrinho();
 });
-
 function bindNavbarLinks() {
   const links = document.querySelectorAll('[data-link]');
 

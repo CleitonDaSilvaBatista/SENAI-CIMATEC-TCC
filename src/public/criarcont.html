@@ -4,24 +4,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Criar Conta | Jobee</title>
+  <title>Acessar para a colmeia | Jobee</title>
   <link rel="stylesheet" href="css/criarcont.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pro-theme.css">
   
   <script src="/js/navbar.js" defer></script>
 
 </head>
 
-<body>
+<body class="jobee-page page-criarcont">
+  <div class="jobee-ambient" aria-hidden="true">
+    <span class="honey-orb honey-orb--one"></span>
+    <span class="honey-orb honey-orb--two"></span>
+    <span class="bee-flight bee-flight--one">🐝</span>
+    <span class="bee-flight bee-flight--two">🐝</span>
+    <div class="honeycomb-pattern"></div>
+  </div>
+
   <div id='navbar-container'></div>
   <!-- Barra secundária -->
   <section class="sub-navbar">
     <div class="dropdown-categorias">
-      <a href="#" class="categorias-btn">Categorias ▼</a>
+      <a href="#" class="categorias-btn">Colmeias de serviços ▼</a>
       <ul class="menu-categorias">
         <li><a href="#">Supermercado</a></li>
         <li><a href="#">Tecnologia</a></li>
@@ -40,15 +49,24 @@
     <a href="#">Contato</a>
   </section>
   </header>
+  <section class="jobee-brand-strip" aria-label="Identidade Jobee">
+    <div class="brand-strip__mark">⬡</div>
+    <div>
+      <strong>Jobee</strong>
+      <span>Uma colmeia de serviços</span>
+    </div>
+    <div class="brand-strip__bees">mel • conexão • confiança</div>
+  </section>
+
 
   <section id="form-cliente" class="form-section">
     <div class="login-right">
       <div class="login-text">
         <h1>Cadastre-se na Jobee</h1>
-        <p>Crie sua conta e comece a usar nossos serviços</p>
+        <p>Acessar para a colmeia e comece a usar nossos serviços</p>
       </div>
     <div class="form-container">
-      <h2>Crie sua conta</h2>
+      <h2>Acessar para a colmeia</h2>
       <form onsubmit="salvar(event)">
 
 
@@ -83,7 +101,7 @@
           <option value="1">Cliente</option>
           <option value="2">Empreendedor</option>
         </select>
-        <button type="submit" class="btn-enviar" >Criar Conta</button>
+        <button type="submit" class="btn-enviar" >Acessar para a colmeia</button>
       </form>
       <br>
       <p>Já tem uma conta? <a href="/login" id="entre">Entre aqui</a></p>

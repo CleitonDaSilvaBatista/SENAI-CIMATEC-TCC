@@ -11,12 +11,30 @@
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="/css/pro-theme.css">
 
   <script src="/js/navbar.js" defer></script>
 </head>
 
-<body>
+<body class="jobee-page page-login">
+  <div class="jobee-ambient" aria-hidden="true">
+    <span class="honey-orb honey-orb--one"></span>
+    <span class="honey-orb honey-orb--two"></span>
+    <span class="bee-flight bee-flight--one">🐝</span>
+    <span class="bee-flight bee-flight--two">🐝</span>
+    <div class="honeycomb-pattern"></div>
+  </div>
+
   <div id="navbar-container"></div>
+  <section class="jobee-brand-strip" aria-label="Identidade Jobee">
+    <div class="brand-strip__mark">⬡</div>
+    <div>
+      <strong>Jobee</strong>
+      <span>Uma colmeia de serviços</span>
+    </div>
+    <div class="brand-strip__bees">mel • conexão • confiança</div>
+  </section>
+
 
   <section class="sub-navbar">
     <a href="#">Categorias</a>
@@ -47,7 +65,7 @@
             <input type="password" id="password" placeholder="Digite sua senha" required />
           </div>
 
-          <button type="submit" class="btn-enviar">Entrar</button>
+          <button type="submit" class="btn-enviar">Acessar</button>
 
           <p class="forgot-password"><a href="/forgot-password">Esqueceu sua senha?</a></p>
 
@@ -63,17 +81,17 @@
         <div class="social-login">
           <button class="social-btn google">
             <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" />
-            Entrar com Google
+            Acessar com Google
           </button>
 
           <button class="social-btn linkedin">
             <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
-            Entrar com LinkedIn
+            Acessar com LinkedIn
           </button>
 
           <button class="social-btn microsoft">
             <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Microsoft" />
-            Entrar com Microsoft
+            Acessar com Microsoft
           </button>
         </div>
       </div>
@@ -154,7 +172,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© 2025 Jobee - Todos os direitos reservados.</p>
+      <p>© 2025 Jobee - Uma colmeia de serviços. Todos os direitos reservados.</p>
     </div>
   </footer>
 

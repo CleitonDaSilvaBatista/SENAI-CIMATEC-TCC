@@ -7,7 +7,7 @@
   <meta name="description"
     content="Jobee - Uma colmeia de serviços que conecta pessoas, negócios e produtos de forma prática, moderna e segura." />
   <meta name="theme-color" content="#198754" />
-  <title>Jobee | Uma Colmeia de Serviços</title>
+  <title>Jobee | Uma colmeia de serviços</title>
 
   <!-- Fonte -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/pro-theme.css">
   
   <!-- JavaScript -->
   <script src="js/navbar.js" defer></script>
@@ -31,15 +32,32 @@
 
 </head>
 
-<body>
+<body class="jobee-page page-home">
+  <div class="jobee-ambient" aria-hidden="true">
+    <span class="honey-orb honey-orb--one"></span>
+    <span class="honey-orb honey-orb--two"></span>
+    <span class="bee-flight bee-flight--one">🐝</span>
+    <span class="bee-flight bee-flight--two">🐝</span>
+    <div class="honeycomb-pattern"></div>
+  </div>
+
 
   <!-- Navbar será injetada aqui via JS -->
   <div id="navbar-container"></div>
+  <section class="jobee-brand-strip" aria-label="Identidade Jobee">
+    <div class="brand-strip__mark">⬡</div>
+    <div>
+      <strong>Jobee</strong>
+      <span>Uma colmeia de serviços</span>
+    </div>
+    <div class="brand-strip__bees">mel • conexão • confiança</div>
+  </section>
+
 
   <!-- Sub-navbar -->
   <section class="sub-navbar" aria-label="Atalhos de navegação">
     <div class="dropdown-categorias">
-      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Categorias ▼</a>
+      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Colmeias de serviços ▼</a>
       <ul class="menu-categorias">
         <li><a href="#">Supermercado</a></li>
         <li><a href="#">Tecnologia</a></li>
@@ -180,7 +198,7 @@
               <div class="old-price">R$ 79,99</div>
               <p class="preco-produto">R$ 67,85 <span class="desconto">25% OFF</span></p>
               <p class="parcela">12x R$ 6,68</p>
-              <p class="frete">Frete grátis</p>
+              <p class="frete">Entrega doce e rápida</p>
             </div>
           </article>
 
@@ -194,7 +212,7 @@
               <div class="old-price">R$ 3.299,90</div>
               <p class="preco-produto">R$ 2.867,90 <span class="desconto">15% OFF</span></p>
               <p class="parcela">10x R$ 286,79 sem juros</p>
-              <p class="frete">Frete grátis</p>
+              <p class="frete">Entrega doce e rápida</p>
             </div>
           </article>
 
@@ -208,7 +226,7 @@
               <div class="old-price">R$ 89,90</div>
               <p class="preco-produto">R$ 59,90 <span class="desconto">33% OFF</span></p>
               <p class="parcela">12x R$ 5,90</p>
-              <p class="frete">Frete grátis</p>
+              <p class="frete">Entrega doce e rápida</p>
             </div>
           </article>
 
@@ -222,7 +240,7 @@
               <div class="old-price">R$ 429,00</div>
               <p class="preco-produto">R$ 349,00 <span class="desconto">19% OFF</span></p>
               <p class="parcela">6x R$ 58,17 sem juros</p>
-              <p class="frete">Frete grátis</p>
+              <p class="frete">Entrega doce e rápida</p>
             </div>
           </article>
 
@@ -236,7 +254,7 @@
               <div class="old-price">R$ 79,90</div>
               <p class="preco-produto">R$ 58,10 <span class="desconto">27% OFF</span></p>
               <p class="parcela">2x R$ 29,05 sem juros</p>
-              <p class="frete">Frete grátis</p>
+              <p class="frete">Entrega doce e rápida</p>
             </div>
           </article>
         </div>
@@ -315,6 +333,18 @@
   </section>
 
   <!-- Footer -->
+  
+  <section class="jobee-hive-system">
+    <div class="hive-copy">
+      <span class="hero-badge">🐝 Ecossistema Jobee</span>
+      <h2>Uma colmeia viva, feita para conectar serviços, lojas e clientes.</h2>
+      <p>Na Jobee, cada profissional é uma célula da colmeia: organizado, confiável e pronto para entregar valor. O amarelo mel representa energia; o verde representa crescimento, segurança e tecnologia.</p>
+    </div>
+    <div class="hive-cells" aria-hidden="true">
+      <span>Serviços</span><span>Lojas</span><span>Clientes</span><span>Confiança</span><span>Entrega</span><span>Comunidade</span>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col">
