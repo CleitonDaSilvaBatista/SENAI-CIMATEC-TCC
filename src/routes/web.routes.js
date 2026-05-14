@@ -1,83 +1,27 @@
 const express = require('express')
 const path = require('path')
-const { resourceLimits } = require('worker_threads')
 
 const router = express.Router()
+const publicPath = (...segments) => path.join(process.cwd(), 'src', 'public', ...segments)
 
-router.get('/', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'home.html'))
-})
-
-router.get('/compra', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'compra.html'))
-})
-
-router.get('/forgot-password', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'forgot.html'))
-})
-
-router.get('/compra', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'compra.html'))
-})
-
-router.get('/login', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'login.html'))
-})
-
-router.get('/cadastro', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'criarcont.html'))
-})
-
-router.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dashboard-jobee.html'))
-} )
-
-router.get('/perfil', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil-cliente.html'))
-})
-      
-router.get('/perfilempreendedor', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil-empreendedor.html'))
-})
-
-router.get('/cadastrar-loja', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'cadastrar-loja.html'))
-})
-
-router.get('/produto', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto.html'))
-})
-
-router.get('/carrinho', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'cart.html'))
-})
-
-router.get('/loja/:slug', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'loja.html'))
-})
-
-router.get('/reset-password', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'reset-password.html'))
-})
-
-router.get('/perfil', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil.html'))
-})
-
-router.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dashboard-jobee.html'))
-})
-
-router.get('/sobre', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'sobre.html'))
-})
-
-router.get('/ajuda', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'ajuda.html'))
-})
-
-router.get('/politica-privacidade', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'politica-privacidade.html'))
-})
+router.get('/', (req, res) => res.sendFile(publicPath('home.html')))
+router.get('/home', (req, res) => res.sendFile(publicPath('home.html')))
+router.get('/compra', (req, res) => res.sendFile(publicPath('compra.html')))
+router.get('/forgot-password', (req, res) => res.sendFile(publicPath('forgot.html')))
+router.get('/login', (req, res) => res.sendFile(publicPath('login.html')))
+router.get('/cadastro', (req, res) => res.sendFile(publicPath('criarcont.html')))
+router.get('/dashboard', (req, res) => res.sendFile(publicPath('dashboard-jobee.html')))
+router.get('/perfil', (req, res) => res.sendFile(publicPath('perfil-cliente.html')))
+router.get('/perfilempreendedor', (req, res) => res.sendFile(publicPath('perfil-empreendedor.html')))
+router.get('/cadastrar-loja', (req, res) => res.sendFile(publicPath('cadastrar-loja.html')))
+router.get('/produto', (req, res) => res.sendFile(publicPath('produto.html')))
+router.get('/carrinho', (req, res) => res.sendFile(publicPath('cart.html')))
+router.get('/cart', (req, res) => res.redirect('/carrinho'))
+router.get('/sobre', (req, res) => res.sendFile(publicPath('sobre.html')))
+router.get('/loja/:slug', (req, res) => res.sendFile(publicPath('loja.html')))
+router.get('/reset-password', (req, res) => res.sendFile(publicPath('reset-password.html')))
+router.get('/buscar', (req, res) => res.sendFile(publicPath('home.html')))
+router.get('/politica-privacidade', (req, res) => res.redirect('https://www.universidadesenaicimatec.edu.br/politica-de-privacidade/'))
+router.get('/ajuda', (req, res) => res.redirect('/sobre'))
 
 module.exports = router
