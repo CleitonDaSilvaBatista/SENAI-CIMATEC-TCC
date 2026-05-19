@@ -295,6 +295,33 @@ async function getQuickActions() {
   }
 }
 
+async function getExecutiveByPlan(plano) {
+  const full = await getExecutiveFull();
+
+  if (plano === 'Básico') {
+    return {
+      summary: full.summary,
+      kpis: full.kpis
+    };
+  }
+
+  if (plano === 'Médio') {
+    return {
+      ...full,
+      dica: "Use campanhas para crescer"
+    };
+  }
+
+  if (plano === 'Premium') {
+    return {
+      ...full,
+      ia: "Assistente inteligente ativo"
+    };
+  }
+
+  return {};
+}
+
 async function getExecutiveFull() {
   const [
     summary,
