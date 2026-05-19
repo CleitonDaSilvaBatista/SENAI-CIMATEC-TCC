@@ -14,8 +14,9 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use(express.static(path.join(process.cwd(), 'src', 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
+// ROTAS
 app.use('/', webRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/lojas', lojaRoutes)
@@ -23,6 +24,7 @@ app.use('/api/itens', itemRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/dashboard', dashRoutes)
 
+// ERRO
 app.use(errorMiddleware)
 
 module.exports = app

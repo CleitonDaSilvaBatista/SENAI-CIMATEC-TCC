@@ -17,7 +17,7 @@ function requireAuth() {
 async function fetchDashboard() {
   const token = getToken()
 
-  const response = await fetch('/api/dashboard/executive/full', {
+  const response = await fetch('/api/dashboard?plano=Basico', {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`

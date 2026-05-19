@@ -16,6 +16,6 @@ router.get('/executive/alerts', authMiddleware, dashboardController.getAlerts)
 router.get('/executive/strategic-block', authMiddleware, dashboardController.getStrategicBlock)
 router.get('/executive/quick-actions', authMiddleware, dashboardController.getQuickActions)
 router.get('/executive/full', authMiddleware, dashboardController.getExecutiveFull)
-router.get('/', dashboardController.getDashboard);
+router.get('/', dashboardController.getDashboard)
 
 module.exports = router
