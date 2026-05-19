@@ -353,5 +353,5 @@ module.exports = {
   getAlerts,
   getStrategicBlock,
   getQuickActions,
-  getExecutiveFull
+  getExecutiveByPlan
 }
