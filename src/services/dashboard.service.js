@@ -296,30 +296,28 @@ async function getQuickActions() {
 }
 
 async function getExecutiveByPlan(plano) {
-  const full = await getExecutiveFull();
+  const data = {}
 
-  if (plano === 'Básico') {
-    return {
-      summary: full.summary,
-      kpis: full.kpis
-    };
+  data.summary = await getExecutiveSummary()
+
+  if (plano === 'Basico') {
+    return data
   }
 
-  if (plano === 'Médio') {
-    return {
-      ...full,
-      dica: "Use campanhas para crescer"
-    };
+  data.kpis = await getExecutiveKpis()
+  data.revenueWeek = await getRevenueWeek()
+  data.recentOrders = await getRecentOrders()
+
+  if (plano === 'Medio') {
+    return data
   }
 
-  if (plano === 'Premium') {
-    return {
-      ...full,
-      ia: "Assistente inteligente ativo"
-    };
-  }
+  data.categoryPerformance = await getCategoryPerformance()
+  data.topPartners = await getTopPartners()
+  data.alerts = await getAlerts()
+  data.strategic = await getStrategicBlock()
 
-  return {};
+  return data
 }
 
 async function getExecutiveFull() {
@@ -380,5 +378,6 @@ module.exports = {
   getAlerts,
   getStrategicBlock,
   getQuickActions,
+  getExecutiveFull,
   getExecutiveByPlan
 }

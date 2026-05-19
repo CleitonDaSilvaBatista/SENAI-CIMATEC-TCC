@@ -123,7 +123,9 @@
     <button class="btn" onclick="finalizarAssinatura()">Finalizar Assinatura</button>
   </div>
 
-  <script>
+  <script src="/js/dashboard.js">
+
+
     function finalizarAssinatura() {
       const plano = document.getElementById('plano').innerText;
       const valor = document.getElementById('valor').innerText;
@@ -148,18 +150,28 @@
     }
 
     async function carregarDashboard() {
-      const res = await fetch(`/api/dashboard?plano=${plano}`);
-      const data = await res.json();
+      const plano = "Basico" // depois virá do usuário logado
 
-      console.log(data); // debug
+      const res = await fetch(`/api/dashboard?plano=${plano}`)
+      const data = await res.json()
 
-      // exemplo simples:
-      document.body.innerHTML += `
-      <h2>Receita: ${data.summary?.receitaConsolidada?.formatado || 'Bloqueado'}</h2>
-    `;
+      console.log(data)
+
+      // sempre existe
+      if (data.summary) {
+        document.getElementById('summary').innerText =
+          data.summary.receitaConsolidada.formatado
+      }
+
+      // condicionais (liberação por plano)
+      if (data.kpis) {
+        document.getElementById('kpis').innerText = data.kpis.gmvMarketplace.valor
+      } else {
+        document.getElementById('kpis').innerHTML = "🔒 Plano Médio"
+      }
     }
 
-    carregarDashboard();
+    carregarDashboard()
   </script>
 
 </body>
