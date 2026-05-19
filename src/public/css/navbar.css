@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #575408;;
+  background: #2d3825;;
   padding: 12px 40px;
   position: sticky;
   top: 0;
@@ -25,7 +25,7 @@
 .logo {
   font-size: 26px;
   font-weight: 700;
-  color: #f7f3e8;
+  color: #ffffff;
   cursor: pointer;
   letter-spacing: -0.5px;
   white-space: nowrap;
@@ -40,7 +40,7 @@
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #f7f3e8;
+  color: #ffffff;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.15);
   padding: 6px 12px;
@@ -63,7 +63,7 @@
 .search-bar {
   display: flex;
   align-items: center;
-  background: #f7f3e8;
+  background: #fff;
   border-radius: 40px;
   width: 500px;
   padding: 4px 8px 4px 18px;
@@ -127,7 +127,7 @@
 }
 
 .navbar-right .user-name {
-  color: #f7f3e8;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
@@ -137,10 +137,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #f7f3e8;
+  border: 2px solid #ffffff;
   border-radius: 30px;
   padding: 8px 20px;
-  color: #f7f3e8;
+  color: #ffffff;
   background: transparent;
   font-weight: 600;
   font-size: 14px;
@@ -151,8 +151,8 @@
 }
 
 .navbar-right .btn.conta:hover {
-  background: #f7f3e8;
-  color: #575408;
+  background: #ffffff;
+  color: #2d3825;
 }
 
 .auth-buttons {
@@ -162,10 +162,10 @@
 }
 
 #entrar {
-  border: 2px solid #f7f3e8;
+  border: 2px solid #ffffff;
   border-radius: 30px;
   padding: 8px 20px;
-  color: #f7f3e8;
+  color: #ffffff;
   font-weight: 600;
   font-size: 14px;
   transition: 0.2s;
@@ -175,28 +175,28 @@
 }
 
 #entrar:hover {
-  background: #f7f3e8;
-  color: #575408;
+  background: #ffffff;
+  color: #2d3825;
     cursor: pointer;
 }
 
 #criar-conta {
-  background: #f7f3e8;
+  background: #ffffff;
   border-radius: 30px;
   padding: 8px 20px;
-  color: #575408;
+  color: #2d3825;
   font-weight: 600;
   font-size: 14px;
   transition: 0.2s;
   white-space: nowrap;
-  border: 2px solid #f7f3e8;
+  border: 2px solid #ffffff;
   cursor: pointer;
 }
 
 #criar-conta:hover {
   background: transparent;
-  color: #f7f3e8;
-  border-color: #f7f3e8;
+  color: #ffffff;
+  border-color: #ffffff;
   cursor: pointer;
 }
 
@@ -228,7 +228,7 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
-  background-color: #575408;;
+  background-color: #2d3825;;
   padding: 10px 40px;
   flex-wrap: wrap;
 }
@@ -240,7 +240,7 @@
 }
 
 .categorias-btn {
-  color: #f7f3e8;
+  color: #fff;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -272,7 +272,7 @@
 
 .menu-categorias li a {
   display: block;
-  color: #f7f3e8;
+  color: #fff;
   padding: 10px 18px;
   text-decoration: none;
   font-size: 14px;
@@ -280,7 +280,7 @@
 }
 
 .menu-categorias li a:hover {
-  background-color: #575408;
+  background-color: #2d3825;
 }
 
 .dropdown-categorias:hover .menu-categorias {
@@ -289,7 +289,7 @@
 
 .sub-navbar > a {
   text-decoration: none;
-  color: #f7f3e8;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
   transition: 0.2s;
@@ -329,7 +329,7 @@
   position: relative;
   width: 100%;
   max-width: 420px;
-  background: #f7f3e8;
+  background: #ffffff;
   border-radius: 22px;
   padding: 30px 24px 24px;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
@@ -440,7 +440,7 @@
 
 .cep-btn.primario {
   background: linear-gradient(135deg, #6f6d37, #0e6b3f);
-  color: #f7f3e8;
+  color: #fff;
   box-shadow: 0 14px 28px rgba(25, 135, 84, 0.18);
 }
 
@@ -469,7 +469,7 @@
   padding: 0 5px;
   border-radius: 999px;
   background: #ef4444;
-  color: #f7f3e8;
+  color: #fff;
   font-size: 11px;
   font-weight: 700;
   display: none;
@@ -492,14 +492,14 @@
 }
 
 .user-name {
-  color: #f7f3e8;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
 }
 
 .logout-btn {
-  background: #f7f3e8;
-  color: #575408;
+  background: #ffffff;
+  color: #2d3825;
   border: none;
   padding: 6px 12px;
   border-radius: 14px;
@@ -551,9 +551,11 @@
   }
 }
 
-/* =========================
-   JOBEE NEW BRAND THEME
-   ========================= */
+
+/* =========================================================
+   JOBEE PROFESSIONAL THEME — fundo claro, verde só em destaque
+   Paleta: #2d3825 #3b4018 #575408 #6f6d37 #ffda7b
+   ========================================================= */
 
 :root {
   --jobee-dark: #2d3825;
@@ -561,81 +563,262 @@
   --jobee-olive: #575408;
   --jobee-moss: #6f6d37;
   --jobee-gold: #ffda7b;
-  --jobee-light: #f7f3e8;
-  --jobee-text-light: #f5f5f5;
+  --jobee-bg: #f8f4e8;
+  --jobee-bg-2: #efe7d2;
+  --jobee-surface: #fffaf0;
+  --jobee-surface-2: #f4ecd9;
+  --jobee-text: #202719;
+  --jobee-muted: #5f614f;
+  --jobee-border: rgba(45, 56, 37, 0.14);
+  --jobee-shadow: 0 18px 45px rgba(45, 56, 37, 0.10);
 }
 
+* {
+  scrollbar-color: var(--jobee-moss) var(--jobee-bg-2);
+}
+
+html,
 body {
-  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark));
-  color: var(--jobee-text-light);
+  background:
+    radial-gradient(circle at top left, rgba(255, 218, 123, 0.36), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(111, 109, 55, 0.15), transparent 32%),
+    linear-gradient(135deg, var(--jobee-bg) 0%, var(--jobee-bg-2) 100%) !important;
+  color: var(--jobee-text) !important;
 }
 
-.navbar,
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(30deg, rgba(45,56,37,.035) 12%, transparent 12.5%, transparent 87%, rgba(45,56,37,.035) 87.5%, rgba(45,56,37,.035)),
+    linear-gradient(150deg, rgba(45,56,37,.035) 12%, transparent 12.5%, transparent 87%, rgba(45,56,37,.035) 87.5%, rgba(45,56,37,.035));
+  background-size: 54px 94px;
+  opacity: .38;
+  z-index: -1;
+}
+
 header,
-.sidebar,
-.menu,
+nav,
+.navbar,
 .topbar,
+.menu,
+.sidebar {
+  background: rgba(255, 250, 240, 0.92) !important;
+  color: var(--jobee-text) !important;
+  border-bottom: 1px solid var(--jobee-border) !important;
+  box-shadow: 0 10px 30px rgba(45, 56, 37, 0.08) !important;
+  backdrop-filter: blur(14px);
+}
+
+.sidebar,
+aside {
+  border-right: 1px solid var(--jobee-border) !important;
+}
+
 footer {
   background: linear-gradient(90deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+  color: var(--jobee-gold) !important;
+}
+
+main,
+section,
+.page,
+.content,
+.wrapper,
+.container-fluid {
+  color: var(--jobee-text) !important;
+}
+
+.card,
+.box,
+.panel,
+.modal-content,
+.dropdown-menu,
+.dashboard-card,
+.service-card,
+.profile-card,
+.login-card,
+.register-card,
+form,
+.table,
+.table-responsive {
+  background: rgba(255, 250, 240, 0.88) !important;
+  color: var(--jobee-text) !important;
+  border: 1px solid var(--jobee-border) !important;
+  box-shadow: var(--jobee-shadow) !important;
+  backdrop-filter: blur(12px);
+}
+
+.card:hover,
+.box:hover,
+.service-card:hover,
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 60px rgba(45, 56, 37, 0.15) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.title,
+.section-title,
+.logo-text {
+  color: var(--jobee-dark) !important;
+  letter-spacing: -0.02em;
+}
+
+p,
+span,
+label,
+li,
+td,
+th,
+small {
+  color: inherit;
+}
+
+.text-muted,
+.muted,
+.subtitle,
+.description {
+  color: var(--jobee-muted) !important;
+}
+
+a {
+  color: var(--jobee-olive) !important;
+  text-decoration-color: rgba(87, 84, 8, 0.35) !important;
+}
+
+a:hover {
+  color: var(--jobee-dark) !important;
 }
 
 button,
 .btn,
-.btn-primary {
-  background: linear-gradient(135deg, var(--jobee-olive), var(--jobee-moss)) !important;
-  border-color: var(--jobee-gold) !important;
+.btn-primary,
+input[type="submit"] {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
   color: var(--jobee-gold) !important;
-  transition: all .3s ease;
+  border: 1px solid rgba(255, 218, 123, 0.48) !important;
+  box-shadow: 0 12px 25px rgba(45, 56, 37, 0.18) !important;
+  font-weight: 700;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
 
 button:hover,
 .btn:hover,
-.btn-primary:hover {
+.btn-primary:hover,
+input[type="submit"]:hover {
   transform: translateY(-2px);
-  filter: brightness(1.08);
+  filter: brightness(1.06);
+  box-shadow: 0 18px 34px rgba(45, 56, 37, 0.24) !important;
 }
 
-.card,
-.container,
-.box,
-.modal-content,
-.table,
-.dashboard-card {
-  background: rgba(255,255,255,0.05) !important;
-  border: 1px solid rgba(255, 218, 123, 0.15) !important;
-  backdrop-filter: blur(8px);
+.btn-secondary,
+.btn-outline,
+button.secondary {
+  background: var(--jobee-surface) !important;
+  color: var(--jobee-dark) !important;
+  border: 1px solid var(--jobee-border) !important;
 }
 
-h1,h2,h3,h4,h5,h6,
-.title,
-.logo-text {
-  color: var(--jobee-gold) !important;
-}
-
-a,
-.highlight,
+.badge,
+.tag,
+.status,
+.pill,
 .active,
-.icon-highlight {
-  color: var(--jobee-gold) !important;
+.nav-link.active {
+  background: linear-gradient(135deg, var(--jobee-gold), #ffe8a8) !important;
+  color: var(--jobee-dark) !important;
+  border-color: rgba(45, 56, 37, 0.12) !important;
 }
 
 input,
 textarea,
 select {
-  background: rgba(255,255,255,0.08) !important;
-  border: 1px solid rgba(255,218,123,.2) !important;
-  color: white !important;
+  background: #fffdf7 !important;
+  color: var(--jobee-text) !important;
+  border: 1px solid rgba(45, 56, 37, 0.18) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--jobee-moss) !important;
+  box-shadow: 0 0 0 4px rgba(255, 218, 123, 0.32) !important;
+  outline: none !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: rgba(255,255,255,.6) !important;
+  color: rgba(32, 39, 25, 0.48) !important;
 }
 
-.section-title,
-.badge,
-.tag {
-  background: var(--jobee-gold) !important;
+table {
+  background: transparent !important;
+  color: var(--jobee-text) !important;
+}
+
+thead,
+.table thead,
+th {
+  background: rgba(255, 218, 123, 0.32) !important;
   color: var(--jobee-dark) !important;
 }
 
+tr {
+  border-color: var(--jobee-border) !important;
+}
+
+hr {
+  border-color: var(--jobee-border) !important;
+}
+
+.alert,
+.notification,
+.toast {
+  background: var(--jobee-surface) !important;
+  color: var(--jobee-text) !important;
+  border-left: 5px solid var(--jobee-gold) !important;
+  box-shadow: var(--jobee-shadow) !important;
+}
+
+/* Detalhes premium em gradiente sem deixar a página verde */
+.hero,
+.banner,
+.cta,
+.featured,
+.highlight-section {
+  background:
+    radial-gradient(circle at top right, rgba(255, 218, 123, .38), transparent 34%),
+    linear-gradient(135deg, rgba(255, 250, 240, .94), rgba(244, 236, 217, .92)) !important;
+  color: var(--jobee-text) !important;
+  border: 1px solid var(--jobee-border) !important;
+  box-shadow: var(--jobee-shadow) !important;
+}
+
+.icon,
+.icon-box,
+.avatar-placeholder {
+  background: linear-gradient(135deg, var(--jobee-gold), #ffe8a8) !important;
+  color: var(--jobee-dark) !important;
+}
+
+/* Correção para textos que antes ficavam brancos sobre fundo claro */
+.text-white,
+[class*="text-light"] {
+  color: var(--jobee-text) !important;
+}
+
+.bg-success,
+.bg-primary,
+.bg-dark {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+  color: var(--jobee-gold) !important;
+}
+
+.border-primary,
+.border-success {
+  border-color: var(--jobee-gold) !important;
+}

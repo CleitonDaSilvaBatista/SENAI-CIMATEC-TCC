@@ -9,13 +9,13 @@
 }
 
 body {
-  background: #ebebeb;
+  
   color: #222;
 }
 html, body {
   width: 100%;
   height: 100%;
-  background: #f5f5f5;
+  
 }
 /* ==============================
    NAVBAR PRINCIPAL
@@ -24,7 +24,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #575408;
+  background: #2d3825;
   padding: 10px 30px;
   position: sticky;
   top: 0;
@@ -40,7 +40,7 @@ html, body {
 .logo a {
   font-size: 22px;
   font-weight: 700;
-  color: #f7f3e8;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -49,7 +49,7 @@ html, body {
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #f7f3e8;
+  color: #ffffff;
 }
 
 .location img {
@@ -61,7 +61,7 @@ html, body {
 .search-bar {
   display: flex;
   align-items: center;
-  background: #f7f3e8;
+  background: #fff;
   border-radius: 6px;
   width: 600px;
   padding: 4px 10px;
@@ -100,7 +100,7 @@ html, body {
 
 .navbar-right a {
   text-decoration: none;
-  color: #f7f3e8;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
   transition: 0.2s;
@@ -111,9 +111,9 @@ html, body {
 }
 
 .btn.conta {
-  background: #f7f3e8;
+  background: #fff;
   padding: 6px 12px;
-  color: #575408;
+  color: #2d3825;
   border-radius: 6px;
   border: 1px solid #888;
   font-weight: 600;
@@ -131,13 +131,13 @@ html, body {
   align-items: center;
   justify-content: center;
   gap: 25px;
-  background: #575408;
+  background: #2d3825;
   padding: 8px 40px;
 }
 
 .sub-navbar a {
   text-decoration: none;
-  color: #f7f3e8;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
   transition: 0.2s;
@@ -151,7 +151,7 @@ html, body {
    FORMULÁRIO DE REDEFINIÇÃO
 ============================== */
 .reset-container {
-  background: #f7f3e8;
+  background: #ffffff;
   max-width: 420px;
   margin: 80px auto;
   padding: 40px;
@@ -198,7 +198,7 @@ html, body {
 }
 
 .reset-container button:hover {
-  background: #3b4018;
+  background: #2d3825;
 }
 
 /* ==============================
@@ -260,7 +260,7 @@ html, body {
 }
 
 .footer-col ul li a:hover {
-  color: #f7f3e8;
+  color: #fff;
   text-decoration: underline;
 }
 
@@ -319,7 +319,7 @@ html, body {
   position: relative;
   width: 100%;
   max-width: 440px;
-  background: linear-gradient(180deg, #f7f3e8 0%, #f8fcfa 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%);
   border-radius: 24px;
   padding: 34px 26px 26px;
   text-align: center;
@@ -456,7 +456,7 @@ html, body {
 
 .modal-feedback-btn.primary {
   background: linear-gradient(135deg, #3b4018, #6f6d37);
-  color: #f7f3e8;
+  color: #fff;
   box-shadow: 0 14px 28px rgba(11, 138, 86, 0.22);
 }
 
@@ -532,9 +532,11 @@ html, body {
 }
 
 
-/* =========================
-   JOBEE NEW BRAND THEME
-   ========================= */
+
+/* =========================================================
+   JOBEE PROFESSIONAL THEME — fundo claro, verde só em destaque
+   Paleta: #2d3825 #3b4018 #575408 #6f6d37 #ffda7b
+   ========================================================= */
 
 :root {
   --jobee-dark: #2d3825;
@@ -542,81 +544,262 @@ html, body {
   --jobee-olive: #575408;
   --jobee-moss: #6f6d37;
   --jobee-gold: #ffda7b;
-  --jobee-light: #f7f3e8;
-  --jobee-text-light: #f5f5f5;
+  --jobee-bg: #f8f4e8;
+  --jobee-bg-2: #efe7d2;
+  --jobee-surface: #fffaf0;
+  --jobee-surface-2: #f4ecd9;
+  --jobee-text: #202719;
+  --jobee-muted: #5f614f;
+  --jobee-border: rgba(45, 56, 37, 0.14);
+  --jobee-shadow: 0 18px 45px rgba(45, 56, 37, 0.10);
 }
 
+* {
+  scrollbar-color: var(--jobee-moss) var(--jobee-bg-2);
+}
+
+html,
 body {
-  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark));
-  color: var(--jobee-text-light);
+  background:
+    radial-gradient(circle at top left, rgba(255, 218, 123, 0.36), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(111, 109, 55, 0.15), transparent 32%),
+    linear-gradient(135deg, var(--jobee-bg) 0%, var(--jobee-bg-2) 100%) !important;
+  color: var(--jobee-text) !important;
 }
 
-.navbar,
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(30deg, rgba(45,56,37,.035) 12%, transparent 12.5%, transparent 87%, rgba(45,56,37,.035) 87.5%, rgba(45,56,37,.035)),
+    linear-gradient(150deg, rgba(45,56,37,.035) 12%, transparent 12.5%, transparent 87%, rgba(45,56,37,.035) 87.5%, rgba(45,56,37,.035));
+  background-size: 54px 94px;
+  opacity: .38;
+  z-index: -1;
+}
+
 header,
-.sidebar,
-.menu,
+nav,
+.navbar,
 .topbar,
+.menu,
+.sidebar {
+  background: rgba(255, 250, 240, 0.92) !important;
+  color: var(--jobee-text) !important;
+  border-bottom: 1px solid var(--jobee-border) !important;
+  box-shadow: 0 10px 30px rgba(45, 56, 37, 0.08) !important;
+  backdrop-filter: blur(14px);
+}
+
+.sidebar,
+aside {
+  border-right: 1px solid var(--jobee-border) !important;
+}
+
 footer {
   background: linear-gradient(90deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+  color: var(--jobee-gold) !important;
+}
+
+main,
+section,
+.page,
+.content,
+.wrapper,
+.container-fluid {
+  color: var(--jobee-text) !important;
+}
+
+.card,
+.box,
+.panel,
+.modal-content,
+.dropdown-menu,
+.dashboard-card,
+.service-card,
+.profile-card,
+.login-card,
+.register-card,
+form,
+.table,
+.table-responsive {
+  background: rgba(255, 250, 240, 0.88) !important;
+  color: var(--jobee-text) !important;
+  border: 1px solid var(--jobee-border) !important;
+  box-shadow: var(--jobee-shadow) !important;
+  backdrop-filter: blur(12px);
+}
+
+.card:hover,
+.box:hover,
+.service-card:hover,
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 60px rgba(45, 56, 37, 0.15) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.title,
+.section-title,
+.logo-text {
+  color: var(--jobee-dark) !important;
+  letter-spacing: -0.02em;
+}
+
+p,
+span,
+label,
+li,
+td,
+th,
+small {
+  color: inherit;
+}
+
+.text-muted,
+.muted,
+.subtitle,
+.description {
+  color: var(--jobee-muted) !important;
+}
+
+a {
+  color: var(--jobee-olive) !important;
+  text-decoration-color: rgba(87, 84, 8, 0.35) !important;
+}
+
+a:hover {
+  color: var(--jobee-dark) !important;
 }
 
 button,
 .btn,
-.btn-primary {
-  background: linear-gradient(135deg, var(--jobee-olive), var(--jobee-moss)) !important;
-  border-color: var(--jobee-gold) !important;
+.btn-primary,
+input[type="submit"] {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
   color: var(--jobee-gold) !important;
-  transition: all .3s ease;
+  border: 1px solid rgba(255, 218, 123, 0.48) !important;
+  box-shadow: 0 12px 25px rgba(45, 56, 37, 0.18) !important;
+  font-weight: 700;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
 
 button:hover,
 .btn:hover,
-.btn-primary:hover {
+.btn-primary:hover,
+input[type="submit"]:hover {
   transform: translateY(-2px);
-  filter: brightness(1.08);
+  filter: brightness(1.06);
+  box-shadow: 0 18px 34px rgba(45, 56, 37, 0.24) !important;
 }
 
-.card,
-.container,
-.box,
-.modal-content,
-.table,
-.dashboard-card {
-  background: rgba(255,255,255,0.05) !important;
-  border: 1px solid rgba(255, 218, 123, 0.15) !important;
-  backdrop-filter: blur(8px);
+.btn-secondary,
+.btn-outline,
+button.secondary {
+  background: var(--jobee-surface) !important;
+  color: var(--jobee-dark) !important;
+  border: 1px solid var(--jobee-border) !important;
 }
 
-h1,h2,h3,h4,h5,h6,
-.title,
-.logo-text {
-  color: var(--jobee-gold) !important;
-}
-
-a,
-.highlight,
+.badge,
+.tag,
+.status,
+.pill,
 .active,
-.icon-highlight {
-  color: var(--jobee-gold) !important;
+.nav-link.active {
+  background: linear-gradient(135deg, var(--jobee-gold), #ffe8a8) !important;
+  color: var(--jobee-dark) !important;
+  border-color: rgba(45, 56, 37, 0.12) !important;
 }
 
 input,
 textarea,
 select {
-  background: rgba(255,255,255,0.08) !important;
-  border: 1px solid rgba(255,218,123,.2) !important;
-  color: white !important;
+  background: #fffdf7 !important;
+  color: var(--jobee-text) !important;
+  border: 1px solid rgba(45, 56, 37, 0.18) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--jobee-moss) !important;
+  box-shadow: 0 0 0 4px rgba(255, 218, 123, 0.32) !important;
+  outline: none !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: rgba(255,255,255,.6) !important;
+  color: rgba(32, 39, 25, 0.48) !important;
 }
 
-.section-title,
-.badge,
-.tag {
-  background: var(--jobee-gold) !important;
+table {
+  background: transparent !important;
+  color: var(--jobee-text) !important;
+}
+
+thead,
+.table thead,
+th {
+  background: rgba(255, 218, 123, 0.32) !important;
   color: var(--jobee-dark) !important;
 }
 
+tr {
+  border-color: var(--jobee-border) !important;
+}
+
+hr {
+  border-color: var(--jobee-border) !important;
+}
+
+.alert,
+.notification,
+.toast {
+  background: var(--jobee-surface) !important;
+  color: var(--jobee-text) !important;
+  border-left: 5px solid var(--jobee-gold) !important;
+  box-shadow: var(--jobee-shadow) !important;
+}
+
+/* Detalhes premium em gradiente sem deixar a página verde */
+.hero,
+.banner,
+.cta,
+.featured,
+.highlight-section {
+  background:
+    radial-gradient(circle at top right, rgba(255, 218, 123, .38), transparent 34%),
+    linear-gradient(135deg, rgba(255, 250, 240, .94), rgba(244, 236, 217, .92)) !important;
+  color: var(--jobee-text) !important;
+  border: 1px solid var(--jobee-border) !important;
+  box-shadow: var(--jobee-shadow) !important;
+}
+
+.icon,
+.icon-box,
+.avatar-placeholder {
+  background: linear-gradient(135deg, var(--jobee-gold), #ffe8a8) !important;
+  color: var(--jobee-dark) !important;
+}
+
+/* Correção para textos que antes ficavam brancos sobre fundo claro */
+.text-white,
+[class*="text-light"] {
+  color: var(--jobee-text) !important;
+}
+
+.bg-success,
+.bg-primary,
+.bg-dark {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+  color: var(--jobee-gold) !important;
+}
+
+.border-primary,
+.border-success {
+  border-color: var(--jobee-gold) !important;
+}
