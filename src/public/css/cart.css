@@ -1,6 +1,6 @@
  :root {
-      --primary: #1f9d67;
-      --primary-dark: #187a50;
+      --primary: #575408;
+      --primary-dark: #3b4018;
       --primary-soft: #e8f7f0;
       --bg: #f4f7f5;
       --card: #ffffff;
@@ -54,7 +54,7 @@
       place-items: center;
       font-size: 0.75rem;
       font-weight: 700;
-      box-shadow: 0 6px 16px rgba(31, 157, 103, 0.32);
+      box-shadow: 0 6px 16px rgba(45, 56, 37, 0.32);
     }
 
     .page {
@@ -301,13 +301,13 @@
       width: 100%;
       border: none;
       border-radius: 18px;
-      background: linear-gradient(135deg, var(--primary), #2ebd7e);
+      background: linear-gradient(135deg, var(--primary), #6f6d37);
       color: white;
       padding: 16px 18px;
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 16px 30px rgba(31, 157, 103, 0.25);
+      box-shadow: 0 16px 30px rgba(45, 56, 37, 0.25);
     }
 
     .secure {
@@ -435,12 +435,12 @@
       width: 100%;
       border: none;
       border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), #2ebd7e);
+      background: linear-gradient(135deg, var(--primary), #6f6d37);
       color: white;
       padding: 14px 18px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 16px 28px rgba(31, 157, 103, 0.18);
+      box-shadow: 0 16px 28px rgba(45, 56, 37, 0.18);
     }
 
     .toast {

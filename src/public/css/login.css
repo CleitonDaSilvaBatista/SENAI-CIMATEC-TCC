@@ -38,12 +38,12 @@
 
 .login-text h1 {
   font-size: 2.8rem;
-  color: #24644e;
+  color: #3b4018;
   margin-bottom: 10px;
 }
 
 .login-text p {
-  color: #5f6d66;
+  color: #5f614f;
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -265,7 +265,7 @@
   border: none;
   border-radius: 50%;
   background: #f2f5f3;
-  color: #4e6359;
+  color: #5f614f;
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
@@ -293,9 +293,9 @@
 }
 
 .modal-feedback-icon-circle.sucesso {
-  background: radial-gradient(circle at 30% 30%, #dff7ea, #b9ebd0);
+  background: radial-gradient(circle at 30% 30%, #dff7ea, #f4ecd9);
   box-shadow:
-    0 12px 30px rgba(11, 138, 86, 0.18),
+    0 12px 30px rgba(45, 56, 37, 0.18),
     inset 0 2px 10px rgba(255, 255, 255, 0.8);
   animation: modalPulseSuccess 1.8s ease-in-out infinite;
 }
@@ -315,7 +315,7 @@
 }
 
 .modal-feedback-check-circle {
-  stroke: #15a265;
+  stroke: #575408;
   stroke-width: 2;
   stroke-miterlimit: 10;
   opacity: 0.2;
@@ -348,7 +348,7 @@
 .modal-feedback-box p {
   margin: 0 auto 22px;
   max-width: 340px;
-  color: #5f6d66;
+  color: #5f614f;
   line-height: 1.65;
   font-size: 0.96rem;
 }
@@ -379,16 +379,16 @@
 .modal-feedback-btn.primary {
   background: linear-gradient(135deg, #3b4018, #6f6d37);
   color: #fff;
-  box-shadow: 0 14px 28px rgba(11, 138, 86, 0.22);
+  box-shadow: 0 14px 28px rgba(45, 56, 37, 0.22);
 }
 
 .modal-feedback-btn.primary:hover {
-  box-shadow: 0 18px 34px rgba(11, 138, 86, 0.28);
+  box-shadow: 0 18px 34px rgba(45, 56, 37, 0.28);
 }
 
 .modal-feedback-btn.secondary {
   background: #eef2f0;
-  color: #29473a;
+  color: #2d3825;
   border: 1px solid #dbe6e0;
 }
 @keyframes drawCheck {

@@ -44,7 +44,7 @@ button {
 }
 /* Footer */
 .footer {
-  background: rgb(48, 134, 104);
+  background: #2d3825;
   color: var(--white);
   padding: 64px 0 32px;
   margin-top: 64px;

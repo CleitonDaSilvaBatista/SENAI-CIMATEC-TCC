@@ -3,14 +3,14 @@
 ============================== */
 :root {
   --brand: #2d3825;
-  --brand-light: #3da57c;
-  --brand-dark: #1e6b4e;
+  --brand-light: #6f6d37;
+  --brand-dark: #3b4018;
   --accent: #ffda7b;
-  --muted: #8b9a92;
+  --muted: #5f614f;
   --light-gray: #f5f7f6;
   --border: #e1e8e5;
-  --text-dark: #062a1c;
-  --text-light: #5a7268;
+  --text-dark: #2d3825;
+  --text-light: #5f614f;
   --shadow: 0 8px 24px rgba(18, 42, 33, 0.08);
   --shadow-hover: 0 12px 32px rgba(18, 42, 33, 0.12);
   --radius: 12px;
@@ -289,7 +289,7 @@ table td:first-child {
 
 .badge.novo {
   background: #e8f5e8;
-  color: #2e7d32;
+  color: #3b4018;
 }
 
 .badge.oferta {
@@ -439,7 +439,7 @@ table td:first-child {
 .color:hover, .color.active,
 .size:hover, .size.active {
   border-color: var(--brand);
-  background-color: rgba(48, 134, 104, 0.05);
+  background-color: rgba(45, 56, 37, 0.05);
   color: var(--brand);
 }
 
@@ -848,7 +848,7 @@ table td:first-child {
   border: none;
   border-radius: 50%;
   background: #f2f5f3;
-  color: #4e6359;
+  color: #5f614f;
   font-size: 24px;
   cursor: pointer;
 }
@@ -887,7 +887,7 @@ table td:first-child {
 .modal-feedback-box p {
   margin: 0 auto 22px;
   max-width: 340px;
-  color: #5f6d66;
+  color: #5f614f;
   line-height: 1.65;
 }
 
@@ -915,7 +915,7 @@ table td:first-child {
 
 .modal-feedback-btn.secondary {
   background: #eef2f0;
-  color: #29473a;
+  color: #2d3825;
   border: 1px solid #dbe6e0;
 }
 /* ==============================

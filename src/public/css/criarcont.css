@@ -234,12 +234,12 @@ a{
 
 .login-text h1 {
   font-size: 2.8rem;
-  color: #24644e;
+  color: #3b4018;
   margin-bottom: 10px;
 }
 
 .login-text p {
-  color: #5f6d66;
+  color: #5f614f;
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -391,7 +391,7 @@ a{
   border: none;
   border-radius: 50%;
   background: #f2f5f3;
-  color: #446055;
+  color: #5f614f;
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
@@ -413,12 +413,12 @@ a{
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #dff7ea, #b9ebd0);
+  background: radial-gradient(circle at 30% 30%, #dff7ea, #f4ecd9);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow:
-    0 12px 30px rgba(11, 138, 86, 0.18),
+    0 12px 30px rgba(45, 56, 37, 0.18),
     inset 0 2px 10px rgba(255, 255, 255, 0.8);
   animation: modalPulse 1.8s ease-in-out infinite;
 }
@@ -430,7 +430,7 @@ a{
 }
 
 .modal-sucesso-check-circle {
-  stroke: #15a265;
+  stroke: #575408;
   stroke-width: 2;
   stroke-miterlimit: 10;
   opacity: 0.2;
@@ -449,14 +449,14 @@ a{
 .modal-sucesso-box h3 {
   margin: 0 0 10px;
   font-size: 1.8rem;
-  color: #123e2a;
+  color: #2d3825;
   font-weight: 700;
 }
 
 .modal-sucesso-box p {
   margin: 0 auto 24px;
   max-width: 360px;
-  color: #5a6c63;
+  color: #5f614f;
   line-height: 1.65;
   font-size: 0.98rem;
 }
@@ -491,16 +491,16 @@ a{
 .modal-sucesso-btn.primary {
   background: linear-gradient(135deg, #3b4018, #6f6d37);
   color: #fff;
-  box-shadow: 0 14px 28px rgba(11, 138, 86, 0.22);
+  box-shadow: 0 14px 28px rgba(45, 56, 37, 0.22);
 }
 
 .modal-sucesso-btn.primary:hover {
-  box-shadow: 0 18px 34px rgba(11, 138, 86, 0.28);
+  box-shadow: 0 18px 34px rgba(45, 56, 37, 0.28);
 }
 
 .modal-sucesso-btn.secondary {
   background: #eef5f1;
-  color: #21553f;
+  color: #3b4018;
   border: 1px solid #d8e7df;
 }
 
@@ -514,13 +514,13 @@ a{
   0%, 100% {
     transform: scale(1);
     box-shadow:
-      0 12px 30px rgba(11, 138, 86, 0.18),
+      0 12px 30px rgba(45, 56, 37, 0.18),
       inset 0 2px 10px rgba(255, 255, 255, 0.8);
   }
   50% {
     transform: scale(1.04);
     box-shadow:
-      0 18px 36px rgba(11, 138, 86, 0.24),
+      0 18px 36px rgba(45, 56, 37, 0.24),
       inset 0 2px 10px rgba(255, 255, 255, 0.85);
   }
 }
