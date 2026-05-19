@@ -1,0 +1,7 @@
+Alterações feitas no frontend:
+- Adicionada camada visual global em src/public/css/jobee-redesign.css.
+- Novo padrão profissional com identidade Jobee: verde escuro, amarelo mel, cards modernos, sombras suaves e referências visuais à colmeia.
+- Navbar, subnavbar, hero, cards, produtos, carrinho, checkout, formulários, dashboard, perfil, loja e produto receberam acabamento responsivo.
+- Corrigida referência de imagem quebrada do salão para src/public/img/salao.jpg.
+- Corrigidos caminhos da página loja.html para CSS/JS absolutos.
+- Validação rápida de sintaxe JavaScript executada com node --check.
