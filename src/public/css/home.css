@@ -4,22 +4,22 @@
 ============================== */
 
 :root {
-  --primary: #198754;
+  --primary: #6f6d37;
   --primary-strong: #0e6b3f;
   --primary-dark: #0a4d2e;
   --primary-soft: #e8f5ef;
   --primary-soft-2: #d4ede2;
 
-  --accent: #22c55e;
+  --accent: #575408;
   --accent-soft: rgba(34, 197, 94, 0.1);
 
   --text: #1a2a3a;
   --text-soft: #546e7a;
   --text-muted: #78909c;
 
-  --white: #ffffff;
+  --white: #f7f3e8;
   --surface: rgba(255, 255, 255, 0.96);
-  --surface-solid: #ffffff;
+  --surface-solid: #f7f3e8;
   --surface-muted: #f8faf8;
   --border: rgba(0, 0, 0, 0.08);
   --border-focus: rgba(25, 135, 84, 0.25);
@@ -186,7 +186,7 @@ body {
 .new-price-hero {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #22c55e;
+  color: #575408;
 }
 
 .discount-badge-hero {
@@ -195,7 +195,7 @@ body {
   border-radius: var(--radius-pill);
   font-size: 0.875rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #f7f3e8;
 }
 
 .hero-info {
@@ -249,7 +249,7 @@ body {
   gap: 8px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #22c55e;
+  color: #575408;
 }
 
 .btn-hero-shop {
@@ -339,7 +339,7 @@ body {
 }
 
 .hero-dot.active {
-  background: #ffffff;
+  background: #f7f3e8;
   width: 60px;
 }
 
@@ -886,7 +886,7 @@ body {
   width: 126px;
   height: 36px;
   background: #1b6b4a;
-  color: #fff;
+  color: #f7f3e8;
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
@@ -1171,7 +1171,7 @@ body {
 
 .mapa-section {
   padding: 72px 24px 24px;
-  background: linear-gradient(180deg, #f8faf8 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #f8faf8 0%, #f7f3e8 100%);
 }
 
 .mapa-container {
@@ -1189,7 +1189,7 @@ body {
   padding: 6px 14px;
   border-radius: 999px;
   background: #e8f5ef;
-  color: #198754;
+  color: #6f6d37;
   font-size: 0.8rem;
   font-weight: 700;
   margin-bottom: 14px;
@@ -1219,8 +1219,8 @@ body {
 
 .mapa-actions button {
   border: none;
-  background: linear-gradient(135deg, #198754, #0e6b3f);
-  color: #fff;
+  background: linear-gradient(135deg, #6f6d37, #0e6b3f);
+  color: #f7f3e8;
   padding: 12px 18px;
   border-radius: 999px;
   font-size: 0.9rem;
@@ -1457,3 +1457,92 @@ body {
     margin: 0 auto;
   }
 }
+
+/* =========================
+   JOBEE NEW BRAND THEME
+   ========================= */
+
+:root {
+  --jobee-dark: #2d3825;
+  --jobee-olive-dark: #3b4018;
+  --jobee-olive: #575408;
+  --jobee-moss: #6f6d37;
+  --jobee-gold: #ffda7b;
+  --jobee-light: #f7f3e8;
+  --jobee-text-light: #f5f5f5;
+}
+
+body {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark));
+  color: var(--jobee-text-light);
+}
+
+.navbar,
+header,
+.sidebar,
+.menu,
+.topbar,
+footer {
+  background: linear-gradient(90deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+}
+
+button,
+.btn,
+.btn-primary {
+  background: linear-gradient(135deg, var(--jobee-olive), var(--jobee-moss)) !important;
+  border-color: var(--jobee-gold) !important;
+  color: var(--jobee-gold) !important;
+  transition: all .3s ease;
+}
+
+button:hover,
+.btn:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.card,
+.container,
+.box,
+.modal-content,
+.table,
+.dashboard-card {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255, 218, 123, 0.15) !important;
+  backdrop-filter: blur(8px);
+}
+
+h1,h2,h3,h4,h5,h6,
+.title,
+.logo-text {
+  color: var(--jobee-gold) !important;
+}
+
+a,
+.highlight,
+.active,
+.icon-highlight {
+  color: var(--jobee-gold) !important;
+}
+
+input,
+textarea,
+select {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,218,123,.2) !important;
+  color: white !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255,255,255,.6) !important;
+}
+
+.section-title,
+.badge,
+.tag {
+  background: var(--jobee-gold) !important;
+  color: var(--jobee-dark) !important;
+}
+

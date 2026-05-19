@@ -15,7 +15,7 @@ body {
 }
 
 #subtitle{
-  color: #308668;
+  color: #575408;
   font-size: 30px;
   text-align: center;
   font-family:'Poppins', sans-serif;
@@ -30,7 +30,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #308668;
+  background: #575408;
   padding: 10px 30px;
   position: relative;
   top: 0;
@@ -46,7 +46,7 @@ body {
 .logo {
   font-size: 22px;
   font-weight: 700;
-  color: #ffffff;
+  color: #f7f3e8;
   cursor: pointer;
 }
 
@@ -59,7 +59,7 @@ a{
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #ffffff;
+  color: #f7f3e8;
   cursor: pointer;
 }
 
@@ -72,7 +72,7 @@ a{
 .search-bar {
   display: flex;
   align-items: center;
-  background: #fff;
+  background: #f7f3e8;
   border-radius: 6px;
   transform: translateX(15%);
   width: 600px;
@@ -113,20 +113,20 @@ a{
 
 .navbar-right a {
   text-decoration: none;
-  color: #ffffff;
+  color: #f7f3e8;
   font-size: 14px;
   font-weight: 500;
   transition: 0.2s;
 }
 
 .navbar-right a:hover {
-  color: #01cc6d;
+  color: #ffda7b;
 }
 
 .btn.conta {
-  background: #fff;
+  background: #f7f3e8;
   padding: 6px 12px;
-  color: #308668;
+  color: #575408;
   border-radius: 6px;
   border: 1px solid #888;
   font-weight: 600;
@@ -146,7 +146,7 @@ a{
 }
 
 .categorias-btn {
-  color: #fff;
+  color: #f7f3e8;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -156,7 +156,7 @@ a{
 }
 
 .categorias-btn:hover {
-  background-color: #ffffff;
+  background-color: #f7f3e8;
 }
 
 /* O menu que aparece ao passar o mouse */
@@ -165,7 +165,7 @@ a{
   position: absolute;
   top: 29px;
   right: 0;
-  background-color: #308668;
+  background-color: #575408;
   min-width: 250px;
   border-radius: 8px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
@@ -179,7 +179,7 @@ a{
 
 .menu-categorias li a {
   display: block;
-  color: #fff;
+  color: #f7f3e8;
   transform: translateX(5%);
   padding: 10px 18px;
   text-decoration: none;
@@ -199,13 +199,13 @@ a{
   align-items: center;
   justify-content: center;
   gap: 25px;
-  background: #308668;
+  background: #575408;
   padding: 8px 40px;
 }
 
 .sub-navbar a {
   text-decoration: none;
-  color: #ffffff;
+  color: #f7f3e8;
   font-size: 14px;
   font-weight: 500;
   transition: 0.2s;
@@ -213,13 +213,13 @@ a{
 }
 
 .sub-navbar a:hover {
-  color: #01cc6d;
+  color: #ffda7b;
 }
 
 
 .forgot-password a {
   text-decoration: none;
-  color: #0b8a56;
+  color: #3b4018;
 }
 
 /* ===============================
@@ -250,14 +250,14 @@ a{
   justify-content: center;
   align-items: center;
   padding: 48px;
-  background: #ffffff;
+  background: #f7f3e8;
 }
 
 
 
 /* Formulário */
 .form-section {
-  background: #ffffff;
+  background: #f7f3e8;
   padding: 80px 20px;
 }
 
@@ -272,7 +272,7 @@ a{
 
 .form-container h2 {
   text-align: center;
-  color: #0b8a56;
+  color: #3b4018;
   margin-bottom: 30px;
 }
 
@@ -297,12 +297,12 @@ a{
 }
 
 .input-group input:focus {
-  border-color: #0b8a56;
+  border-color: #3b4018;
 }
 
 .btn-enviar {
   width: 100%;
-  background: #0b8a56;
+  background: #3b4018;
   color: white;
   border: none;
   padding: 12px;
@@ -315,12 +315,12 @@ a{
 }
 
 .btn-enviar:hover {
-  background: #097648;
+  background: #3b4018;
 }
 
 #entre, #termo{
   text-decoration: none;
-  color: #0b8a56;
+  color: #3b4018;
 }
 
 #selector{
@@ -330,8 +330,8 @@ a{
 #changes{
   padding: 10px;
   border-radius: 5px;
-  background-color: #ffffff;
-  color: #097648;
+  background-color: #f7f3e8;
+  color: #3b4018;
   font-size: 16px;
   width: 100%;
   transform: translateY(15%);
@@ -367,7 +367,7 @@ a{
   position: relative;
   width: 100%;
   max-width: 460px;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%);
+  background: linear-gradient(180deg, #f7f3e8 0%, #f8fcfa 100%);
   border-radius: 24px;
   padding: 34px 28px 28px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
@@ -437,7 +437,7 @@ a{
 }
 
 .modal-sucesso-check-path {
-  stroke: #0b8a56;
+  stroke: #3b4018;
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -489,8 +489,8 @@ a{
 }
 
 .modal-sucesso-btn.primary {
-  background: linear-gradient(135deg, #0b8a56, #16a36a);
-  color: #fff;
+  background: linear-gradient(135deg, #3b4018, #6f6d37);
+  color: #f7f3e8;
   box-shadow: 0 14px 28px rgba(11, 138, 86, 0.22);
 }
 
@@ -543,3 +543,93 @@ a{
     width: 100%;
   }
 }
+
+
+/* =========================
+   JOBEE NEW BRAND THEME
+   ========================= */
+
+:root {
+  --jobee-dark: #2d3825;
+  --jobee-olive-dark: #3b4018;
+  --jobee-olive: #575408;
+  --jobee-moss: #6f6d37;
+  --jobee-gold: #ffda7b;
+  --jobee-light: #f7f3e8;
+  --jobee-text-light: #f5f5f5;
+}
+
+body {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark));
+  color: var(--jobee-text-light);
+}
+
+.navbar,
+header,
+.sidebar,
+.menu,
+.topbar,
+footer {
+  background: linear-gradient(90deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+}
+
+button,
+.btn,
+.btn-primary {
+  background: linear-gradient(135deg, var(--jobee-olive), var(--jobee-moss)) !important;
+  border-color: var(--jobee-gold) !important;
+  color: var(--jobee-gold) !important;
+  transition: all .3s ease;
+}
+
+button:hover,
+.btn:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.card,
+.container,
+.box,
+.modal-content,
+.table,
+.dashboard-card {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255, 218, 123, 0.15) !important;
+  backdrop-filter: blur(8px);
+}
+
+h1,h2,h3,h4,h5,h6,
+.title,
+.logo-text {
+  color: var(--jobee-gold) !important;
+}
+
+a,
+.highlight,
+.active,
+.icon-highlight {
+  color: var(--jobee-gold) !important;
+}
+
+input,
+textarea,
+select {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,218,123,.2) !important;
+  color: white !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255,255,255,.6) !important;
+}
+
+.section-title,
+.badge,
+.tag {
+  background: var(--jobee-gold) !important;
+  color: var(--jobee-dark) !important;
+}
+

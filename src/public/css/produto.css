@@ -2,10 +2,10 @@
    VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
 ============================== */
 :root {
-  --brand: #308668;
+  --brand: #575408;
   --brand-light: #3da57c;
   --brand-dark: #1e6b4e;
-  --accent: #01cc6d;
+  --accent: #ffda7b;
   --muted: #8b9a92;
   --light-gray: #f5f7f6;
   --border: #e1e8e5;
@@ -293,7 +293,7 @@ table td:first-child {
 }
 
 .badge.oferta {
-  background: #fff2e8;
+  background: #f7f3e82e8;
   color: #e65100;
 }
 
@@ -693,7 +693,7 @@ table td:first-child {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  background: #fff;
+  background: #f7f3e8;
   border-radius: 20px;
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -716,7 +716,7 @@ table td:first-child {
 
 .related-card {
   flex: 0 0 280px;
-  background: #fff;
+  background: #f7f3e8;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -774,7 +774,7 @@ table td:first-child {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #ffffff;
+  background: #f7f3e8;
   border: none;
   font-size: 24px;
   cursor: pointer;
@@ -787,7 +787,7 @@ table td:first-child {
 
 .related-carousel-seta:hover {
   background: var(--brand);
-  color: #fff;
+  color: #f7f3e8;
 }
 
 .related-carousel-seta.esquerda {
@@ -824,7 +824,7 @@ table td:first-child {
   position: relative;
   width: 100%;
   max-width: 440px;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%);
+  background: linear-gradient(180deg, #f7f3e8 0%, #f8fcfa 100%);
   border-radius: 24px;
   padding: 34px 26px 26px;
   text-align: center;
@@ -881,7 +881,7 @@ table td:first-child {
 .modal-feedback-box h3 {
   margin: 0 0 10px;
   font-size: 1.7rem;
-  color: #153d2c;
+  color: #2d3825;
 }
 
 .modal-feedback-box p {
@@ -909,8 +909,8 @@ table td:first-child {
 }
 
 .modal-feedback-btn.primary {
-  background: linear-gradient(135deg, #0b8a56, #16a36a);
-  color: #fff;
+  background: linear-gradient(135deg, #3b4018, #6f6d37);
+  color: #f7f3e8;
 }
 
 .modal-feedback-btn.secondary {
@@ -1041,3 +1041,92 @@ table td:first-child {
     font-size: 18px;
   }
 }
+
+/* =========================
+   JOBEE NEW BRAND THEME
+   ========================= */
+
+:root {
+  --jobee-dark: #2d3825;
+  --jobee-olive-dark: #3b4018;
+  --jobee-olive: #575408;
+  --jobee-moss: #6f6d37;
+  --jobee-gold: #ffda7b;
+  --jobee-light: #f7f3e8;
+  --jobee-text-light: #f5f5f5;
+}
+
+body {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark));
+  color: var(--jobee-text-light);
+}
+
+.navbar,
+header,
+.sidebar,
+.menu,
+.topbar,
+footer {
+  background: linear-gradient(90deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+}
+
+button,
+.btn,
+.btn-primary {
+  background: linear-gradient(135deg, var(--jobee-olive), var(--jobee-moss)) !important;
+  border-color: var(--jobee-gold) !important;
+  color: var(--jobee-gold) !important;
+  transition: all .3s ease;
+}
+
+button:hover,
+.btn:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.card,
+.container,
+.box,
+.modal-content,
+.table,
+.dashboard-card {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255, 218, 123, 0.15) !important;
+  backdrop-filter: blur(8px);
+}
+
+h1,h2,h3,h4,h5,h6,
+.title,
+.logo-text {
+  color: var(--jobee-gold) !important;
+}
+
+a,
+.highlight,
+.active,
+.icon-highlight {
+  color: var(--jobee-gold) !important;
+}
+
+input,
+textarea,
+select {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,218,123,.2) !important;
+  color: white !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255,255,255,.6) !important;
+}
+
+.section-title,
+.badge,
+.tag {
+  background: var(--jobee-gold) !important;
+  color: var(--jobee-dark) !important;
+}
+

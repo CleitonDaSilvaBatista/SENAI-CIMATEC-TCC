@@ -2,7 +2,7 @@
    GLOBAL RESET & BASE
 ============================== */
 :root {
-  --white: #ffffff;
+  --white: #f7f3e8;
   --container: 1280px;
   --container-padding: 24px;
   --transition-fast: 0.2s ease;
@@ -15,7 +15,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: #ffffff;
+  background: #f7f3e8;
   color: #222;
   line-height: 1.5;
 }
@@ -129,3 +129,199 @@ button {
   font-size: 0.813rem;
   opacity: 0.6;
 }
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  min-width: 280px;
+  max-width: 350px;
+
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px 14px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+
+  animation: slideIn 0.3s ease;
+}
+
+.toast.success {
+  border-left: 5px solid #575408;
+}
+
+.toast.error {
+  border-left: 5px solid #ef4444;
+}
+
+.toast-icon {
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+.toast.success .toast-icon {
+  color: #575408;
+}
+
+.toast.error .toast-icon {
+  color: #ef4444;
+}
+
+.toast-content {
+  flex: 1;
+}
+
+.toast-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.toast-message {
+  font-size: 13px;
+  color: #555;
+}
+
+.toast-close {
+  cursor: pointer;
+  font-size: 16px;
+  color: #999;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+}
+
+.toast.success .toast-progress {
+  background: #575408;
+}
+
+.toast.error .toast-progress {
+  background: #ef4444;
+}
+
+/* animações */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* =========================
+   JOBEE NEW BRAND THEME
+   ========================= */
+
+:root {
+  --jobee-dark: #2d3825;
+  --jobee-olive-dark: #3b4018;
+  --jobee-olive: #575408;
+  --jobee-moss: #6f6d37;
+  --jobee-gold: #ffda7b;
+  --jobee-light: #f7f3e8;
+  --jobee-text-light: #f5f5f5;
+}
+
+body {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark));
+  color: var(--jobee-text-light);
+}
+
+.navbar,
+header,
+.sidebar,
+.menu,
+.topbar,
+footer {
+  background: linear-gradient(90deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+}
+
+button,
+.btn,
+.btn-primary {
+  background: linear-gradient(135deg, var(--jobee-olive), var(--jobee-moss)) !important;
+  border-color: var(--jobee-gold) !important;
+  color: var(--jobee-gold) !important;
+  transition: all .3s ease;
+}
+
+button:hover,
+.btn:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.card,
+.container,
+.box,
+.modal-content,
+.table,
+.dashboard-card {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255, 218, 123, 0.15) !important;
+  backdrop-filter: blur(8px);
+}
+
+h1,h2,h3,h4,h5,h6,
+.title,
+.logo-text {
+  color: var(--jobee-gold) !important;
+}
+
+a,
+.highlight,
+.active,
+.icon-highlight {
+  color: var(--jobee-gold) !important;
+}
+
+input,
+textarea,
+select {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,218,123,.2) !important;
+  color: white !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255,255,255,.6) !important;
+}
+
+.section-title,
+.badge,
+.tag {
+  background: var(--jobee-gold) !important;
+  color: var(--jobee-dark) !important;
+}
+

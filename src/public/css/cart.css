@@ -3,7 +3,7 @@
       --primary-dark: #187a50;
       --primary-soft: #e8f7f0;
       --bg: #f4f7f5;
-      --card: #ffffff;
+      --card: #f7f3e8;
       --text: #1f2937;
       --muted: #6b7280;
       --border: #e5e7eb;
@@ -377,7 +377,7 @@
     }
 
     .stars {
-      color: #f59e0b;
+      color: #ffda7b;
       letter-spacing: 2px;
       font-size: 0.95rem;
       margin-bottom: 10px;
@@ -427,7 +427,7 @@
       border-radius: 14px;
       padding: 12px 14px;
       font-family: inherit;
-      background: #fff;
+      background: #f7f3e8;
       color: #374151;
     }
 
@@ -501,3 +501,92 @@
         justify-content: space-between;
       }
     }
+
+/* =========================
+   JOBEE NEW BRAND THEME
+   ========================= */
+
+:root {
+  --jobee-dark: #2d3825;
+  --jobee-olive-dark: #3b4018;
+  --jobee-olive: #575408;
+  --jobee-moss: #6f6d37;
+  --jobee-gold: #ffda7b;
+  --jobee-light: #f7f3e8;
+  --jobee-text-light: #f5f5f5;
+}
+
+body {
+  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark));
+  color: var(--jobee-text-light);
+}
+
+.navbar,
+header,
+.sidebar,
+.menu,
+.topbar,
+footer {
+  background: linear-gradient(90deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
+}
+
+button,
+.btn,
+.btn-primary {
+  background: linear-gradient(135deg, var(--jobee-olive), var(--jobee-moss)) !important;
+  border-color: var(--jobee-gold) !important;
+  color: var(--jobee-gold) !important;
+  transition: all .3s ease;
+}
+
+button:hover,
+.btn:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.card,
+.container,
+.box,
+.modal-content,
+.table,
+.dashboard-card {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255, 218, 123, 0.15) !important;
+  backdrop-filter: blur(8px);
+}
+
+h1,h2,h3,h4,h5,h6,
+.title,
+.logo-text {
+  color: var(--jobee-gold) !important;
+}
+
+a,
+.highlight,
+.active,
+.icon-highlight {
+  color: var(--jobee-gold) !important;
+}
+
+input,
+textarea,
+select {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,218,123,.2) !important;
+  color: white !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255,255,255,.6) !important;
+}
+
+.section-title,
+.badge,
+.tag {
+  background: var(--jobee-gold) !important;
+  color: var(--jobee-dark) !important;
+}
+
