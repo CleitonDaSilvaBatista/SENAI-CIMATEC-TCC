@@ -22,4 +22,15 @@ function authMiddleware(req, res, next) {
   }
 }
 
+function verificarPlano(req, res, next) {
+  const plano = req.user?.plano;
+
+  if (!plano) {
+    return res.status(403).json({ erro: 'Sem plano' });
+  }
+
+  req.plano = plano;
+  next();
+}
+
 module.exports = authMiddleware

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const dashboardController = require('../controllers/dashboard.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
+const dashboardController = require('../controllers/dashboard.controller');
 
 router.get('/executive/summary', authMiddleware, dashboardController.getExecutiveSummary)
 router.get('/executive/kpis', authMiddleware, dashboardController.getExecutiveKpis)
@@ -16,5 +17,6 @@ router.get('/executive/alerts', authMiddleware, dashboardController.getAlerts)
 router.get('/executive/strategic-block', authMiddleware, dashboardController.getStrategicBlock)
 router.get('/executive/quick-actions', authMiddleware, dashboardController.getQuickActions)
 router.get('/executive/full', authMiddleware, dashboardController.getExecutiveFull)
+router.get('/dashboard', dashboardController.getDashboard);
 
 module.exports = router

@@ -22,6 +22,7 @@ app.use('/api/lojas', lojaRoutes)
 app.use('/api/itens', itemRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/dashboard', dashRoutes)
+app.use('/api', dashboardRoutes);
 
 app.use(errorMiddleware)
 

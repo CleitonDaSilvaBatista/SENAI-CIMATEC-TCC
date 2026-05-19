@@ -60,10 +60,6 @@ router.get('/perfil', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil.html'))
 })
 
-router.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dashboard-jobee.html'))
-})
-
 router.get('/sobre', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'sobre.html'))
 })

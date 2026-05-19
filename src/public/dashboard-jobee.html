@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Planos - Jobee</title>
@@ -29,7 +30,7 @@
       border-radius: 10px;
       padding: 20px;
       width: 280px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
@@ -65,7 +66,7 @@
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     input {
@@ -75,58 +76,92 @@
     }
   </style>
 </head>
+
 <body>
 
-<h1>Escolha seu plano</h1>
+  <h1>Escolha seu plano</h1>
 
-<div class="container">
+  <div class="container">
 
-  <!-- PLANO BÁSICO -->
-  <div class="card">
-    <h2>Básico</h2>
-    <p>Acesso parcial à dashboard</p>
-    <div class="price">R$ 39,99</div>
-    <button class="btn" onclick="selecionarPlano('Básico', 39.99)">Escolher</button>
+    <!-- PLANO BÁSICO -->
+    <div class="card">
+      <h2>Básico</h2>
+      <p>Acesso parcial à dashboard</p>
+      <div class="price">R$ 39,99</div>
+      <button class="btn" onclick="selecionarPlano('Básico', 39.99)">Escolher</button>
+    </div>
+
+    <!-- PLANO MÉDIO -->
+    <div class="card">
+      <h2>Médio</h2>
+      <p>Acesso total + dicas para o negócio</p>
+      <div class="price">R$ 89,99</div>
+      <button class="btn" onclick="selecionarPlano('Médio', 89.99)">Escolher</button>
+    </div>
+
+    <!-- PLANO PREMIUM -->
+    <div class="card">
+      <h2>Premium</h2>
+      <p>Dashboard + dicas + IA assistente</p>
+      <div class="price">R$ 119,99</div>
+      <button class="btn" onclick="selecionarPlano('Premium', 119.99)">Escolher</button>
+    </div>
+
   </div>
 
-  <!-- PLANO MÉDIO -->
-  <div class="card">
-    <h2>Médio</h2>
-    <p>Acesso total + dicas para o negócio</p>
-    <div class="price">R$ 89,99</div>
-    <button class="btn" onclick="selecionarPlano('Médio', 89.99)">Escolher</button>
+  <!-- CHECKOUT -->
+  <div class="checkout">
+    <h2>Resumo da Assinatura</h2>
+
+    <p><strong>Plano:</strong> <span id="plano">Nenhum</span></p>
+    <p><strong>Valor:</strong> R$ <span id="valor">0.00</span></p>
+
+    <h3>Tem um cupom?</h3>
+    <input type="text" placeholder="Digite seu cupom" id="cupom">
+
+    <br><br>
+    <button class="btn" onclick="finalizarAssinatura()">Finalizar Assinatura</button>
   </div>
 
-  <!-- PLANO PREMIUM -->
-  <div class="card">
-    <h2>Premium</h2>
-    <p>Dashboard + dicas + IA assistente</p>
-    <div class="price">R$ 119,99</div>
-    <button class="btn" onclick="selecionarPlano('Premium', 119.99)">Escolher</button>
-  </div>
+  <script>
+    function finalizarAssinatura() {
+      const plano = document.getElementById('plano').innerText;
+      const valor = document.getElementById('valor').innerText;
 
-</div>
+      if (plano === "Nenhum") {
+        alert("Escolha um plano primeiro!");
+        return;
+      }
 
-<!-- CHECKOUT -->
-<div class="checkout">
-  <h2>Resumo da Assinatura</h2>
+      // salva no navegador
+      localStorage.setItem("planoUsuario", plano);
+      localStorage.setItem("valorPlano", valor);
 
-  <p><strong>Plano:</strong> <span id="plano">Nenhum</span></p>
-  <p><strong>Valor:</strong> R$ <span id="valor">0.00</span></p>
+      // redireciona
+      window.location.href = "dashboard.html";
+    }
 
-  <h3>Tem um cupom?</h3>
-  <input type="text" placeholder="Digite seu cupom" id="cupom">
+    const plano = localStorage.getItem("planoUsuario");
 
-  <br><br>
-  <button class="btn">Finalizar Assinatura</button>
-</div>
+    if (!plano) {
+      window.location.href = "index.html";
+    }
 
-<script>
-  function selecionarPlano(nome, preco) {
-    document.getElementById('plano').innerText = nome;
-    document.getElementById('valor').innerText = preco.toFixed(2);
-  }
-</script>
+    async function carregarDashboard() {
+      const res = await fetch(`/api/dashboard?plano=${plano}`);
+      const data = await res.json();
+
+      console.log(data); // debug
+
+      // exemplo simples:
+      document.body.innerHTML += `
+      <h2>Receita: ${data.summary?.receitaConsolidada?.formatado || 'Bloqueado'}</h2>
+    `;
+    }
+
+    carregarDashboard();
+  </script>
 
 </body>
+
 </html>
