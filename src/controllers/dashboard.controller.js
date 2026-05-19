@@ -124,9 +124,6 @@ async function getDashboard(req, res) {
     if (!plano) {
       return res.status(400).json({ erro: 'Plano não informado' });
     }
-
-    const data = await dashboardService.getExecutiveByPlan(plano);
-
     return res.json(data);
   } catch (error) {
     console.error(error);
@@ -135,10 +132,7 @@ async function getDashboard(req, res) {
 }
 
 module.exports = {
-  getDashboard
-};
-
-module.exports = {
+  getDashboard,
   getExecutiveSummary,
   getExecutiveKpis,
   getRevenueWeek,
@@ -152,4 +146,4 @@ module.exports = {
   getStrategicBlock,
   getQuickActions,
   getExecutiveFull
-}
+};
