@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  aplicarBuscaInicial();
   carregarLojas();
 
   const btnExplorar = document.getElementById('btn-explorar');
@@ -201,44 +200,3 @@ function reiniciarFiltroCategorias() {
 
   resetAutoPlay();
 })();
-
-// ===============================
-// BUSCA DA NAVBAR
-// ===============================
-function aplicarBuscaInicial() {
-  const params = new URLSearchParams(window.location.search);
-  const termo = (params.get('q') || '').trim().toLowerCase();
-  if (!termo) return;
-
-  const input = document.getElementById('search-input');
-  if (input) input.value = termo;
-
-  const produtos = document.querySelectorAll('.produto');
-  let encontrados = 0;
-
-  produtos.forEach(produto => {
-    const texto = produto.textContent.toLowerCase();
-    const combina = texto.includes(termo);
-    produto.style.display = combina ? 'flex' : 'none';
-    if (combina) encontrados++;
-  });
-
-  const secaoProdutos = document.querySelector('.produtos-section');
-  if (secaoProdutos) {
-    secaoProdutos.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    let aviso = document.getElementById('resultado-busca-aviso');
-    if (!aviso) {
-      aviso = document.createElement('p');
-      aviso.id = 'resultado-busca-aviso';
-      aviso.style.margin = '8px 0 18px';
-      aviso.style.fontWeight = '600';
-      aviso.style.color = '#198754';
-      secaoProdutos.querySelector('.title-produ')?.appendChild(aviso);
-    }
-
-    aviso.textContent = encontrados
-      ? `${encontrados} resultado(s) encontrado(s) para "${termo}".`
-      : `Nenhum produto encontrado para "${termo}".`;
-  }
-}
