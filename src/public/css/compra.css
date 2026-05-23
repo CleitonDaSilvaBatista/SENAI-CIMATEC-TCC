@@ -1,14 +1,14 @@
 :root {
-  --brand: #3f4a22;
-  --brand-dark: #313a1b;
-  --brand-soft: #fff4cf;
-  --bg: #fff9e8;
+  --brand: #308668;
+  --brand-dark: #1f6b4f;
+  --brand-soft: #eaf6f0;
+  --bg: #f5f8f6;
   --surface: #ffffff;
-  --text: #263018;
-  --muted: #7a7353;
-  --border: #eadcad;
-  --warning: #f4b817;
-  --shadow: 0 18px 45px rgba(38, 48, 24, 0.08);
+  --text: #173126;
+  --muted: #688175;
+  --border: #dfe8e2;
+  --warning: #f0b429;
+  --shadow: 0 18px 45px rgba(18, 42, 33, 0.08);
   --radius-lg: 26px;
   --radius-md: 18px;
   --radius-sm: 12px;
@@ -18,7 +18,7 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(180deg, #fff9e8 0%, #fff3d0 100%);
+  background: linear-gradient(180deg, #f7faf8 0%, #f1f6f3 100%);
   color: var(--text);
 }
 
@@ -40,13 +40,13 @@ body {
 .checkout-card {
   background: var(--surface);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(63, 74, 34, 0.1);
+  border: 1px solid rgba(48, 134, 104, 0.1);
   box-shadow: var(--shadow);
 }
 
 .checkout-hero__main {
   padding: 28px;
-  background: linear-gradient(135deg, #3f4a22 0%, #313a1b 100%);
+  background: linear-gradient(135deg, #308668 0%, #1f6b4f 100%);
   color: #fff;
 }
 
@@ -99,7 +99,7 @@ body {
 .hero-stat {
   padding: 16px;
   border-radius: 18px;
-  background: #fff9e8;
+  background: #f7fbf9;
   border: 1px solid var(--border);
 }
 
@@ -232,7 +232,7 @@ body {
   padding: 16px;
   border-radius: 18px;
   border: 1px solid var(--border);
-  background: #fffdf5;
+  background: #fbfdfc;
 }
 .payment-card input { margin-top: 5px; }
 .payment-card strong { display: block; margin-bottom: 4px; }
@@ -267,7 +267,7 @@ body {
 .info-box {
   padding: 16px;
   border-radius: 18px;
-  background: #fff9e8;
+  background: #f7faf8;
   border: 1px solid var(--border);
   margin-top: 18px;
 }
@@ -296,7 +296,7 @@ body {
   cursor: pointer;
 }
 .btn-main {
-  background: linear-gradient(135deg, #3f4a22 0%, #313a1b 100%);
+  background: linear-gradient(135deg, #308668 0%, #1f6b4f 100%);
   color: #fff;
 }
 .btn-secondary {

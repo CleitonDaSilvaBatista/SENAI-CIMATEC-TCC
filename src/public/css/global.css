@@ -16,7 +16,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   background: #ffffff;
-  color: #263018;
+  color: #222;
   line-height: 1.5;
 }
 
@@ -44,7 +44,7 @@ button {
 }
 /* Footer */
 .footer {
-  background: rgb(48, 134, 104);
+  background: linear-gradient(135deg, #3e4419 0%, #565d24 55%, #a88a43 100%);
   color: var(--white);
   padding: 64px 0 32px;
   margin-top: 64px;
