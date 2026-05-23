@@ -1457,3 +1457,172 @@ body {
     margin: 0 auto;
   }
 }
+/* ==============================
+   AJUSTE JOBEE - HERO HOME MAIS BONITO
+   Mantém a paleta atual e melhora leitura
+============================== */
+.hero {
+  margin: 26px auto 34px;
+  max-width: 1380px;
+  border-radius: 34px;
+  background: linear-gradient(135deg, #3f4a22 0%, #50602b 48%, #308668 100%);
+  box-shadow: 0 28px 70px rgba(47, 55, 24, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+  display: block;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::before {
+  width: 420px;
+  height: 420px;
+  right: -150px;
+  top: -140px;
+  background: radial-gradient(circle, rgba(244, 184, 23, 0.30), transparent 68%);
+  opacity: 1;
+}
+
+.hero::after {
+  width: 360px;
+  height: 360px;
+  left: -130px;
+  bottom: -150px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18), transparent 70%);
+  opacity: 1;
+  animation: none;
+}
+
+.hero-carousel-container,
+.hero-carousel,
+.hero-slide {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-slide {
+  background: linear-gradient(135deg, rgba(63, 74, 34, 0.96) 0%, rgba(80, 96, 43, 0.93) 52%, rgba(48, 134, 104, 0.92) 100%);
+  padding: 70px 86px;
+  gap: 42px;
+}
+
+.hero-slide-content {
+  max-width: 610px;
+}
+
+.hero-badge {
+  background: linear-gradient(135deg, #f4b817, #d79a00);
+  color: #263018;
+  box-shadow: 0 10px 24px rgba(244, 184, 23, 0.24);
+}
+
+.hero-slide-content h2 {
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.20);
+}
+
+.new-price-hero {
+  color: #f4b817;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+
+.discount-badge-hero,
+.hero-info {
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
+}
+
+.hero-info {
+  backdrop-filter: blur(12px);
+}
+
+.hero-tagline,
+.old-price-hero {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.hero-festival,
+.hero-installments,
+.hero-shipping,
+.hero-payment span {
+  color: #ffffff;
+}
+
+.hero-payment strong {
+  color: #f4b817;
+}
+
+.btn-hero-shop {
+  background: linear-gradient(135deg, #f4b817 0%, #d79a00 100%);
+  color: #263018;
+  box-shadow: 0 14px 34px rgba(244, 184, 23, 0.28);
+}
+
+.btn-hero-shop:hover {
+  box-shadow: 0 18px 42px rgba(244, 184, 23, 0.38);
+}
+
+.hero-slide-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-slide-image::before {
+  content: "";
+  position: absolute;
+  width: min(420px, 32vw);
+  height: min(420px, 32vw);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.10);
+}
+
+.hero-slide-image img {
+  position: relative;
+  z-index: 1;
+  transform: none;
+  max-height: 430px;
+  filter: drop-shadow(0 28px 34px rgba(0, 0, 0, 0.28));
+}
+
+.hero-seta {
+  background: rgba(255, 255, 255, 0.88);
+  color: #3f4a22;
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.hero-seta:hover {
+  background: #f4b817;
+  color: #263018;
+  border-color: #f4b817;
+}
+
+.hero-dot.active {
+  background: #f4b817;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    margin: 16px 12px 28px;
+    border-radius: 24px;
+  }
+
+  .hero-slide {
+    padding: 34px 22px 54px;
+  }
+
+  .hero-slide-image::before {
+    width: 270px;
+    height: 270px;
+  }
+}
