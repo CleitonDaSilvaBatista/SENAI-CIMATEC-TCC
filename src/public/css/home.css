@@ -1626,3 +1626,58 @@ body {
     height: 270px;
   }
 }
+
+/* ==============================
+   CORREÇÃO JOBEE - CARROSSEL HERO
+   Mantém o visual da hero e corrige slides empilhados/bugados
+============================== */
+.hero-carousel-container {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-carousel {
+  position: relative;
+  z-index: 1;
+  min-height: 550px;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  min-height: 550px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.hero-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.hero-seta,
+.hero-dots {
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .hero-carousel {
+    min-height: auto;
+  }
+
+  .hero-slide {
+    min-height: auto;
+    flex-direction: column;
+  }
+}
