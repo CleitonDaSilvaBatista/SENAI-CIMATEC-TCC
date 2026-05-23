@@ -2,15 +2,15 @@
    NAVBAR PRINCIPAL - SEARCH BAR CENTRALIZADA
 ============================== */
 .navbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(280px, 520px) minmax(220px, 1fr);
   align-items: center;
   justify-content: space-between;
-  background: #308668;;
+  background: #308668;
   padding: 12px 40px;
   position: sticky;
   top: 0;
-  z-index: 1000;
-  flex-wrap: wrap;
+  z-index: 3000;
   gap: 20px;
 }
 
@@ -65,11 +65,15 @@
   align-items: center;
   background: #fff;
   border-radius: 40px;
-  width: 500px;
+  width: 100%;
+  max-width: 520px;
+  min-width: 280px;
   padding: 4px 8px 4px 18px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   margin: 0 auto;
+  position: relative;
+  z-index: 3001;
 }
 
 .search-bar:focus-within {
@@ -228,9 +232,12 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
-  background-color: #308668;;
+  background-color: #308668;
   padding: 10px 40px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2500;
+  overflow: visible;
 }
 
 /* Dropdown Categorias */
@@ -262,7 +269,7 @@
   min-width: 220px;
   border-radius: 8px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 4000;
   padding: 8px 0;
 }
 
@@ -523,6 +530,7 @@
 
 @media (max-width: 768px) {
   .navbar {
+    display: flex;
     flex-direction: column;
     text-align: center;
   }

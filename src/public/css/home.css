@@ -1457,3 +1457,44 @@ body {
     margin: 0 auto;
   }
 }
+
+/* Ajustes solicitados - correções de layout, busca, imagens e botões */
+.hero {
+  position: relative;
+  z-index: 1;
+}
+
+.sub-navbar,
+.dropdown-categorias,
+.menu-categorias {
+  overflow: visible;
+}
+
+.produto {
+  background: #ffffff;
+}
+
+.produto img {
+  background: #ffffff;
+  object-fit: contain;
+  padding: 16px;
+}
+
+.frete {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  background: #ffffff;
+  color: var(--primary);
+  border: 1px solid rgba(25, 135, 84, 0.16);
+  border-radius: 999px;
+  padding: 6px 12px;
+  margin-top: 12px;
+}
+
+.oferta-btn,
+.oferta-btn:visited,
+.oferta-btn:hover,
+.oferta-btn:focus {
+  color: #ffffff;
+}
