@@ -4,14 +4,14 @@
 ============================== */
 
 :root {
-  --primary: #6f6d37;
-  --primary-strong: #3b4018;
-  --primary-dark: #3b4018;
+  --primary: #198754;
+  --primary-strong: #0e6b3f;
+  --primary-dark: #0a4d2e;
   --primary-soft: #e8f5ef;
-  --primary-soft-2: #f4ecd9;
+  --primary-soft-2: #d4ede2;
 
-  --accent: #6f6d37;
-  --accent-soft: rgba(45, 56, 37, 0.1);
+  --accent: #22c55e;
+  --accent-soft: rgba(34, 197, 94, 0.1);
 
   --text: #1a2a3a;
   --text-soft: #546e7a;
@@ -22,7 +22,7 @@
   --surface-solid: #ffffff;
   --surface-muted: #f8faf8;
   --border: rgba(0, 0, 0, 0.08);
-  --border-focus: rgba(45, 56, 37, 0.25);
+  --border-focus: rgba(25, 135, 84, 0.25);
 
   --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -46,7 +46,7 @@
 
 /* Base */
 body {
-  
+  background: var(--surface-muted);
   color: var(--text);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -59,7 +59,7 @@ body {
   position: relative;
   text-align: center;
   padding: 140px 24px 120px;
-  background: linear-gradient(135deg, #3b4018 0%, #575408 50%, #6f6d37 100%);
+  background: linear-gradient(135deg, #1b6b4a 0%, #249b64 50%, #2fc97a 100%);
   isolation: isolate;
   overflow: hidden;
 }
@@ -94,7 +94,7 @@ body {
 
 .hero {
   padding: 0;
-  background: linear-gradient(135deg, #2d3825 0%, #2d3825 50%, #3b4018 100%);
+  background: linear-gradient(135deg, #0a2a1f 0%, #0d3525 50%, #124d35 100%);
   overflow: hidden;
 }
 
@@ -186,7 +186,7 @@ body {
 .new-price-hero {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #6f6d37;
+  color: #22c55e;
 }
 
 .discount-badge-hero {
@@ -249,11 +249,11 @@ body {
   gap: 8px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #6f6d37;
+  color: #22c55e;
 }
 
 .btn-hero-shop {
-  background-color: #575408;
+  background-color: #26ac76;
   border: none;
   padding: 14px 36px;
   border-radius: var(--radius-pill);
@@ -885,7 +885,7 @@ body {
   justify-content: center;
   width: 126px;
   height: 36px;
-  background: #3b4018;
+  background: #1b6b4a;
   color: #fff;
   text-decoration: none;
   font-size: 14px;
@@ -895,7 +895,7 @@ body {
 }
 
 .oferta-btn:hover {
-  background: #3b4018;
+  background: #155238;
   transform: translateY(-1px);
 }
 
@@ -1189,7 +1189,7 @@ body {
   padding: 6px 14px;
   border-radius: 999px;
   background: #e8f5ef;
-  color: #6f6d37;
+  color: #198754;
   font-size: 0.8rem;
   font-weight: 700;
   margin-bottom: 14px;
@@ -1219,7 +1219,7 @@ body {
 
 .mapa-actions button {
   border: none;
-  background: linear-gradient(135deg, #6f6d37, #3b4018);
+  background: linear-gradient(135deg, #198754, #0e6b3f);
   color: #fff;
   padding: 12px 18px;
   border-radius: 999px;
@@ -1231,7 +1231,7 @@ body {
 
 .mapa-actions button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(45, 56, 37, 0.18);
+  box-shadow: 0 10px 24px rgba(25, 135, 84, 0.18);
 }
 
 #map {
@@ -1458,274 +1458,43 @@ body {
   }
 }
 
-
-/* =========================================================
-   JOBEE PROFESSIONAL THEME — fundo claro, verde só em destaque
-   Paleta: #2d3825 #3b4018 #575408 #6f6d37 #ffda7b
-   ========================================================= */
-
-:root {
-  --jobee-dark: #2d3825;
-  --jobee-olive-dark: #3b4018;
-  --jobee-olive: #575408;
-  --jobee-moss: #6f6d37;
-  --jobee-gold: #ffda7b;
-  --jobee-bg: #f8f4e8;
-  --jobee-bg-2: #efe7d2;
-  --jobee-surface: #fffaf0;
-  --jobee-surface-2: #f4ecd9;
-  --jobee-text: #202719;
-  --jobee-muted: #5f614f;
-  --jobee-border: rgba(45, 56, 37, 0.14);
-  --jobee-shadow: 0 18px 45px rgba(45, 56, 37, 0.10);
+/* Ajustes solicitados - correções de layout, busca, imagens e botões */
+.hero {
+  position: relative;
+  z-index: 1;
 }
 
-* {
-  scrollbar-color: var(--jobee-moss) var(--jobee-bg-2);
+.sub-navbar,
+.dropdown-categorias,
+.menu-categorias {
+  overflow: visible;
 }
 
-html,
-body {
-  background:
-    radial-gradient(circle at top left, rgba(255, 218, 123, 0.36), transparent 34%),
-    radial-gradient(circle at bottom right, rgba(111, 109, 55, 0.15), transparent 32%),
-    linear-gradient(135deg, var(--jobee-bg) 0%, var(--jobee-bg-2) 100%) !important;
-  color: var(--jobee-text) !important;
+.produto {
+  background: #ffffff;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(30deg, rgba(45,56,37,.035) 12%, transparent 12.5%, transparent 87%, rgba(45,56,37,.035) 87.5%, rgba(45,56,37,.035)),
-    linear-gradient(150deg, rgba(45,56,37,.035) 12%, transparent 12.5%, transparent 87%, rgba(45,56,37,.035) 87.5%, rgba(45,56,37,.035));
-  background-size: 54px 94px;
-  opacity: .38;
-  z-index: -1;
+.produto img {
+  background: #ffffff;
+  object-fit: contain;
+  padding: 16px;
 }
 
-header,
-nav,
-.navbar,
-.topbar,
-.menu,
-.sidebar {
-  background: rgba(255, 250, 240, 0.92) !important;
-  color: var(--jobee-text) !important;
-  border-bottom: 1px solid var(--jobee-border) !important;
-  box-shadow: 0 10px 30px rgba(45, 56, 37, 0.08) !important;
-  backdrop-filter: blur(14px);
+.frete {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  background: #ffffff;
+  color: var(--primary);
+  border: 1px solid rgba(25, 135, 84, 0.16);
+  border-radius: 999px;
+  padding: 6px 12px;
+  margin-top: 12px;
 }
 
-.sidebar,
-aside {
-  border-right: 1px solid var(--jobee-border) !important;
-}
-
-footer {
-  background: linear-gradient(90deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
-  color: var(--jobee-gold) !important;
-}
-
-main,
-section,
-.page,
-.content,
-.wrapper,
-.container-fluid {
-  color: var(--jobee-text) !important;
-}
-
-.card,
-.box,
-.panel,
-.modal-content,
-.dropdown-menu,
-.dashboard-card,
-.service-card,
-.profile-card,
-.login-card,
-.register-card,
-form,
-.table,
-.table-responsive {
-  background: rgba(255, 250, 240, 0.88) !important;
-  color: var(--jobee-text) !important;
-  border: 1px solid var(--jobee-border) !important;
-  box-shadow: var(--jobee-shadow) !important;
-  backdrop-filter: blur(12px);
-}
-
-.card:hover,
-.box:hover,
-.service-card:hover,
-.dashboard-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 24px 60px rgba(45, 56, 37, 0.15) !important;
-}
-
-h1, h2, h3, h4, h5, h6,
-.title,
-.section-title,
-.logo-text {
-  color: var(--jobee-dark) !important;
-  letter-spacing: -0.02em;
-}
-
-p,
-span,
-label,
-li,
-td,
-th,
-small {
-  color: inherit;
-}
-
-.text-muted,
-.muted,
-.subtitle,
-.description {
-  color: var(--jobee-muted) !important;
-}
-
-a {
-  color: var(--jobee-olive) !important;
-  text-decoration-color: rgba(87, 84, 8, 0.35) !important;
-}
-
-a:hover {
-  color: var(--jobee-dark) !important;
-}
-
-button,
-.btn,
-.btn-primary,
-input[type="submit"] {
-  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
-  color: var(--jobee-gold) !important;
-  border: 1px solid rgba(255, 218, 123, 0.48) !important;
-  box-shadow: 0 12px 25px rgba(45, 56, 37, 0.18) !important;
-  font-weight: 700;
-  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-}
-
-button:hover,
-.btn:hover,
-.btn-primary:hover,
-input[type="submit"]:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.06);
-  box-shadow: 0 18px 34px rgba(45, 56, 37, 0.24) !important;
-}
-
-.btn-secondary,
-.btn-outline,
-button.secondary {
-  background: var(--jobee-surface) !important;
-  color: var(--jobee-dark) !important;
-  border: 1px solid var(--jobee-border) !important;
-}
-
-.badge,
-.tag,
-.status,
-.pill,
-.active,
-.nav-link.active {
-  background: linear-gradient(135deg, var(--jobee-gold), #ffe8a8) !important;
-  color: var(--jobee-dark) !important;
-  border-color: rgba(45, 56, 37, 0.12) !important;
-}
-
-input,
-textarea,
-select {
-  background: #fffdf7 !important;
-  color: var(--jobee-text) !important;
-  border: 1px solid rgba(45, 56, 37, 0.18) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: var(--jobee-moss) !important;
-  box-shadow: 0 0 0 4px rgba(255, 218, 123, 0.32) !important;
-  outline: none !important;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: rgba(32, 39, 25, 0.48) !important;
-}
-
-table {
-  background: transparent !important;
-  color: var(--jobee-text) !important;
-}
-
-thead,
-.table thead,
-th {
-  background: rgba(255, 218, 123, 0.32) !important;
-  color: var(--jobee-dark) !important;
-}
-
-tr {
-  border-color: var(--jobee-border) !important;
-}
-
-hr {
-  border-color: var(--jobee-border) !important;
-}
-
-.alert,
-.notification,
-.toast {
-  background: var(--jobee-surface) !important;
-  color: var(--jobee-text) !important;
-  border-left: 5px solid var(--jobee-gold) !important;
-  box-shadow: var(--jobee-shadow) !important;
-}
-
-/* Detalhes premium em gradiente sem deixar a página verde */
-.hero,
-.banner,
-.cta,
-.featured,
-.highlight-section {
-  background:
-    radial-gradient(circle at top right, rgba(255, 218, 123, .38), transparent 34%),
-    linear-gradient(135deg, rgba(255, 250, 240, .94), rgba(244, 236, 217, .92)) !important;
-  color: var(--jobee-text) !important;
-  border: 1px solid var(--jobee-border) !important;
-  box-shadow: var(--jobee-shadow) !important;
-}
-
-.icon,
-.icon-box,
-.avatar-placeholder {
-  background: linear-gradient(135deg, var(--jobee-gold), #ffe8a8) !important;
-  color: var(--jobee-dark) !important;
-}
-
-/* Correção para textos que antes ficavam brancos sobre fundo claro */
-.text-white,
-[class*="text-light"] {
-  color: var(--jobee-text) !important;
-}
-
-.bg-success,
-.bg-primary,
-.bg-dark {
-  background: linear-gradient(135deg, var(--jobee-dark), var(--jobee-olive-dark)) !important;
-  color: var(--jobee-gold) !important;
-}
-
-.border-primary,
-.border-success {
-  border-color: var(--jobee-gold) !important;
+.oferta-btn,
+.oferta-btn:visited,
+.oferta-btn:hover,
+.oferta-btn:focus {
+  color: #ffffff;
 }

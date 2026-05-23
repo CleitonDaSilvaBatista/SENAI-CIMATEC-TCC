@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", carregarLoja);
 
+document.addEventListener("DOMContentLoaded", carregarLoja);
+
 async function carregarLoja() {
   abrirLoadingModal("Estamos carregando os dados da loja...");
 
@@ -27,7 +29,6 @@ async function carregarLoja() {
     const nomeLoja = document.getElementById("nome-loja");
     const descricaoLoja = document.getElementById("descricao-loja");
     const imagemLoja = document.getElementById("imagem-loja");
-    const bannerLoja = document.querySelector(".loja-hero");
     const sobreLoja = document.getElementById("sobre_loja");
 
     if (nomeLoja) nomeLoja.textContent = dados.loja?.nome_fantasia || "Loja sem nome";
@@ -37,15 +38,6 @@ async function carregarLoja() {
     if (imagemLoja) {
       imagemLoja.src = dados.loja?.imagem_url || "/img/placeholder-loja.png";
       imagemLoja.alt = dados.loja?.nome_fantasia || "Logo da loja";
-    }
-
-    if (bannerLoja) {
-      const bannerUrl = dados.loja?.banner_url || "/img/banercarrosel.webp";
-
-      bannerLoja.style.backgroundImage = `
-    linear-gradient(135deg, rgba(10, 20, 17, 0.75), rgba(14, 40, 31, 0.55)),
-    url("${bannerUrl}")
-  `;
     }
     if (sobreLoja) {
       sobreLoja.textContent = dados.loja?.sobre_loja || "Sem informações disponíveis.";
@@ -57,7 +49,7 @@ async function carregarLoja() {
 
     const produtos = Array.isArray(dados.produtos) ? dados.produtos : [];
     const servicos = Array.isArray(dados.servicos) ? dados.servicos : [];
-    
+
     const listaProdutos = document.getElementById("lista-produtos");
     if (listaProdutos) {
       listaProdutos.innerHTML = produtos.length
@@ -96,31 +88,22 @@ async function carregarLoja() {
     if (listaServicos) {
       listaServicos.innerHTML = servicos.length
         ? servicos.map(servico => `
-        <div class="card-servico">
-          <div class="card-img-wrap">
-            <img 
-              src="${servico.imagem_url || '/img/placeholder-loja.png'}" 
-              alt="${servico.nome || 'Serviço'}"
-              onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
-            >
-            <span class="selo green">Serviço</span>
-          </div>
+            <div class="card-servico">
+              <div class="servico-topo">
+                <h3>${servico.nome || 'Serviço sem nome'}</h3>
+                <span class="tag-servico">Serviço</span>
+              </div>
 
-          <div class="servico-topo">
-            <h3>${servico.nome || 'Serviço sem nome'}</h3>
-            <span class="tag-servico">Serviço</span>
-          </div>
+              <p>${servico.descricao || 'Sem descrição.'}</p>
 
-          <p>${servico.descricao || 'Sem descrição.'}</p>
+              <div class="servico-meta">
+                <span>R$ ${Number(servico.preco || 0).toFixed(2).replace('.', ',')}</span>
+                <span>${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
+              </div>
 
-          <div class="servico-meta">
-            <span>R$ ${Number(servico.preco || 0).toFixed(2).replace('.', ',')}</span>
-            <span>${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
-          </div>
-
-          <button class="btn">Solicitar serviço</button>
-        </div>
-      `).join("")
+              <button class="btn">Solicitar serviço</button>
+            </div>
+          `).join("")
         : `<div class="empty-state">Nenhum serviço cadastrado.</div>`;
     }
 
@@ -142,7 +125,6 @@ async function carregarLoja() {
     fecharLoadingModal();
   }
 }
-
 async function carregarContadores(idLoja) {
   try {
     const response = await fetch(`/api/lojas/${idLoja}/contagem`);
@@ -230,9 +212,9 @@ async function adicionarAoCarrinho(idItem) {
 
     localStorage.setItem("jobee_cart", JSON.stringify(carrinhoAtual));
     console.log("Carrinho salvo:", carrinhoAtual);
-    showToast('Produto adicionado ao carrinho!', 'success');
+    alert("Produto adicionado ao carrinho!");
   } catch (error) {
     console.error("Erro ao adicionar ao carrinho:", error);
-    showToast('Erro ao adicionar produto', 'error');
+    alert("Não foi possível adicionar o item ao carrinho.");
   }
 }

@@ -9,20 +9,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="/css/global.css" />
-  <link rel="stylesheet" href="/css/navbar.css" />
-  <link rel="stylesheet" href="/css/home.css" />
-  <link rel="stylesheet" href="/css/lojas.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="../css/lojas.css" />
 
   <script src="/js/auth-required-modal.js" defer></script>
-  <script src="/js/toast.js"></script>
-  <script src="/js/loja.js" defer></script>
-  <script src="/js/navbar.js"></script>
-  <script src="/js/user-info.js"></script>
-  <link rel="stylesheet" href="/css/jobee-redesign.css">
+  <script src="../js/loja.js" defer></script>
+  <script src="../js/navbar.js"></script>
+  <script src="./js/user-info.js"></script>
 </head>
 
-<body class="jobee-professional-theme jobee-professional-theme">
+<body>
   <div id="navbar-container"></div>
   <section class="sub-navbar" aria-label="Atalhos de navegação">
     <div class="dropdown-categorias">
@@ -143,6 +141,7 @@
           </div>
           <div class="contador" id="contador-produtos">0 produtos</div>
         </div>
+
         <div class="grid-itens" id="lista-produtos"></div>
       </section>
 
@@ -168,23 +167,27 @@
           <h3>Avaliações recentes</h3>
 
           <div class="avaliacao">
-            <strong></strong>
-            <div class="nota"></div>
+            <strong>Marina Souza</strong>
+            <div class="nota">★★★★★</div>
             <p>
+              Produto chegou rápido e com ótima qualidade. Loja muito
+              confiável.
             </p>
           </div>
 
           <div class="avaliacao">
-            <strong></strong>
-            <div class="nota"></div>
+            <strong>Pedro Henrique</strong>
+            <div class="nota">★★★★★</div>
             <p>
+              Atendimento excelente e serviço realizado no prazo combinado.
             </p>
           </div>
 
           <div class="avaliacao">
-            <strong></strong>
-            <div class="nota"></div>
+            <strong>Ana Clara</strong>
+            <div class="nota">★★★★☆</div>
             <p>
+              Página linda e fácil de usar. Compraria novamente com certeza.
             </p>
           </div>
         </div>
@@ -216,7 +219,6 @@
   </div>
 </div>
 </div>
-<div id="toast-container"></div>
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col">
@@ -252,7 +254,6 @@
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
   </footer>
-
 </body>
 
 </html>

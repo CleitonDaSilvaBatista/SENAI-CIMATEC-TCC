@@ -238,7 +238,7 @@ function adicionarAoCarrinho() {
 
   localStorage.setItem('jobee_cart', JSON.stringify(carrinhoAtual));
   if (typeof updateCartBadge === 'function') updateCartBadge();
-  showToast('Produto adicionado ao carrinho!', 'success');
+  window.alert(`Produto adicionado ao carrinho!\nCor: ${produto.cor}\nTamanho: ${produto.tamanho}\nQuantidade: ${produto.quantidade}`);
 }
 
 function setupBuyButtons() {

@@ -8,10 +8,6 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'home.html'))
 })
 
-router.get('/compra', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'compra.html'))
-})
-
 router.get('/forgot-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'forgot.html'))
 })
@@ -66,6 +62,11 @@ router.get('/perfil', (req, res) => {
 
 router.get('/dashboard', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'dashboard-jobee.html'))
+})
+
+
+router.get('/buscar', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'home.html'))
 })
 
 router.get('/sobre', (req, res) => {
