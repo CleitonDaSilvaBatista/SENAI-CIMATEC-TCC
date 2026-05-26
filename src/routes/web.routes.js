@@ -53,20 +53,40 @@ router.get('/produto', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto.html'))
 })
 
-router.get('/produto/:slug', (req, res) => {
-  const paginasProduto = {
-    'shorts': 'produto-shorts.html',
-    'tv': 'produto-tv.html',
-    'ferramentas': 'produto-ferramentas.html',
-    'painel-tv': 'produto-painel-tv.html',
-    'espelho': 'produto-espelho.html',
-    'mesa-cadeiras': 'produto-mesa-cadeiras.html',
-    'smartwatch': 'produto-smartwatch.html',
-    'placa-video': 'produto-placa-video.html'
-  }
+router.get('/produto', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-shorts.html'))
+})
 
-  const arquivo = paginasProduto[req.params.slug] || 'produto-shorts.html'
-  res.sendFile(path.join(process.cwd(), 'src', 'public', arquivo))
+router.get('/produto-shorts', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-shorts.html'))
+})
+
+router.get('/produto-tv', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-tv.html'))
+})
+
+router.get('/produto-ferramentas', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-ferramentas.html'))
+})
+
+router.get('/produto-painel-tv', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-painel-tv.html'))
+})
+
+router.get('/produto-espelho', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-espelho.html'))
+})
+
+router.get('/produto-mesa-cadeiras', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-mesa-cadeiras.html'))
+})
+
+router.get('/produto-smartwatch', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-smartwatch.html'))
+})
+
+router.get('/produto-placa-video', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-placa-video.html'))
 })
 
 router.get('/carrinho', (req, res) => {
