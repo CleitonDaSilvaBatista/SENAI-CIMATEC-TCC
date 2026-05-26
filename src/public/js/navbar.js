@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
   navbarContainer.innerHTML = `
     <header class="navbar">
       <div class="navbar-left">
-        <div class="logo" data-link="/">Jobee</div>
+        <a class="logo" data-link="/" aria-label="Página inicial Jobee">
+          <img src="/img/logo-jobee.svg" alt="Jobee" class="logo-img" />
+        </a>
 
         <div class="location" id="location-box">
           <img src="https://cdn-icons-png.flaticon.com/512/535/535239.png" alt="localização" width="16" height="16" />
@@ -25,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
 
       <div class="navbar-right">
+        <a data-link="/contato" class="navbar-link">Contato</a>
+
         <div class="auth-buttons" id="auth-buttons">
           <a data-link="/login" id="entrar">Entrar</a>
           <a data-link="/cadastro" id="criar-conta">Criar Conta</a>

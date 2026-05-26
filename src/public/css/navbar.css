@@ -601,3 +601,43 @@
 .categorias-btn:hover {
   background-color: rgba(244, 184, 23, 0.18);
 }
+
+/* Logo em imagem sem fundo */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  background: transparent;
+}
+
+.logo-img {
+  display: block;
+  width: 138px;
+  max-width: 138px;
+  height: auto;
+  background: transparent;
+}
+
+.navbar-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 999px;
+  transition: 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.navbar-link:hover {
+  color: #f4b817;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    width: 118px;
+    max-width: 118px;
+  }
+}

@@ -91,6 +91,15 @@ router.get('/reset-password', (req, res) => {
 })
 
 
+
+router.get('/contato', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'contato.html'))
+})
+
+router.get('/contato.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'contato.html'))
+})
+
 router.get('/sobre', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'sobre.html'))
 })
