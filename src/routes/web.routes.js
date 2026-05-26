@@ -53,6 +53,10 @@ router.get('/produto', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto.html'))
 })
 
+router.get('/produto/:slug', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto.html'))
+})
+
 router.get('/carrinho', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'cart.html'))
 })
