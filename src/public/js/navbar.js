@@ -36,7 +36,41 @@ document.addEventListener('DOMContentLoaded', function () {
           <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
           <span class="navbar-cart-count" id="navbar-cart-count">0</span>
         </a>
-      </div>
+      
+        <style>
+          .user-box{
+            display:flex;
+            align-items:center;
+            gap:14px;
+          }
+
+          .user-actions{
+            display:flex;
+            align-items:center;
+            gap:10px;
+          }
+
+          .perfil-link{
+            text-decoration:none;
+            padding:8px 14px;
+            border-radius:10px;
+            background:#f4f4f4;
+            color:#222;
+            font-weight:600;
+            transition:0.2s ease;
+          }
+
+          .perfil-link:hover{
+            transform:translateY(-1px);
+            opacity:0.9;
+          }
+
+          .dashboard-link{
+            background:#ffd54f;
+          }
+        </style>
+
+</div>
     </header>
 
     <div class="cep-modal-overlay" id="cep-modal-overlay">
@@ -229,23 +263,45 @@ function mostrarStatusLogin() {
   }
 
   let nome = 'Usuário';
+  let tipoUsuario = 1;
 
   try {
     const usuario = usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
-    if (usuario && usuario.nome) {
-      nome = usuario.nome;
+
+    if (usuario) {
+      nome = usuario.nome || usuario.name || 'Usuário';
+      tipoUsuario = Number(usuario.tipoUsuario || usuario.tipo || usuario.userType || 1);
     }
   } catch (error) {
     console.error('Erro ao ler usuário salvo:', error);
   }
 
+  const rotaPerfil = tipoUsuario === 2
+    ? '/perfil-empreendedor'
+    : '/perfil-cliente';
+
   authButtons.style.display = 'none';
   userBox.style.display = 'flex';
   userBox.innerHTML = `
-      <div class="user-box">
-    <span class="user-name">Olá, ${nome}</span>
-    <button id="logout-btn" class="logout-btn" type="button">Sair</button>
-  </div>`;
+    <div class="user-box">
+      <span class="user-name">Olá, ${nome}</span>
+
+      <div class="user-actions">
+        <a href="${rotaPerfil}" class="perfil-link">
+          ${tipoUsuario === 2 ? 'Perfil empreendedor' : 'Meu perfil'}
+        </a>
+
+        ${tipoUsuario === 2 ? `
+          <a href="/dashboard" class="perfil-link dashboard-link">
+            Dashboard
+          </a>
+        ` : ''}
+
+        <button id="logout-btn" class="logout-btn" type="button">
+          Sair
+        </button>
+      </div>
+    </div>`;
 
   const logoutBtn = document.getElementById('logout-btn');
   logoutBtn?.addEventListener('click', logout);
