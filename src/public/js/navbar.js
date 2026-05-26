@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
 
       <div class="navbar-right">
-        <a data-link="/contato" class="navbar-link">Contato</a>
+        
 
         <div class="auth-buttons" id="auth-buttons">
           <a data-link="/login" id="entrar">Entrar</a>
