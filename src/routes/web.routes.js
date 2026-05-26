@@ -53,9 +53,16 @@ router.get('/produto', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-shorts.html'))
 })
 
-router.get('/produto-ferramentas', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-ferramentas.html'))
-})
+const paginasProduto = {
+  '/produto-shorts': 'produto-shorts.html',
+  '/produto-tv': 'produto-tv.html',
+  '/produto-ferramentas': 'produto-ferramentas.html',
+  '/produto-painel-tv': 'produto-painel-tv.html',
+  '/produto-espelho': 'produto-espelho.html',
+  '/produto-mesa-cadeiras': 'produto-mesa-cadeiras.html',
+  '/produto-smartwatch': 'produto-smartwatch.html',
+  '/produto-placa-video': 'produto-placa-video.html'
+}
 
 Object.entries(paginasProduto).forEach(([rota, arquivo]) => {
   router.get(rota, (req, res) => {
