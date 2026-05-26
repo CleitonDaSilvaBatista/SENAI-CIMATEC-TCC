@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         <div class="auth-buttons" id="auth-buttons">
           <a data-link="/login" id="entrar">Entrar</a>
-          <a data-link="/cadastro" id="criar-conta">Criar Conta</a>
+          <a data-link="/criarcont" id="criar-conta">Criar Conta</a>
         </div>
 
         <div id="user-status" class="user-status" style="display: none;"></div>
