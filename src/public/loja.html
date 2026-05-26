@@ -15,9 +15,10 @@
   <link rel="stylesheet" href="../css/lojas.css" />
 
   <script src="/js/auth-required-modal.js" defer></script>
+  <script src="/js/toast.js"></script>
   <script src="../js/loja.js" defer></script>
   <script src="../js/navbar.js"></script>
-  <script src="./js/user-info.js"></script>
+  <script src="./user-info.js"></script>
 </head>
 
 <body>
@@ -141,7 +142,6 @@
           </div>
           <div class="contador" id="contador-produtos">0 produtos</div>
         </div>
-
         <div class="grid-itens" id="lista-produtos"></div>
       </section>
 
@@ -167,27 +167,23 @@
           <h3>Avaliações recentes</h3>
 
           <div class="avaliacao">
-            <strong>Marina Souza</strong>
-            <div class="nota">★★★★★</div>
+            <strong></strong>
+            <div class="nota"></div>
             <p>
-              Produto chegou rápido e com ótima qualidade. Loja muito
-              confiável.
             </p>
           </div>
 
           <div class="avaliacao">
-            <strong>Pedro Henrique</strong>
-            <div class="nota">★★★★★</div>
+            <strong></strong>
+            <div class="nota"></div>
             <p>
-              Atendimento excelente e serviço realizado no prazo combinado.
             </p>
           </div>
 
           <div class="avaliacao">
-            <strong>Ana Clara</strong>
-            <div class="nota">★★★★☆</div>
+            <strong></strong>
+            <div class="nota"></div>
             <p>
-              Página linda e fácil de usar. Compraria novamente com certeza.
             </p>
           </div>
         </div>
@@ -219,6 +215,7 @@
   </div>
 </div>
 </div>
+<div id="toast-container"></div>
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col">
@@ -254,6 +251,7 @@
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
   </footer>
+
 </body>
 
 </html>
