@@ -2,17 +2,17 @@
    VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
 ============================== */
 :root {
-  --brand: #3f4a22;
-  --brand-light: #6f793a;
-  --brand-dark: #313a1b;
-  --accent: #f4b817;
-  --muted: #8b835f;
+  --brand: #308668;
+  --brand-light: #3da57c;
+  --brand-dark: #1e6b4e;
+  --accent: #01cc6d;
+  --muted: #8b9a92;
   --light-gray: #f5f7f6;
-  --border: #eadcad;
-  --text-dark: #263018;
-  --text-light: #7a7353;
-  --shadow: 0 8px 24px rgba(38, 48, 24, 0.08);
-  --shadow-hover: 0 12px 32px rgba(38, 48, 24, 0.12);
+  --border: #e1e8e5;
+  --text-dark: #062a1c;
+  --text-light: #5a7268;
+  --shadow: 0 8px 24px rgba(18, 42, 33, 0.08);
+  --shadow-hover: 0 12px 32px rgba(18, 42, 33, 0.12);
   --radius: 12px;
 }
 
@@ -439,7 +439,7 @@ table td:first-child {
 .color:hover, .color.active,
 .size:hover, .size.active {
   border-color: var(--brand);
-  background-color: rgba(63, 74, 34, 0.05);
+  background-color: rgba(48, 134, 104, 0.05);
   color: var(--brand);
 }
 
@@ -801,7 +801,7 @@ table td:first-child {
 .modal-feedback-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(38, 48, 24, 0.55);
+  background: rgba(9, 20, 16, 0.55);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -824,7 +824,7 @@ table td:first-child {
   position: relative;
   width: 100%;
   max-width: 440px;
-  background: linear-gradient(180deg, #ffffff 0%, #fff9e8 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%);
   border-radius: 24px;
   padding: 34px 26px 26px;
   text-align: center;
@@ -847,8 +847,8 @@ table td:first-child {
   height: 38px;
   border: none;
   border-radius: 50%;
-  background: #fff5d8;
-  color: #6f6b4e;
+  background: #f2f5f3;
+  color: #4e6359;
   font-size: 24px;
   cursor: pointer;
 }
@@ -881,13 +881,13 @@ table td:first-child {
 .modal-feedback-box h3 {
   margin: 0 0 10px;
   font-size: 1.7rem;
-  color: #263018;
+  color: #153d2c;
 }
 
 .modal-feedback-box p {
   margin: 0 auto 22px;
   max-width: 340px;
-  color: #6f6b4e;
+  color: #5f6d66;
   line-height: 1.65;
 }
 
@@ -909,14 +909,14 @@ table td:first-child {
 }
 
 .modal-feedback-btn.primary {
-  background: linear-gradient(135deg, #3f4a22, #5f6b2e);
+  background: linear-gradient(135deg, #0b8a56, #16a36a);
   color: #fff;
 }
 
 .modal-feedback-btn.secondary {
-  background: #fff3d0;
-  color: #465126;
-  border: 1px solid #eadcad;
+  background: #eef2f0;
+  color: #29473a;
+  border: 1px solid #dbe6e0;
 }
 /* ==============================
    RESPONSIVIDADE

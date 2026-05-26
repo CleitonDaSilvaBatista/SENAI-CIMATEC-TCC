@@ -1,18 +1,18 @@
 :root {
-  --jobee-primary: #3f4a22;
-  --jobee-primary-dark: #3f4a22;
-  --jobee-primary-soft: #fff4cf;
-  --jobee-accent: #f4b817;
-  --jobee-text: #263018;
-  --jobee-muted: #7a7353;
-  --jobee-border: #eadcad;
+  --jobee-primary: #308668;
+  --jobee-primary-dark: #2a7453;
+  --jobee-primary-soft: #eaf6f0;
+  --jobee-accent: #01cc6d;
+  --jobee-text: #1f2937;
+  --jobee-muted: #6b7280;
+  --jobee-border: #dbe7e1;
   --jobee-surface: #ffffff;
-  --jobee-bg: #fff9e8;
-  --jobee-warning: #f4b817;
+  --jobee-bg: #f7fbf9;
+  --jobee-warning: #f59e0b;
 }
 
 body {
-  background: linear-gradient(180deg, #fff9e8 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #f7fbf9 0%, #ffffff 100%);
 }
 
 .profile-page {
@@ -32,7 +32,7 @@ body {
   border-radius: 28px;
   padding: 36px;
   color: #ffffff;
-  box-shadow: 0 20px 45px rgba(63, 74, 34, 0.18);
+  box-shadow: 0 20px 45px rgba(48, 134, 104, 0.18);
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
   gap: 24px;
@@ -291,7 +291,7 @@ body {
 .rating-card {
   padding: 18px;
   border-radius: 20px;
-  background: linear-gradient(180deg, #fff9e8 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #f7fbf9 0%, #ffffff 100%);
   border: 1px solid var(--jobee-border);
 }
 

@@ -36,6 +36,15 @@ router.get('/perfilempreendedor', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil-empreendedor.html'))
 })
 
+
+router.get('/perfil-cliente', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil-cliente.html'))
+})
+
+router.get('/perfil-empreendedor', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil-empreendedor.html'))
+})
+
 router.get('/cadastrar-loja', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'cadastrar-loja.html'))
 })
@@ -56,13 +65,6 @@ router.get('/reset-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'reset-password.html'))
 })
 
-router.get('/perfil', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'perfil.html'))
-})
-
-router.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dashboard-jobee.html'))
-})
 
 router.get('/sobre', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'sobre.html'))

@@ -4,25 +4,25 @@
 ============================== */
 
 :root {
-  --primary: #4f5d2a;
-  --primary-strong: #313a1b;
-  --primary-dark: #242b14;
-  --primary-soft: #fff4cf;
-  --primary-soft-2: #fff0bd;
+  --primary: #198754;
+  --primary-strong: #0e6b3f;
+  --primary-dark: #0a4d2e;
+  --primary-soft: #e8f5ef;
+  --primary-soft-2: #d4ede2;
 
-  --accent: #f4b817;
-  --accent-soft: rgba(244, 184, 23, 0.1);
+  --accent: #22c55e;
+  --accent-soft: rgba(34, 197, 94, 0.1);
 
-  --text: #263018;
+  --text: #1a2a3a;
   --text-soft: #546e7a;
-  --text-muted: #8b835f;
+  --text-muted: #78909c;
 
   --white: #ffffff;
   --surface: rgba(255, 255, 255, 0.96);
   --surface-solid: #ffffff;
   --surface-muted: #f8faf8;
   --border: rgba(0, 0, 0, 0.08);
-  --border-focus: rgba(79, 93, 42, 0.25);
+  --border-focus: rgba(25, 135, 84, 0.25);
 
   --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -59,7 +59,7 @@ body {
   position: relative;
   text-align: center;
   padding: 140px 24px 120px;
-  background: linear-gradient(135deg, #3f4a22 0%, #6f793a 50%, #f4b817 100%);
+  background: linear-gradient(135deg, #1b6b4a 0%, #249b64 50%, #2fc97a 100%);
   isolation: isolate;
   overflow: hidden;
 }
@@ -186,7 +186,7 @@ body {
 .new-price-hero {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #f4b817;
+  color: #22c55e;
 }
 
 .discount-badge-hero {
@@ -249,7 +249,7 @@ body {
   gap: 8px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #f4b817;
+  color: #22c55e;
 }
 
 .btn-hero-shop {
@@ -885,7 +885,7 @@ body {
   justify-content: center;
   width: 126px;
   height: 36px;
-  background: #3f4a22;
+  background: #1b6b4a;
   color: #fff;
   text-decoration: none;
   font-size: 14px;
@@ -1188,8 +1188,8 @@ body {
   display: inline-block;
   padding: 6px 14px;
   border-radius: 999px;
-  background: #fff4cf;
-  color: #4f5d2a;
+  background: #e8f5ef;
+  color: #198754;
   font-size: 0.8rem;
   font-weight: 700;
   margin-bottom: 14px;
@@ -1197,7 +1197,7 @@ body {
 
 .mapa-header h2 {
   font-size: clamp(1.8rem, 4vw, 2.6rem);
-  color: #263018;
+  color: #1a2a3a;
   margin-bottom: 10px;
 }
 
@@ -1219,7 +1219,7 @@ body {
 
 .mapa-actions button {
   border: none;
-  background: linear-gradient(135deg, #4f5d2a, #313a1b);
+  background: linear-gradient(135deg, #198754, #0e6b3f);
   color: #fff;
   padding: 12px 18px;
   border-radius: 999px;
@@ -1231,7 +1231,7 @@ body {
 
 .mapa-actions button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(79, 93, 42, 0.18);
+  box-shadow: 0 10px 24px rgba(25, 135, 84, 0.18);
 }
 
 #map {
@@ -1455,229 +1455,5 @@ body {
   
   .footer-col p {
     margin: 0 auto;
-  }
-}
-/* ==============================
-   AJUSTE JOBEE - HERO HOME MAIS BONITO
-   Mantém a paleta atual e melhora leitura
-============================== */
-.hero {
-  margin: 26px auto 34px;
-  max-width: 1380px;
-  border-radius: 34px;
-  background: linear-gradient(135deg, #3f4a22 0%, #50602b 48%, #308668 100%);
-  box-shadow: 0 28px 70px rgba(47, 55, 24, 0.22);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before,
-.hero::after {
-  display: block;
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero::before {
-  width: 420px;
-  height: 420px;
-  right: -150px;
-  top: -140px;
-  background: radial-gradient(circle, rgba(244, 184, 23, 0.30), transparent 68%);
-  opacity: 1;
-}
-
-.hero::after {
-  width: 360px;
-  height: 360px;
-  left: -130px;
-  bottom: -150px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.18), transparent 70%);
-  opacity: 1;
-  animation: none;
-}
-
-.hero-carousel-container,
-.hero-carousel,
-.hero-slide {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-slide {
-  background: linear-gradient(135deg, rgba(63, 74, 34, 0.96) 0%, rgba(80, 96, 43, 0.93) 52%, rgba(48, 134, 104, 0.92) 100%);
-  padding: 70px 86px;
-  gap: 42px;
-}
-
-.hero-slide-content {
-  max-width: 610px;
-}
-
-.hero-badge {
-  background: linear-gradient(135deg, #f4b817, #d79a00);
-  color: #263018;
-  box-shadow: 0 10px 24px rgba(244, 184, 23, 0.24);
-}
-
-.hero-slide-content h2 {
-  color: #ffffff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.20);
-}
-
-.new-price-hero {
-  color: #f4b817;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
-}
-
-.discount-badge-hero,
-.hero-info {
-  background: rgba(255, 255, 255, 0.13);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
-}
-
-.hero-info {
-  backdrop-filter: blur(12px);
-}
-
-.hero-tagline,
-.old-price-hero {
-  color: rgba(255, 255, 255, 0.76);
-}
-
-.hero-festival,
-.hero-installments,
-.hero-shipping,
-.hero-payment span {
-  color: #ffffff;
-}
-
-.hero-payment strong {
-  color: #f4b817;
-}
-
-.btn-hero-shop {
-  background: linear-gradient(135deg, #f4b817 0%, #d79a00 100%);
-  color: #263018;
-  box-shadow: 0 14px 34px rgba(244, 184, 23, 0.28);
-}
-
-.btn-hero-shop:hover {
-  box-shadow: 0 18px 42px rgba(244, 184, 23, 0.38);
-}
-
-.hero-slide-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-slide-image::before {
-  content: "";
-  position: absolute;
-  width: min(420px, 32vw);
-  height: min(420px, 32vw);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.10);
-}
-
-.hero-slide-image img {
-  position: relative;
-  z-index: 1;
-  transform: none;
-  max-height: 430px;
-  filter: drop-shadow(0 28px 34px rgba(0, 0, 0, 0.28));
-}
-
-.hero-seta {
-  background: rgba(255, 255, 255, 0.88);
-  color: #3f4a22;
-  border-color: rgba(255, 255, 255, 0.32);
-}
-
-.hero-seta:hover {
-  background: #f4b817;
-  color: #263018;
-  border-color: #f4b817;
-}
-
-.hero-dot.active {
-  background: #f4b817;
-}
-
-@media (max-width: 768px) {
-  .hero {
-    margin: 16px 12px 28px;
-    border-radius: 24px;
-  }
-
-  .hero-slide {
-    padding: 34px 22px 54px;
-  }
-
-  .hero-slide-image::before {
-    width: 270px;
-    height: 270px;
-  }
-}
-
-/* ==============================
-   CORREÇÃO JOBEE - CARROSSEL HERO
-   Mantém o visual da hero e corrige slides empilhados/bugados
-============================== */
-.hero-carousel-container {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.hero-carousel {
-  position: relative;
-  z-index: 1;
-  min-height: 550px;
-  overflow: hidden;
-}
-
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  min-height: 550px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: opacity 0.45s ease, visibility 0.45s ease;
-}
-
-.hero-slide.active {
-  position: relative;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  z-index: 2;
-}
-
-.hero-seta,
-.hero-dots {
-  z-index: 5;
-}
-
-@media (max-width: 768px) {
-  .hero-carousel {
-    min-height: auto;
-  }
-
-  .hero-slide {
-    min-height: auto;
-    flex-direction: column;
   }
 }
