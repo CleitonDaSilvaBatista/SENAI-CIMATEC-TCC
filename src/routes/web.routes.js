@@ -92,6 +92,15 @@ router.get('/reset-password', (req, res) => {
 
 
 
+
+router.get('/dicas-vendas', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dicas-vendas.html'))
+})
+
+router.get('/dicas-vendas.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dicas-vendas.html'))
+})
+
 router.get('/contato', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'contato.html'))
 })

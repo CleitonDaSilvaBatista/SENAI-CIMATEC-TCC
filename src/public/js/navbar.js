@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         <div id="user-status" class="user-status" style="display: none;"></div>
 
+        <a data-link="/dicas-vendas" class="perfil-link dicas-navbar-link">Dicas para vender</a>
+
         <a data-link="/carrinho" class="cart">
           <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
           <span class="navbar-cart-count" id="navbar-cart-count">0</span>
@@ -71,6 +73,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
           .dashboard-link{
             background:#ffd54f;
+          }
+
+          .dicas-navbar-link{
+            background:#f4b817;
+            color:#3f4a22;
+            white-space:nowrap;
           }
         </style>
 

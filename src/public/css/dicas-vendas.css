@@ -1,0 +1,289 @@
+.dicas-page {
+  background: #ffffff;
+  color: #263018;
+}
+
+.dicas-hero {
+  max-width: 1200px;
+  margin: 48px auto 28px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.dicas-hero-texto,
+.dicas-hero-card,
+.checklist-section {
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(48, 134, 104, 0.12), rgba(244, 184, 23, 0.14));
+  border: 1px solid rgba(48, 134, 104, 0.16);
+  box-shadow: 0 18px 45px rgba(47, 55, 24, 0.12);
+}
+
+.dicas-hero-texto {
+  padding: 54px;
+}
+
+.dicas-badge,
+.section-title span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #3f4a22;
+  background: rgba(244, 184, 23, 0.22);
+  border: 1px solid rgba(244, 184, 23, 0.45);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.dicas-hero h1 {
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.05;
+  color: #2f3718;
+  margin-bottom: 18px;
+  letter-spacing: -0.04em;
+}
+
+.dicas-hero p,
+.section-title p,
+.checklist-section p,
+.dica-card p,
+.timeline-dicas p {
+  color: rgba(38, 48, 24, 0.74);
+}
+
+.dicas-hero-texto p {
+  max-width: 680px;
+  font-size: 1.05rem;
+  margin-bottom: 28px;
+}
+
+.dicas-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #3f4a22;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 12px 24px rgba(63, 74, 34, 0.22);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.dicas-cta:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.dicas-hero-card {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.abelha-ilustracao {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 4.5rem;
+  background: #f4b817;
+  box-shadow: 0 16px 35px rgba(244, 184, 23, 0.35);
+  animation: beeFloat 2.8s ease-in-out infinite;
+}
+
+.dicas-hero-card h2 {
+  color: #2f3718;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.dicas-resumo,
+.dicas-section,
+.plano-section,
+.checklist-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.dicas-resumo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 64px;
+}
+
+.dicas-resumo article {
+  background: #ffffff;
+  border: 1px solid rgba(63, 74, 34, 0.12);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 10px 28px rgba(47, 55, 24, 0.08);
+}
+
+.dicas-resumo strong {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #308668;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.dicas-resumo span {
+  color: #2f3718;
+  font-weight: 700;
+}
+
+.dicas-section,
+.plano-section {
+  margin-bottom: 64px;
+}
+
+.section-title {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.section-title h2,
+.checklist-section h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: #2f3718;
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+}
+
+.dicas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.dica-card {
+  background: #ffffff;
+  border: 1px solid rgba(63, 74, 34, 0.12);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 12px 32px rgba(47, 55, 24, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dica-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px rgba(47, 55, 24, 0.13);
+}
+
+.dica-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(244, 184, 23, 0.2);
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.dica-card h3 {
+  color: #2f3718;
+  margin-bottom: 10px;
+  font-size: 1.08rem;
+}
+
+.timeline-dicas {
+  display: grid;
+  gap: 14px;
+}
+
+.timeline-dicas div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(63, 74, 34, 0.12);
+  box-shadow: 0 8px 24px rgba(47, 55, 24, 0.06);
+}
+
+.timeline-dicas strong {
+  color: #308668;
+}
+
+.checklist-section {
+  margin-bottom: 48px;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.checklist {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.checklist li {
+  background: #ffffff;
+  color: #2f3718;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(47, 55, 24, 0.06);
+}
+
+@keyframes beeFloat {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+
+@media (max-width: 900px) {
+  .dicas-hero,
+  .checklist-section {
+    grid-template-columns: 1fr;
+  }
+
+  .dicas-resumo,
+  .dicas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dicas-hero-texto {
+    padding: 36px;
+  }
+}
+
+@media (max-width: 620px) {
+  .dicas-hero {
+    margin-top: 24px;
+  }
+
+  .dicas-resumo,
+  .dicas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-dicas div {
+    grid-template-columns: 1fr;
+  }
+}
