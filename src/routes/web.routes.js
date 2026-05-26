@@ -54,7 +54,19 @@ router.get('/produto', (req, res) => {
 })
 
 router.get('/produto/:slug', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto.html'))
+  const paginasProduto = {
+    'shorts': 'produto-shorts.html',
+    'tv': 'produto-tv.html',
+    'ferramentas': 'produto-ferramentas.html',
+    'painel-tv': 'produto-painel-tv.html',
+    'espelho': 'produto-espelho.html',
+    'mesa-cadeiras': 'produto-mesa-cadeiras.html',
+    'smartwatch': 'produto-smartwatch.html',
+    'placa-video': 'produto-placa-video.html'
+  }
+
+  const arquivo = paginasProduto[req.params.slug] || 'produto-shorts.html'
+  res.sendFile(path.join(process.cwd(), 'src', 'public', arquivo))
 })
 
 router.get('/carrinho', (req, res) => {

@@ -95,9 +95,25 @@ function formatarPrecoJobee(valor) {
 }
 
 function slugProdutoAtual() {
+  const slugDaPagina = document.body?.dataset?.produtoSlug;
+  if (slugDaPagina) return slugDaPagina;
+
   const partes = window.location.pathname.split('/').filter(Boolean);
   if (partes[0] === 'produto' && partes[1]) return decodeURIComponent(partes[1]);
-  return 'shorts';
+
+  const arquivo = (partes[partes.length - 1] || '').replace('.html', '');
+  const mapaArquivos = {
+    'produto-shorts': 'shorts',
+    'produto-tv': 'tv',
+    'produto-ferramentas': 'ferramentas',
+    'produto-painel-tv': 'painel-tv',
+    'produto-espelho': 'espelho',
+    'produto-mesa-cadeiras': 'mesa-cadeiras',
+    'produto-smartwatch': 'smartwatch',
+    'produto-placa-video': 'placa-video'
+  };
+
+  return mapaArquivos[arquivo] || 'shorts';
 }
 
 function aplicarProdutoPorRota() {
