@@ -1,11 +1,11 @@
  :root {
-      --primary: #1f9d67;
-      --primary-dark: #187a50;
-      --primary-soft: #e8f7f0;
+      --primary: #5f6b2e;
+      --primary-dark: #3f4a22;
+      --primary-soft: #fff4cf;
       --bg: #f4f7f5;
       --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
+      --text: #263018;
+      --muted: #7a7353;
       --border: #e5e7eb;
       --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
       --radius: 22px;
@@ -19,7 +19,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(180deg, #f8fbf9 0%, #eef4f1 100%);
+      background: linear-gradient(180deg, #fff9e8 0%, #fff3d0 100%);
       color: var(--text);
     }
 
@@ -54,7 +54,7 @@
       place-items: center;
       font-size: 0.75rem;
       font-weight: 700;
-      box-shadow: 0 6px 16px rgba(31, 157, 103, 0.32);
+      box-shadow: 0 6px 16px rgba(95, 107, 46, 0.32);
     }
 
     .page {
@@ -285,7 +285,7 @@
       margin-top: 6px;
       font-size: 1.1rem;
       font-weight: 700;
-      color: #111827;
+      color: #202711;
     }
 
     .summary-note {
@@ -301,13 +301,13 @@
       width: 100%;
       border: none;
       border-radius: 18px;
-      background: linear-gradient(135deg, var(--primary), #2ebd7e);
+      background: linear-gradient(135deg, var(--primary), #f4b817);
       color: white;
       padding: 16px 18px;
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 16px 30px rgba(31, 157, 103, 0.25);
+      box-shadow: 0 16px 30px rgba(95, 107, 46, 0.25);
     }
 
     .secure {
@@ -377,7 +377,7 @@
     }
 
     .stars {
-      color: #f59e0b;
+      color: #f4b817;
       letter-spacing: 2px;
       font-size: 0.95rem;
       margin-bottom: 10px;
@@ -406,7 +406,7 @@
 
     .product-price strong {
       font-size: 1.45rem;
-      color: #111827;
+      color: #202711;
     }
 
     .product-price span {
@@ -435,19 +435,19 @@
       width: 100%;
       border: none;
       border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), #2ebd7e);
+      background: linear-gradient(135deg, var(--primary), #f4b817);
       color: white;
       padding: 14px 18px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 16px 28px rgba(31, 157, 103, 0.18);
+      box-shadow: 0 16px 28px rgba(95, 107, 46, 0.18);
     }
 
     .toast {
       position: fixed;
       right: 20px;
       bottom: 20px;
-      background: #111827;
+      background: #202711;
       color: white;
       padding: 14px 16px;
       border-radius: 14px;

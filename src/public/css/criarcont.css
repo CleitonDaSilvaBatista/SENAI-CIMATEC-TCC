@@ -10,12 +10,12 @@
 
 
 body {
-  background: #ebebeb;
-  color: #222;
+  background: #fff5dc;
+  color: #263018;
 }
 
 #subtitle{
-  color: #308668;
+  color: #3f4a22;
   font-size: 30px;
   text-align: center;
   font-family:'Poppins', sans-serif;
@@ -30,7 +30,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #308668;
+  background: #3f4a22;
   padding: 10px 30px;
   position: relative;
   top: 0;
@@ -85,7 +85,7 @@ a{
   outline: none;
   flex: 1;
   font-size: 14px;
-  color: #333;
+  color: #2e351b;
   padding: 8px;
 }
 
@@ -120,13 +120,13 @@ a{
 }
 
 .navbar-right a:hover {
-  color: #01cc6d;
+  color: #f4b817;
 }
 
 .btn.conta {
   background: #fff;
   padding: 6px 12px;
-  color: #308668;
+  color: #3f4a22;
   border-radius: 6px;
   border: 1px solid #888;
   font-weight: 600;
@@ -165,7 +165,7 @@ a{
   position: absolute;
   top: 29px;
   right: 0;
-  background-color: #308668;
+  background-color: #3f4a22;
   min-width: 250px;
   border-radius: 8px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
@@ -199,7 +199,7 @@ a{
   align-items: center;
   justify-content: center;
   gap: 25px;
-  background: #308668;
+  background: #3f4a22;
   padding: 8px 40px;
 }
 
@@ -213,13 +213,13 @@ a{
 }
 
 .sub-navbar a:hover {
-  color: #01cc6d;
+  color: #f4b817;
 }
 
 
 .forgot-password a {
   text-decoration: none;
-  color: #0b8a56;
+  color: #3f4a22;
 }
 
 /* ===============================
@@ -239,7 +239,7 @@ a{
 }
 
 .login-text p {
-  color: #5f6d66;
+  color: #6f6b4e;
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -258,7 +258,7 @@ a{
 /* Formulário */
 .form-section {
   background: #ffffff;
-  padding: 80px 20px;
+  padding: 10px 20px;
 }
 
 .form-container {
@@ -272,7 +272,7 @@ a{
 
 .form-container h2 {
   text-align: center;
-  color: #0b8a56;
+  color: #3f4a22;
   margin-bottom: 30px;
 }
 
@@ -284,7 +284,7 @@ a{
   display: block;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #333;
+  color: #2e351b;
 }
 
 .input-group input {
@@ -297,12 +297,12 @@ a{
 }
 
 .input-group input:focus {
-  border-color: #0b8a56;
+  border-color: #3f4a22;
 }
 
 .btn-enviar {
   width: 100%;
-  background: #0b8a56;
+  background: #3f4a22;
   color: white;
   border: none;
   padding: 12px;
@@ -315,12 +315,12 @@ a{
 }
 
 .btn-enviar:hover {
-  background: #097648;
+  background: #313a1b;
 }
 
 #entre, #termo{
   text-decoration: none;
-  color: #0b8a56;
+  color: #3f4a22;
 }
 
 #selector{
@@ -331,7 +331,7 @@ a{
   padding: 10px;
   border-radius: 5px;
   background-color: #ffffff;
-  color: #097648;
+  color: #313a1b;
   font-size: 16px;
   width: 100%;
   transform: translateY(15%);
@@ -344,7 +344,7 @@ a{
 .modal-sucesso-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(9, 20, 16, 0.55);
+  background: rgba(38, 48, 24, 0.55);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -367,7 +367,7 @@ a{
   position: relative;
   width: 100%;
   max-width: 460px;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fff9e8 100%);
   border-radius: 24px;
   padding: 34px 28px 28px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
@@ -390,7 +390,7 @@ a{
   height: 38px;
   border: none;
   border-radius: 50%;
-  background: #f2f5f3;
+  background: #fff5d8;
   color: #446055;
   font-size: 24px;
   line-height: 1;
@@ -418,7 +418,7 @@ a{
   align-items: center;
   justify-content: center;
   box-shadow:
-    0 12px 30px rgba(11, 138, 86, 0.18),
+    0 12px 30px rgba(63, 74, 34, 0.18),
     inset 0 2px 10px rgba(255, 255, 255, 0.8);
   animation: modalPulse 1.8s ease-in-out infinite;
 }
@@ -430,14 +430,14 @@ a{
 }
 
 .modal-sucesso-check-circle {
-  stroke: #15a265;
+  stroke: #5f6b2e;
   stroke-width: 2;
   stroke-miterlimit: 10;
   opacity: 0.2;
 }
 
 .modal-sucesso-check-path {
-  stroke: #0b8a56;
+  stroke: #3f4a22;
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -489,13 +489,13 @@ a{
 }
 
 .modal-sucesso-btn.primary {
-  background: linear-gradient(135deg, #0b8a56, #16a36a);
+  background: linear-gradient(135deg, #3f4a22, #5f6b2e);
   color: #fff;
-  box-shadow: 0 14px 28px rgba(11, 138, 86, 0.22);
+  box-shadow: 0 14px 28px rgba(63, 74, 34, 0.22);
 }
 
 .modal-sucesso-btn.primary:hover {
-  box-shadow: 0 18px 34px rgba(11, 138, 86, 0.28);
+  box-shadow: 0 18px 34px rgba(63, 74, 34, 0.28);
 }
 
 .modal-sucesso-btn.secondary {
@@ -514,13 +514,13 @@ a{
   0%, 100% {
     transform: scale(1);
     box-shadow:
-      0 12px 30px rgba(11, 138, 86, 0.18),
+      0 12px 30px rgba(63, 74, 34, 0.18),
       inset 0 2px 10px rgba(255, 255, 255, 0.8);
   }
   50% {
     transform: scale(1.04);
     box-shadow:
-      0 18px 36px rgba(11, 138, 86, 0.24),
+      0 18px 36px rgba(63, 74, 34, 0.24),
       inset 0 2px 10px rgba(255, 255, 255, 0.85);
   }
 }
