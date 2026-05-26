@@ -9,13 +9,13 @@
 }
 
 body {
-  background: #ebebeb;
-  color: #222;
+  background: #fff5dc;
+  color: #263018;
 }
 html, body {
   width: 100%;
   height: 100%;
-  background: #f5f5f5;
+  background: #fff9e8;
 }
 
 .footer {
@@ -28,7 +28,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #308668;
+  background: #3f4a22;
   padding: 10px 30px;
   position: relative;
   z-index: 1000;
@@ -75,7 +75,7 @@ html, body {
   outline: none;
   flex: 1;
   font-size: 14px;
-  color: #333;
+  color: #2e351b;
   padding: 8px;
 }
 
@@ -105,13 +105,13 @@ html, body {
 }
 
 .navbar-right a:hover {
-  color: #01cc6d;
+  color: #f4b817;
 }
 
 .btn.conta {
   background: #fff;
   padding: 6px 12px;
-  color: #308668;
+  color: #3f4a22;
   border-radius: 6px;
   border: 1px solid #888;
   font-weight: 600;
@@ -125,7 +125,7 @@ html, body {
   align-items: center;
   justify-content: center;
   gap: 25px;
-  background: #308668;
+  background: #3f4a22;
   padding: 8px 40px;
 }
 
@@ -138,7 +138,7 @@ html, body {
 }
 
 .sub-navbar a:hover {
-  color: #01cc6d;
+  color: #f4b817;
 }
 
 /* ===========================
@@ -155,7 +155,7 @@ html, body {
 
 .forgot-container h2 {
   text-align: center;
-  color: #0b8a56;
+  color: #3f4a22;
   margin-bottom: 20px;
   font-weight: 700;
 }
@@ -171,13 +171,13 @@ html, body {
 }
 
 .forgot-container input:focus {
-  border-color: #0b8a56;
+  border-color: #3f4a22;
 }
 
 .forgot-container button {
   width: 100%;
   padding: 12px;
-  background-color: #0b8a56;
+  background-color: #3f4a22;
   color: white;
   border: none;
   border-radius: 10px;
@@ -187,7 +187,7 @@ html, body {
 }
 
 .forgot-container button:hover {
-  background-color: #097648;
+  background-color: #313a1b;
 }
 
 .mensagem {
