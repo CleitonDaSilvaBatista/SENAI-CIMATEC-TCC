@@ -20,7 +20,7 @@ router.get('/login', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'login.html'))
 })
 
-router.get('/cadastro', (req, res) => {
+router.get('/criarcont', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'criarcont.html'))
 })
 
