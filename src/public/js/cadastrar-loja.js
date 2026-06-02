@@ -7,16 +7,12 @@
 
   function salvarDestinoEIrParaLogin() {
     sessionStorage.setItem('jobee_redirect_after_login', DESTINO_CADASTRO_LOJA);
-
     const loginUrl = `/login?redirect=${encodeURIComponent(DESTINO_CADASTRO_LOJA)}`;
-
-    // replace evita que o botão voltar fique preso em loop entre cadastro e login
     window.location.replace(loginUrl);
   }
 
   function limparValor(valor) {
-    const texto = valor?.trim?.() || '';
-    return texto === 'Selecione' ? '' : texto;
+    return valor?.trim?.() || '';
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -44,43 +40,20 @@
       const textoOriginal = botao?.textContent || 'Cadastrar loja';
 
       const dadosLoja = {
-        razao_social: limparValor(document.getElementById('razao')?.value),
         nome_fantasia: limparValor(document.getElementById('fantasia')?.value),
         cnpj: limparValor(document.getElementById('cnpj')?.value),
-        porte: limparValor(document.getElementById('porte')?.value),
-        data_fundacao: limparValor(document.getElementById('fundacao')?.value),
-        segmento: limparValor(document.getElementById('segmento')?.value),
-        cnae: limparValor(document.getElementById('cnae')?.value),
-        site: limparValor(document.getElementById('site')?.value),
         descricao: limparValor(document.getElementById('descricao')?.value),
         sobre_loja: limparValor(document.getElementById('descricao')?.value),
-        responsavel_legal: limparValor(document.getElementById('responsavel')?.value),
-        cargo_responsavel: limparValor(document.getElementById('cargo')?.value),
-        cpf_responsavel: limparValor(document.getElementById('cpf')?.value),
-        email_corporativo: limparValor(document.getElementById('emailcorp')?.value),
-        telefone: limparValor(document.getElementById('telefone')?.value),
-        whatsapp: limparValor(document.getElementById('whatsapp')?.value),
-        gestor_operacional: limparValor(document.getElementById('gestor')?.value),
-        email_gestor: limparValor(document.getElementById('emailgestor')?.value),
+        imagem_url: limparValor(document.getElementById('imagem_url')?.value),
+        segmento: limparValor(document.getElementById('segmento')?.value),
+        categoria: limparValor(document.getElementById('segmento')?.value),
         cep: limparValor(document.getElementById('cep')?.value),
-        logradouro: limparValor(document.getElementById('logradouro')?.value),
-        numero: limparValor(document.getElementById('numero')?.value),
-        complemento: limparValor(document.getElementById('complemento')?.value),
-        bairro: limparValor(document.getElementById('bairro')?.value),
         cidade: limparValor(document.getElementById('cidade')?.value),
-        area_atuacao: limparValor(document.getElementById('atuacao')?.value),
-        modelo_operacao: limparValor(document.getElementById('operacao')?.value),
-        quantidade_usuarios: limparValor(document.getElementById('usuarios')?.value),
-        volume_mensal: limparValor(document.getElementById('volume')?.value),
-        banco: limparValor(document.getElementById('banco')?.value),
-        agencia: limparValor(document.getElementById('agencia')?.value),
-        conta_bancaria: limparValor(document.getElementById('conta')?.value),
-        titular_conta: limparValor(document.getElementById('titular')?.value),
-        pix: limparValor(document.getElementById('pix')?.value)
+        estado: limparValor(document.getElementById('estado')?.value)
       };
 
-      if (!dadosLoja.nome_fantasia || !dadosLoja.cnpj) {
-        alert('Preencha pelo menos o nome fantasia e o CNPJ da loja.');
+      if (!dadosLoja.nome_fantasia || !dadosLoja.cnpj || !dadosLoja.descricao || !dadosLoja.segmento) {
+        alert('Preencha nome fantasia, CNPJ, descrição e categoria da loja.');
         return;
       }
 
