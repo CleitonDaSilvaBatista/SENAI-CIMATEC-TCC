@@ -182,8 +182,26 @@
   fecharModalSucessoLogin.addEventListener("click", () => fecharModal(modalSucessoLogin));
   fecharModalErroLogin.addEventListener("click", () => fecharModal(modalErroLogin));
   tentarNovamenteLogin.addEventListener("click", () => fecharModal(modalErroLogin));
+  
+  function getDestinoDepoisLogin() {
+    const params = new URLSearchParams(window.location.search);
+    const redirectUrl = params.get("redirect");
+    const redirectSalvo = sessionStorage.getItem("jobee_redirect_after_login");
+
+    const destino = redirectUrl || redirectSalvo || "/";
+
+    // Segurança: impede redirecionamento para sites externos.
+    if (!destino.startsWith("/")) {
+      return "/";
+    }
+
+    return destino;
+  }
+
   irAgoraHome.addEventListener("click", () => {
-    window.location.href = "/";
+    const destino = getDestinoDepoisLogin();
+    sessionStorage.removeItem("jobee_redirect_after_login");
+    window.location.href = destino;
   });
 
   [modalSucessoLogin, modalErroLogin].forEach((modal) => {
@@ -228,7 +246,9 @@
         abrirModal(modalSucessoLogin);
 
         setTimeout(() => {
-          window.location.href = "/";
+          const destino = getDestinoDepoisLogin();
+          sessionStorage.removeItem("jobee_redirect_after_login");
+          window.location.href = destino;
         }, 1200);
       } else {
         mensagemErroLogin.textContent = data.error || "E-mail ou senha inválidos.";

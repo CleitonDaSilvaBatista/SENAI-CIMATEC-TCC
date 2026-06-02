@@ -24,6 +24,18 @@ function limparTexto(valor) {
   return texto || null
 }
 
+function limparObjeto(objeto) {
+  const limpo = { ...objeto }
+
+  Object.keys(limpo).forEach((chave) => {
+    if (limpo[chave] === null || limpo[chave] === undefined || limpo[chave] === 'Selecione') {
+      delete limpo[chave]
+    }
+  })
+
+  return limpo
+}
+
 async function gerarSlugUnico(nomeFantasia) {
   const slugBase = criarSlug(nomeFantasia)
   let slug = slugBase
@@ -147,32 +159,82 @@ async function criarLoja(dados, usuarioLogado) {
 
   const slug = await gerarSlugUnico(nomeFantasia)
 
-  const novaLoja = {
+  const lojaCompleta = limparObjeto({
     id_usuario: idUsuario,
     nome_fantasia: nomeFantasia,
+    razao_social: limparTexto(dados.razao_social),
     descricao: descricao || 'Loja cadastrada na Jobee.',
     cnpj,
+    porte: limparTexto(dados.porte),
+    data_fundacao: limparTexto(dados.data_fundacao),
+    segmento: limparTexto(dados.segmento),
+    cnae: limparTexto(dados.cnae),
+    site: limparTexto(dados.site),
+    telefone: limparTexto(dados.telefone),
+    whatsapp: limparTexto(dados.whatsapp),
+    responsavel_legal: limparTexto(dados.responsavel_legal),
+    cargo_responsavel: limparTexto(dados.cargo_responsavel),
+    cpf_responsavel: limparTexto(dados.cpf_responsavel),
+    email_corporativo: limparTexto(dados.email_corporativo),
+    gestor_operacional: limparTexto(dados.gestor_operacional),
+    email_gestor: limparTexto(dados.email_gestor),
+    cep: limparTexto(dados.cep),
+    logradouro: limparTexto(dados.logradouro),
+    numero: limparTexto(dados.numero),
+    complemento: limparTexto(dados.complemento),
+    bairro: limparTexto(dados.bairro),
+    cidade: limparTexto(dados.cidade),
+    area_atuacao: limparTexto(dados.area_atuacao),
+    modelo_operacao: limparTexto(dados.modelo_operacao),
+    quantidade_usuarios: limparTexto(dados.quantidade_usuarios),
+    volume_mensal: limparTexto(dados.volume_mensal),
+    banco: limparTexto(dados.banco),
+    agencia: limparTexto(dados.agencia),
+    conta_bancaria: limparTexto(dados.conta_bancaria),
+    titular_conta: limparTexto(dados.titular_conta),
+    pix: limparTexto(dados.pix),
     imagem_url: limparTexto(dados.imagem_url),
     banner_url: limparTexto(dados.banner_url),
     sobre_loja: limparTexto(dados.sobre_loja || dados.descricao_institucional || dados.descricao),
     slug,
     ativo: true
-  }
-
-  Object.keys(novaLoja).forEach((chave) => {
-    if (novaLoja[chave] === null || novaLoja[chave] === undefined) {
-      delete novaLoja[chave]
-    }
   })
 
-  const { data: lojaCriada, error: insertError } = await supabase
+  const lojaBasica = limparObjeto({
+    id_usuario: idUsuario,
+    nome_fantasia: nomeFantasia,
+    descricao: descricao || 'Loja cadastrada na Jobee.',
+    cnpj,
+    imagem_url: limparTexto(dados.imagem_url),
+    slug,
+    ativo: true
+  })
+
+  let lojaCriada
+  let insertError
+
+  const insertCompleto = await supabase
     .from('lojas')
-    .insert(novaLoja)
-    .select('id_loja, id_usuario, nome_fantasia, descricao, cnpj, imagem_url, banner_url, slug, ativo, sobre_loja')
+    .insert(lojaCompleta)
+    .select('*')
     .single()
 
+  lojaCriada = insertCompleto.data
+  insertError = insertCompleto.error
+
+  if (insertError && /column|schema cache|Could not find/i.test(insertError.message || '')) {
+    const insertBasico = await supabase
+      .from('lojas')
+      .insert(lojaBasica)
+      .select('*')
+      .single()
+
+    lojaCriada = insertBasico.data
+    insertError = insertBasico.error
+  }
+
   if (insertError) {
-    const err = new Error('Erro ao cadastrar loja.')
+    const err = new Error('Erro ao cadastrar loja no Supabase.')
     err.statusCode = 500
     err.details = insertError.message
     throw err
