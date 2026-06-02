@@ -9,6 +9,15 @@ async function getLojas(req, res, next) {
   }
 }
 
+async function criarLoja(req, res, next) {
+  try {
+    const result = await lojaService.criarLoja(req.body, req.user)
+    return res.status(201).json(result)
+  } catch (error) {
+    next(error)
+  }
+}
+
 async function getLojaBySlug(req, res, next) {
   try {
     const result = await lojaService.getLojaBySlug(req.params.slug)
@@ -30,6 +39,7 @@ async function getContagemItens(req, res, next) {
 
 module.exports = {
   getLojas,
+  criarLoja,
   getLojaBySlug,
   getContagemItens
 }

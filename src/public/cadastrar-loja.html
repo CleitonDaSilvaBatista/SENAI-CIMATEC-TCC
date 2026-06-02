@@ -585,6 +585,26 @@
   <link rel="stylesheet" href="css/chatbot-abelha.css">
   <link rel="stylesheet" href="/css/responsive.css">
 </head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const usuarioLogado = localStorage.getItem("usuarioLogado");
+    const contaAssociada = localStorage.getItem("contaAssociada");
+
+    if (!usuarioLogado) {
+      alert("Você precisa estar logado para cadastrar uma loja.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    if (!contaAssociada) {
+      alert("Você precisa ter uma conta associada antes de cadastrar uma loja.");
+      window.location.href = "criarcont.html";
+      return;
+    }
+  });
+</script>
+
 <body>
             <div id="navbar-container"></div>
   </header>
@@ -647,8 +667,7 @@
         <div class="form-header">
           <div>
             <h2>Cadastro de Empresa</h2>
-            <p>Preencha as informações abaixo para criar a conta corporativa da sua empresa e começar a vender, contratar serviços ou operar como parceiro dentro da plataforma Jobee.</p>
-          </div>
+            <p>Preencha as informações abaixo para cadastrar sua loja na Jobee. Para concluir esse processo, é necessário estar logado e possuir uma conta associada ao perfil.</p>
           <div class="status-pill">Perfil empresarial</div>
         </div>
 
@@ -966,7 +985,7 @@
             </small>
             <div class="btn-row">
               <button type="button" class="btn btn-secondary">Salvar rascunho</button>
-              <button type="submit" class="btn btn-primary">Cadastrar empresa</button>
+              <button type="submit" class="btn btn-primary">Cadastrar loja</button>
             </div>
           </div>
         </form>
@@ -1033,6 +1052,7 @@
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
   </footer>
+  <script src="js/cadastrar-loja.js" defer></script>
   <script src="js/chatbot-abelha.js" defer></script>
 </body>
 </html>
