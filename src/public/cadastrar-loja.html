@@ -586,24 +586,6 @@
   <link rel="stylesheet" href="/css/responsive.css">
 </head>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const usuarioLogado = localStorage.getItem("usuarioLogado");
-    const contaAssociada = localStorage.getItem("contaAssociada");
-
-    if (!usuarioLogado) {
-      alert("Você precisa estar logado para cadastrar uma loja.");
-      window.location.href = "login.html";
-      return;
-    }
-
-    if (!contaAssociada) {
-      alert("Você precisa ter uma conta associada antes de cadastrar uma loja.");
-      window.location.href = "criarcont.html";
-      return;
-    }
-  });
-</script>
 
 <body>
             <div id="navbar-container"></div>
