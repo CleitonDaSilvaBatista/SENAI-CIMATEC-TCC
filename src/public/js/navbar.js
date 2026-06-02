@@ -311,6 +311,10 @@ function mostrarStatusLogin() {
         </a>
 
         ${tipoUsuario === 2 ? `
+          <a href="/cadastrar-loja" class="perfil-link loja-link">
+            Cadastrar loja
+          </a>
+
           <a href="/dashboard" class="perfil-link dashboard-link">
             Dashboard
           </a>

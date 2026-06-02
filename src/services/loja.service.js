@@ -78,7 +78,7 @@ async function getLojas() {
 }
 
 async function criarLoja(dados, usuarioLogado) {
-  const idUsuario = usuarioLogado?.id
+  const idUsuario = usuarioLogado?.id || usuarioLogado?.id_usuario || usuarioLogado?.userId
 
   if (!idUsuario) {
     const err = new Error('Usuário não autenticado.')
