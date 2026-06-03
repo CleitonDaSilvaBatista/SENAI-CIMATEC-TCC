@@ -410,35 +410,91 @@ function exibirModalRedirecionamento(produto) {
   }, 1800);
 }
 
+
+function mostrarToastProduto(mensagem, tipo = 'success') {
+  if (typeof window.showToast === 'function') {
+    window.showToast(mensagem, tipo);
+    return;
+  }
+
+  let container = document.getElementById('toast-container');
+
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = `toast ${tipo}`;
+  toast.innerHTML = `
+    <div class="toast-icon">${tipo === 'success' ? '✔️' : '❌'}</div>
+    <div class="toast-content">
+      <div class="toast-title">${tipo === 'success' ? 'Sucesso' : 'Erro'}</div>
+      <div class="toast-message">${mensagem}</div>
+    </div>
+    <button class="toast-close" type="button">&times;</button>
+    <div class="toast-progress"></div>
+  `;
+
+  container.appendChild(toast);
+  toast.querySelector('.toast-close')?.addEventListener('click', () => toast.remove());
+  setTimeout(() => toast.remove(), 3000);
+}
+
+function salvarProdutoAtualNoCarrinho() {
+  const produto = obterDadosProdutoAtual();
+
+  if (typeof window.adicionarItemCarrinho === 'function') {
+    window.adicionarItemCarrinho(produto);
+  } else {
+    const carrinhoAtual = JSON.parse(localStorage.getItem('jobee_cart') || '[]');
+    const chave = `${produto.id}|${produto.cor}|${produto.tamanho}`;
+    const itemExistente = carrinhoAtual.find((item) => `${item.id_item}|${item.cor || ''}|${item.tamanho || ''}` === chave);
+
+    if (itemExistente) {
+      itemExistente.quantidade = Number(itemExistente.quantidade || 1) + produto.quantidade;
+    } else {
+      carrinhoAtual.push({
+        id_item: produto.id,
+        nome: produto.nome,
+        preco: produto.preco,
+        quantidade: produto.quantidade,
+        imagem_url: produto.imagem,
+        nome_loja: produto.vendedor,
+        cor: produto.cor,
+        tamanho: produto.tamanho,
+        tipo: 'produto'
+      });
+    }
+
+    localStorage.setItem('jobee_cart', JSON.stringify(carrinhoAtual));
+  }
+
+  if (typeof updateCartBadge === 'function') updateCartBadge();
+  return produto;
+}
+
 function adicionarAoCarrinho() {
   if (!exigirLoginParaCarrinho()) {
     return;
   }
 
-  const produto = obterDadosProdutoAtual();
-  const carrinhoAtual = JSON.parse(localStorage.getItem('jobee_cart') || '[]');
-  const itemExistente = carrinhoAtual.find(
-    (item) => item.id_item === produto.id && item.cor === produto.cor && item.tamanho === produto.tamanho
-  );
+  salvarProdutoAtualNoCarrinho();
+  mostrarToastProduto('Produto adicionado ao carrinho!', 'success');
+}
 
-  if (itemExistente) {
-    itemExistente.quantidade += produto.quantidade;
-  } else {
-    carrinhoAtual.push({
-      id_item: produto.id,
-      nome: produto.nome,
-      preco: produto.preco,
-      quantidade: produto.quantidade,
-      imagem_url: produto.imagem,
-      nome_loja: produto.vendedor,
-      cor: produto.cor,
-      tamanho: produto.tamanho
-    });
+function comprarAgora() {
+  if (!exigirLoginParaCarrinho()) {
+    return;
   }
 
-  localStorage.setItem('jobee_cart', JSON.stringify(carrinhoAtual));
-  if (typeof updateCartBadge === 'function') updateCartBadge();
-  showToast('Produto adicionado ao carrinho!', 'success');
+  salvarProdutoAtualNoCarrinho();
+  mostrarToastProduto('Produto adicionado ao carrinho!', 'success');
+
+  window.setTimeout(() => {
+    window.location.href = '/carrinho';
+  }, 900);
 }
 
 function setupBuyButtons() {
@@ -446,10 +502,7 @@ function setupBuyButtons() {
   const btnCarrinho = document.getElementById('btn-carrinho');
 
   if (btnComprar) {
-    btnComprar.addEventListener('click', function () {
-      const produto = obterDadosProdutoAtual();
-      exibirModalRedirecionamento(produto);
-    });
+    btnComprar.addEventListener('click', comprarAgora);
   }
 
   if (btnCarrinho) {
