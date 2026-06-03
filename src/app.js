@@ -3,6 +3,7 @@ const path = require('path')
 
 const webRoutes = require('./routes/web.routes')
 const authRoutes = require('./routes/auth.routes')
+const authController = require('./controllers/auth.controller')
 const lojaRoutes = require('./routes/loja.routes')
 const itemRoutes = require('./routes/item.routes')
 const userRoutes = require('./routes/user.routes')
@@ -17,6 +18,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(process.cwd(), 'src', 'public')))
 
 app.use('/', webRoutes)
+
+// Rotas diretas mantidas para evitar 404 em páginas antigas/cacheadas.
+app.post('/api/forgot-password', authController.forgotPassword)
+app.post('/api/reset-password', authController.resetPassword)
+
 app.use('/api/auth', authRoutes)
 app.use('/api/lojas', lojaRoutes)
 app.use('/api/itens', itemRoutes)
