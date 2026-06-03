@@ -1,4 +1,4 @@
-const authService = require('../../src/services/auth.service')
+const authService = require('../../services/auth.service')
 
 module.exports = async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json')
