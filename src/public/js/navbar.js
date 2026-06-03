@@ -307,7 +307,7 @@ function mostrarStatusLogin() {
 
       <div class="user-actions">
         <a href="${rotaPerfil}" class="perfil-link">
-          ${tipoUsuario === 2 ? 'Perfil empreendedor' : 'Meu perfil'}
+          ${tipoUsuario === 2 ? 'Perfil empreendedor' : 'Perfil'}
         </a>
 
         ${tipoUsuario === 2 ? `
