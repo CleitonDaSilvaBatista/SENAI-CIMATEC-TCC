@@ -78,6 +78,15 @@ Object.entries(paginasProduto).forEach(([rota, arquivo]) => {
   })
 })
 
+
+router.get('/agendamento-servico', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'agendamento-servico.html'))
+})
+
+router.get('/agendamento-servico.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'agendamento-servico.html'))
+})
+
 router.get('/carrinho', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'cart.html'))
 })
