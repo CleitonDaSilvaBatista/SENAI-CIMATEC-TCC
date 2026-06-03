@@ -93,7 +93,7 @@ function bindSearch() {
     if (termo) {
       navegarPara(`/buscar?q=${encodeURIComponent(termo)}`);
     } else {
-      alert('Digite o que você deseja buscar');
+      navegarPara('/buscar');
     }
   });
 

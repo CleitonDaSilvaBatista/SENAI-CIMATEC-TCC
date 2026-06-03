@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4c5b24" />
+  <title>Busca | Jobee</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/busca.css" />
+  <link rel="stylesheet" href="/css/chatbot-abelha.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+
+  <script src="/js/navbar.js" defer></script>
+  <script src="/js/catalogo-jobee.js" defer></script>
+  <script src="/js/busca.js" defer></script>
+  <script src="/js/cart.js" defer></script>
+  <script src="/js/chatbot-abelha.js" defer></script>
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="search-page">
+    <aside class="search-sidebar" aria-label="Filtros de busca">
+      <div class="sidebar-card location-card">
+        <span class="sidebar-eyebrow">Buscando em</span>
+        <strong id="busca-localizacao">Todo o Brasil</strong>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Tipo de anúncio</h3>
+        <label class="filter-option"><input type="radio" name="tipo" value="todos" checked> Todos</label>
+        <label class="filter-option"><input type="radio" name="tipo" value="produto"> Produtos</label>
+        <label class="filter-option"><input type="radio" name="tipo" value="loja"> Lojas e serviços</label>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Categorias</h3>
+        <div id="categorias-filtro" class="filter-list"></div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Preço</h3>
+        <div class="price-filter">
+          <input id="preco-min" type="number" min="0" placeholder="Mínimo" />
+          <input id="preco-max" type="number" min="0" placeholder="Máximo" />
+        </div>
+      </div>
+
+      <button id="limpar-filtros" class="clear-filters" type="button">Limpar filtros</button>
+    </aside>
+
+    <section class="search-content">
+      <div class="breadcrumb-search">
+        <a href="/">Início</a>
+        <span>›</span>
+        <strong>Busca</strong>
+      </div>
+
+      <div class="search-header">
+        <div>
+          <p class="search-kicker">Resultados da Jobee</p>
+          <h1 id="titulo-busca">Busque produtos, lojas e serviços</h1>
+          <p id="contador-resultados">Carregando resultados...</p>
+        </div>
+
+        <div class="view-actions">
+          <select id="ordenacao" aria-label="Ordenar resultados">
+            <option value="relevancia">Mais relevantes</option>
+            <option value="menor-preco">Menor preço</option>
+            <option value="maior-preco">Maior preço</option>
+            <option value="melhor-avaliacao">Melhor avaliação</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="search-tools">
+        <input id="busca-interna" type="text" placeholder="Buscar dentro dos resultados..." />
+        <select id="categoria-mobile">
+          <option value="todas">Todas as categorias</option>
+        </select>
+      </div>
+
+      <div class="ad-banner">
+        <strong>Jobee Ads</strong>
+        <span>Divulgue sua loja e alcance clientes próximos de você.</span>
+      </div>
+
+      <div id="resultado-grid" class="resultado-grid"></div>
+      <div id="sem-resultados" class="empty-results" hidden>
+        <h2>Nenhum resultado encontrado</h2>
+        <p>Tente buscar por outro termo, remover filtros ou pesquisar por categorias como tecnologia, moda, serviços ou móveis.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

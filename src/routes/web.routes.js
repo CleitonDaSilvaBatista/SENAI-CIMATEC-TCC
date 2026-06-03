@@ -87,6 +87,15 @@ router.get('/agendamento-servico.html', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'agendamento-servico.html'))
 })
 
+
+router.get('/buscar', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'buscar.html'))
+})
+
+router.get('/buscar.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'buscar.html'))
+})
+
 router.get('/carrinho', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'cart.html'))
 })
