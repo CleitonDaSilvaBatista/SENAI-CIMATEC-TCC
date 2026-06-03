@@ -369,7 +369,8 @@ function obterDadosProdutoAtual() {
     quantidade,
     vendedor,
     entrega: 'Entrega estimada entre 2 e 5 dias úteis',
-    frete: 9.9
+    frete: 9.9,
+    slug: slugProdutoAtual()
   };
 }
 
@@ -542,11 +543,12 @@ function comprarAgora() {
     return;
   }
 
-  salvarProdutoAtualNoCarrinho();
+  const produto = salvarProdutoAtualNoCarrinho();
+  localStorage.setItem('jobee_direct_checkout', JSON.stringify(produto));
   mostrarToastProduto('Produto adicionado ao carrinho!', 'success');
 
   window.setTimeout(() => {
-    window.location.href = '/carrinho';
+    window.location.href = `/compra?produto=${encodeURIComponent(slugProdutoAtual())}`;
   }, 900);
 }
 
