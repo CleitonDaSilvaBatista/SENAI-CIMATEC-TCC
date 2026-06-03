@@ -35,59 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
 
         <div id="user-status" class="user-status" style="display: none;"></div>
-
-        <a data-link="/dicas-vendas" class="perfil-link dicas-navbar-link">Dicas para vender</a>
-        <a data-link="/planos" class="perfil-link planos-navbar-link">Planos</a>
-
         <a data-link="/carrinho" class="cart">
           <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" width="22" height="22" />
           <span class="navbar-cart-count" id="navbar-cart-count">0</span>
         </a>
-      
-        <style>
-          .user-box{
-            display:flex;
-            align-items:center;
-            gap:14px;
-          }
-
-          .user-actions{
-            display:flex;
-            align-items:center;
-            gap:10px;
-          }
-
-          .perfil-link{
-            text-decoration:none;
-            padding:8px 14px;
-            border-radius:10px;
-            background:#f4f4f4;
-            color:#222;
-            font-weight:600;
-            transition:0.2s ease;
-          }
-
-          .perfil-link:hover{
-            transform:translateY(-1px);
-            opacity:0.9;
-          }
-
-          .dashboard-link{
-            background:#ffd54f;
-          }
-
-          .dicas-navbar-link{
-            background:#f4b817;
-            color:#3f4a22;
-            white-space:nowrap;
-          }
-
-          .planos-navbar-link{
-            background:#308668;
-            color:#ffffff;
-            white-space:nowrap;
-          }
-        </style>
 
 </div>
     </header>
@@ -305,22 +256,45 @@ function mostrarStatusLogin() {
     <div class="user-box">
       <span class="user-name">Olá, ${nome}</span>
 
-      <div class="user-actions">
-        <a href="${rotaPerfil}" class="perfil-link">
-          ${tipoUsuario === 2 ? 'Perfil empreendedor' : 'Perfil'}
-        </a>
-
-        ${tipoUsuario === 2 ? `
-          <a href="/dashboard" class="perfil-link dashboard-link">
-            Dashboard
-          </a>
-        ` : ''}
-
-        <button id="logout-btn" class="logout-btn" type="button">
-          Sair
+      <div class="hamburger-menu">
+        <button id="hamburger-btn" class="hamburger-btn" type="button" aria-label="Abrir menu do usuário" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
+
+        <div id="hamburger-dropdown" class="hamburger-dropdown" aria-label="Menu do usuário">
+          <a href="${rotaPerfil}" class="hamburger-item">
+            ${tipoUsuario === 2 ? 'Perfil empreendedor' : 'Perfil'}
+          </a>
+
+          ${tipoUsuario === 2 ? `
+            <a href="/dashboard" class="hamburger-item">Dashboard</a>
+          ` : ''}
+
+          <a href="/dicas-vendas" class="hamburger-item">Dicas para vender</a>
+          <a href="/planos" class="hamburger-item">Planos</a>
+
+          <button id="logout-btn" class="hamburger-item logout-menu-btn" type="button">Sair</button>
+        </div>
       </div>
     </div>`;
+
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const hamburgerDropdown = document.getElementById('hamburger-dropdown');
+
+  hamburgerBtn?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const estaAberto = hamburgerDropdown?.classList.toggle('ativo');
+    hamburgerBtn.setAttribute('aria-expanded', estaAberto ? 'true' : 'false');
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.hamburger-menu')) {
+      hamburgerDropdown?.classList.remove('ativo');
+      hamburgerBtn?.setAttribute('aria-expanded', 'false');
+    }
+  });
 
   const logoutBtn = document.getElementById('logout-btn');
   logoutBtn?.addEventListener('click', logout);
