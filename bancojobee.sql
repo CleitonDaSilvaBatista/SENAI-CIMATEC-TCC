@@ -127,6 +127,15 @@ CREATE TABLE lojas_categorias (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+INSERT INTO categorias_loja (nome, descricao) VALUES
+('Tecnologia', 'Lojas e serviços de tecnologia'),
+('Serviços', 'Prestadores de serviços em geral'),
+('Varejo', 'Comércio local e lojas físicas'),
+('Indústria', 'Empresas industriais e produção'),
+('Saúde', 'Clínicas, saúde e bem-estar'),
+('Educação', 'Cursos, aulas e treinamentos'),
+('Logística', 'Entregas, transporte e operações');
+
 -- ==========================================================
 -- 3. ITENS (PRODUTOS E SERVIÇOS)
 -- ==========================================================

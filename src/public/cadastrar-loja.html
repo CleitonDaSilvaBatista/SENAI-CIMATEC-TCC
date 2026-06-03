@@ -652,7 +652,7 @@
           <div class="status-pill">Perfil empresarial</div>
         </div>
 
-        <form>
+        <form id="form-cadastro-loja" novalidate>
           <div class="form-section">
             <div class="section-title">
               <div class="section-number">1</div>
@@ -665,16 +665,16 @@
             <div class="grid">
               <div class="field span-8">
                 <label for="razao">Razão social</label>
-                <input class="control" id="razao" type="text" placeholder="Ex.: Jobee Soluções Digitais LTDA" />
+                <input class="control" id="razao" type="text" placeholder="Ex.: Jobee Soluções Digitais LTDA" required />
               </div>
               <div class="field span-4">
                 <label for="cnpj">CNPJ</label>
-                <input class="control" id="cnpj" type="text" placeholder="00.000.000/0001-00" />
+                <input class="control" id="cnpj" name="cnpj" type="text" inputmode="numeric" autocomplete="off" maxlength="18" placeholder="00.000.000/0001-00" required />
               </div>
 
               <div class="field span-6">
                 <label for="fantasia">Nome fantasia</label>
-                <input class="control" id="fantasia" type="text" placeholder="Ex.: Jobee Empresas" />
+                <input class="control" id="fantasia" type="text" placeholder="Ex.: Jobee Empresas" required />
               </div>
               <div class="field span-3">
                 <label for="porte">Porte da empresa</label>
@@ -694,15 +694,8 @@
 
               <div class="field span-4">
                 <label for="segmento">Segmento principal</label>
-                <select id="segmento" class="control">
-                  <option>Selecione</option>
-                  <option>Tecnologia</option>
-                  <option>Serviços</option>
-                  <option>Varejo</option>
-                  <option>Indústria</option>
-                  <option>Saúde</option>
-                  <option>Educação</option>
-                  <option>Logística</option>
+                <select id="segmento" name="categoria" class="control" required>
+                  <option value="">Carregando categorias...</option>
                 </select>
               </div>
               <div class="field span-4">
@@ -716,7 +709,7 @@
 
               <div class="field">
                 <label for="descricao">Descrição institucional</label>
-                <textarea class="control" id="descricao" placeholder="Apresente a empresa, diferenciais, área de atuação, serviços prestados e proposta de valor."></textarea>
+                <textarea class="control" id="descricao" maxlength="150" placeholder="Apresente a empresa, diferenciais, área de atuação, serviços prestados e proposta de valor." required></textarea>
                 <span class="hint">Uma boa descrição fortalece a análise cadastral e melhora a confiança dos usuários na sua marca.</span>
               </div>
             </div>
@@ -742,12 +735,12 @@
               </div>
               <div class="field span-3">
                 <label for="cpf">CPF do responsável</label>
-                <input class="control" id="cpf" type="text" placeholder="000.000.000-00" />
+                <input class="control" id="cpf" name="cpf" type="text" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="000.000.000-00" required />
               </div>
 
               <div class="field span-4">
                 <label for="emailcorp">E-mail corporativo</label>
-                <input class="control" id="emailcorp" type="email" placeholder="contato@empresa.com.br" />
+                <input class="control" id="emailcorp" type="email" placeholder="contato@empresa.com.br" required />
               </div>
               <div class="field span-4">
                 <label for="telefone">Telefone comercial</label>
@@ -781,7 +774,7 @@
             <div class="grid">
               <div class="field span-3">
                 <label for="cep">CEP</label>
-                <input class="control" id="cep" type="text" placeholder="00000-000" />
+                <input class="control" id="cep" name="cep" type="text" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="00000-000" required />
               </div>
               <div class="field span-7">
                 <label for="logradouro">Logradouro</label>
@@ -915,11 +908,11 @@
 
               <div class="field span-6">
                 <label for="senha">Senha de acesso</label>
-                <input class="control" id="senha" type="password" placeholder="Crie uma senha forte" />
+                <input class="control" id="senha" type="password" minlength="6" placeholder="Crie uma senha forte" required />
               </div>
               <div class="field span-6">
                 <label for="confirmar">Confirmar senha</label>
-                <input class="control" id="confirmar" type="password" placeholder="Repita a senha criada" />
+                <input class="control" id="confirmar" type="password" minlength="6" placeholder="Repita a senha criada" required />
               </div>
             </div>
           </div>
@@ -935,7 +928,7 @@
 
             <div class="checks">
               <label class="check">
-                <input type="checkbox" />
+                <input id="check-veracidade" type="checkbox" required />
                 <div>
                   <strong>Declaro que as informações fornecidas são verdadeiras e atualizadas.</strong>
                   <p>Esses dados poderão ser utilizados para verificação cadastral, segurança da conta e processos internos da plataforma.</p>
@@ -943,7 +936,7 @@
               </label>
 
               <label class="check">
-                <input type="checkbox" />
+                <input id="check-termos" type="checkbox" required />
                 <div>
                   <strong>Concordo com os Termos de Uso, Política de Privacidade e regras comerciais da Jobee.</strong>
                   <p>Ao continuar, sua empresa aceita as condições aplicáveis ao uso da plataforma, relacionamento com clientes e repasses financeiros.</p>
@@ -951,7 +944,7 @@
               </label>
 
               <label class="check">
-                <input type="checkbox" />
+                <input id="check-contato" type="checkbox" />
                 <div>
                   <strong>Autorizo o contato do time Jobee para onboarding, suporte e validação documental.</strong>
                   <p>Você poderá receber contato por e-mail, telefone ou WhatsApp corporativo cadastrado.</p>
@@ -961,8 +954,8 @@
           </div>
 
           <div class="actions">
-            <small>
-              Ao enviar, sua solicitação pode passar por uma etapa de análise. Em implementações reais, você pode acoplar máscara de campos, validação de CNPJ, integração com CEP, upload de documentos e envio ao back-end.
+            <small id="cadastro-feedback" aria-live="polite">
+              Ao enviar, sua solicitação pode passar por uma etapa de análise. O CNPJ, CPF e CEP são validados e formatados automaticamente.
             </small>
             <div class="btn-row">
               <button type="button" class="btn btn-secondary">Salvar rascunho</button>
@@ -1033,6 +1026,165 @@
       <p>© 2025 Jobee - Todos os direitos reservados</p>
     </div>
   </footer>
+
+  <script>
+    const onlyDigits = (value) => String(value || '').replace(/\D/g, '');
+
+    function maskCNPJ(value) {
+      const digits = onlyDigits(value).slice(0, 14);
+      return digits
+        .replace(/^(\d{2})(\d)/, '$1.$2')
+        .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
+        .replace(/\.(\d{3})(\d)/, '.$1/$2')
+        .replace(/(\d{4})(\d)/, '$1-$2');
+    }
+
+    function maskCPF(value) {
+      const digits = onlyDigits(value).slice(0, 11);
+      return digits
+        .replace(/^(\d{3})(\d)/, '$1.$2')
+        .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+        .replace(/\.(\d{3})(\d)/, '.$1-$2');
+    }
+
+    function maskCEP(value) {
+      const digits = onlyDigits(value).slice(0, 8);
+      return digits.replace(/^(\d{5})(\d)/, '$1-$2');
+    }
+
+    function bindMask(id, mask) {
+      const input = document.getElementById(id);
+      if (!input) return;
+      input.addEventListener('input', () => {
+        input.value = mask(input.value);
+      });
+      input.addEventListener('paste', () => {
+        setTimeout(() => input.value = mask(input.value), 0);
+      });
+    }
+
+    async function carregarCategoriasLoja() {
+      const select = document.getElementById('segmento');
+      if (!select) return;
+
+      try {
+        const response = await fetch('/api/lojas/categorias');
+        const categorias = await response.json();
+
+        if (!response.ok || !Array.isArray(categorias) || !categorias.length) {
+          throw new Error(categorias.error || 'Nenhuma categoria encontrada.');
+        }
+
+        select.innerHTML = '<option value="">Selecione</option>' + categorias.map((categoria) => (
+          `<option value="${categoria.id_categoria}">${categoria.nome}</option>`
+        )).join('');
+      } catch (error) {
+        console.error('Erro ao carregar categorias:', error);
+        select.innerHTML = `
+          <option value="">Selecione</option>
+          <option value="1">Tecnologia</option>
+          <option value="2">Serviços</option>
+          <option value="3">Varejo</option>
+          <option value="4">Indústria</option>
+          <option value="5">Saúde</option>
+          <option value="6">Educação</option>
+          <option value="7">Logística</option>
+        `;
+      }
+    }
+
+    function setFeedback(message, type = 'info') {
+      const feedback = document.getElementById('cadastro-feedback');
+      if (!feedback) return;
+      feedback.textContent = message;
+      feedback.style.color = type === 'error' ? '#b42318' : type === 'success' ? '#266a53' : '#6b7280';
+      feedback.style.fontWeight = type === 'error' || type === 'success' ? '700' : '500';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      bindMask('cnpj', maskCNPJ);
+      bindMask('cpf', maskCPF);
+      bindMask('cep', maskCEP);
+      carregarCategoriasLoja();
+
+      const form = document.getElementById('form-cadastro-loja');
+      form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const cnpj = onlyDigits(document.getElementById('cnpj')?.value);
+        const cpf = onlyDigits(document.getElementById('cpf')?.value);
+        const cep = onlyDigits(document.getElementById('cep')?.value);
+        const checkVeracidade = document.getElementById('check-veracidade')?.checked;
+        const checkTermos = document.getElementById('check-termos')?.checked;
+        const senha = document.getElementById('senha')?.value || '';
+        const confirmar = document.getElementById('confirmar')?.value || '';
+        const idCategoria = Number(document.getElementById('segmento')?.value);
+
+        if (cnpj.length !== 14) return setFeedback('Informe um CNPJ válido com 14 números.', 'error');
+        if (cpf.length !== 11) return setFeedback('Informe um CPF válido com 11 números.', 'error');
+        if (cep.length !== 8) return setFeedback('Informe um CEP válido com 8 números.', 'error');
+        if (!idCategoria) return setFeedback('Selecione uma categoria da loja.', 'error');
+        if (senha !== confirmar) return setFeedback('A confirmação de senha precisa ser igual à senha.', 'error');
+        if (!checkVeracidade || !checkTermos) {
+          return setFeedback('Para cadastrar a empresa, marque os dois checkboxes obrigatórios: veracidade das informações e aceite dos termos.', 'error');
+        }
+
+        const token = localStorage.getItem('jobee_token');
+        if (!token) {
+          return setFeedback('Você precisa estar logado para cadastrar uma loja.', 'error');
+        }
+
+        const payload = {
+          razao_social: document.getElementById('razao')?.value.trim(),
+          nome_fantasia: document.getElementById('fantasia')?.value.trim(),
+          descricao: document.getElementById('descricao')?.value.trim(),
+          cnpj,
+          cpf_responsavel: cpf,
+          cep,
+          id_categoria: idCategoria,
+          porte: document.getElementById('porte')?.value,
+          data_fundacao: document.getElementById('fundacao')?.value || null,
+          cnae: document.getElementById('cnae')?.value.trim(),
+          site: document.getElementById('site')?.value.trim(),
+          responsavel: document.getElementById('responsavel')?.value.trim(),
+          cargo: document.getElementById('cargo')?.value.trim(),
+          email_corporativo: document.getElementById('emailcorp')?.value.trim(),
+          telefone: document.getElementById('telefone')?.value.trim(),
+          whatsapp: document.getElementById('whatsapp')?.value.trim(),
+          logradouro: document.getElementById('logradouro')?.value.trim(),
+          numero: document.getElementById('numero')?.value.trim(),
+          complemento: document.getElementById('complemento')?.value.trim(),
+          bairro: document.getElementById('bairro')?.value.trim(),
+          cidade_uf: document.getElementById('cidade')?.value.trim(),
+          aceita_contato: document.getElementById('check-contato')?.checked || false
+        };
+
+        try {
+          setFeedback('Enviando cadastro da loja...', 'info');
+          const response = await fetch('/api/lojas', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || 'Erro ao cadastrar loja.');
+
+          setFeedback('Loja cadastrada com sucesso!', 'success');
+          form.reset();
+          setTimeout(() => {
+            if (data.loja?.slug) window.location.href = `/loja/${data.loja.slug}`;
+          }, 900);
+        } catch (error) {
+          setFeedback(error.message, 'error');
+        }
+      });
+    });
+  </script>
+
   <script src="js/chatbot-abelha.js" defer></script>
 </body>
 </html>
