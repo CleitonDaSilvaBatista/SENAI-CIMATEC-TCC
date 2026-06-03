@@ -96,30 +96,35 @@ async function carregarLoja() {
     if (listaServicos) {
       listaServicos.innerHTML = servicos.length
         ? servicos.map(servico => `
-        <div class="card-servico">
-          <div class="card-img-wrap">
+        <article class="card-servico">
+          <div class="servico-img-wrap">
             <img 
               src="${servico.imagem_url || '/img/placeholder-loja.png'}" 
               alt="${servico.nome || 'Serviço'}"
               onerror="this.onerror=null;this.src='/img/placeholder-loja.png';"
             >
-            <span class="selo green">Serviço</span>
+            <span class="servico-selo">Serviço</span>
           </div>
 
-          <div class="servico-topo">
-            <h3>${servico.nome || 'Serviço sem nome'}</h3>
-            <span class="tag-servico">Serviço</span>
+          <div class="servico-body">
+            <div class="servico-topo">
+              <h3>${servico.nome || 'Serviço sem nome'}</h3>
+              <span class="tag-servico">Agenda rápida</span>
+            </div>
+
+            <p>${servico.descricao || 'Sem descrição.'}</p>
+
+            <div class="servico-meta">
+              <span>💰 R$ ${Number(servico.preco || 0).toFixed(2).replace('.', ',')}</span>
+              <span>⏱️ ${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
+              <span>✅ Profissional verificado</span>
+            </div>
+
+            <a class="btn-agendar-servico" href="/agendamento-servico?id=${servico.id_item}">
+              Agendar serviço
+            </a>
           </div>
-
-          <p>${servico.descricao || 'Sem descrição.'}</p>
-
-          <div class="servico-meta">
-            <span>R$ ${Number(servico.preco || 0).toFixed(2).replace('.', ',')}</span>
-            <span>${servico.duracao_minutos ? `${servico.duracao_minutos} min` : 'Sob consulta'}</span>
-          </div>
-
-          <button class="btn">Solicitar serviço</button>
-        </div>
+        </article>
       `).join("")
         : `<div class="empty-state">Nenhum serviço cadastrado.</div>`;
     }
