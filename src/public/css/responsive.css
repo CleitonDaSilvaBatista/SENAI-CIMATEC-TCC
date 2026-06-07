@@ -1,0 +1,747 @@
+/* =========================================================
+   JOBEE - RESPONSIVIDADE GERAL
+   Ajustes focados em celular/tablet sem alterar a paleta do site
+========================================================= */
+
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Evita que textos/preços enormes estourem a tela */
+* {
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Containers gerais */
+.product-container,
+.dashboard-shell,
+.profile-shell,
+.dicas-hero,
+.dicas-resumo,
+.dicas-section,
+.plano-section,
+.checklist-section,
+.planos-grid,
+.planos-beneficios,
+.contato-container,
+.loja-page,
+.cart-page,
+.checkout-page,
+.cadastro-loja-page,
+.page {
+  width: min(100%, 1280px);
+}
+
+/* ============================== NAVBAR ============================== */
+@media (max-width: 1180px) {
+  .navbar {
+    padding: 12px 20px;
+    gap: 14px;
+  }
+
+  .search-bar {
+    width: 420px;
+  }
+
+  .navbar-right {
+    gap: 12px;
+  }
+
+  .perfil-link,
+  .dicas-navbar-link,
+  .planos-navbar-link {
+    padding: 8px 10px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    position: sticky;
+    top: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .navbar-left,
+  .navbar-right {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo-img {
+    width: 112px !important;
+    max-width: 112px !important;
+  }
+
+  .location {
+    max-width: calc(100vw - 160px);
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  .search-bar {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .search-bar input {
+    min-width: 0;
+    font-size: 0.88rem;
+  }
+
+  .auth-buttons,
+  .user-actions,
+  .user-box {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .user-box {
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  .navbar-right .user-name,
+  .user-name {
+    width: 100%;
+    text-align: center;
+  }
+
+  .sub-navbar {
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+
+  .sub-navbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sub-navbar > a,
+  .categorias-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 0.82rem;
+  }
+
+  .menu-categorias {
+    position: fixed;
+    top: 148px;
+    left: 12px;
+    max-width: calc(100vw - 24px);
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar-left {
+    justify-content: space-between;
+  }
+
+  .location {
+    max-width: 170px;
+  }
+
+  #entrar,
+  #criar-conta,
+  .perfil-link,
+  .logout-btn,
+  .navbar-link {
+    min-height: 38px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar-right {
+    gap: 8px;
+  }
+}
+
+/* ============================== HOME ============================== */
+@media (max-width: 1024px) {
+  .hero-carousel,
+  .hero-slide {
+    min-height: auto;
+  }
+
+  .hero-slide {
+    padding: 44px 32px;
+    gap: 28px;
+  }
+
+  .hero-slide-content {
+    max-width: 520px;
+  }
+
+  .hero-slide-image img {
+    max-height: 330px;
+    object-fit: contain;
+  }
+
+  .produtos-section,
+  .ofertas-duplas,
+  .servicos-micro-section,
+  .mapa-section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .ofertas-duplas,
+  .servicos-micro-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-slide {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding: 34px 18px 52px;
+  }
+
+  .hero-prices,
+  .hero-payment,
+  .hero-shipping {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .new-price-hero {
+    font-size: clamp(1.9rem, 10vw, 2.6rem);
+  }
+
+  .hero-info {
+    padding: 14px;
+  }
+
+  .hero-slide-image img {
+    max-height: 230px;
+  }
+
+  .hero-seta {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .carrossel-container {
+    padding: 0;
+  }
+
+  .carrossel {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    overflow: visible !important;
+  }
+
+  .produto {
+    width: 100% !important;
+    max-width: 420px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .produto img {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+  }
+
+  .seta.esquerda,
+  .seta.direita {
+    display: none !important;
+  }
+
+  .ofertas-duplas,
+  .servicos-micro-grid,
+  .servicos-micro-categorias {
+    grid-template-columns: 1fr !important;
+  }
+
+  .oferta-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .servicos-micro-categorias {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+  }
+
+  .cat-btn {
+    flex: 0 0 auto;
+  }
+
+  .mapa-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  #map {
+    min-height: 320px;
+  }
+}
+
+/* ============================== PRODUTOS ============================== */
+@media (max-width: 980px) {
+  .product-main {
+    grid-template-columns: 1fr !important;
+    gap: 22px;
+  }
+
+  .right-col {
+    position: static !important;
+    width: 100%;
+  }
+
+  #img-principal {
+    height: auto !important;
+    max-height: 520px;
+    object-fit: contain;
+  }
+
+  .related-carousel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .product-container {
+    padding: 0 12px !important;
+  }
+
+  .breadcrumb {
+    font-size: 0.78rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .gallery,
+  .right-col,
+  .product-info-tabs {
+    padding: 16px !important;
+  }
+
+  #img-principal {
+    max-height: 340px;
+  }
+
+  .thumbs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .thumbs img {
+    flex: 0 0 64px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 0;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    padding: 13px 16px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .rating-summary,
+  .review-header,
+  .rating-row,
+  .shipping-info {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product-title {
+    font-size: 1.12rem !important;
+  }
+
+  .price {
+    font-size: clamp(1.8rem, 10vw, 2.35rem) !important;
+  }
+
+  .discount-badge {
+    position: static !important;
+    display: inline-flex;
+    width: fit-content;
+    margin-top: 8px;
+  }
+
+  .buy-actions .btn,
+  .btn {
+    width: 100%;
+  }
+
+  .related-carousel {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    overflow: visible !important;
+  }
+
+  .related-carousel-seta {
+    display: none !important;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* ============================== DASHBOARD / PERFIL / LOJA ============================== */
+@media (max-width: 1100px) {
+  .dashboard-hero,
+  .profile-hero,
+  .profile-grid,
+  .loja-hero-content,
+  .checkout-layout,
+  .cart-layout,
+  .compra-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-side,
+  .metrics-grid,
+  .stats-grid,
+  .profile-highlights,
+  .dashboard-grid,
+  .ranking-grid,
+  .loja-produtos-grid,
+  .loja-servicos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .dashboard-shell,
+  .profile-page,
+  .loja-page,
+  .cart-page,
+  .checkout-page {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .dashboard-hero,
+  .profile-hero,
+  .info-card,
+  .stat-card,
+  .metric-box,
+  .checkout-card,
+  .cart-card,
+  .loja-hero {
+    border-radius: 18px !important;
+    padding: 18px !important;
+  }
+
+  .hero-side,
+  .metrics-grid,
+  .stats-grid,
+  .profile-highlights,
+  .dashboard-grid,
+  .ranking-grid,
+  .loja-produtos-grid,
+  .loja-servicos-grid,
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .loja-hero-content,
+  .loja-identidade,
+  .avatar-row,
+  .profile-actions,
+  .hero-actions,
+  .loja-acoes {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    text-align: center;
+  }
+
+  .loja-logo,
+  .profile-avatar {
+    margin: 0 auto;
+  }
+
+  .loja-tabs-inner {
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+    padding-bottom: 8px;
+  }
+
+  .loja-tabs a {
+    flex: 0 0 auto;
+  }
+}
+
+/* ============================== PLANOS / DICAS / CONTATO ============================== */
+@media (max-width: 1120px) {
+  .planos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .plano-card.destaque {
+    transform: none !important;
+  }
+
+  .dicas-hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  .dicas-resumo,
+  .dicas-grid,
+  .plano-passos,
+  .beneficios-grid,
+  .contato-grid,
+  .contato-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .planos-hero,
+  .dicas-hero-texto,
+  .dicas-hero-card,
+  .checklist-section,
+  .contato-hero,
+  .contato-card,
+  .contato-form-card {
+    padding: 24px 16px !important;
+    border-radius: 18px !important;
+  }
+
+  .planos-grid,
+  .dicas-hero,
+  .dicas-resumo,
+  .dicas-section,
+  .plano-section,
+  .checklist-section,
+  .planos-beneficios,
+  .contato-container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .planos-grid,
+  .dicas-resumo,
+  .dicas-grid,
+  .plano-passos,
+  .beneficios-grid,
+  .contato-grid,
+  .contato-info-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .plano-card {
+    min-height: auto !important;
+  }
+
+  .plano-preco {
+    font-size: clamp(2rem, 13vw, 3rem) !important;
+  }
+
+  .dicas-hero {
+    margin-top: 24px !important;
+  }
+
+  .abelha-ilustracao {
+    width: 88px !important;
+    height: 88px !important;
+    font-size: 3.2rem !important;
+  }
+}
+
+/* ============================== FORMULÁRIOS / LOGIN / CADASTROS ============================== */
+@media (max-width: 760px) {
+  .login-container,
+  .cadastro-container,
+  .forgot-container,
+  .reset-container,
+  .form-container,
+  .auth-container,
+  .contato-form,
+  form {
+    width: 100%;
+  }
+
+  .login-card,
+  .cadastro-card,
+  .forgot-card,
+  .reset-card,
+  .form-card,
+  .form-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 22px 16px !important;
+    border-radius: 18px !important;
+  }
+
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+    font-size: 16px !important; /* evita zoom automático no iPhone */
+  }
+
+  .form-grid,
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr !important;
+  }
+
+  .span-3,
+  .span-4,
+  .span-6,
+  .full {
+    grid-column: auto !important;
+  }
+
+  .modal-feedback-box,
+  .cep-modal {
+    width: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    padding: 22px 16px !important;
+  }
+
+  .modal-feedback-actions,
+  .cep-modal-actions {
+    display: grid !important;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================== CARRINHO / COMPRA ============================== */
+@media (max-width: 760px) {
+  .cart-item,
+  .checkout-item,
+  .item-row,
+  .summary-row,
+  .payment-card,
+  .security-item {
+    align-items: flex-start;
+    flex-direction: column !important;
+    gap: 12px;
+  }
+
+  .cart-item img,
+  .checkout-item img,
+  .item-row img {
+    width: 100% !important;
+    max-height: 220px;
+    object-fit: contain;
+  }
+
+  .quantity-controls,
+  .control {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ============================== FOOTER / CHATBOT ============================== */
+@media (max-width: 760px) {
+  .footer-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .beebot-button {
+    width: 58px !important;
+    height: 58px !important;
+    right: 14px !important;
+    bottom: 14px !important;
+    font-size: 1.9rem !important;
+  }
+
+  .beebot-window {
+    right: 10px !important;
+    left: 10px !important;
+    bottom: 82px !important;
+    width: auto !important;
+    max-height: calc(100vh - 110px);
+  }
+
+  .beebot-messages {
+    max-height: 230px !important;
+  }
+}
+
+/* Ajuste extra para celulares muito estreitos */
+@media (max-width: 380px) {
+  .navbar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .location {
+    max-width: 145px;
+  }
+
+  .hero-slide-content h2,
+  .planos-hero h1,
+  .dicas-hero h1,
+  .dashboard-hero h1,
+  .profile-hero h1 {
+    font-size: 1.75rem !important;
+  }
+
+  .old-price-hero,
+  .new-price-hero,
+  .discount-badge-hero {
+    width: 100%;
+    text-align: center;
+  }
+}

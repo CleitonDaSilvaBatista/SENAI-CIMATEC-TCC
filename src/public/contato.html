@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entre em contato com a equipe Jobee. Envie dúvidas, sugestões ou solicitações pelo formulário." />
+  <meta name="theme-color" content="#198754" />
+  <title>Contato | Jobee</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/contato.css">
+
+  <script src="js/navbar.js" defer></script>
+  <script src="js/contato.js" defer></script>
+  <script src="/js/cart.js" defer></script>
+  <link rel="stylesheet" href="css/chatbot-abelha.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="contato-page">
+    <section class="contato-hero" aria-labelledby="contato-title">
+      <div class="contato-hero-texto">
+        <span class="contato-badge">📩 Fale conosco</span>
+        <h1 id="contato-title">Como podemos ajudar?</h1>
+        <p>
+          Envie sua mensagem para a equipe Jobee. Retornaremos com cuidado para entender sua necessidade,
+          tirar dúvidas ou receber sugestões sobre a plataforma.
+        </p>
+      </div>
+
+      <div class="contato-card-info" aria-label="Informações de contato">
+        <div class="info-item">
+          <span>⏰</span>
+          <div>
+            <strong>Atendimento</strong>
+            <p>Segunda a sexta, das 8h às 18h</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span>📍</span>
+          <div>
+            <strong>Localização</strong>
+            <p>Salvador - BA</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span>🤝</span>
+          <div>
+            <strong>Suporte</strong>
+            <p>Clientes, empreendedores e negócios locais</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contato-container" aria-labelledby="form-contato-title">
+      <div class="contato-form-card">
+        <div class="form-header">
+          <span class="form-icon">🐝</span>
+          <div>
+            <h2 id="form-contato-title">Envie sua mensagem</h2>
+            <p>Preencha os campos abaixo para falar com a Jobee.</p>
+          </div>
+        </div>
+
+        <form id="contato-form" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nome">Nome completo</label>
+              <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+              <small class="erro-msg"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+              <small class="erro-msg"></small>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(71) 99999-9999" required>
+              <small class="erro-msg"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="assunto">Assunto</label>
+              <select id="assunto" name="assunto" required>
+                <option value="">Selecione uma opção</option>
+                <option value="duvida">Dúvida sobre a plataforma</option>
+                <option value="suporte">Suporte ao usuário</option>
+                <option value="empreendedor">Quero cadastrar meu negócio</option>
+                <option value="sugestao">Sugestão ou feedback</option>
+                <option value="outro">Outro assunto</option>
+              </select>
+              <small class="erro-msg"></small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="6" placeholder="Escreva sua mensagem aqui..." required></textarea>
+            <small class="erro-msg"></small>
+          </div>
+
+          <button type="submit" class="btn-enviar-contato">Enviar mensagem</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-contato-overlay" id="modal-contato" aria-hidden="true">
+    <div class="modal-contato" role="dialog" aria-modal="true" aria-labelledby="modal-contato-title">
+      <button type="button" class="modal-fechar" id="modal-fechar" aria-label="Fechar modal">&times;</button>
+      <div class="modal-icon">✅</div>
+      <h2 id="modal-contato-title">Informações recebidas!</h2>
+      <p>
+        Obrigado por entrar em contato com a Jobee. Sua mensagem foi registrada com sucesso.
+      </p>
+      <button type="button" class="modal-btn" id="modal-ok">Entendi</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática, segura e moderna.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="/ajuda">Ajuda</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="/politica-privacidade">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+          </a>
+          <a href="#" aria-label="Instagram">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <img src="img/linkedin.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
+  <script src="js/chatbot-abelha.js" defer></script>
+</body>
+
+</html>

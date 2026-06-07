@@ -98,6 +98,8 @@
         to { width: 100%; }
       }
     </style>
+  <link rel="stylesheet" href="css/chatbot-abelha.css">
+  <link rel="stylesheet" href="/css/responsive.css">
 </head>
   <body data-produto-slug="ferramentas">
 <div id='navbar-container'></div>
@@ -236,8 +238,7 @@
                   <div class="stars">★★★★★</div>
                 </div>
                 <p>
-                  Boa qualidade pelo preço, recomendo. O tecido é confortável e
-                  a modelagem ficou boa.
+                 Ótimas Peças! Comprei o kit para usar no dia a dia e fiquei muito satisfeito. 
                 </p>
                 <span class="review-date">Há 2 dias</span>
               </div>
@@ -248,8 +249,7 @@
                   <div class="stars">★★★★☆</div>
                 </div>
                 <p>
-                  Gostei muito do produto, mas achei que poderia ser um pouco
-                  mais longo. De qualquer forma, recomendo.
+                  Gostei muito do produto.
                 </p>
                 <span class="review-date">Há 1 semana</span>
               </div>
@@ -351,10 +351,10 @@
           </div>
 
           <div class="buy-actions">
-            <button id="btn-comprar" class="btn big primary">
+            <button id="btn-comprar" type="button" class="btn big primary">
               <i class="fas fa-bolt"></i> Comprar agora
             </button>
-            <button id="btn-carrinho" class="btn big outline">
+            <button id="btn-carrinho" type="button" class="btn big outline">
               <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho
             </button>
           </div>
@@ -423,6 +423,7 @@
       </div>
     </footer>
 
+    <div id="toast-container"></div>
     <script src="/js/produto.js"></script>
   <div class="modal-feedback-overlay" id="modal-login">
   <div class="modal-feedback-box erro">
@@ -449,5 +450,6 @@
   </div>
 </div>
 </div>
-  </body>
+    <script src="js/chatbot-abelha.js" defer></script>
+</body>
 </html>

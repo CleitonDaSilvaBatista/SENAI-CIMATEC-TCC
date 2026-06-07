@@ -369,7 +369,8 @@ function obterDadosProdutoAtual() {
     quantidade,
     vendedor,
     entrega: 'Entrega estimada entre 2 e 5 dias úteis',
-    frete: 9.9
+    frete: 9.9,
+    slug: slugProdutoAtual()
   };
 }
 
@@ -410,35 +411,145 @@ function exibirModalRedirecionamento(produto) {
   }, 1800);
 }
 
+
+function mostrarToastProduto(mensagem, tipo = 'success') {
+  let container = document.getElementById('toast-container');
+
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    document.body.appendChild(container);
+  }
+
+  Object.assign(container.style, {
+    position: 'fixed',
+    right: '22px',
+    bottom: '22px',
+    zIndex: '999999',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+    pointerEvents: 'none'
+  });
+
+  const toast = document.createElement('div');
+  toast.className = `toast ${tipo} produto-toast`;
+  toast.setAttribute('role', 'status');
+  toast.innerHTML = `
+    <div class="toast-icon">${tipo === 'success' ? '✔️' : '❌'}</div>
+    <div class="toast-content">
+      <div class="toast-title">${tipo === 'success' ? 'Produto adicionado' : 'Atenção'}</div>
+      <div class="toast-message">${mensagem}</div>
+    </div>
+    <button class="toast-close" type="button" aria-label="Fechar aviso">&times;</button>
+    <div class="toast-progress"></div>
+  `;
+
+  Object.assign(toast.style, {
+    minWidth: '300px',
+    maxWidth: '380px',
+    background: '#ffffff',
+    color: '#173f32',
+    borderLeft: tipo === 'success' ? '5px solid #308668' : '5px solid #ef4444',
+    borderRadius: '14px',
+    boxShadow: '0 16px 38px rgba(15, 23, 42, 0.18)',
+    padding: '14px 16px',
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: '12px',
+    position: 'relative',
+    overflow: 'hidden',
+    pointerEvents: 'auto',
+    transform: 'translateX(115%)',
+    opacity: '0',
+    transition: 'transform .28s ease, opacity .28s ease'
+  });
+
+  const progress = toast.querySelector('.toast-progress');
+  if (progress) {
+    Object.assign(progress.style, {
+      position: 'absolute',
+      left: '0',
+      bottom: '0',
+      height: '3px',
+      width: '100%',
+      background: tipo === 'success' ? '#308668' : '#ef4444',
+      transition: 'width 2.8s linear'
+    });
+  }
+
+  container.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.style.transform = 'translateX(0)';
+    toast.style.opacity = '1';
+    if (progress) progress.style.width = '0%';
+  });
+
+  const fecharToast = () => {
+    toast.style.transform = 'translateX(115%)';
+    toast.style.opacity = '0';
+    window.setTimeout(() => toast.remove(), 280);
+  };
+
+  toast.querySelector('.toast-close')?.addEventListener('click', fecharToast);
+  window.setTimeout(fecharToast, 3000);
+}
+
+function salvarProdutoAtualNoCarrinho() {
+  const produto = obterDadosProdutoAtual();
+
+  if (typeof window.adicionarItemCarrinho === 'function') {
+    window.adicionarItemCarrinho(produto);
+  } else {
+    const carrinhoAtual = JSON.parse(localStorage.getItem('jobee_cart') || '[]');
+    const chave = `${produto.id}|${produto.cor}|${produto.tamanho}`;
+    const itemExistente = carrinhoAtual.find((item) => `${item.id_item}|${item.cor || ''}|${item.tamanho || ''}` === chave);
+
+    if (itemExistente) {
+      itemExistente.quantidade = Number(itemExistente.quantidade || 1) + produto.quantidade;
+    } else {
+      carrinhoAtual.push({
+        id_item: produto.id,
+        nome: produto.nome,
+        preco: produto.preco,
+        quantidade: produto.quantidade,
+        imagem_url: produto.imagem,
+        nome_loja: produto.vendedor,
+        cor: produto.cor,
+        tamanho: produto.tamanho,
+        tipo: 'produto'
+      });
+    }
+
+    localStorage.setItem('jobee_cart', JSON.stringify(carrinhoAtual));
+  }
+
+  if (typeof updateCartBadge === 'function') updateCartBadge();
+  return produto;
+}
+
 function adicionarAoCarrinho() {
   if (!exigirLoginParaCarrinho()) {
     return;
   }
 
-  const produto = obterDadosProdutoAtual();
-  const carrinhoAtual = JSON.parse(localStorage.getItem('jobee_cart') || '[]');
-  const itemExistente = carrinhoAtual.find(
-    (item) => item.id_item === produto.id && item.cor === produto.cor && item.tamanho === produto.tamanho
-  );
+  salvarProdutoAtualNoCarrinho();
+  mostrarToastProduto('Produto adicionado ao carrinho!', 'success');
+}
 
-  if (itemExistente) {
-    itemExistente.quantidade += produto.quantidade;
-  } else {
-    carrinhoAtual.push({
-      id_item: produto.id,
-      nome: produto.nome,
-      preco: produto.preco,
-      quantidade: produto.quantidade,
-      imagem_url: produto.imagem,
-      nome_loja: produto.vendedor,
-      cor: produto.cor,
-      tamanho: produto.tamanho
-    });
+function comprarAgora() {
+  if (!exigirLoginParaCarrinho()) {
+    return;
   }
 
-  localStorage.setItem('jobee_cart', JSON.stringify(carrinhoAtual));
-  if (typeof updateCartBadge === 'function') updateCartBadge();
-  showToast('Produto adicionado ao carrinho!', 'success');
+  const produto = salvarProdutoAtualNoCarrinho();
+  localStorage.setItem('jobee_direct_checkout', JSON.stringify(produto));
+  mostrarToastProduto('Produto adicionado ao carrinho!', 'success');
+
+  window.setTimeout(() => {
+    window.location.href = `/compra?produto=${encodeURIComponent(slugProdutoAtual())}`;
+  }, 900);
 }
 
 function setupBuyButtons() {
@@ -446,10 +557,7 @@ function setupBuyButtons() {
   const btnCarrinho = document.getElementById('btn-carrinho');
 
   if (btnComprar) {
-    btnComprar.addEventListener('click', function () {
-      const produto = obterDadosProdutoAtual();
-      exibirModalRedirecionamento(produto);
-    });
+    btnComprar.addEventListener('click', comprarAgora);
   }
 
   if (btnCarrinho) {

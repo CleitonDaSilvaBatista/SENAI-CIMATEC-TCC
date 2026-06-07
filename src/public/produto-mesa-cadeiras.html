@@ -98,6 +98,8 @@
         to { width: 100%; }
       }
     </style>
+  <link rel="stylesheet" href="css/chatbot-abelha.css">
+  <link rel="stylesheet" href="/css/responsive.css">
 </head>
   <body data-produto-slug="mesa-cadeiras">
 <div id='navbar-container'></div>
@@ -351,10 +353,10 @@
           </div>
 
           <div class="buy-actions">
-            <button id="btn-comprar" class="btn big primary">
+            <button id="btn-comprar" type="button" class="btn big primary">
               <i class="fas fa-bolt"></i> Comprar agora
             </button>
-            <button id="btn-carrinho" class="btn big outline">
+            <button id="btn-carrinho" type="button" class="btn big outline">
               <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho
             </button>
           </div>
@@ -505,6 +507,7 @@
       </div>
     </footer>
 
+    <div id="toast-container"></div>
     <script src="/js/produto.js"></script>
   <div class="modal-feedback-overlay" id="modal-login">
   <div class="modal-feedback-box erro">
@@ -531,5 +534,6 @@
   </div>
 </div>
 </div>
-  </body>
+    <script src="js/chatbot-abelha.js" defer></script>
+</body>
 </html>

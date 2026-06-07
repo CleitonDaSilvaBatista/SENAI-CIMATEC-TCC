@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Planos da Jobee para microempreendedores escolherem o modelo ideal para crescer." />
+  <meta name="theme-color" content="#198754" />
+  <title>Jobee | Planos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/planos.css">
+  <link rel="stylesheet" href="css/chatbot-abelha.css">
+
+  <script src="js/navbar.js" defer></script>
+  <script src="js/planos.js" defer></script>
+  <script src="js/chatbot-abelha.js" defer></script>
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+  <section class="sub-navbar" aria-label="Atalhos de navegação">
+    <div class="dropdown-categorias">
+      <a href="#" class="categorias-btn" aria-haspopup="true" aria-expanded="false">Categorias ▼</a>
+      <ul class="menu-categorias">
+        <li><a href="#">Supermercado</a></li>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">Casa e Móveis</a></li>
+        <li><a href="#">Eletrodomésticos</a></li>
+        <li><a href="#">Esportes e Fitness</a></li>
+        <li><a href="#">Ferramentas</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Beleza e Cuidados</a></li>
+      </ul>
+    </div>
+    <a href="/dashboard">Ofertas</a>
+    <a href="#">Cupons</a>
+    <a href="#">Serviços</a>
+    <a href="/dicas-vendas">Dicas para vender</a>
+    <a href="/contato">Contato</a>
+    <a href="/planos">Planos</a>
+  </section>
+
+
+  <main class="planos-page">
+    <section class="planos-hero" aria-labelledby="planos-title">
+      <div class="planos-hero-bg"></div>
+      <div class="planos-hero-content">
+        <span class="planos-badge">🐝 Modelo de receita</span>
+        <h1 id="planos-title">Escolha o plano ideal para o seu negócio crescer</h1>
+      </div>
+    </section>
+
+    <section class="planos-grid" aria-label="Lista de planos Jobee">
+      <article class="plano-card">
+        <div class="plano-topo claro">
+          <h2>Grátis</h2>
+        </div>
+        <div class="plano-corpo">
+          <div class="plano-icone">🍃</div>
+          <div class="plano-preco"><span>R$</span> 0,00 <small>/mês</small></div>
+          <ul>
+            <li>✅ Anúncios na loja</li>
+            <li>✅ Dashboard básico</li>
+            <li>✅ Até 2 cupons ativos</li>
+            <li>✅ Taxa PGTO: 5%</li>
+          </ul>
+        </div>
+        <div class="plano-comissao">🏷️ Comissão: <strong>15%</strong></div>
+        <button class="plano-btn" data-plano="Grátis">Começar grátis</button>
+      </article>
+
+      <article class="plano-card destaque">
+        <span class="mais-vendido">Mais vendido</span>
+        <div class="plano-topo amarelo">
+          <h2>Starter</h2>
+        </div>
+        <div class="plano-corpo">
+          <div class="plano-icone">📈</div>
+          <div class="plano-preco"><span>R$</span> 49,90 <small>/mês</small></div>
+          <ul>
+            <li>✅ Dashboard completo</li>
+            <li>✅ Até 10 cupons ativos</li>
+            <li>✅ Sem anúncios</li>
+            <li>✅ Taxa PGTO: 4,5%</li>
+          </ul>
+        </div>
+        <div class="plano-comissao">🏷️ Comissão: <strong>10%</strong></div>
+        <button class="plano-btn destaque-btn" data-plano="Starter">Escolher Starter</button>
+      </article>
+
+      <article class="plano-card">
+        <div class="plano-topo verde-claro">
+          <h2>Pro</h2>
+        </div>
+        <div class="plano-corpo">
+          <div class="plano-icone">⭐</div>
+          <div class="plano-preco"><span>R$</span> 99,90 <small>/mês</small></div>
+          <ul>
+            <li>✅ IA Assistente</li>
+            <li>✅ Relatórios avançados</li>
+            <li>✅ Cupons avançados</li>
+            <li>✅ Gestão de equipe</li>
+            <li>✅ Taxa PGTO: 4%</li>
+          </ul>
+        </div>
+        <div class="plano-comissao">🏷️ Comissão: <strong>8%</strong></div>
+        <button class="plano-btn" data-plano="Pro">Escolher Pro</button>
+      </article>
+
+      <article class="plano-card">
+        <div class="plano-topo claro">
+          <h2>Premium</h2>
+        </div>
+        <div class="plano-corpo">
+          <div class="plano-icone">👑</div>
+          <div class="plano-preco"><span>R$</span> 149,90 <small>/mês</small></div>
+          <ul>
+            <li>✅ IA + Automações</li>
+            <li>✅ Suporte prioritário</li>
+            <li>✅ Cupons ilimitados</li>
+            <li>✅ Alta Performance</li>
+            <li>✅ Taxa PGTO: 3,5%</li>
+          </ul>
+        </div>
+        <div class="plano-comissao">🏷️ Comissão: <strong>5%</strong></div>
+        <button class="plano-btn" data-plano="Premium">Escolher Premium</button>
+      </article>
+    </section>
+
+    <section class="beneficios-planos" aria-label="Benefícios dos planos">
+      <article>
+        <strong>🛡️ Compra 100% segura</strong>
+        <span>Seus dados protegidos</span>
+      </article>
+      <article>
+        <strong>💳 Parcele em até 3x</strong>
+        <span>Sem juros no cartão</span>
+      </article>
+      <article>
+        <strong>🚚 Envio rápido</strong>
+        <span>Para todo o Brasil</span>
+      </article>
+      <article>
+        <strong>🔄 Troca garantida</strong>
+        <span>Até 7 dias para devolução</span>
+      </article>
+      <article>
+        <strong>💛 Suporte humano</strong>
+        <span>Estamos aqui para ajudar</span>
+      </article>
+    </section>
+  </main>
+
+  <div class="plano-modal" id="plano-modal" aria-hidden="true">
+    <div class="plano-modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-plano-titulo">
+      <button type="button" class="plano-modal-close" id="plano-modal-close" aria-label="Fechar">&times;</button>
+      <div class="modal-abelha">🐝</div>
+      <h2 id="modal-plano-titulo">Plano selecionado!</h2>
+      <p id="modal-plano-texto">Recebemos seu interesse no plano escolhido.</p>
+      <button type="button" class="plano-modal-ok" id="plano-modal-ok">Entendi</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Jobee</h3>
+        <p>Uma colmeia de serviços que conecta pessoas e negócios de forma prática, segura e moderna.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="/ajuda">Ajuda</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="/politica-privacidade">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Siga-nos</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+          <a href="#" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" /></a>
+          <a href="#" aria-label="LinkedIn"><img src="img/linkedin.png" alt="LinkedIn" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Jobee - Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+</html>

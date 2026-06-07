@@ -78,6 +78,15 @@ Object.entries(paginasProduto).forEach(([rota, arquivo]) => {
   })
 })
 
+
+router.get('/agendamento-servico', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'agendamento-servico.html'))
+})
+
+router.get('/agendamento-servico.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'agendamento-servico.html'))
+})
+
 router.get('/carrinho', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'cart.html'))
 })
@@ -90,6 +99,33 @@ router.get('/reset-password', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'reset-password.html'))
 })
 
+
+
+
+
+router.get('/planos', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'planos.html'))
+})
+
+router.get('/planos.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'planos.html'))
+})
+
+router.get('/dicas-vendas', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dicas-vendas.html'))
+})
+
+router.get('/dicas-vendas.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'dicas-vendas.html'))
+})
+
+router.get('/contato', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'contato.html'))
+})
+
+router.get('/contato.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'contato.html'))
+})
 
 router.get('/sobre', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'sobre.html'))

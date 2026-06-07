@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento de Serviço | Jobee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/agendamento-servico.css" />
+  <script src="/js/toast.js"></script>
+  <script src="/js/navbar.js" defer></script>
+  <script src="/js/user-info.js" defer></script>
+  <script src="/js/agendamento-servico.js" defer></script>
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="agendamento-page">
+    <a href="javascript:history.back()" class="voltar-link">← Voltar para a loja</a>
+
+    <section class="agendamento-hero">
+      <div>
+        <span class="badge-agenda">Agendamento rápido</span>
+        <h1>Agende seu serviço com segurança pela Jobee</h1>
+        <p>Escolha a data, horário e confirme os dados do atendimento. A loja receberá sua solicitação para organizar o serviço.</p>
+      </div>
+      <div class="agenda-mini-card">
+        <strong>✓ Serviço verificado</strong>
+        <span>Confirmação simples e organizada</span>
+      </div>
+    </section>
+
+    <section class="agendamento-grid">
+      <article class="servico-resumo-card">
+        <div class="servico-resumo-img">
+          <img id="servico-imagem" src="/img/placeholder-loja.png" alt="Imagem do serviço" />
+        </div>
+        <div class="servico-resumo-body">
+          <span id="servico-loja" class="servico-loja">Carregando loja...</span>
+          <h2 id="servico-nome">Carregando serviço...</h2>
+          <p id="servico-descricao">Aguarde enquanto buscamos os dados do serviço.</p>
+          <div class="servico-resumo-meta">
+            <span id="servico-preco">R$ 0,00</span>
+            <span id="servico-duracao">Sob consulta</span>
+          </div>
+        </div>
+      </article>
+
+      <form class="agenda-form" id="form-agendamento">
+        <div class="form-title">
+          <h2>Dados do agendamento</h2>
+          <p>Preencha as informações para solicitar o atendimento.</p>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            Nome completo
+            <input type="text" id="cliente-nome" placeholder="Seu nome" required />
+          </label>
+
+          <label>
+            Telefone / WhatsApp
+            <input type="tel" id="cliente-telefone" placeholder="(00) 00000-0000" required />
+          </label>
+
+          <label>
+            Data desejada
+            <input type="date" id="data-agendamento" required />
+          </label>
+
+          <label>
+            Horário desejado
+            <select id="horario-agendamento" required>
+              <option value="">Selecione</option>
+              <option>08:00</option>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+            </select>
+          </label>
+
+          <label class="span-2">
+            Observações
+            <textarea id="observacoes" placeholder="Ex.: preferência de horário, detalhes do problema, endereço ou ponto de referência."></textarea>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-confirmar-agenda">Confirmar agendamento</button>
+        <small>Este protótipo salva a solicitação no navegador. Depois podemos conectar ao Supabase com uma tabela de agendamentos.</small>
+      </form>
+    </section>
+  </main>
+
+  <div id="toast-container"></div>
+</body>
+</html>
