@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const isLogado = Boolean(localStorage.getItem('jobee_token'));
 
   const atalhosBase = [
-    { label: 'Início', href: '/home', descricao: 'Ver produtos, serviços e negócios em destaque.' },
+    { label: 'Início', href: '/', descricao: 'Ver produtos, serviços e negócios em destaque.' },
     { label: 'Buscar', href: '/buscar', descricao: 'Pesquisar produtos, serviços e lojas locais.' },
     { label: 'Carrinho', href: '/cart', descricao: 'Ver itens escolhidos antes de finalizar a compra.' },
     { label: 'Planos', href: '/planos', descricao: 'Conhecer opções e vantagens da Jobee.' },
