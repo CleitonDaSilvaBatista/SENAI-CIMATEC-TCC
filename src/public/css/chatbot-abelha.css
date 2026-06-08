@@ -164,3 +164,59 @@
     bottom: 90px;
   }
 }
+
+.beebot-guide-option {
+  background: #308668;
+  color: #ffffff;
+}
+
+.beebot-guide-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.beebot-guide-card strong {
+  display: block;
+  color: #263018;
+  margin-bottom: 6px;
+}
+
+.beebot-guide-card p {
+  margin: 0 0 10px;
+  color: #4d5a38;
+}
+
+.beebot-guide-list {
+  display: grid;
+  gap: 8px;
+}
+
+.beebot-guide-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: #f7f8f3;
+  border: 1px solid rgba(63, 74, 34, 0.12);
+  text-decoration: none;
+  color: #263018;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.beebot-guide-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(48, 134, 104, 0.35);
+  box-shadow: 0 8px 18px rgba(47, 55, 24, 0.12);
+}
+
+.beebot-guide-link span {
+  display: block;
+  font-weight: 800;
+  color: #308668;
+  margin-bottom: 2px;
+}
+
+.beebot-guide-link small {
+  display: block;
+  color: #5f6a4b;
+  line-height: 1.35;
+}
