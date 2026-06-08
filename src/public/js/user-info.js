@@ -20,6 +20,13 @@ async function carregarInfoUsuario() {
       }
     });
 
+    if (resposta.status === 401) {
+      localStorage.removeItem('jobee_token');
+      localStorage.removeItem('jobee_user');
+      userBox.textContent = 'Você não entrou';
+      return;
+    }
+
     const data = await resposta.json();
 
     if (data.logado) {

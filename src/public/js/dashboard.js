@@ -2,12 +2,22 @@ function getToken() {
   return localStorage.getItem('jobee_token')
 }
 
+function clearAuthSession() {
+  localStorage.removeItem('jobee_token')
+  localStorage.removeItem('jobee_user')
+}
+
+function redirectToLogin() {
+  window.location.href = '/login'
+}
+
 function requireAuth() {
   const token = getToken()
 
   if (!token) {
+    clearAuthSession()
     alert('Você precisa fazer login para acessar o dashboard.')
-    window.location.href = '/login'
+    redirectToLogin()
     return false
   }
 
@@ -24,7 +34,18 @@ async function fetchDashboard() {
     }
   })
 
-  const data = await response.json()
+  let data
+  try {
+    data = await response.json()
+  } catch (error) {
+    data = {}
+  }
+
+  if (response.status === 401) {
+    clearAuthSession()
+    redirectToLogin()
+    throw new Error('Sessão expirada ou token inválido. Faça login novamente.')
+  }
 
   if (!response.ok) {
     throw new Error(data.error || 'Erro ao carregar dashboard.')

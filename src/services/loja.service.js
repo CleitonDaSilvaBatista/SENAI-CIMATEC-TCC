@@ -1,5 +1,115 @@
 const supabase = require('../config/database')
 
+
+function gerarSlug(texto) {
+  const base = String(texto || 'loja')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60) || 'loja'
+
+  return `${base}-${Date.now().toString(36)}`
+}
+
+async function garantirEmpreendedor(idUsuario) {
+  const { data: usuario, error } = await supabase
+    .from('usuarios')
+    .select('id_usuario, id_tipo_usuario')
+    .eq('id_usuario', idUsuario)
+    .single()
+
+  if (error || !usuario) {
+    const err = new Error('Usuário não encontrado.')
+    err.statusCode = 404
+    throw err
+  }
+
+  if (Number(usuario.id_tipo_usuario) !== 2) {
+    const err = new Error('Apenas perfis empreendedores podem cadastrar lojas.')
+    err.statusCode = 403
+    throw err
+  }
+}
+
+async function createLoja(user, body = {}) {
+  const idUsuario = user?.id
+
+  if (!idUsuario) {
+    const err = new Error('Usuário não autenticado.')
+    err.statusCode = 401
+    throw err
+  }
+
+  await garantirEmpreendedor(idUsuario)
+
+  const nomeFantasia = String(body.nome_fantasia || body.fantasia || '').trim()
+  const descricao = String(body.descricao || '').trim()
+  const cnpj = String(body.cnpj || '').trim()
+
+  if (!nomeFantasia || !descricao || !cnpj) {
+    const err = new Error('Nome fantasia, descrição e CNPJ são obrigatórios.')
+    err.statusCode = 400
+    throw err
+  }
+
+  const novaLoja = {
+    id_usuario: idUsuario,
+    nome_fantasia: nomeFantasia,
+    descricao: descricao.slice(0, 150),
+    cnpj,
+    imagem_url: body.imagem_url || '/img/logo-jobee.svg',
+    banner_url: body.banner_url || '/img/banercarrosel.webp',
+    slug: gerarSlug(nomeFantasia),
+    ativo: true,
+    sobre_loja: body.sobre_loja || descricao
+  }
+
+  const { data, error } = await supabase
+    .from('lojas')
+    .insert(novaLoja)
+    .select('id_loja, id_usuario, nome_fantasia, descricao, imagem_url, banner_url, slug, ativo, sobre_loja, data_criacao')
+    .single()
+
+  if (error) {
+    const err = new Error(`Erro ao cadastrar loja: ${error.message}`)
+    err.statusCode = 500
+    throw err
+  }
+
+  return {
+    message: 'Loja cadastrada com sucesso!',
+    loja: data
+  }
+}
+
+async function getMinhasLojas(user) {
+  const idUsuario = user?.id
+
+  if (!idUsuario) {
+    const err = new Error('Usuário não autenticado.')
+    err.statusCode = 401
+    throw err
+  }
+
+  await garantirEmpreendedor(idUsuario)
+
+  const { data, error } = await supabase
+    .from('lojas')
+    .select('id_loja, nome_fantasia, descricao, imagem_url, banner_url, slug, ativo, data_criacao')
+    .eq('id_usuario', idUsuario)
+    .order('id_loja', { ascending: false })
+
+  if (error) {
+    const err = new Error('Erro ao buscar lojas cadastradas.')
+    err.statusCode = 500
+    throw err
+  }
+
+  return data || []
+}
+
 async function getLojas() {
   const { data, error } = await supabase
     .from('lojas')
@@ -105,6 +215,8 @@ async function getItensCountByLoja(id_loja) {
 }
 
 module.exports = {
+  createLoja,
+  getMinhasLojas,
   getLojas,
   getLojaBySlug,
   getItensCountByLoja

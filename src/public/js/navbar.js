@@ -270,6 +270,7 @@ function mostrarStatusLogin() {
 
           ${tipoUsuario === 2 ? `
             <a href="/dashboard" class="hamburger-item">Dashboard</a>
+            <a href="/cadastrar-loja" class="hamburger-item">Cadastrar loja</a>
           ` : ''}
 
           <a href="/dicas-vendas" class="hamburger-item">Dicas para vender</a>

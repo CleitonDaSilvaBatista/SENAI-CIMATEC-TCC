@@ -2,6 +2,15 @@ function getAuthToken() {
   return localStorage.getItem('jobee_token')
 }
 
+function clearAuthSession() {
+  localStorage.removeItem('jobee_token')
+  localStorage.removeItem('jobee_user')
+}
+
+function redirectToLogin() {
+  window.location.href = '/login'
+}
+
 async function apiFetch(url, options = {}) {
   const config = {
     method: 'GET',
@@ -22,6 +31,12 @@ async function apiFetch(url, options = {}) {
     data = await response.text()
   }
 
+  if (response.status === 401) {
+    clearAuthSession()
+    redirectToLogin()
+    throw new Error('Sessão expirada ou token inválido. Faça login novamente.')
+  }
+
   if (!response.ok) {
     const message =
       (data && data.error) ||
@@ -38,6 +53,8 @@ async function authFetch(url, options = {}) {
   const token = getAuthToken()
 
   if (!token) {
+    clearAuthSession()
+    redirectToLogin()
     throw new Error('Usuário não autenticado.')
   }
 

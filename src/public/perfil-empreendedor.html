@@ -14,6 +14,7 @@
   <script src="/js/navbar.js" defer></script>
   <script src="/js/user-info.js" defer></script>
   <script src="/js/cart.js" defer></script>
+  <script src="/js/perfil-empreendedor.js" defer></script>
   <link rel="stylesheet" href="css/chatbot-abelha.css">
   <link rel="stylesheet" href="/css/responsive.css">
 </head>
@@ -88,6 +89,25 @@
 
       <section class="profile-grid">
         <div class="panel-column">
+
+          <article class="info-card minhas-lojas-card">
+            <div class="minhas-lojas-header">
+              <div>
+                <h3>Lojas cadastradas</h3>
+                <p id="minhas-lojas-contador">Carregando suas lojas...</p>
+              </div>
+              <a href="/cadastrar-loja" class="btn-primary btn-cadastrar-loja">Cadastrar loja</a>
+            </div>
+
+            <div id="minhas-lojas-vazio" class="empty-store-state" style="display: none;">
+              <strong>Você ainda não cadastrou nenhuma loja.</strong>
+              <p>Cadastre sua primeira loja para ela aparecer no seu perfil e na vitrine da Jobee.</p>
+              <a href="/cadastrar-loja" class="btn-secondary">Cadastrar minha loja</a>
+            </div>
+
+            <div id="minhas-lojas-lista" class="minhas-lojas-lista"></div>
+          </article>
+
           <article class="info-card">
             <h3>Indicadores do negócio</h3>
             <div class="metrics-grid">
