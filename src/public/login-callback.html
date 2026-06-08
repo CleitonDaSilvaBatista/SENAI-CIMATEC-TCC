@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrando com Google | Jobee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f7faf8 0%, #ffffff 45%, #e9f5f0 100%);
+      color: #1f2937;
+      padding: 24px;
+    }
+    .callback-card {
+      width: min(440px, 100%);
+      background: #fff;
+      border: 1px solid rgba(48, 134, 104, 0.16);
+      border-radius: 24px;
+      padding: 34px 28px;
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #e9f5f0;
+      border-top-color: #308668;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      animation: spin 0.8s linear infinite;
+    }
+    h1 { font-size: 1.35rem; color: #173f32; margin-bottom: 8px; }
+    p { color: #6b7280; font-size: .95rem; }
+    .erro { color: #b42318; margin-top: 12px; font-weight: 600; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <main class="callback-card">
+    <div class="loader"></div>
+    <h1>Entrando com Google...</h1>
+    <p>Estamos finalizando seu acesso à Jobee.</p>
+    <p class="erro" id="erroCallback"></p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    async function finalizarLoginGoogle() {
+      const erroEl = document.getElementById("erroCallback");
+
+      try {
+        const respostaConfig = await fetch("/api/auth/oauth-config");
+        const config = await respostaConfig.json();
+
+        if (!respostaConfig.ok || !config.supabaseUrl || !config.supabaseAnonKey) {
+          throw new Error(config.error || "Configuração do Supabase OAuth ausente.");
+        }
+
+        const supabaseClient = window.supabase.createClient(
+          config.supabaseUrl,
+          config.supabaseAnonKey
+        );
+
+        const url = new URL(window.location.href);
+        const code = url.searchParams.get("code");
+
+        if (code) {
+          const { error: exchangeError } = await supabaseClient.auth.exchangeCodeForSession(code);
+          if (exchangeError) throw exchangeError;
+        }
+
+        const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+
+        if (sessionError) throw sessionError;
+
+        const accessToken = sessionData?.session?.access_token;
+
+        if (!accessToken) {
+          throw new Error("Sessão do Google não encontrada.");
+        }
+
+        const respostaBackend = await fetch("/api/auth/google-login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ accessToken })
+        });
+
+        const data = await respostaBackend.json();
+
+        if (!respostaBackend.ok || !data.success) {
+          throw new Error(data.error || "Não foi possível entrar com Google.");
+        }
+
+        localStorage.setItem("jobee_token", data.token);
+        localStorage.setItem("jobee_user", JSON.stringify(data.usuario || { nome: "Usuário" }));
+
+        const destino = localStorage.getItem("jobee_redirect_after_login") || "/";
+        localStorage.removeItem("jobee_redirect_after_login");
+
+        window.location.href = destino;
+      } catch (erro) {
+        console.error("Erro no callback do Google:", erro);
+        erroEl.textContent = erro.message || "Erro ao concluir login com Google.";
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 2500);
+      }
+    }
+
+    finalizarLoginGoogle();
+  </script>
+</body>
+</html>

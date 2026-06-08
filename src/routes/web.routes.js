@@ -151,4 +151,12 @@ router.get('/politica-privacidade', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'politica-privacidade.html'))
 })
 
+router.get('/login-callback.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'login-callback.html'))
+})
+
+router.get('/login-callback', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'login-callback.html'))
+})
+
 module.exports = router

@@ -41,10 +41,30 @@ async function resetPassword(req, res, next) {
   }
 }
 
+function oauthConfig(req, res, next) {
+  try {
+    const result = authService.getOAuthConfig()
+    return res.status(200).json(result)
+  } catch (error) {
+    next(error)
+  }
+}
+
+async function googleLogin(req, res, next) {
+  try {
+    const result = await authService.loginWithGoogle(req.body)
+    return res.status(200).json(result)
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   login,
   logout,
   getCurrentUser,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  oauthConfig,
+  googleLogin
 }

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const supabase = require('../config/database')
+const { createClient } = require('@supabase/supabase-js')
 const emailService = require('./email.service')
 
 async function login({ email, senha }) {
@@ -136,8 +137,104 @@ async function resetPassword({ token, novaSenha }) {
   return { message: 'Senha redefinida com sucesso!' }
 }
 
+function getOAuthConfig() {
+  const supabaseUrl = process.env.SUPABASE_URL
+  const supabaseAnonKey = process.env.SUPABASE_ANON_KEY
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    const err = new Error('Configure SUPABASE_URL e SUPABASE_ANON_KEY nas variáveis de ambiente.')
+    err.statusCode = 500
+    throw err
+  }
+
+  return {
+    supabaseUrl,
+    supabaseAnonKey
+  }
+}
+
+async function loginWithGoogle({ accessToken }) {
+  if (!accessToken) {
+    const err = new Error('Token do Google/Supabase não enviado.')
+    err.statusCode = 400
+    throw err
+  }
+
+  const { supabaseUrl, supabaseAnonKey } = getOAuthConfig()
+  const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey)
+
+  const { data: authData, error: authError } = await supabaseAuth.auth.getUser(accessToken)
+
+  if (authError || !authData?.user?.email) {
+    const err = new Error('Login com Google inválido ou expirado.')
+    err.statusCode = 401
+    throw err
+  }
+
+  const googleUser = authData.user
+  const email = googleUser.email
+  const nome =
+    googleUser.user_metadata?.full_name ||
+    googleUser.user_metadata?.name ||
+    email.split('@')[0]
+
+  const { data: usuarioExistente } = await supabase
+    .from('usuarios')
+    .select('*')
+    .eq('email', email)
+    .maybeSingle()
+
+  let usuario = usuarioExistente
+
+  if (!usuario) {
+    const senhaHash = await bcrypt.hash(`google-oauth-${googleUser.id}`, 10)
+
+    const { data: novoUsuario, error: createError } = await supabase
+      .from('usuarios')
+      .insert([{
+        id_tipo_usuario: 1,
+        nome,
+        email,
+        senha_hash: senhaHash,
+        ativo: true
+      }])
+      .select('*')
+      .single()
+
+    if (createError || !novoUsuario) {
+      const err = new Error('Erro ao criar usuário pelo Google.')
+      err.statusCode = 500
+      throw err
+    }
+
+    usuario = novoUsuario
+  }
+
+  const token = jwt.sign(
+    {
+      id: usuario.id_usuario,
+      email: usuario.email
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  )
+
+  return {
+    success: true,
+    token,
+    usuario: {
+      id: usuario.id_usuario,
+      nome: usuario.nome,
+      email: usuario.email,
+      tipo: usuario.id_tipo_usuario
+    }
+  }
+}
+
 module.exports = {
   login,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  getOAuthConfig,
+  loginWithGoogle
 }
