@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const atalhosCliente = [
     { label: 'Meu perfil', href: '/perfil-cliente', descricao: 'Ver seus dados e acompanhar sua conta.' },
     { label: 'Login', href: '/login', descricao: 'Entrar na sua conta Jobee.' },
-    { label: 'Criar conta', href: '/cadastro', descricao: 'Criar uma conta para comprar ou vender.' }
+    { label: 'Criar conta', href: '/criarcont', descricao: 'Criar uma conta para comprar ou vender.' }
   ];
 
   const atalhos = [

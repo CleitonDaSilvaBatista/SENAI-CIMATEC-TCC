@@ -56,6 +56,9 @@ router.get('/cadastrar-loja', (req, res) => {
 router.get('/produto', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-shorts.html'))
 })
+router.get('/contato', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'contato.html'))
+})
 
 const paginasProduto = {
   '/produto-shorts': 'produto-shorts.html',
