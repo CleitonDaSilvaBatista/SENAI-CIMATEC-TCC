@@ -139,7 +139,10 @@
       return;
     }
 
-    window.location.href = '/compra';
+    // Evita que uma compra direta antiga fique presa no localStorage e
+    // sobrescreva os produtos reais do carrinho no checkout.
+    localStorage.removeItem('jobee_direct_checkout');
+    window.location.href = '/compra?origem=carrinho';
   }
 
   function renderizarCarrinho() {
