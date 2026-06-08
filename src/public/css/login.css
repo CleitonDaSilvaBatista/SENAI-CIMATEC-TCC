@@ -437,3 +437,46 @@
     font-size: 2.2rem;
   }
 }
+
+/* Google OAuth - Jobee */
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  border: 1px solid #d9decf;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #2e351b;
+  padding: 12px 14px;
+  font-weight: 600;
+  font-size: 0.94rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 8px 20px rgba(63, 74, 34, 0.06);
+}
+
+.social-btn img {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  background: #fff9e8;
+  border-color: #c7b56c;
+  box-shadow: 0 12px 28px rgba(63, 74, 34, 0.12);
+}
+
+.social-btn.google:hover {
+  color: #3f4a22;
+}

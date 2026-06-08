@@ -56,6 +56,9 @@ router.get('/cadastrar-loja', (req, res) => {
 router.get('/produto', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'produto-shorts.html'))
 })
+router.get('/contato', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'contato.html'))
+})
 
 const paginasProduto = {
   '/produto-shorts': 'produto-shorts.html',
@@ -146,6 +149,14 @@ router.get('/ajuda', (req, res) => {
 
 router.get('/politica-privacidade', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'src', 'public', 'politica-privacidade.html'))
+})
+
+router.get('/login-callback.html', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'login-callback.html'))
+})
+
+router.get('/login-callback', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'src', 'public', 'login-callback.html'))
 })
 
 module.exports = router

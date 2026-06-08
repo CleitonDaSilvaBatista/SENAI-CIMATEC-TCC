@@ -63,19 +63,9 @@
         </div>
 
         <div class="social-login">
-          <button class="social-btn google">
+          <button type="button" class="social-btn google" id="btnLoginGoogle">
             <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" />
             Entrar com Google
-          </button>
-
-          <button class="social-btn linkedin">
-            <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
-            Entrar com LinkedIn
-          </button>
-
-          <button class="social-btn microsoft">
-            <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Microsoft" />
-            Entrar com Microsoft
           </button>
         </div>
       </div>
@@ -242,6 +232,48 @@
     }
   });
 </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    async function iniciarLoginGoogle() {
+      try {
+        const respostaConfig = await fetch("/api/auth/oauth-config");
+        const config = await respostaConfig.json();
+
+        if (!respostaConfig.ok || !config.supabaseUrl || !config.supabaseAnonKey) {
+          throw new Error(config.error || "Configuração do Supabase OAuth ausente.");
+        }
+
+        const supabaseClient = window.supabase.createClient(
+          config.supabaseUrl,
+          config.supabaseAnonKey
+        );
+
+        const params = new URLSearchParams(window.location.search);
+        const redirectParam = params.get("redirect");
+        const destino = redirectParam || localStorage.getItem("jobee_redirect_after_login") || "/";
+
+        localStorage.setItem("jobee_redirect_after_login", destino);
+
+        const { error } = await supabaseClient.auth.signInWithOAuth({
+          provider: "google",
+          options: {
+            redirectTo: `${window.location.origin}/login-callback.html`
+          }
+        });
+
+        if (error) {
+          throw error;
+        }
+      } catch (erro) {
+        console.error("Erro no login com Google:", erro);
+        mensagemErroLogin.textContent = erro.message || "Não foi possível iniciar o login com Google.";
+        abrirModal(modalErroLogin);
+      }
+    }
+
+    document.getElementById("btnLoginGoogle")?.addEventListener("click", iniciarLoginGoogle);
+  </script>
   <script src="js/chatbot-abelha.js" defer></script>
 </body>
 </html>
