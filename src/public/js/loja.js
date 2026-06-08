@@ -214,27 +214,35 @@ async function adicionarAoCarrinho(idItem) {
       throw new Error(item.error || "Erro ao buscar item");
     }
 
-    const carrinhoAtual = JSON.parse(localStorage.getItem("jobee_cart")) || [];
-    const existente = carrinhoAtual.find(prod => Number(prod.id_item) === Number(item.id_item));
+    const produtoCarrinho = {
+      id_item: item.id_item,
+      id_loja: item.id_loja,
+      nome_loja: item.loja?.nome_fantasia || "Loja não informada",
+      slug_loja: item.loja?.slug || "",
+      nome: item.nome,
+      preco: Number(item.preco),
+      imagem_url: item.imagem_url || "/img/placeholder-loja.png",
+      quantidade: 1,
+      tipo: "produto"
+    };
 
-    if (existente) {
-      existente.quantidade += 1;
+    if (typeof window.adicionarItemCarrinho === 'function') {
+      window.adicionarItemCarrinho(produtoCarrinho);
     } else {
-      carrinhoAtual.push({
-        id_item: item.id_item,
-        id_loja: item.id_loja,
-        nome_loja: item.loja?.nome_fantasia || "Loja não informada",
-        slug_loja: item.loja?.slug || "",
-        nome: item.nome,
-        preco: Number(item.preco),
-        imagem_url: item.imagem_url || "/img/placeholder-loja.png",
-        quantidade: 1,
-        tipo: "produto"
-      });
+      const chaveCarrinho = typeof window.obterChaveCarrinho === 'function' ? window.obterChaveCarrinho() : 'jobee_cart_visitante';
+      const carrinhoAtual = JSON.parse(localStorage.getItem(chaveCarrinho) || '[]');
+      const existente = carrinhoAtual.find(prod => Number(prod.id_item) === Number(item.id_item));
+
+      if (existente) {
+        existente.quantidade = Number(existente.quantidade || 1) + 1;
+      } else {
+        carrinhoAtual.push(produtoCarrinho);
+      }
+
+      localStorage.setItem(chaveCarrinho, JSON.stringify(carrinhoAtual));
     }
 
-    localStorage.setItem("jobee_cart", JSON.stringify(carrinhoAtual));
-    console.log("Carrinho salvo:", carrinhoAtual);
+    console.log("Carrinho salvo para o usuário atual");
     showToast('Produto adicionado ao carrinho!', 'success');
   } catch (error) {
     console.error("Erro ao adicionar ao carrinho:", error);

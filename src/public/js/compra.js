@@ -40,19 +40,10 @@ function moeda(valor) {
   });
 }
 
-function parametrosCheckout() {
+function slugPelaUrl() {
   const params = new URLSearchParams(window.location.search);
   const valor = params.get('produto') || params.get('slug') || params.get('id');
-
-  return {
-    origem: params.get('origem') || params.get('source') || '',
-    produto: valor ? decodeURIComponent(valor) : null
-  };
-}
-
-function slugPelaUrl() {
-  const { produto } = parametrosCheckout();
-  if (!produto) return null;
+  if (!valor) return null;
 
   const mapaIds = {
     'produto-demo-bermuda': 'shorts',
@@ -65,18 +56,8 @@ function slugPelaUrl() {
     'produto-demo-rtx5070ti': 'placa-video'
   };
 
-  const normalizado = produto.replace(/^produto-/, '');
-  return mapaIds[produto] || mapaIds[normalizado] || normalizado;
-}
-
-function obterCarrinhoCheckout() {
-  try {
-    const carrinho = JSON.parse(localStorage.getItem('jobee_cart') || '[]');
-    return Array.isArray(carrinho) ? carrinho.map(normalizarItem) : [];
-  } catch (error) {
-    console.warn('Não foi possível ler carrinho.', error);
-    return [];
-  }
+  const normalizado = decodeURIComponent(valor).replace(/^produto-/, '');
+  return mapaIds[valor] || mapaIds[normalizado] || normalizado;
 }
 
 function normalizarItem(item) {
@@ -95,50 +76,38 @@ function normalizarItem(item) {
 }
 
 function obterItensCompra() {
-  const { origem } = parametrosCheckout();
   const slug = slugPelaUrl();
-  const carrinho = obterCarrinhoCheckout();
 
-  // Quando o usuário vem da página de carrinho, o checkout deve respeitar
-  // exatamente os itens salvos no carrinho. Isso evita que um checkout direto
-  // antigo, como painel de TV, apareça no lugar de short + TV.
-  if (origem === 'carrinho' || (!slug && carrinho.length)) {
-    return carrinho;
-  }
-
-  // Quando existe produto na URL, é compra direta de um item específico.
   if (slug && PRODUTOS_CHECKOUT_JOBEE[slug]) {
     return [normalizarItem(PRODUTOS_CHECKOUT_JOBEE[slug])];
   }
 
   try {
-    const compraDireta = JSON.parse(localStorage.getItem('jobee_direct_checkout') || 'null');
+    const chaveCheckoutDireto = typeof window.obterChaveCheckoutDireto === 'function' ? window.obterChaveCheckoutDireto() : 'jobee_direct_checkout_visitante';
+    const compraDireta = JSON.parse(localStorage.getItem(chaveCheckoutDireto) || 'null');
     if (compraDireta) return [normalizarItem(compraDireta)];
   } catch (error) {
     console.warn('Não foi possível ler checkout direto.', error);
   }
 
-  if (carrinho.length) return carrinho;
+  try {
+    const carrinho = typeof window.obterCarrinho === 'function'
+      ? window.obterCarrinho()
+      : JSON.parse(localStorage.getItem('jobee_cart_visitante') || '[]');
 
-  return [];
+    if (Array.isArray(carrinho) && carrinho.length) {
+      return carrinho.map(normalizarItem);
+    }
+  } catch (error) {
+    console.warn('Não foi possível ler carrinho.', error);
+  }
+
+  return [normalizarItem(PRODUTOS_CHECKOUT_JOBEE.shorts)];
 }
 
 function renderizarItensCompra(itens) {
   const primeiroCard = document.querySelector('.purchase-item');
   if (!primeiroCard) return;
-
-  if (!itens.length) {
-    primeiroCard.outerHTML = `
-      <div class="purchase-item purchase-item--empty">
-        <div class="purchase-item__meta">
-          <h3>Nenhum produto no checkout</h3>
-          <p>Seu carrinho está vazio. Volte para a loja e adicione produtos antes de finalizar a compra.</p>
-          <a class="btn-secondary" href="/">Voltar para a home</a>
-        </div>
-      </div>
-    `;
-    return;
-  }
 
   primeiroCard.outerHTML = itens.map((item) => `
     <div class="purchase-item">
@@ -169,16 +138,6 @@ function preencherResumo() {
   const total = subtotal + frete - desconto;
 
   renderizarItensCompra(itens);
-
-  const tituloProdutos = document.querySelector('.checkout-card__header h2');
-  const descricaoProdutos = document.querySelector('.checkout-card__header p');
-  const tagCompra = document.querySelector('.checkout-card__header .tag-soft');
-
-  if (tituloProdutos) tituloProdutos.textContent = itens.length > 1 ? 'Produtos selecionados' : 'Produto selecionado';
-  if (descricaoProdutos) descricaoProdutos.textContent = itens.length > 1
-    ? 'Resumo dos itens que vieram do seu carrinho.'
-    : 'Resumo do item que você escolheu na página do produto.';
-  if (tagCompra) tagCompra.textContent = itens.length > 1 ? 'Carrinho' : 'Compra imediata';
 
   const summarySubtotal = document.getElementById('summarySubtotal');
   const summaryShipping = document.getElementById('summaryShipping');
@@ -222,15 +181,6 @@ function vincularFormulario() {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const itens = obterItensCompra();
-
-    if (!itens.length) {
-      const mensagemErro = 'Adicione pelo menos um produto ao carrinho antes de finalizar a compra.';
-      if (typeof window.showToast === 'function') window.showToast(mensagemErro, 'error');
-      else alert(mensagemErro);
-      return;
-    }
-
     const mensagem = 'Pedido confirmado com sucesso! Próximo passo: salvar o pedido no backend.';
 
     if (typeof window.showToast === 'function') {

@@ -313,8 +313,10 @@ function atualizarBadgeCarrinho() {
   if (!badge) return;
 
   try {
-    const carrinho = JSON.parse(localStorage.getItem('jobee_cart')) || [];
-    const totalItens = carrinho.reduce((acc, item) => acc + Number(item.quantidade || 1), 0);
+    const carrinho = typeof window.obterCarrinho === 'function'
+      ? window.obterCarrinho()
+      : JSON.parse(localStorage.getItem('jobee_cart_visitante') || '[]');
+    const totalItens = carrinho.reduce((acc, item) => acc + Number(item.quantidade || item.quantity || 1), 0);
     badge.textContent = totalItens;
   } catch (error) {
     console.error('Erro ao atualizar badge do carrinho:', error);

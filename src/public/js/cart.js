@@ -1,5 +1,43 @@
 (function () {
-  const CART_KEY = 'jobee_cart';
+  const CART_KEY_BASE = 'jobee_cart';
+
+  function obterUsuarioCarrinho() {
+    try {
+      const usuario = JSON.parse(localStorage.getItem('jobee_user') || 'null');
+      return usuario && typeof usuario === 'object' ? usuario : null;
+    } catch (error) {
+      console.error('Erro ao ler usuário do carrinho:', error);
+      return null;
+    }
+  }
+
+  function obterIdentificadorUsuarioCarrinho() {
+    const usuario = obterUsuarioCarrinho();
+
+    if (!usuario) return 'visitante';
+
+    return String(
+      usuario.id_usuario ??
+      usuario.id ??
+      usuario.user_id ??
+      usuario.userId ??
+      usuario.email ??
+      'visitante'
+    ).trim() || 'visitante';
+  }
+
+  function obterChaveCarrinho() {
+    return `${CART_KEY_BASE}_${obterIdentificadorUsuarioCarrinho()}`;
+  }
+
+  function obterChaveCheckoutDireto() {
+    return `jobee_direct_checkout_${obterIdentificadorUsuarioCarrinho()}`;
+  }
+
+  function lerCarrinhoDaChave(chave) {
+    const carrinho = JSON.parse(localStorage.getItem(chave) || '[]');
+    return Array.isArray(carrinho) ? carrinho : [];
+  }
 
   function normalizarTexto(valor) {
     return String(valor ?? '').trim();
@@ -15,8 +53,7 @@
 
   function obterCarrinho() {
     try {
-      const carrinho = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
-      return Array.isArray(carrinho) ? carrinho : [];
+      return lerCarrinhoDaChave(obterChaveCarrinho());
     } catch (error) {
       console.error('Erro ao ler carrinho:', error);
       return [];
@@ -24,7 +61,7 @@
   }
 
   function salvarCarrinho(carrinho) {
-    localStorage.setItem(CART_KEY, JSON.stringify(carrinho));
+    localStorage.setItem(obterChaveCarrinho(), JSON.stringify(carrinho));
     updateCartBadge();
   }
 
@@ -139,10 +176,7 @@
       return;
     }
 
-    // Evita que uma compra direta antiga fique presa no localStorage e
-    // sobrescreva os produtos reais do carrinho no checkout.
-    localStorage.removeItem('jobee_direct_checkout');
-    window.location.href = '/compra?origem=carrinho';
+    window.location.href = '/compra';
   }
 
   function renderizarCarrinho() {
@@ -244,6 +278,8 @@
 
   document.addEventListener('DOMContentLoaded', renderizarCarrinho);
 
+  window.obterChaveCarrinho = obterChaveCarrinho;
+  window.obterChaveCheckoutDireto = obterChaveCheckoutDireto;
   window.obterCarrinho = obterCarrinho;
   window.salvarCarrinho = salvarCarrinho;
   window.updateCartBadge = updateCartBadge;

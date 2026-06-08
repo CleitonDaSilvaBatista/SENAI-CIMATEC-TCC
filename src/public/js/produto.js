@@ -404,7 +404,7 @@ function exibirModalRedirecionamento(produto) {
   modal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
 
-  localStorage.setItem('jobee_direct_checkout', JSON.stringify(produto));
+  localStorage.setItem(typeof window.obterChaveCheckoutDireto === 'function' ? window.obterChaveCheckoutDireto() : 'jobee_direct_checkout_visitante', JSON.stringify(produto));
 
   window.setTimeout(() => {
     window.location.href = '/compra';
@@ -502,7 +502,8 @@ function salvarProdutoAtualNoCarrinho() {
   if (typeof window.adicionarItemCarrinho === 'function') {
     window.adicionarItemCarrinho(produto);
   } else {
-    const carrinhoAtual = JSON.parse(localStorage.getItem('jobee_cart') || '[]');
+    const chaveCarrinho = typeof window.obterChaveCarrinho === 'function' ? window.obterChaveCarrinho() : 'jobee_cart_visitante';
+    const carrinhoAtual = JSON.parse(localStorage.getItem(chaveCarrinho) || '[]');
     const chave = `${produto.id}|${produto.cor}|${produto.tamanho}`;
     const itemExistente = carrinhoAtual.find((item) => `${item.id_item}|${item.cor || ''}|${item.tamanho || ''}` === chave);
 
@@ -522,7 +523,7 @@ function salvarProdutoAtualNoCarrinho() {
       });
     }
 
-    localStorage.setItem('jobee_cart', JSON.stringify(carrinhoAtual));
+    localStorage.setItem(chaveCarrinho, JSON.stringify(carrinhoAtual));
   }
 
   if (typeof updateCartBadge === 'function') updateCartBadge();
@@ -544,7 +545,7 @@ function comprarAgora() {
   }
 
   const produto = salvarProdutoAtualNoCarrinho();
-  localStorage.setItem('jobee_direct_checkout', JSON.stringify(produto));
+  localStorage.setItem(typeof window.obterChaveCheckoutDireto === 'function' ? window.obterChaveCheckoutDireto() : 'jobee_direct_checkout_visitante', JSON.stringify(produto));
   mostrarToastProduto('Produto adicionado ao carrinho!', 'success');
 
   window.setTimeout(() => {
