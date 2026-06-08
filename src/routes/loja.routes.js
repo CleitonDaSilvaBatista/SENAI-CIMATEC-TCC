@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const lojaController = require('../controllers/loja.controller')
+const authMiddleware = require('../middlewares/auth.middleware')
 
 router.get('/', lojaController.getLojas)
+router.post('/', authMiddleware, lojaController.createLoja)
+router.get('/minhas', authMiddleware, lojaController.getMinhasLojas)
 router.get('/:id/contagem', lojaController.getContagemItens)
 router.get('/:slug', lojaController.getLojaBySlug)
 

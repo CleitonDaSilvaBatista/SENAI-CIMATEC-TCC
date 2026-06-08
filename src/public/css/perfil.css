@@ -374,3 +374,117 @@ body {
     flex-direction: column;
   }
 }
+
+
+.minhas-lojas-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.minhas-lojas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.minhas-lojas-header p {
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.btn-cadastrar-loja,
+.btn-ver-loja {
+  white-space: nowrap;
+}
+
+.minhas-lojas-lista {
+  display: grid;
+  gap: 14px;
+}
+
+.minha-loja-card {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid rgba(48, 134, 104, 0.16);
+  background: #fbfefd;
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.minha-loja-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 16px;
+  background: #eef7f3;
+}
+
+.minha-loja-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.minha-loja-topo h4 {
+  color: #173f32;
+  margin: 0;
+}
+
+.loja-status {
+  background: rgba(48, 134, 104, 0.12);
+  color: #266a53;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.minha-loja-card p,
+.profile-loading,
+.profile-error,
+.empty-store-state p {
+  color: #6b7280;
+  margin: 6px 0 10px;
+}
+
+.btn-ver-loja {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  background: #308668;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 13px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.empty-store-state {
+  border: 1px dashed rgba(48, 134, 104, 0.35);
+  border-radius: 18px;
+  background: #f4fbf8;
+  padding: 18px;
+}
+
+@media (max-width: 560px) {
+  .minha-loja-card {
+    grid-template-columns: 1fr;
+  }
+
+  .minha-loja-card img {
+    width: 100%;
+    height: 150px;
+  }
+
+  .minha-loja-topo {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
