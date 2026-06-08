@@ -5,7 +5,8 @@
     tipo: 'todos',
     precoMin: '',
     precoMax: '',
-    ordenacao: 'relevancia'
+    ordenacao: 'relevancia',
+    lojasApi: []
   };
 
   function normalizar(valor) {
@@ -23,8 +24,77 @@
     });
   }
 
-  function getCatalogo() {
+  function getCatalogoBase() {
     return Array.isArray(window.JOBEE_CATALOGO) ? window.JOBEE_CATALOGO : [];
+  }
+
+  function getCatalogo() {
+    const base = getCatalogoBase();
+    const idsBase = new Set(base.map((item) => item.id || item.href || item.nome));
+    const lojasNovas = state.lojasApi.filter((loja) => !idsBase.has(loja.id || loja.href || loja.nome));
+    return [...base, ...lojasNovas];
+  }
+
+  function inferirCategoriaLoja(loja) {
+    const texto = normalizar(`${loja.nome_fantasia || loja.nome || ''} ${loja.categoria || ''} ${loja.descricao || ''}`);
+
+    if (texto.includes('barbearia') || texto.includes('barba') || texto.includes('corte')) return 'Beleza';
+    if (texto.includes('restaurante') || texto.includes('comida') || texto.includes('marmita') || texto.includes('delivery')) return 'Alimentos';
+    if (texto.includes('salao') || texto.includes('beleza') || texto.includes('estetica') || texto.includes('maquiagem')) return 'Beleza';
+    if (texto.includes('assistencia') || texto.includes('celular') || texto.includes('computador') || texto.includes('tecnologia')) return 'Serviços';
+
+    return loja.categoria || 'Negócios Locais';
+  }
+
+  function normalizarLojaApi(loja) {
+    const nome = loja.nome_fantasia || loja.nome || loja.razao_social || 'Negócio local';
+    const slug = loja.slug || String(loja.id || nome)
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+
+    const categoria = inferirCategoriaLoja(loja);
+    const cidade = loja.cidade || loja.localidade || 'Salvador';
+    const uf = loja.uf || loja.estado || 'BA';
+
+    return {
+      id: `loja-api-${loja.id || slug}`,
+      tipo: 'loja',
+      categoria,
+      marca: nome,
+      nome,
+      preco: Number(loja.preco_medio || loja.preco || 0),
+      precoAntigo: null,
+      desconto: 'Negócio local',
+      imagem: loja.imagem_url || loja.logo_url || '/img/placeholder-loja.png',
+      href: `/loja/${slug}`,
+      local: `${cidade} - ${uf}`,
+      vendedor: nome,
+      avaliacao: Number(loja.avaliacao || 4.8),
+      descricao: loja.descricao || loja.bio || 'Negócio local em destaque na Jobee.',
+      tags: [
+        'negocio local', 'loja', 'microempresa', 'empreendedor', 'servico',
+        categoria, nome, loja.cnpj, loja.endereco, cidade, uf
+      ].filter(Boolean)
+    };
+  }
+
+  async function carregarNegociosLocais() {
+    try {
+      const resposta = await fetch('/api/lojas');
+      const lojas = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(lojas.error || 'Erro ao buscar negócios locais');
+      }
+
+      state.lojasApi = Array.isArray(lojas) ? lojas.map(normalizarLojaApi) : [];
+    } catch (error) {
+      console.warn('Não foi possível carregar negócios locais na busca:', error);
+      state.lojasApi = [];
+    }
   }
 
   function lerQueryInicial() {
@@ -74,6 +144,9 @@
     const categoria = normalizar(item.categoria);
     const descricao = normalizar(item.descricao);
     const marca = normalizar(item.marca);
+    const vendedor = normalizar(item.vendedor);
+    const local = normalizar(item.local);
+    const tipo = normalizar(item.tipo);
     const tags = normalizar((item.tags || []).join(' '));
 
     let pontos = 0;
@@ -81,11 +154,17 @@
     if (categoria.includes(termoNormalizado)) pontos += 5;
     if (marca.includes(termoNormalizado)) pontos += 4;
     if (tags.includes(termoNormalizado)) pontos += 3;
+    if (vendedor.includes(termoNormalizado)) pontos += 3;
+    if (local.includes(termoNormalizado)) pontos += 2;
+    if (tipo.includes(termoNormalizado)) pontos += 2;
     if (descricao.includes(termoNormalizado)) pontos += 2;
 
     const palavras = termoNormalizado.split(/\s+/).filter(Boolean);
     palavras.forEach((palavra) => {
       if (nome.includes(palavra)) pontos += 2;
+      if (categoria.includes(palavra)) pontos += 1;
+      if (vendedor.includes(palavra)) pontos += 1;
+      if (local.includes(palavra)) pontos += 1;
       if (tags.includes(palavra)) pontos += 1;
     });
 
@@ -262,9 +341,10 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     lerQueryInicial();
     preencherLocalizacao();
+    await carregarNegociosLocais();
     criarFiltrosCategoria();
     bindEventos();
     renderizar();
